@@ -41,7 +41,7 @@ const Footer = () => {
               <img 
                 src={mapettLogo} 
                 alt="Mapett Logistics" 
-                className="h-24 w-auto object-cover object-bottom brightness-0 invert" 
+                className="h-24 w-auto object-cover object-bottom" 
               />
             </a>
             <p className="text-background/70 mb-6 max-w-sm">
