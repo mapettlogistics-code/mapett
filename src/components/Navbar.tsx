@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { user, signOut } = useAuth();
+  const { totalItems } = useCart();
 
   const services = [
     "Air Freight",
@@ -49,7 +54,7 @@ const Navbar = () => {
         <div className="container">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl hero-gradient flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xl">M</span>
               </div>
@@ -57,13 +62,13 @@ const Navbar = () => {
                 <span className="text-xl font-bold text-foreground">Mapett</span>
                 <span className="text-xl font-bold text-primary"> Logistics</span>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-8">
-              <a href="#" className="font-medium text-foreground hover:text-primary transition-colors">
+              <Link to="/" className="font-medium text-foreground hover:text-primary transition-colors">
                 Home
-              </a>
+              </Link>
               
               {/* Services Dropdown */}
               <div 
@@ -135,23 +140,90 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-4">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Track Shipment
-              </Button>
-              <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-                Get Quote
-              </Button>
+              <Link to="/track">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Track Shipment
+                </Button>
+              </Link>
+              
+              {/* Cart */}
+              <Link to="/cart" className="relative">
+                <Button variant="ghost" size="icon">
+                  <ShoppingCart className="h-5 w-5" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
+              </Link>
+
+              {/* Auth */}
+              {user ? (
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('user')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Button variant="ghost" size="icon">
+                    <User className="h-5 w-5" />
+                  </Button>
+                  <AnimatePresence>
+                    {activeDropdown === 'user' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full right-0 mt-2 w-48 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        <div className="px-4 py-3 border-b border-border">
+                          <p className="text-sm text-muted-foreground">Signed in as</p>
+                          <p className="text-sm font-medium truncate">{user.email}</p>
+                        </div>
+                        <Link to="/cart" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          My Cart
+                        </Link>
+                        <Link to="/track" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          Track Orders
+                        </Link>
+                        <button
+                          onClick={signOut}
+                          className="w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors text-destructive flex items-center gap-2"
+                        >
+                          <LogOut className="h-4 w-4" /> Sign Out
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
+                    Sign In
+                  </Button>
+                </Link>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            <div className="flex lg:hidden items-center gap-2">
+              <Link to="/cart" className="relative p-2">
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 hover:bg-secondary rounded-lg transition-colors"
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -165,18 +237,28 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
               <div className="container py-4 space-y-4">
-                <a href="#" className="block py-2 font-medium">Home</a>
-                <a href="#services" className="block py-2 font-medium">Services</a>
-                <a href="#marketplace" className="block py-2 font-medium">Marketplace</a>
-                <a href="#about" className="block py-2 font-medium">About Us</a>
-                <a href="#contact" className="block py-2 font-medium">Contact</a>
+                <Link to="/" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Home</Link>
+                <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
+                <a href="#marketplace" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Marketplace</a>
+                <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
+                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
                 <div className="pt-4 space-y-2">
-                  <Button variant="outline" className="w-full border-primary text-primary">
-                    Track Shipment
-                  </Button>
-                  <Button className="w-full hero-gradient text-primary-foreground">
-                    Get Quote
-                  </Button>
+                  <Link to="/track" onClick={() => setIsOpen(false)}>
+                    <Button variant="outline" className="w-full border-primary text-primary">
+                      Track Shipment
+                    </Button>
+                  </Link>
+                  {user ? (
+                    <Button onClick={signOut} variant="destructive" className="w-full">
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <Link to="/login" onClick={() => setIsOpen(false)}>
+                      <Button className="w-full hero-gradient text-primary-foreground">
+                        Sign In
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>
