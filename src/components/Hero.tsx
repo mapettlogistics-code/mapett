@@ -19,7 +19,7 @@ const Hero = () => {
           alt="Mapett Logistics Kenya"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
