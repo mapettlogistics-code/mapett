@@ -3,6 +3,48 @@ import { ArrowRight, Play, Truck, Package, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-logistics.jpg";
 
+// Floating geometric shapes component
+const FloatingShapes = () => {
+  const shapes = [
+    { size: 60, x: "10%", y: "20%", duration: 8, delay: 0 },
+    { size: 40, x: "85%", y: "15%", duration: 10, delay: 1 },
+    { size: 80, x: "75%", y: "60%", duration: 12, delay: 2 },
+    { size: 30, x: "20%", y: "70%", duration: 9, delay: 0.5 },
+    { size: 50, x: "60%", y: "80%", duration: 11, delay: 1.5 },
+    { size: 25, x: "40%", y: "25%", duration: 7, delay: 3 },
+  ];
+
+  return (
+    <>
+      {shapes.map((shape, i) => (
+        <motion.div
+          key={i}
+          className="absolute pointer-events-none"
+          style={{ left: shape.x, top: shape.y }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 1.2, 1],
+            y: [0, -30, 0],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: shape.duration,
+            delay: shape.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <div
+            className="rounded-full border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent backdrop-blur-sm"
+            style={{ width: shape.size, height: shape.size }}
+          />
+        </motion.div>
+      ))}
+    </>
+  );
+};
+
 const Hero = () => {
   const stats = [
     { icon: Truck, value: "10+", label: "Years Experience" },
@@ -19,8 +61,11 @@ const Hero = () => {
           alt="Mapett Logistics Kenya"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/40 to-transparent" />
       </div>
+
+      {/* Floating Geometric Shapes */}
+      <FloatingShapes />
 
       {/* Content */}
       <div className="container relative z-10">
@@ -56,7 +101,34 @@ const Hero = () => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="relative"
               >
+                {/* Pulsing glow rings */}
+                <motion.div
+                  className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary via-pink-500 to-accent opacity-75 blur-lg"
+                  animate={{
+                    opacity: [0.5, 0.8, 0.5],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="absolute -inset-2 rounded-xl bg-gradient-to-r from-primary via-pink-500 to-accent opacity-40 blur-xl"
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                  }}
+                />
                 <Button 
                   size="lg" 
                   className="relative overflow-hidden bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-[0_0_40px_rgba(219,39,119,0.4)] hover:shadow-[0_0_60px_rgba(219,39,119,0.6)] transition-all duration-300 group"
