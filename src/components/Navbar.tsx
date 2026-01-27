@@ -307,6 +307,24 @@ const Navbar = () => {
                 <a href="#marketplace" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Marketplace</a>
                 <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
                 <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
+                {/* Social Links */}
+                <div className="flex items-center gap-3 py-2">
+                  <span className="text-sm text-muted-foreground">Follow us:</span>
+                  <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                  <a href="https://www.instagram.com/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                  <a href="https://www.youtube.com/@MapettLogisticsLtd" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <Youtube className="h-4 w-4" />
+                  </a>
+                  <a href="https://www.tiktok.com/@mapettlogisticsltd" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                  </a>
+                </div>
                 <div className="pt-4 space-y-2">
                   <Link to="/track" onClick={() => setIsOpen(false)}>
                     <Button variant="outline" className="w-full border-primary text-primary">
