@@ -19,6 +19,12 @@ const Navbar = () => {
     "Road Transport",
     "Warehousing",
     "Customs Clearance",
+    "Refrigerated Cargo",
+    "Special Cargo",
+    "Intermodal Solutions",
+    "eCommerce Solutions",
+    "Insurance Services",
+    "Live Support",
   ];
 
   const marketplace = [

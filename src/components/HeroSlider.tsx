@@ -1,51 +1,86 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-logistics.jpg";
 
 const slides = [
   {
-    icon: Warehouse,
-    title: "WAREHOUSING SOLUTIONS",
-    subtitle: "Secure storage and distribution",
-    description: "Advanced inventory management with strategic locations across East Africa",
+    icon: Plane,
+    title: "AIR FREIGHT",
+    subtitle: "Fast global delivery",
+    description: "Time-sensitive shipments delivered worldwide with our extensive airline network",
     gradient: "from-primary/90 to-accent/70",
+  },
+  {
+    icon: Ship,
+    title: "OCEAN FREIGHT",
+    subtitle: "Cost-effective sea solutions",
+    description: "FCL and LCL services connecting Mombasa to major ports globally",
+    gradient: "from-accent/90 to-primary/70",
+  },
+  {
+    icon: Truck,
+    title: "ROAD TRANSPORT",
+    subtitle: "East Africa coverage",
+    description: "Reliable road logistics across Kenya, Uganda, Tanzania, and beyond",
+    gradient: "from-primary/80 to-pink-600/70",
+  },
+  {
+    icon: Warehouse,
+    title: "WAREHOUSING",
+    subtitle: "Secure storage solutions",
+    description: "Advanced inventory management with strategic locations across East Africa",
+    gradient: "from-pink-600/80 to-primary/70",
+  },
+  {
+    icon: FileCheck,
+    title: "CUSTOMS CLEARANCE",
+    subtitle: "Smooth import & export",
+    description: "Expert customs services at Mombasa Port, JKIA, and all border points",
+    gradient: "from-accent/80 to-primary/80",
   },
   {
     icon: Thermometer,
     title: "REFRIGERATED CARGO",
     subtitle: "Cold chain excellence",
     description: "Temperature-controlled transport for perishable goods with real-time monitoring",
-    gradient: "from-accent/90 to-primary/70",
+    gradient: "from-primary/85 to-accent/75",
   },
   {
     icon: Container,
     title: "SPECIAL CARGO",
-    subtitle: "Expert handling for unique shipments",
+    subtitle: "Expert handling",
     description: "Oversized, heavy-lift, and project cargo with specialized equipment",
-    gradient: "from-primary/80 to-pink-600/70",
+    gradient: "from-primary/90 to-accent/70",
   },
   {
     icon: Network,
     title: "INTERMODAL SOLUTIONS",
-    subtitle: "Seamless multi-modal transport",
+    subtitle: "Multi-modal transport",
     description: "Connecting your cargo across road, rail, and sea networks globally",
-    gradient: "from-pink-600/80 to-primary/70",
+    gradient: "from-accent/90 to-primary/70",
   },
   {
     icon: ShoppingCart,
     title: "eCOMMERCE SOLUTIONS",
-    subtitle: "Digital shipping made simple",
+    subtitle: "Digital shipping",
     description: "Quick, convenient tools to save time and streamline your logistics",
-    gradient: "from-accent/80 to-primary/80",
+    gradient: "from-primary/80 to-pink-600/70",
+  },
+  {
+    icon: Shield,
+    title: "INSURANCE SERVICES",
+    subtitle: "Protect your cargo",
+    description: "Comprehensive cargo insurance covering all risk, marine, and transit protection",
+    gradient: "from-pink-600/80 to-primary/70",
   },
   {
     icon: MessageCircle,
     title: "LIVE SUPPORT",
-    subtitle: "24/7 expert assistance",
+    subtitle: "24/7 assistance",
     description: "Quick responses to your shipping queries across various regions",
-    gradient: "from-primary/85 to-accent/75",
+    gradient: "from-accent/80 to-primary/80",
   },
 ];
 
