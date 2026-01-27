@@ -27,10 +27,10 @@ const Contact = () => {
   ];
 
   const socials = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045" },
-    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/" },
-    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd" },
-    { icon: Linkedin, href: "#" },
+    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube" },
+    { icon: Linkedin, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok" },
   ];
 
   return (
