@@ -1,10 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2, CircleDot, Shield, HardHat, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2, CircleDot, Shield, HardHat, ChevronLeft, ChevronRight, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { supabase } from "@/integrations/supabase/client";
 import useEmblaCarousel from "embla-carousel-react";
+import ProductShareButtons from "./marketplace/ProductShareButtons";
 
 type Product = {
   id: string;
@@ -265,7 +266,13 @@ const Marketplace = () => {
 
                   {/* Content - Compact */}
                   <div className="p-3">
-                    <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
+                    <div className="flex items-start justify-between mb-1">
+                      <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
+                      <ProductShareButtons 
+                        productName={product.name} 
+                        productUrl={`${window.location.origin}/#marketplace`} 
+                      />
+                    </div>
                     <h4 className="font-semibold text-foreground text-sm mt-0.5 mb-1.5 line-clamp-1">{product.name}</h4>
                     
                     <div className="flex items-center gap-1 mb-2">

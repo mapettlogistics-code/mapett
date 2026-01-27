@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag, Loader2 } from "lucide-react";
+import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag, Loader2, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const Cart = () => {
-  const { items, loading, updateQuantity, removeFromCart, clearCart, totalAmount } = useCart();
+  const { items, loading, updateQuantity, removeFromCart, clearCart, totalAmount, syncCartToServer } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -23,6 +23,17 @@ const Cart = () => {
 
   const deliveryFee = totalAmount > 5000 ? 0 : 250;
   const grandTotal = totalAmount + deliveryFee;
+
+  const handleProceedToCheckout = () => {
+    if (!user) {
+      toast.info("Please login to complete your purchase");
+      // Store the intent to checkout after login
+      sessionStorage.setItem("checkout_redirect", "true");
+      navigate("/login");
+      return;
+    }
+    setCheckoutStep("checkout");
+  };
 
   const handleCheckout = async () => {
     if (!user) {
@@ -86,21 +97,6 @@ const Cart = () => {
       setIsCheckingOut(false);
     }
   };
-
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="text-center">
-          <ShoppingBag className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-2">Please Login</h2>
-          <p className="text-muted-foreground mb-4">Login to view your cart</p>
-          <Link to="/login">
-            <Button className="hero-gradient text-primary-foreground">Login</Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -208,11 +204,19 @@ const Cart = () => {
                   <span className="text-primary">KES {grandTotal.toLocaleString()}</span>
                 </div>
               </div>
+              
+              {!user && (
+                <div className="mt-4 p-3 bg-primary/10 rounded-lg flex items-center gap-2 text-sm">
+                  <LogIn className="h-4 w-4 text-primary" />
+                  <span>Login required at checkout</span>
+                </div>
+              )}
+              
               <Button
                 className="w-full mt-6 hero-gradient text-primary-foreground"
-                onClick={() => setCheckoutStep("checkout")}
+                onClick={handleProceedToCheckout}
               >
-                Proceed to Checkout
+                {user ? "Proceed to Checkout" : "Login & Checkout"}
               </Button>
             </div>
           </div>
