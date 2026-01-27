@@ -53,21 +53,35 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-12">
-              <Button 
-                size="lg" 
-                className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group"
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Get a Quote
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-primary-foreground/50 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 backdrop-blur-sm"
+                <Button 
+                  size="lg" 
+                  className="relative overflow-hidden bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-[0_0_40px_rgba(219,39,119,0.4)] hover:shadow-[0_0_60px_rgba(219,39,119,0.6)] transition-all duration-300 group"
+                >
+                  {/* Animated shine effect */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                  <span className="relative flex items-center gap-2">
+                    Get a Quote
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Play className="mr-2 h-5 w-5" />
-                Watch Video
-              </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-white/30 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Video
+                </Button>
+              </motion.div>
             </div>
 
             {/* Stats */}
