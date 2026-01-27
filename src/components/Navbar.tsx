@@ -33,9 +33,9 @@ const Navbar = () => {
       <div className="hidden md:block bg-primary text-primary-foreground py-2">
         <div className="container flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+254700000000" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="tel:+254799390133" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" />
-              +254 700 000 000
+              +254 799 390 133
             </a>
             <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
@@ -44,7 +44,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4" />
-            <span>Nairobi, Kenya</span>
+            <span>Mombasa, Kenya</span>
           </div>
         </div>
       </div>

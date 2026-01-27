@@ -103,7 +103,7 @@ const ChatBot = () => {
         ...prev.slice(0, -1),
         {
           role: "assistant",
-          content: "Sorry, I'm having trouble connecting. Please try again or contact us via WhatsApp at +254 700 000 000.",
+          content: "Sorry, I'm having trouble connecting. Please try again or contact us via WhatsApp at +254 799 390 133.",
         },
       ]);
     } finally {

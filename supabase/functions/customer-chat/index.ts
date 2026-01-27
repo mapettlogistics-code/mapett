@@ -25,8 +25,9 @@ serve(async (req) => {
 2. **Marketplace Products**: Automotive lubricants (engine oils, hydraulic oils), coolants, greases, vehicle batteries, and accessories. Prices are in Kenya Shillings (KES).
 
 3. **Company Info**:
-   - Location: Mombasa Road, Industrial Area, Nairobi, Kenya
-   - Phone: +254 700 000 000
+   - Location: Shree Ecclave, Off Links Road, Mombasa, Kenya
+   - P.O. Box: 2039-80100
+   - Phone/WhatsApp: +254 799 390 133
    - Email: info@mapettlogistics.com
    - Hours: Mon-Fri 8AM-6PM, Sat 9AM-2PM
    - Free delivery on orders above KES 5,001
@@ -37,7 +38,7 @@ serve(async (req) => {
    - YouTube: @MapettLogisticsLtd
    - TikTok: @mapettlogisticsltd
 
-Be helpful, professional, and friendly. Keep responses concise. If you don't know something specific, offer to connect them with our human support team via WhatsApp at +254 700 000 000.`;
+Be helpful, professional, and friendly. Keep responses concise. If you don't know something specific, offer to connect them with our human support team via WhatsApp at +254 799 390 133.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
