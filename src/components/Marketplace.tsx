@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Shield, HardHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
@@ -97,24 +97,25 @@ const Marketplace = () => {
         {/* Categories Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {categories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group relative bg-card rounded-xl p-4 shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer border border-border hover:border-primary/30"
-            >
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
-                <category.icon className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <h3 className="text-base font-bold text-foreground mb-1">{category.title}</h3>
-              <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{category.description}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-primary font-medium">{category.productCount} Products</span>
-                <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
-              </div>
-            </motion.div>
+            <Link to={`/products?category=${category.categoryKey}`} key={category.title}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group relative bg-card rounded-xl p-4 shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer border border-border hover:border-primary/30"
+              >
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                  <category.icon className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-base font-bold text-foreground mb-1">{category.title}</h3>
+                <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{category.description}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-primary font-medium">{category.productCount} Products</span>
+                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 
@@ -137,10 +138,12 @@ const Marketplace = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button size="lg" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
+          <Link to="/products">
+            <Button size="lg" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
             Explore All Products
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>
