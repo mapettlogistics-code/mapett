@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2 } from "lucide-react";
+import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2, CircleDot, Shield, HardHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -49,18 +49,39 @@ const Marketplace = () => {
       color: "from-pink-500 to-rose-600",
     },
     {
-      icon: Wrench,
-      title: "Industrial Lubricants",
-      description: "Precision lubricants for manufacturing and industrial needs",
-      productCount: 32,
-      color: "from-pink-600 to-pink-700",
+      icon: CircleDot,
+      title: "Tires",
+      description: "Quality tires for all vehicle types - cars, trucks, and motorbikes",
+      productCount: 38,
+      color: "from-gray-600 to-gray-800",
     },
     {
       icon: Battery,
       title: "Vehicle Batteries",
       description: "Sturdy & trustworthy battery brands for all vehicles",
       productCount: 28,
-      color: "from-rose-500 to-pink-600",
+      color: "from-yellow-500 to-orange-600",
+    },
+    {
+      icon: HardHat,
+      title: "Safety Boots",
+      description: "Industrial safety footwear for workplace protection",
+      productCount: 24,
+      color: "from-amber-600 to-amber-800",
+    },
+    {
+      icon: Shield,
+      title: "Insurance",
+      description: "Life insurance and motor vehicle insurance solutions",
+      productCount: 8,
+      color: "from-blue-500 to-blue-700",
+    },
+    {
+      icon: Wrench,
+      title: "Industrial Lubricants",
+      description: "Precision lubricants for manufacturing and industrial needs",
+      productCount: 32,
+      color: "from-pink-600 to-pink-700",
     },
     {
       icon: Car,
