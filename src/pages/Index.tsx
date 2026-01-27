@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSlider from "@/components/HeroSlider";
 import QuoteSection from "@/components/QuoteSection";
 import Services from "@/components/Services";
+import Insurance from "@/components/Insurance";
 import Marketplace from "@/components/Marketplace";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -16,6 +17,7 @@ const Index = () => {
       <HeroSlider />
       <QuoteSection />
       <Services />
+      <Insurance />
       <Marketplace />
       <About />
       <Contact />

@@ -23,8 +23,22 @@ const Navbar = () => {
     "Special Cargo",
     "Intermodal Solutions",
     "eCommerce Solutions",
-    "Insurance Services",
     "Live Support",
+  ];
+
+  const insurance = [
+    "Marine Cargo Insurance",
+    "Air Cargo Insurance",
+    "Inland Transit Insurance",
+    "Freight Forwarder Liability",
+    "Property Insurance",
+    "Fire Insurance",
+    "Motor Vehicle Insurance",
+    "Warehouse Insurance",
+    "Business Insurance",
+    "Group Life Insurance",
+    "Health Insurance",
+    "Personal Accident Insurance",
   ];
 
   const marketplace = [
@@ -95,6 +109,37 @@ const Navbar = () => {
                           className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
                         >
                           {service}
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Insurance Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('insurance')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
+                  Insurance <ChevronDown className="h-4 w-4" />
+                </button>
+                <AnimatePresence>
+                  {activeDropdown === 'insurance' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden max-h-80 overflow-y-auto"
+                    >
+                      {insurance.map((item) => (
+                        <a
+                          key={item}
+                          href="#insurance"
+                          className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                        >
+                          {item}
                         </a>
                       ))}
                     </motion.div>
@@ -240,6 +285,7 @@ const Navbar = () => {
               <div className="container py-4 space-y-4">
                 <Link to="/" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Home</Link>
                 <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
+                <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance</a>
                 <a href="#marketplace" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Marketplace</a>
                 <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
                 <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
