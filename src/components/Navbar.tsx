@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut, Facebook, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="hidden md:block bg-primary text-primary-foreground py-2">
         <div className="container flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+254799390133" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" />
               +254 799 390 133
             </a>
@@ -63,9 +63,27 @@ const Navbar = () => {
               info@mapettlogistics.com
             </a>
           </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4" />
-            <span>Mombasa, Kenya</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4" />
+              <span>Mombasa, Kenya</span>
+            </div>
+            <div className="flex items-center gap-3 border-l border-primary-foreground/30 pl-4">
+              <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="https://www.instagram.com/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://www.youtube.com/@MapettLogisticsLtd" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://www.tiktok.com/@mapettlogisticsltd" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
