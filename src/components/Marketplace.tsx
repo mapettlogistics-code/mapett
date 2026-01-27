@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2, CircleDot, Shield, HardHat } from "lucide-react";
+import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2, CircleDot, Shield, HardHat, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { supabase } from "@/integrations/supabase/client";
+import useEmblaCarousel from "embla-carousel-react";
 
 type Product = {
   id: string;
@@ -20,6 +21,21 @@ const Marketplace = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
+  
+  // Embla Carousel
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: "start",
+    slidesToScroll: 1,
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -188,15 +204,33 @@ const Marketplace = () => {
           ))}
         </div>
 
-        {/* Featured Products */}
+        {/* Featured Products Slider */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mb-6"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-2">Featured Products</h3>
-          <p className="text-muted-foreground">Top-selling automotive products from Mapett Autostore</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-1">Featured Products</h3>
+              <p className="text-muted-foreground text-sm">Top-selling automotive products from Mapett Autostore</p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={scrollPrev}
+                className="w-10 h-10 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={scrollNext}
+                className="w-10 h-10 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </motion.div>
 
         {loading ? (
@@ -204,57 +238,59 @@ const Marketplace = () => {
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayProducts.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden bg-secondary">
-                  <img
-                    src={product.image_url || "/placeholder.svg"}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  {product.original_price && product.original_price > product.price && (
-                    <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                      Sale
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-4">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
-                  <h4 className="font-semibold text-foreground mt-1 mb-2 line-clamp-2">{product.name}</h4>
-                  
-                  <div className="flex items-center gap-1 mb-3">
-                    <Star className="h-4 w-4 fill-primary text-primary" />
-                    <span className="text-sm font-medium text-foreground">{product.rating || 4.5}</span>
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-4">
+              {displayProducts.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex-[0_0_280px] min-w-0 group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
+                >
+                  {/* Image - Full product visible */}
+                  <div className="relative aspect-square overflow-hidden bg-secondary/50 p-4">
+                    <img
+                      src={product.image_url || "/placeholder.svg"}
+                      alt={product.name}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {product.original_price && product.original_price > product.price && (
+                      <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                        Sale
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-lg font-bold text-primary">KES {product.price.toLocaleString()}</span>
-                      {product.original_price && (
-                        <span className="ml-2 text-sm text-muted-foreground line-through">KES {product.original_price.toLocaleString()}</span>
-                      )}
+                  {/* Content - Compact */}
+                  <div className="p-3">
+                    <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
+                    <h4 className="font-semibold text-foreground text-sm mt-0.5 mb-1.5 line-clamp-1">{product.name}</h4>
+                    
+                    <div className="flex items-center gap-1 mb-2">
+                      <Star className="h-3.5 w-3.5 fill-primary text-primary" />
+                      <span className="text-xs font-medium text-foreground">{product.rating || 4.5}</span>
                     </div>
-                    <button 
-                      onClick={() => handleAddToCart(product.id)}
-                      className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
-                    >
-                      <ShoppingCart className="h-5 w-5 text-primary-foreground" />
-                    </button>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-base font-bold text-primary">KES {product.price.toLocaleString()}</span>
+                        {product.original_price && (
+                          <span className="text-xs text-muted-foreground line-through">KES {product.original_price.toLocaleString()}</span>
+                        )}
+                      </div>
+                      <button 
+                        onClick={() => handleAddToCart(product.id)}
+                        className="w-9 h-9 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                      >
+                        <ShoppingCart className="h-4 w-4 text-primary-foreground" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         )}
 
