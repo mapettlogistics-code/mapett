@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import mapettLogo from "@/assets/mapett-logo.png";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -36,23 +37,21 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">M</span>
-              </div>
-              <div>
-                <span className="text-xl font-bold text-background">Mapett</span>
-                <span className="text-xl font-bold text-primary"> Logistics</span>
-              </div>
+            <a href="/" className="flex items-center h-16 overflow-hidden mb-6">
+              <img 
+                src={mapettLogo} 
+                alt="Mapett Logistics" 
+                className="h-24 w-auto object-cover object-bottom brightness-0 invert" 
+              />
             </a>
             <p className="text-background/70 mb-6 max-w-sm">
               Your trusted partner for comprehensive logistics solutions and automotive products 
               across Kenya and East Africa.
             </p>
             <div className="space-y-3">
-              <a href="tel:+254700000000" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+              <a href="tel:+254799390133" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Phone className="h-5 w-5" />
-                +254 700 000 000
+                +254 799 390 133
               </a>
               <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
