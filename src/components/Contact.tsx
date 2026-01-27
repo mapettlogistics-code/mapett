@@ -3,16 +3,20 @@ import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedi
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
+  const whatsappUrl = "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services.";
+
   const contactInfo = [
     {
       icon: Phone,
       title: "Phone",
       details: ["+254 799 390 133"],
+      href: whatsappUrl,
     },
     {
       icon: Mail,
       title: "Email",
       details: ["info@mapettlogistics.com", "sales@mapettlogistics.com"],
+      href: "mailto:info@mapettlogistics.com",
     },
     {
       icon: MapPin,
@@ -134,13 +138,16 @@ const Contact = () => {
             className="lg:col-span-2 space-y-6"
           >
             {contactInfo.map((info, index) => (
-              <motion.div
+              <motion.a
                 key={info.title}
+                href={info.href}
+                target={info.href?.startsWith("https") ? "_blank" : undefined}
+                rel={info.href?.startsWith("https") ? "noopener noreferrer" : undefined}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex gap-4 p-4 bg-card rounded-xl shadow-card border border-border"
+                className={`flex gap-4 p-4 bg-card rounded-xl shadow-card border border-border ${info.href ? 'hover:border-primary cursor-pointer' : ''}`}
               >
                 <div className="w-12 h-12 rounded-xl hero-gradient flex items-center justify-center shrink-0">
                   <info.icon className="h-6 w-6 text-primary-foreground" />
@@ -151,7 +158,7 @@ const Contact = () => {
                     <p key={detail} className="text-sm text-muted-foreground">{detail}</p>
                   ))}
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
 
             {/* Social Links */}

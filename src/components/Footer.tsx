@@ -45,7 +45,7 @@ const Footer = () => {
               across Kenya and East Africa.
             </p>
             <div className="space-y-3">
-              <a href="tel:+254799390133" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+              <a href="https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Phone className="h-5 w-5" />
                 +254 799 390 133
               </a>
