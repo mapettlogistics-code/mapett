@@ -46,6 +46,48 @@ export type Database = {
           },
         ]
       }
+      insurance_applications: {
+        Row: {
+          cargo_value: string | null
+          company: string | null
+          created_at: string
+          details: string | null
+          email: string
+          full_name: string
+          id: string
+          insurance_type: string
+          phone: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          cargo_value?: string | null
+          company?: string | null
+          created_at?: string
+          details?: string | null
+          email: string
+          full_name: string
+          id?: string
+          insurance_type: string
+          phone: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          cargo_value?: string | null
+          company?: string | null
+          created_at?: string
+          details?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          insurance_type?: string
+          phone?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
           created_at: string
