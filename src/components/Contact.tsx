@@ -7,7 +7,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+254 700 000 000", "+254 722 000 000"],
+      details: ["+254 799 390 133"],
     },
     {
       icon: Mail,
@@ -17,7 +17,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      details: ["Mombasa Road, Industrial Area", "Nairobi, Kenya"],
+      details: ["Shree Ecclave, Off Links Road", "P.O. Box 2039-80100, Mombasa, Kenya"],
     },
     {
       icon: Clock,
