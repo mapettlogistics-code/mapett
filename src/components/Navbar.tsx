@@ -5,6 +5,7 @@ import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut }
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import mapettLogo from "@/assets/mapett-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,14 +55,8 @@ const Navbar = () => {
         <div className="container">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl hero-gradient flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">M</span>
-              </div>
-              <div>
-                <span className="text-xl font-bold text-foreground">Mapett</span>
-                <span className="text-xl font-bold text-primary"> Logistics</span>
-              </div>
+            <Link to="/" className="flex items-center gap-2">
+              <img src={mapettLogo} alt="Mapett Logistics" className="h-14 w-auto" />
             </Link>
 
             {/* Desktop Menu */}
