@@ -63,7 +63,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-background/30 text-background hover:bg-background/10"
+                className="border-primary-foreground/50 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 backdrop-blur-sm"
               >
                 <Play className="mr-2 h-5 w-5" />
                 Watch Video
