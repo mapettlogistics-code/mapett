@@ -1,8 +1,45 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car } from "lucide-react";
+import { ShoppingCart, Star, ArrowRight, Droplets, Battery, Wrench, Car, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { supabase } from "@/integrations/supabase/client";
+
+type Product = {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  original_price: number | null;
+  image_url: string | null;
+  rating: number | null;
+  is_featured: boolean | null;
+};
 
 const Marketplace = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("is_featured", true)
+        .limit(4);
+
+      if (error) {
+        console.error("Error fetching products:", error);
+      } else {
+        setProducts(data || []);
+      }
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
+
   const categories = [
     {
       icon: Droplets,
@@ -34,40 +71,55 @@ const Marketplace = () => {
     },
   ];
 
-  const featuredProducts = [
+  // Fallback products if database is empty
+  const fallbackProducts = [
     {
+      id: "1",
       name: "DELSTAR SYN SAE 10W40",
       category: "Engine Oil",
       price: 900,
-      originalPrice: 1160,
+      original_price: 1160,
       rating: 4.8,
-      image: "https://www.mapettlogistics.com/cdn/shop/files/DELSTAR_30D_MULTIGRADE_15W40_5L.jpg?v=1746752133&width=400",
+      image_url: "https://www.mapettlogistics.com/cdn/shop/files/DELSTAR_30D_MULTIGRADE_15W40_5L.jpg?v=1746752133&width=400",
+      is_featured: true,
     },
     {
+      id: "2",
       name: "PETSAR SUPER SAE 20W50",
       category: "Engine Oil",
       price: 350,
-      originalPrice: 450,
+      original_price: 450,
       rating: 4.9,
-      image: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_SUPER_MULTIGRADE_20W50_4L.jpg?v=1746752246&width=400",
+      image_url: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_SUPER_MULTIGRADE_20W50_4L.jpg?v=1746752246&width=400",
+      is_featured: true,
     },
     {
+      id: "3",
       name: "DELSTAR Long Life Coolant",
       category: "Coolant",
       price: 500,
-      originalPrice: 650,
+      original_price: 650,
       rating: 4.7,
-      image: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_RTU_LL_COOLANT_5L.jpg?v=1746752229&width=400",
+      image_url: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_RTU_LL_COOLANT_5L.jpg?v=1746752229&width=400",
+      is_featured: true,
     },
     {
+      id: "4",
       name: "SLUSOL Hydraulic Oil AW 68",
       category: "Hydraulic Oil",
       price: 7200,
-      originalPrice: 8750,
+      original_price: 8750,
       rating: 4.8,
-      image: "https://www.mapettlogistics.com/cdn/shop/collections/DRUM.jpg?v=1764765982&width=400",
+      image_url: "https://www.mapettlogistics.com/cdn/shop/collections/DRUM.jpg?v=1764765982&width=400",
+      is_featured: true,
     },
   ];
+
+  const displayProducts = products.length > 0 ? products : fallbackProducts;
+
+  const handleAddToCart = async (productId: string) => {
+    await addToCart(productId);
+  };
 
   return (
     <section id="marketplace" className="py-24">
@@ -126,51 +178,64 @@ const Marketplace = () => {
           <p className="text-muted-foreground">Top-selling automotive products from Mapett Autostore</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product, index) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden bg-secondary">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                  Sale
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4">
-                <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
-                <h4 className="font-semibold text-foreground mt-1 mb-2 line-clamp-2">{product.name}</h4>
-                
-                <div className="flex items-center gap-1 mb-3">
-                  <Star className="h-4 w-4 fill-primary text-primary" />
-                  <span className="text-sm font-medium text-foreground">{product.rating}</span>
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {displayProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden bg-secondary">
+                  <img
+                    src={product.image_url || "/placeholder.svg"}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  {product.original_price && product.original_price > product.price && (
+                    <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                      Sale
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-lg font-bold text-primary">KES {product.price.toLocaleString()}</span>
-                    <span className="ml-2 text-sm text-muted-foreground line-through">KES {product.originalPrice.toLocaleString()}</span>
+                {/* Content */}
+                <div className="p-4">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wide">{product.category}</span>
+                  <h4 className="font-semibold text-foreground mt-1 mb-2 line-clamp-2">{product.name}</h4>
+                  
+                  <div className="flex items-center gap-1 mb-3">
+                    <Star className="h-4 w-4 fill-primary text-primary" />
+                    <span className="text-sm font-medium text-foreground">{product.rating || 4.5}</span>
                   </div>
-                  <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-                    <ShoppingCart className="h-5 w-5 text-primary-foreground" />
-                  </button>
+
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-lg font-bold text-primary">KES {product.price.toLocaleString()}</span>
+                      {product.original_price && (
+                        <span className="ml-2 text-sm text-muted-foreground line-through">KES {product.original_price.toLocaleString()}</span>
+                      )}
+                    </div>
+                    <button 
+                      onClick={() => handleAddToCart(product.id)}
+                      className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                    >
+                      <ShoppingCart className="h-5 w-5 text-primary-foreground" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* CTA */}
         <motion.div

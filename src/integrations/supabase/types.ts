@@ -14,13 +14,283 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cart_items: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          quantity: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          quantity?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
+          quantity?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      order_items: {
+        Row: {
+          created_at: string
+          id: string
+          order_id: string
+          product_id: string | null
+          product_name: string
+          quantity: number
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          order_id: string
+          product_id?: string | null
+          product_name: string
+          quantity: number
+          unit_price: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          order_id?: string
+          product_id?: string | null
+          product_name?: string
+          quantity?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          phone: string | null
+          shipping_address: string | null
+          status: string
+          total_amount: number
+          tracking_number: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          shipping_address?: string | null
+          status?: string
+          total_amount: number
+          tracking_number: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          shipping_address?: string | null
+          status?: string
+          total_amount?: number
+          tracking_number?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          name: string
+          original_price: number | null
+          price: number
+          rating: number | null
+          stock_quantity: number | null
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          name: string
+          original_price?: number | null
+          price: number
+          rating?: number | null
+          stock_quantity?: number | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          name?: string
+          original_price?: number | null
+          price?: number
+          rating?: number | null
+          stock_quantity?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      shipment_events: {
+        Row: {
+          description: string | null
+          event_time: string
+          id: string
+          location: string | null
+          shipment_id: string
+          status: string
+        }
+        Insert: {
+          description?: string | null
+          event_time?: string
+          id?: string
+          location?: string | null
+          shipment_id: string
+          status: string
+        }
+        Update: {
+          description?: string | null
+          event_time?: string
+          id?: string
+          location?: string | null
+          shipment_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shipment_events_shipment_id_fkey"
+            columns: ["shipment_id"]
+            isOneToOne: false
+            referencedRelation: "shipments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shipments: {
+        Row: {
+          created_at: string
+          current_location: string | null
+          customer_email: string | null
+          customer_name: string | null
+          destination: string
+          estimated_delivery: string | null
+          id: string
+          notes: string | null
+          origin: string
+          service_type: string | null
+          status: string
+          tracking_number: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_location?: string | null
+          customer_email?: string | null
+          customer_name?: string | null
+          destination: string
+          estimated_delivery?: string | null
+          id?: string
+          notes?: string | null
+          origin: string
+          service_type?: string | null
+          status?: string
+          tracking_number: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_location?: string | null
+          customer_email?: string | null
+          customer_name?: string | null
+          destination?: string
+          estimated_delivery?: string | null
+          id?: string
+          notes?: string | null
+          origin?: string
+          service_type?: string | null
+          status?: string
+          tracking_number?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_tracking_number: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never
