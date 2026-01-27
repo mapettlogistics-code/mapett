@@ -38,32 +38,32 @@ const Marketplace = () => {
     {
       name: "DELSTAR SYN SAE 10W40",
       category: "Engine Oil",
-      price: 7.00,
-      originalPrice: 9.00,
+      price: 900,
+      originalPrice: 1160,
       rating: 4.8,
       image: "https://www.mapettlogistics.com/cdn/shop/files/DELSTAR_30D_MULTIGRADE_15W40_5L.jpg?v=1746752133&width=400",
     },
     {
       name: "PETSAR SUPER SAE 20W50",
       category: "Engine Oil",
-      price: 2.72,
-      originalPrice: 3.50,
+      price: 350,
+      originalPrice: 450,
       rating: 4.9,
       image: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_SUPER_MULTIGRADE_20W50_4L.jpg?v=1746752246&width=400",
     },
     {
       name: "DELSTAR Long Life Coolant",
       category: "Coolant",
-      price: 3.89,
-      originalPrice: 5.00,
+      price: 500,
+      originalPrice: 650,
       rating: 4.7,
       image: "https://www.mapettlogistics.com/cdn/shop/files/PETSAR_RTU_LL_COOLANT_5L.jpg?v=1746752229&width=400",
     },
     {
       name: "SLUSOL Hydraulic Oil AW 68",
       category: "Hydraulic Oil",
-      price: 56.04,
-      originalPrice: 68.00,
+      price: 7200,
+      originalPrice: 8750,
       rating: 4.8,
       image: "https://www.mapettlogistics.com/cdn/shop/collections/DRUM.jpg?v=1764765982&width=400",
     },
@@ -160,8 +160,8 @@ const Marketplace = () => {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-lg font-bold text-primary">${product.price.toFixed(2)}</span>
-                    <span className="ml-2 text-sm text-muted-foreground line-through">${product.originalPrice.toFixed(2)}</span>
+                    <span className="text-lg font-bold text-primary">KES {product.price.toLocaleString()}</span>
+                    <span className="ml-2 text-sm text-muted-foreground line-through">KES {product.originalPrice.toLocaleString()}</span>
                   </div>
                   <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
                     <ShoppingCart className="h-5 w-5 text-primary-foreground" />
