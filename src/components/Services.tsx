@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Plane, Ship, Truck, Warehouse, FileCheck, ArrowRight } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, FileCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import airFreight from "@/assets/air-freight.jpg";
 import oceanFreight from "@/assets/ocean-freight.jpg";
@@ -9,32 +9,46 @@ import warehouseImg from "@/assets/warehouse.jpg";
 const Services = () => {
   const services = [
     {
-      icon: Plane,
-      title: "Air Freight",
-      description: "Fast, reliable air cargo services for time-sensitive shipments across global destinations.",
-      image: airFreight,
-      features: ["Express Delivery", "Cargo Tracking", "Custom Clearance"],
-    },
-    {
-      icon: Ship,
-      title: "Ocean Freight",
-      description: "Cost-effective sea freight solutions for bulk cargo and containerized shipments worldwide.",
-      image: oceanFreight,
-      features: ["FCL & LCL", "Port to Port", "Door to Door"],
-    },
-    {
-      icon: Truck,
-      title: "Road Transport",
-      description: "Efficient ground transportation network covering East Africa with reliable delivery schedules.",
-      image: roadTransport,
-      features: ["Cross-Border", "Last Mile", "Fleet Management"],
-    },
-    {
       icon: Warehouse,
       title: "Warehousing",
       description: "Secure storage and distribution facilities with advanced inventory management systems.",
       image: warehouseImg,
       features: ["Inventory Control", "Pick & Pack", "Distribution"],
+    },
+    {
+      icon: Thermometer,
+      title: "Refrigerated Cargo",
+      description: "Innovative cold chain solutions for perishable goods with temperature-controlled transport and monitoring.",
+      image: oceanFreight,
+      features: ["Temperature Control", "Cold Storage", "Perishable Handling"],
+    },
+    {
+      icon: Container,
+      title: "Special Cargo",
+      description: "Expert handling of oversized, heavy-lift, and project cargo with specialized equipment and planning.",
+      image: roadTransport,
+      features: ["Heavy Lift", "Out of Gauge", "Project Cargo"],
+    },
+    {
+      icon: Network,
+      title: "Intermodal Solutions",
+      description: "Seamless multi-modal transport connecting your cargo across road, rail, and sea networks globally.",
+      image: airFreight,
+      features: ["Multi-Modal", "Door to Door", "Network Coverage"],
+    },
+    {
+      icon: ShoppingCart,
+      title: "eCommerce Solutions",
+      description: "Digital shipping tools designed to give quick, simple, and convenient ways to save time and money.",
+      image: warehouseImg,
+      features: ["Online Booking", "Instant Quotes", "Digital Docs"],
+    },
+    {
+      icon: MessageCircle,
+      title: "Live Support",
+      description: "Quick responses to your shipping queries with dedicated support teams across various regions.",
+      image: airFreight,
+      features: ["24/7 Support", "Real-time Chat", "Expert Advice"],
     },
   ];
 
