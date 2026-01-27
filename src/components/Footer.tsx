@@ -36,14 +36,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">M</span>
-              </div>
-              <div>
-                <span className="text-xl font-bold text-background">Mapett</span>
-                <span className="text-xl font-bold text-primary"> Logistics</span>
-              </div>
+            <a href="/" className="mb-6 inline-block">
+              <span className="text-xl font-bold text-background">Mapett</span>
+              <span className="text-xl font-bold text-primary"> Logistics</span>
             </a>
             <p className="text-background/70 mb-6 max-w-sm">
               Your trusted partner for comprehensive logistics solutions and automotive products 
