@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SocialSidebar from "@/components/SocialSidebar";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <Footer />
       <ChatBot />
       <WhatsAppButton />
+      <SocialSidebar />
     </div>
   );
 };
