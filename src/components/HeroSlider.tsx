@@ -1,8 +1,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield } from "lucide-react";
+import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-logistics.jpg";
+
+// Service images
+import airFreightImg from "@/assets/service-air-freight.jpg";
+import oceanFreightImg from "@/assets/service-ocean-freight.jpg";
+import roadTransportImg from "@/assets/service-road-transport.jpg";
+import warehouseImg from "@/assets/service-warehouse.jpg";
+import customsImg from "@/assets/service-customs.jpg";
+import refrigeratedImg from "@/assets/service-refrigerated.jpg";
+import specialCargoImg from "@/assets/service-special-cargo.jpg";
+import intermodalImg from "@/assets/service-intermodal.jpg";
+import ecommerceImg from "@/assets/service-ecommerce.jpg";
+import insuranceImg from "@/assets/service-insurance.jpg";
+import supportImg from "@/assets/service-support.jpg";
+import marketplaceImg from "@/assets/service-marketplace.jpg";
 
 const slides = [
   {
@@ -11,6 +24,8 @@ const slides = [
     subtitle: "Fast global delivery",
     description: "Time-sensitive shipments delivered worldwide with our extensive airline network",
     gradient: "from-primary/90 to-accent/70",
+    image: airFreightImg,
+    link: "#services",
   },
   {
     icon: Ship,
@@ -18,6 +33,8 @@ const slides = [
     subtitle: "Cost-effective sea solutions",
     description: "FCL and LCL services connecting Mombasa to major ports globally",
     gradient: "from-accent/90 to-primary/70",
+    image: oceanFreightImg,
+    link: "#services",
   },
   {
     icon: Truck,
@@ -25,6 +42,8 @@ const slides = [
     subtitle: "East Africa coverage",
     description: "Reliable road logistics across Kenya, Uganda, Tanzania, and beyond",
     gradient: "from-primary/80 to-pink-600/70",
+    image: roadTransportImg,
+    link: "#services",
   },
   {
     icon: Warehouse,
@@ -32,6 +51,8 @@ const slides = [
     subtitle: "Secure storage solutions",
     description: "Advanced inventory management with strategic locations across East Africa",
     gradient: "from-pink-600/80 to-primary/70",
+    image: warehouseImg,
+    link: "#services",
   },
   {
     icon: FileCheck,
@@ -39,6 +60,8 @@ const slides = [
     subtitle: "Smooth import & export",
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
+    image: customsImg,
+    link: "#services",
   },
   {
     icon: Thermometer,
@@ -46,6 +69,8 @@ const slides = [
     subtitle: "Cold chain excellence",
     description: "Temperature-controlled transport for perishable goods with real-time monitoring",
     gradient: "from-primary/85 to-accent/75",
+    image: refrigeratedImg,
+    link: "#services",
   },
   {
     icon: Container,
@@ -53,6 +78,8 @@ const slides = [
     subtitle: "Expert handling",
     description: "Oversized, heavy-lift, and project cargo with specialized equipment",
     gradient: "from-primary/90 to-accent/70",
+    image: specialCargoImg,
+    link: "#services",
   },
   {
     icon: Network,
@@ -60,6 +87,8 @@ const slides = [
     subtitle: "Multi-modal transport",
     description: "Connecting your cargo across road, rail, and sea networks globally",
     gradient: "from-accent/90 to-primary/70",
+    image: intermodalImg,
+    link: "#services",
   },
   {
     icon: ShoppingCart,
@@ -67,6 +96,8 @@ const slides = [
     subtitle: "Digital shipping",
     description: "Quick, convenient tools to save time and streamline your logistics",
     gradient: "from-primary/80 to-pink-600/70",
+    image: ecommerceImg,
+    link: "#services",
   },
   {
     icon: Shield,
@@ -74,6 +105,8 @@ const slides = [
     subtitle: "Protect your cargo",
     description: "Comprehensive cargo insurance covering all risk, marine, and transit protection",
     gradient: "from-pink-600/80 to-primary/70",
+    image: insuranceImg,
+    link: "#insurance",
   },
   {
     icon: MessageCircle,
@@ -81,6 +114,17 @@ const slides = [
     subtitle: "24/7 assistance",
     description: "Quick responses to your shipping queries across various regions",
     gradient: "from-accent/80 to-primary/80",
+    image: supportImg,
+    link: "#contact",
+  },
+  {
+    icon: Store,
+    title: "MARKETPLACE",
+    subtitle: "Quality auto products",
+    description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
+    gradient: "from-primary/85 to-accent/75",
+    image: marketplaceImg,
+    link: "#marketplace",
   },
 ];
 
@@ -113,15 +157,24 @@ const HeroSlider = () => {
 
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Mapett Logistics Kenya"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/40" />
-      </div>
+      {/* Background Image - Changes with each slide */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/40" />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Content */}
       <div className="container relative z-10">
@@ -161,7 +214,8 @@ const HeroSlider = () => {
               </p>
 
               {/* CTA Button */}
-              <motion.div
+              <motion.a
+                href={slide.link}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -171,7 +225,7 @@ const HeroSlider = () => {
                 >
                   Learn More
                 </Button>
-              </motion.div>
+              </motion.a>
             </motion.div>
           </AnimatePresence>
         </div>

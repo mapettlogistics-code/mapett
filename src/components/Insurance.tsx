@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Shield, Heart, Flame, Ship, Car, Home, Briefcase, 
   Users, Plane, Building2, Package, Truck, ArrowRight, 
-  CheckCircle2, X
+  CheckCircle2, X, Calculator
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const insuranceTypes = [
   {
@@ -14,72 +15,84 @@ const insuranceTypes = [
     title: "Marine Cargo Insurance",
     description: "Comprehensive protection for goods in transit by sea, covering loss or damage during shipping.",
     coverage: ["All Risk Cover", "War & Strikes", "General Average", "Warehouse to Warehouse"],
+    baseRate: 0.15,
   },
   {
     icon: Plane,
     title: "Air Cargo Insurance",
     description: "Coverage for goods transported by air, protecting against damage, loss, and delays.",
     coverage: ["Transit Coverage", "Loading/Unloading", "Customs Storage", "Door to Door"],
+    baseRate: 0.12,
   },
   {
     icon: Truck,
     title: "Inland Transit Insurance",
     description: "Protection for goods transported by road or rail within the country.",
     coverage: ["Road Accidents", "Theft Protection", "Fire Damage", "Natural Disasters"],
+    baseRate: 0.10,
   },
   {
     icon: Package,
     title: "Freight Forwarder Liability",
     description: "Coverage for freight forwarders against claims from cargo owners.",
     coverage: ["Errors & Omissions", "Vicarious Liability", "Customs Bonds", "Professional Indemnity"],
+    baseRate: 0.20,
   },
   {
     icon: Home,
     title: "Property Insurance",
     description: "Comprehensive coverage for buildings, equipment, and business assets.",
     coverage: ["Fire & Lightning", "Burglary", "Natural Perils", "Business Interruption"],
+    baseRate: 0.08,
   },
   {
     icon: Flame,
     title: "Fire Insurance",
     description: "Protection against fire damage to commercial and industrial properties.",
     coverage: ["Fire Damage", "Smoke Damage", "Firefighting Damage", "Temporary Relocation"],
+    baseRate: 0.06,
   },
   {
     icon: Car,
     title: "Motor Vehicle Insurance",
     description: "Comprehensive and third-party coverage for commercial fleet vehicles.",
     coverage: ["Third Party Liability", "Comprehensive Cover", "Passenger Liability", "Windscreen Cover"],
+    baseRate: 0.04,
   },
   {
     icon: Building2,
     title: "Warehouse Insurance",
     description: "Coverage for goods stored in warehouses against various risks.",
     coverage: ["Stock Coverage", "Equipment Protection", "Theft & Burglary", "Water Damage"],
+    baseRate: 0.07,
   },
   {
     icon: Briefcase,
     title: "Business Insurance",
     description: "Tailored coverage for business operations and professional liability.",
     coverage: ["Public Liability", "Professional Indemnity", "Directors & Officers", "Cyber Liability"],
+    baseRate: 0.15,
   },
   {
     icon: Users,
     title: "Group Life Insurance",
     description: "Life insurance coverage for employees and their dependents.",
     coverage: ["Death Benefit", "Disability Cover", "Critical Illness", "Funeral Expenses"],
+    baseRate: 0.02,
   },
   {
     icon: Heart,
     title: "Health Insurance",
     description: "Comprehensive medical coverage for employees and families.",
     coverage: ["Inpatient Cover", "Outpatient Cover", "Dental & Optical", "Maternity Benefits"],
+    baseRate: 0.03,
   },
   {
     icon: Shield,
     title: "Personal Accident Insurance",
     description: "Coverage for accidental injuries and death for individuals.",
     coverage: ["Accidental Death", "Permanent Disability", "Medical Expenses", "Weekly Benefits"],
+    baseRate: 0.01,
   },
 ];
 
@@ -129,6 +142,124 @@ const InsuranceCard = ({ insurance, index, onApply }: {
   );
 };
 
+// Premium Calculator Component
+const PremiumCalculator = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [selectedType, setSelectedType] = useState("");
+  const [cargoValue, setCargoValue] = useState("");
+  const [estimatedPremium, setEstimatedPremium] = useState<number | null>(null);
+
+  const calculatePremium = () => {
+    const insurance = insuranceTypes.find(t => t.title === selectedType);
+    const value = parseFloat(cargoValue.replace(/,/g, ""));
+    
+    if (insurance && !isNaN(value) && value > 0) {
+      const premium = value * (insurance.baseRate / 100);
+      setEstimatedPremium(premium);
+    } else {
+      setEstimatedPremium(null);
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/50 backdrop-blur-sm"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl hero-gradient flex items-center justify-center">
+                  <Calculator className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Premium Calculator</h3>
+                  <p className="text-muted-foreground text-sm">Estimate your insurance cost</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-secondary rounded-lg transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-foreground">Insurance Type</label>
+                <select
+                  value={selectedType}
+                  onChange={(e) => {
+                    setSelectedType(e.target.value);
+                    setEstimatedPremium(null);
+                  }}
+                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                >
+                  <option value="">Select type</option>
+                  {insuranceTypes.map((type) => (
+                    <option key={type.title} value={type.title}>
+                      {type.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-foreground">Value to Insure (KES)</label>
+                <input
+                  type="text"
+                  value={cargoValue}
+                  onChange={(e) => {
+                    setCargoValue(e.target.value);
+                    setEstimatedPremium(null);
+                  }}
+                  placeholder="e.g., 5,000,000"
+                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                />
+              </div>
+
+              <Button 
+                onClick={calculatePremium}
+                disabled={!selectedType || !cargoValue}
+                className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-4 font-semibold rounded-xl"
+              >
+                Calculate Premium
+              </Button>
+
+              {estimatedPremium !== null && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-primary/10 rounded-xl border border-primary/20"
+                >
+                  <p className="text-sm text-muted-foreground mb-1">Estimated Annual Premium</p>
+                  <p className="text-3xl font-bold text-primary">
+                    KES {estimatedPremium.toLocaleString("en-KE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    *This is an estimate. Final premium may vary based on risk assessment.
+                  </p>
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const InsuranceForm = ({ isOpen, onClose, selectedType }: { 
   isOpen: boolean; 
   onClose: () => void;
@@ -145,25 +276,49 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Update insurance type when selectedType prop changes
+  useState(() => {
+    if (selectedType) {
+      setFormData(prev => ({ ...prev, insuranceType: selectedType }));
+    }
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast.success("Application submitted successfully! Our team will contact you within 24 hours.");
-    setIsSubmitting(false);
-    onClose();
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      company: "",
-      insuranceType: "",
-      cargoValue: "",
-      details: "",
-    });
+    try {
+      const { error } = await supabase
+        .from('insurance_applications')
+        .insert({
+          full_name: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          company: formData.company.trim() || null,
+          insurance_type: formData.insuranceType,
+          cargo_value: formData.cargoValue.trim() || null,
+          details: formData.details.trim() || null,
+        });
+
+      if (error) throw error;
+
+      toast.success("Application submitted successfully! Our team will contact you within 24 hours.");
+      onClose();
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        company: "",
+        insuranceType: "",
+        cargoValue: "",
+        details: "",
+      });
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      toast.error("Failed to submit application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -324,6 +479,7 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
 
 const Insurance = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
 
   const handleApply = (type: string) => {
@@ -364,12 +520,12 @@ const Insurance = () => {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="flex flex-wrap justify-center gap-4"
         >
           <Button 
             onClick={() => handleApply("")}
@@ -379,6 +535,15 @@ const Insurance = () => {
             Get Insurance Quote
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
+          <Button 
+            onClick={() => setIsCalculatorOpen(true)}
+            size="lg"
+            variant="outline"
+            className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
+          >
+            <Calculator className="mr-2 h-5 w-5" />
+            Premium Calculator
+          </Button>
         </motion.div>
       </div>
 
@@ -387,6 +552,12 @@ const Insurance = () => {
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
         selectedType={selectedType}
+      />
+
+      {/* Premium Calculator Modal */}
+      <PremiumCalculator
+        isOpen={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
       />
     </section>
   );
