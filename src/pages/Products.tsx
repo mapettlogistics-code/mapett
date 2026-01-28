@@ -218,7 +218,7 @@ const Products = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <Link
-              to="/#marketplace"
+              to="/#autoshop"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4"
             >
               <ArrowLeft className="h-4 w-4" />

@@ -4,7 +4,7 @@ import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Shield, HardHat 
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
 
-const Marketplace = () => {
+const Autoshop = () => {
   const categories = [
     {
       icon: Droplets,
@@ -73,7 +73,7 @@ const Marketplace = () => {
   ];
 
   return (
-    <section id="marketplace" className="py-24">
+    <section id="autoshop" className="py-24">
       <div className="container">
         {/* Header */}
         <motion.div
@@ -83,10 +83,10 @@ const Marketplace = () => {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-            One-Stop Auto Store
+            One-Stop Autoshop
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Mapett Marketplace
+            Mapett Autoshop
           </h2>
           <p className="text-muted-foreground text-lg">
             Quality automotive lubricants, batteries, and accessories delivered across Kenya. 
@@ -150,4 +150,4 @@ const Marketplace = () => {
   );
 };
 
-export default Marketplace;
+export default Autoshop;

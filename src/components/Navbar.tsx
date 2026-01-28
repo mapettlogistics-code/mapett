@@ -165,17 +165,17 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Marketplace Dropdown */}
+              {/* Autoshop Dropdown */}
               <div 
                 className="relative"
-                onMouseEnter={() => setActiveDropdown('marketplace')}
+                onMouseEnter={() => setActiveDropdown('autoshop')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
-                  Marketplace <ChevronDown className="h-4 w-4" />
+                  Autoshop <ChevronDown className="h-4 w-4" />
                 </button>
                 <AnimatePresence>
-                  {activeDropdown === 'marketplace' && (
+                  {activeDropdown === 'autoshop' && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -185,7 +185,7 @@ const Navbar = () => {
                       {marketplace.map((item) => (
                         <a
                           key={item}
-                          href="#marketplace"
+                          href="#autoshop"
                           className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
                         >
                           {item}
@@ -304,7 +304,7 @@ const Navbar = () => {
                 <Link to="/" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Home</Link>
                 <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
                 <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance</a>
-                <a href="#marketplace" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Marketplace</a>
+                <a href="#autoshop" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Autoshop</a>
                 <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
                 <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
                 {/* Social Links */}

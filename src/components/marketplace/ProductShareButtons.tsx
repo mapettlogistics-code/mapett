@@ -7,7 +7,7 @@ type ProductShareButtonsProps = {
 };
 
 const ProductShareButtons = ({ productName, productUrl }: ProductShareButtonsProps) => {
-  const shareText = `Check out ${productName} at Mapett Autostore!`;
+  const shareText = `Check out ${productName} at Mapett Autoshop!`;
   
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`,
