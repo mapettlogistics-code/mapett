@@ -19,7 +19,7 @@ const SocialSidebar = () => {
     { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", isSvg: false },
     { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", isSvg: false },
     { icon: null, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", isSvg: "tiktok" },
-    { icon: null, href: "#", label: "Pinterest", isSvg: "pinterest" },
+    { icon: null, href: "https://www.pinterest.com/MapetteLogisticsLtd/", label: "Pinterest", isSvg: "pinterest" },
   ];
 
   return (
