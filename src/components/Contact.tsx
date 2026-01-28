@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// TikTok icon component
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 const Contact = () => {
   const whatsappUrl = "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services.";
@@ -34,7 +41,7 @@ const Contact = () => {
     { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook" },
     { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram" },
     { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube" },
-    { icon: Linkedin, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok" },
+    { icon: TikTokIcon, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok" },
   ];
 
   return (
@@ -176,6 +183,23 @@ const Contact = () => {
                     <social.icon className="h-5 w-5" />
                   </a>
                 ))}
+              </div>
+            </div>
+
+            {/* Office Map */}
+            <div className="pt-4">
+              <h4 className="font-semibold text-foreground mb-4">Our Location</h4>
+              <div className="rounded-xl overflow-hidden border border-border shadow-card">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.785089456321!2d39.6595!3d-4.0435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x184012e78ec02c1d%3A0x4d7a72e3dc6b52e5!2sLinks%20Road%2C%20Mombasa!5e0!3m2!1sen!2ske!4v1706000000000!5m2!1sen!2ske"
+                  width="100%"
+                  height="200"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mapett Logistics Office Location"
+                />
               </div>
             </div>
           </motion.div>

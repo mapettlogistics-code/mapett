@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialSidebar from "@/components/SocialSidebar";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <ChatBot />
       <WhatsAppButton />
       <SocialSidebar />
+      <BackToTop />
     </div>
   );
 };
