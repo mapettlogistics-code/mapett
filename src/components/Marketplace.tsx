@@ -4,6 +4,15 @@ import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Shield, HardHat 
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
 
+// Import category images
+import categoryLubricants from "@/assets/category-lubricants.jpg";
+import categoryTires from "@/assets/category-tires.jpg";
+import categoryBatteries from "@/assets/category-batteries.jpg";
+import categoryBoots from "@/assets/category-boots.jpg";
+import categoryInsurance from "@/assets/category-insurance.jpg";
+import categoryIndustrial from "@/assets/category-industrial.jpg";
+import categoryAccessories from "@/assets/category-accessories.jpg";
+
 const Autoshop = () => {
   const categories = [
     {
@@ -13,6 +22,7 @@ const Autoshop = () => {
       productCount: 45,
       color: "from-primary to-pink-600",
       categoryKey: "lubricants",
+      image: categoryLubricants,
     },
     {
       icon: CircleDot,
@@ -21,6 +31,7 @@ const Autoshop = () => {
       productCount: 38,
       color: "from-gray-600 to-gray-800",
       categoryKey: "tires",
+      image: categoryTires,
     },
     {
       icon: Battery,
@@ -29,6 +40,7 @@ const Autoshop = () => {
       productCount: 28,
       color: "from-yellow-500 to-orange-600",
       categoryKey: "batteries",
+      image: categoryBatteries,
     },
     {
       icon: HardHat,
@@ -37,6 +49,7 @@ const Autoshop = () => {
       productCount: 24,
       color: "from-amber-600 to-amber-800",
       categoryKey: "boots",
+      image: categoryBoots,
     },
     {
       icon: Shield,
@@ -45,6 +58,7 @@ const Autoshop = () => {
       productCount: 8,
       color: "from-accent to-accent/80",
       categoryKey: "insurance",
+      image: categoryInsurance,
     },
     {
       icon: Wrench,
@@ -53,6 +67,7 @@ const Autoshop = () => {
       productCount: 32,
       color: "from-primary to-pink-700",
       categoryKey: "industrial",
+      image: categoryIndustrial,
     },
     {
       icon: Car,
@@ -61,6 +76,7 @@ const Autoshop = () => {
       productCount: 56,
       color: "from-pink-400 to-primary",
       categoryKey: "accessories",
+      image: categoryAccessories,
     },
   ];
 
@@ -103,16 +119,30 @@ const Autoshop = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="group relative bg-card rounded-xl p-4 shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer border border-border hover:border-primary/30"
+                className="group relative bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer border border-border hover:border-primary/30"
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
-                  <category.icon className="h-6 w-6 text-primary-foreground" />
+                {/* Category Image */}
+                <div className="relative h-28 overflow-hidden">
+                  <img 
+                    src={category.image} 
+                    alt={category.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                  {/* Icon overlay */}
+                  <div className={`absolute bottom-2 left-3 w-10 h-10 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg`}>
+                    <category.icon className="h-5 w-5 text-primary-foreground" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-foreground mb-1">{category.title}</h3>
-                <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{category.description}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-primary font-medium">{category.productCount} Products</span>
-                  <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+
+                {/* Content */}
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-foreground mb-1">{category.title}</h3>
+                  <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{category.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-primary font-medium">{category.productCount} Products</span>
+                    <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </motion.div>
             </Link>
