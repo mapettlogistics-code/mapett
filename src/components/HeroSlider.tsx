@@ -119,12 +119,12 @@ const slides = [
   },
   {
     icon: Store,
-    title: "MARKETPLACE",
+    title: "AUTOSHOP",
     subtitle: "Quality auto products",
     description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
     gradient: "from-primary/85 to-accent/75",
     image: sliderMarketplace,
-    link: "#marketplace",
+    link: "#autoshop",
   },
 ];
 
