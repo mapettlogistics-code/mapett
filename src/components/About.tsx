@@ -57,7 +57,7 @@ const About = () => {
             </p>
             <p className="text-muted-foreground mb-8">
               We combine traditional logistics excellence with modern e-commerce through our 
-              integrated marketplace, offering automotive lubricants, batteries, and accessories 
+              integrated autoshop, offering automotive lubricants, batteries, and accessories 
               alongside our freight and warehousing services.
             </p>
 

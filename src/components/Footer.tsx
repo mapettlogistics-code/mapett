@@ -70,13 +70,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Marketplace */}
+          {/* Autoshop */}
           <div>
-            <h4 className="text-lg font-semibold text-background mb-4">Marketplace</h4>
+            <h4 className="text-lg font-semibold text-background mb-4">Autoshop</h4>
             <ul className="space-y-3">
               {marketplace.map((item) => (
                 <li key={item}>
-                  <a href="#marketplace" className="text-background/70 hover:text-primary transition-colors">
+                  <a href="#autoshop" className="text-background/70 hover:text-primary transition-colors">
                     {item}
                   </a>
                 </li>

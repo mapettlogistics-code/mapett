@@ -195,7 +195,7 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
                 <span className="text-xs text-muted-foreground uppercase tracking-wide line-clamp-1">{product.category}</span>
                 <ProductShareButtons
                   productName={product.name}
-                  productUrl={`${window.location.origin}/#marketplace`}
+                  productUrl={`${window.location.origin}/#autoshop`}
                 />
               </div>
               <h4 className="font-semibold text-foreground text-sm mt-0.5 mb-1 line-clamp-1">{product.name}</h4>
