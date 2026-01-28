@@ -9,6 +9,20 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
+// Import insurance images
+import insuranceMarineImg from "@/assets/insurance-marine.jpg";
+import insuranceAirImg from "@/assets/insurance-air.jpg";
+import insuranceInlandImg from "@/assets/insurance-inland.jpg";
+import insuranceFreightImg from "@/assets/insurance-freight.jpg";
+import insurancePropertyImg from "@/assets/insurance-property.jpg";
+import insuranceFireImg from "@/assets/insurance-fire.jpg";
+import insuranceMotorImg from "@/assets/insurance-motor.jpg";
+import insuranceWarehouseImg from "@/assets/insurance-warehouse.jpg";
+import insuranceBusinessImg from "@/assets/insurance-business.jpg";
+import insuranceLifeImg from "@/assets/insurance-life.jpg";
+import insuranceHealthImg from "@/assets/insurance-health.jpg";
+import insuranceAccidentImg from "@/assets/insurance-accident.jpg";
+
 const insuranceTypes = [
   {
     icon: Ship,
@@ -16,6 +30,7 @@ const insuranceTypes = [
     description: "Comprehensive protection for goods in transit by sea, covering loss or damage during shipping.",
     coverage: ["All Risk Cover", "War & Strikes", "General Average", "Warehouse to Warehouse"],
     baseRate: 0.15,
+    image: insuranceMarineImg,
   },
   {
     icon: Plane,
@@ -23,6 +38,7 @@ const insuranceTypes = [
     description: "Coverage for goods transported by air, protecting against damage, loss, and delays.",
     coverage: ["Transit Coverage", "Loading/Unloading", "Customs Storage", "Door to Door"],
     baseRate: 0.12,
+    image: insuranceAirImg,
   },
   {
     icon: Truck,
@@ -30,6 +46,7 @@ const insuranceTypes = [
     description: "Protection for goods transported by road or rail within the country.",
     coverage: ["Road Accidents", "Theft Protection", "Fire Damage", "Natural Disasters"],
     baseRate: 0.10,
+    image: insuranceInlandImg,
   },
   {
     icon: Package,
@@ -37,6 +54,7 @@ const insuranceTypes = [
     description: "Coverage for freight forwarders against claims from cargo owners.",
     coverage: ["Errors & Omissions", "Vicarious Liability", "Customs Bonds", "Professional Indemnity"],
     baseRate: 0.20,
+    image: insuranceFreightImg,
   },
   {
     icon: Home,
@@ -44,6 +62,7 @@ const insuranceTypes = [
     description: "Comprehensive coverage for buildings, equipment, and business assets.",
     coverage: ["Fire & Lightning", "Burglary", "Natural Perils", "Business Interruption"],
     baseRate: 0.08,
+    image: insurancePropertyImg,
   },
   {
     icon: Flame,
@@ -51,6 +70,7 @@ const insuranceTypes = [
     description: "Protection against fire damage to commercial and industrial properties.",
     coverage: ["Fire Damage", "Smoke Damage", "Firefighting Damage", "Temporary Relocation"],
     baseRate: 0.06,
+    image: insuranceFireImg,
   },
   {
     icon: Car,
@@ -58,6 +78,7 @@ const insuranceTypes = [
     description: "Comprehensive and third-party coverage for commercial fleet vehicles.",
     coverage: ["Third Party Liability", "Comprehensive Cover", "Passenger Liability", "Windscreen Cover"],
     baseRate: 0.04,
+    image: insuranceMotorImg,
   },
   {
     icon: Building2,
@@ -65,6 +86,7 @@ const insuranceTypes = [
     description: "Coverage for goods stored in warehouses against various risks.",
     coverage: ["Stock Coverage", "Equipment Protection", "Theft & Burglary", "Water Damage"],
     baseRate: 0.07,
+    image: insuranceWarehouseImg,
   },
   {
     icon: Briefcase,
@@ -72,6 +94,7 @@ const insuranceTypes = [
     description: "Tailored coverage for business operations and professional liability.",
     coverage: ["Public Liability", "Professional Indemnity", "Directors & Officers", "Cyber Liability"],
     baseRate: 0.15,
+    image: insuranceBusinessImg,
   },
   {
     icon: Users,
@@ -79,6 +102,7 @@ const insuranceTypes = [
     description: "Life insurance coverage for employees and their dependents.",
     coverage: ["Death Benefit", "Disability Cover", "Critical Illness", "Funeral Expenses"],
     baseRate: 0.02,
+    image: insuranceLifeImg,
   },
   {
     icon: Heart,
@@ -86,6 +110,7 @@ const insuranceTypes = [
     description: "Comprehensive medical coverage for employees and families.",
     coverage: ["Inpatient Cover", "Outpatient Cover", "Dental & Optical", "Maternity Benefits"],
     baseRate: 0.03,
+    image: insuranceHealthImg,
   },
   {
     icon: Shield,
@@ -93,6 +118,7 @@ const insuranceTypes = [
     description: "Coverage for accidental injuries and death for individuals.",
     coverage: ["Accidental Death", "Permanent Disability", "Medical Expenses", "Weekly Benefits"],
     baseRate: 0.01,
+    image: insuranceAccidentImg,
   },
 ];
 
@@ -109,35 +135,49 @@ const InsuranceCard = ({ insurance, index, onApply }: {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05 }}
-      className="group bg-card rounded-xl p-5 shadow-card hover:shadow-card-hover border border-border/50 hover:border-primary/30 transition-all duration-300"
+      className="group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover border border-border/50 hover:border-primary/30 transition-all duration-300"
     >
-      <div className="w-10 h-10 rounded-lg hero-gradient flex items-center justify-center mb-3">
-        <IconComponent className="h-5 w-5 text-primary-foreground" />
+      {/* Banner Image */}
+      <div className="relative h-28 overflow-hidden">
+        <img
+          src={insurance.image}
+          alt={insurance.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+        <div className="absolute bottom-2 left-3">
+          <div className="w-9 h-9 rounded-lg hero-gradient flex items-center justify-center shadow-lg">
+            <IconComponent className="h-4 w-4 text-primary-foreground" />
+          </div>
+        </div>
       </div>
 
-      <h3 className="text-base font-bold text-foreground mb-2">{insurance.title}</h3>
-      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{insurance.description}</p>
-      
-      <div className="flex flex-wrap gap-1 mb-3">
-        {insurance.coverage.slice(0, 2).map((item) => (
-          <span
-            key={item}
-            className="px-2 py-0.5 text-xs rounded-full bg-secondary text-secondary-foreground"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
+      {/* Content */}
+      <div className="p-4">
+        <h3 className="text-base font-bold text-foreground mb-1.5">{insurance.title}</h3>
+        <p className="text-muted-foreground text-sm mb-2.5 line-clamp-2">{insurance.description}</p>
+        
+        <div className="flex flex-wrap gap-1 mb-3">
+          {insurance.coverage.slice(0, 2).map((item) => (
+            <span
+              key={item}
+              className="px-2 py-0.5 text-xs rounded-full bg-secondary text-secondary-foreground"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
-      <Button 
-        variant="ghost" 
-        size="sm"
-        onClick={() => onApply(insurance.title)}
-        className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-      >
-        Apply Now
-        <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-      </Button>
+        <Button 
+          variant="ghost" 
+          size="sm"
+          onClick={() => onApply(insurance.title)}
+          className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+        >
+          Apply Now
+          <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+        </Button>
+      </div>
     </motion.div>
   );
 };
