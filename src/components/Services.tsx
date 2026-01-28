@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, FileCheck, ArrowRight, Shield, Plane, Ship, Truck } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Services = () => {
@@ -51,24 +51,6 @@ const Services = () => {
       title: "Intermodal Solutions",
       description: "Seamless multi-modal transport across road, rail, and sea.",
       features: ["Multi-Modal", "Door to Door", "Network"],
-    },
-    {
-      icon: ShoppingCart,
-      title: "eCommerce Solutions",
-      description: "Digital shipping tools for quick and convenient logistics.",
-      features: ["Online Booking", "Instant Quotes", "Digital Docs"],
-    },
-    {
-      icon: Shield,
-      title: "Insurance Services",
-      description: "Comprehensive cargo insurance to protect your shipments.",
-      features: ["All Risk Cover", "Marine Insurance", "Claims Support"],
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Support",
-      description: "24/7 dedicated support teams across various regions.",
-      features: ["24/7 Support", "Real-time Chat", "Expert Advice"],
     },
   ];
 
