@@ -29,6 +29,7 @@ const Contact = () => {
       icon: MapPin,
       title: "Location",
       details: ["Shree Ecclave, Off Links Road", "P.O. Box 2039-80100, Mombasa, Kenya"],
+      href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19",
     },
     {
       icon: Clock,
@@ -191,7 +192,7 @@ const Contact = () => {
               <h4 className="font-semibold text-foreground mb-4">Our Location</h4>
               <div className="rounded-xl overflow-hidden border border-border shadow-card">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.785089456321!2d39.6595!3d-4.0435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x184012e78ec02c1d%3A0x4d7a72e3dc6b52e5!2sLinks%20Road%2C%20Mombasa!5e0!3m2!1sen!2ske!4v1706000000000!5m2!1sen!2ske"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.8377034692!2d39.66640!3d-4.03860!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18401316e2c9c0e5%3A0x8c6a8b5f5e5c5d5e!2sMapett%20Logistics%20Ltd!5e0!3m2!1sen!2ske!4v1706000000000!5m2!1sen!2ske"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
