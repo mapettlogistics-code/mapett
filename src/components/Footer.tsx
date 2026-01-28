@@ -1,10 +1,6 @@
-import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const services = [
     "Air Freight",
     "Ocean Freight",
@@ -117,12 +113,6 @@ const Footer = () => {
             <a href="#" className="text-sm text-background/60 hover:text-primary transition-colors">
               Terms of Service
             </a>
-            <button
-              onClick={scrollToTop}
-              className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
-            >
-              <ArrowUp className="h-5 w-5 text-primary-foreground" />
-            </button>
           </div>
         </div>
       </div>

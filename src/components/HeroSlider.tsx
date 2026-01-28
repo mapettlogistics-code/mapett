@@ -3,19 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Service images
-import airFreightImg from "@/assets/service-air-freight.jpg";
-import oceanFreightImg from "@/assets/service-ocean-freight.jpg";
-import roadTransportImg from "@/assets/service-road-transport.jpg";
-import warehouseImg from "@/assets/service-warehouse.jpg";
-import customsImg from "@/assets/service-customs.jpg";
-import refrigeratedImg from "@/assets/service-refrigerated.jpg";
-import specialCargoImg from "@/assets/service-special-cargo.jpg";
-import intermodalImg from "@/assets/service-intermodal.jpg";
-import ecommerceImg from "@/assets/service-ecommerce.jpg";
-import insuranceImg from "@/assets/service-insurance.jpg";
-import supportImg from "@/assets/service-support.jpg";
-import marketplaceImg from "@/assets/service-marketplace.jpg";
+// New slider images with popular cargo brands
+import sliderAirFreight from "@/assets/slider-air-freight.jpg";
+import sliderOceanFreight from "@/assets/slider-ocean-freight.jpg";
+import sliderRoadTransport from "@/assets/slider-road-transport.jpg";
+import sliderWarehouse from "@/assets/slider-warehouse.jpg";
+import sliderCustoms from "@/assets/slider-customs.jpg";
+import sliderRefrigerated from "@/assets/slider-refrigerated.jpg";
+import sliderSpecialCargo from "@/assets/slider-special-cargo.jpg";
+import sliderIntermodal from "@/assets/slider-intermodal.jpg";
+import sliderEcommerce from "@/assets/slider-ecommerce.jpg";
+import sliderInsurance from "@/assets/slider-insurance.jpg";
+import sliderSupport from "@/assets/slider-support.jpg";
+import sliderMarketplace from "@/assets/slider-marketplace.jpg";
 
 const slides = [
   {
@@ -24,7 +24,7 @@ const slides = [
     subtitle: "Fast global delivery",
     description: "Time-sensitive shipments delivered worldwide with our extensive airline network",
     gradient: "from-primary/90 to-accent/70",
-    image: airFreightImg,
+    image: sliderAirFreight,
     link: "#services",
   },
   {
@@ -33,7 +33,7 @@ const slides = [
     subtitle: "Cost-effective sea solutions",
     description: "FCL and LCL services connecting Mombasa to major ports globally",
     gradient: "from-accent/90 to-primary/70",
-    image: oceanFreightImg,
+    image: sliderOceanFreight,
     link: "#services",
   },
   {
@@ -42,7 +42,7 @@ const slides = [
     subtitle: "East Africa coverage",
     description: "Reliable road logistics across Kenya, Uganda, Tanzania, and beyond",
     gradient: "from-primary/80 to-pink-600/70",
-    image: roadTransportImg,
+    image: sliderRoadTransport,
     link: "#services",
   },
   {
@@ -51,7 +51,7 @@ const slides = [
     subtitle: "Secure storage solutions",
     description: "Advanced inventory management with strategic locations across East Africa",
     gradient: "from-pink-600/80 to-primary/70",
-    image: warehouseImg,
+    image: sliderWarehouse,
     link: "#services",
   },
   {
@@ -60,7 +60,7 @@ const slides = [
     subtitle: "Smooth import & export",
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
-    image: customsImg,
+    image: sliderCustoms,
     link: "#services",
   },
   {
@@ -69,7 +69,7 @@ const slides = [
     subtitle: "Cold chain excellence",
     description: "Temperature-controlled transport for perishable goods with real-time monitoring",
     gradient: "from-primary/85 to-accent/75",
-    image: refrigeratedImg,
+    image: sliderRefrigerated,
     link: "#services",
   },
   {
@@ -78,7 +78,7 @@ const slides = [
     subtitle: "Expert handling",
     description: "Oversized, heavy-lift, and project cargo with specialized equipment",
     gradient: "from-primary/90 to-accent/70",
-    image: specialCargoImg,
+    image: sliderSpecialCargo,
     link: "#services",
   },
   {
@@ -87,7 +87,7 @@ const slides = [
     subtitle: "Multi-modal transport",
     description: "Connecting your cargo across road, rail, and sea networks globally",
     gradient: "from-accent/90 to-primary/70",
-    image: intermodalImg,
+    image: sliderIntermodal,
     link: "#services",
   },
   {
@@ -96,7 +96,7 @@ const slides = [
     subtitle: "Digital shipping",
     description: "Quick, convenient tools to save time and streamline your logistics",
     gradient: "from-primary/80 to-pink-600/70",
-    image: ecommerceImg,
+    image: sliderEcommerce,
     link: "#services",
   },
   {
@@ -105,7 +105,7 @@ const slides = [
     subtitle: "Protect your cargo",
     description: "Comprehensive cargo insurance covering all risk, marine, and transit protection",
     gradient: "from-pink-600/80 to-primary/70",
-    image: insuranceImg,
+    image: sliderInsurance,
     link: "#insurance",
   },
   {
@@ -114,7 +114,7 @@ const slides = [
     subtitle: "24/7 assistance",
     description: "Quick responses to your shipping queries across various regions",
     gradient: "from-accent/80 to-primary/80",
-    image: supportImg,
+    image: sliderSupport,
     link: "#contact",
   },
   {
@@ -123,7 +123,7 @@ const slides = [
     subtitle: "Quality auto products",
     description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
     gradient: "from-primary/85 to-accent/75",
-    image: marketplaceImg,
+    image: sliderMarketplace,
     link: "#marketplace",
   },
 ];
@@ -156,7 +156,7 @@ const HeroSlider = () => {
   const IconComponent = slide.icon;
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
       {/* Background Image - Changes with each slide */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -193,23 +193,23 @@ const HeroSlider = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${slide.gradient} mb-6 shadow-xl`}
+                className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${slide.gradient} mb-4 shadow-xl`}
               >
-                <IconComponent className="w-10 h-10 text-white" />
+                <IconComponent className="w-8 h-8 text-white" />
               </motion.div>
 
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3">
                 {slide.title}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-xl md:text-2xl text-primary font-semibold mb-4">
+              <p className="text-lg md:text-xl text-primary font-semibold mb-3">
                 {slide.subtitle}
               </p>
 
               {/* Description */}
-              <p className="text-lg text-background/80 mb-8 max-w-xl">
+              <p className="text-base text-background/80 mb-6 max-w-xl">
                 {slide.description}
               </p>
 
@@ -221,7 +221,7 @@ const HeroSlider = () => {
               >
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
+                  className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-6 py-5 text-base font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
                 >
                   Learn More
                 </Button>
@@ -231,17 +231,17 @@ const HeroSlider = () => {
         </div>
 
         {/* Navigation Controls */}
-        <div className="absolute bottom-8 left-0 right-0">
+        <div className="absolute bottom-6 left-0 right-0">
           <div className="container flex items-center justify-between">
             {/* Dots Navigation */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     index === currentSlide 
-                      ? "bg-primary w-8" 
+                      ? "bg-primary w-6" 
                       : "bg-white/40 hover:bg-white/60"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
@@ -250,22 +250,22 @@ const HeroSlider = () => {
             </div>
 
             {/* Arrow Navigation */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Button
                 variant="outline"
                 size="icon"
                 onClick={prevSlide}
-                className="w-12 h-12 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
+                className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5" />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
                 onClick={nextSlide}
-                className="w-12 h-12 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
+                className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -273,7 +273,7 @@ const HeroSlider = () => {
       </div>
 
       {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
