@@ -11,6 +11,7 @@ import ChatBot from "@/components/ChatBot";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialSidebar from "@/components/SocialSidebar";
 import BackToTop from "@/components/BackToTop";
+import FloatingContactButton from "@/components/FloatingContactButton";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <WhatsAppButton />
       <SocialSidebar />
       <BackToTop />
+      <FloatingContactButton />
     </div>
   );
 };
