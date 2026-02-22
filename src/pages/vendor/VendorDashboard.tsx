@@ -44,8 +44,9 @@ const VendorDashboard = () => {
       ? await supabase.from("order_items").select("*").in("product_id", productIds)
       : { data: [] as any[] };
 
-    const orderCount = new Set(orderItems?.map((i: any) => i.order_id)).size;
-    const revenue = orderItems?.reduce((sum: number, i: any) => sum + (i.quantity * i.unit_price), 0) || 0;
+    const itemsArr = orderItems || [];
+    const orderCount = new Set(itemsArr.map(i => i.order_id)).size;
+    const revenue = itemsArr.reduce((sum, i) => sum + (i.quantity * i.unit_price), 0);
 
     setStats({
       products: productCount || 0,
