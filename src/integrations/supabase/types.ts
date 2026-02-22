@@ -46,6 +46,59 @@ export type Database = {
           },
         ]
       }
+      discount_vouchers: {
+        Row: {
+          code: string
+          created_at: string
+          discount_type: string
+          discount_value: number
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          max_claims: number
+          min_order_amount: number
+          total_claimed: number
+          updated_at: string
+          vendor_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          discount_type?: string
+          discount_value: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_claims?: number
+          min_order_amount?: number
+          total_claimed?: number
+          updated_at?: string
+          vendor_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          discount_type?: string
+          discount_value?: number
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_claims?: number
+          min_order_amount?: number
+          total_claimed?: number
+          updated_at?: string
+          vendor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "discount_vouchers_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       insurance_applications: {
         Row: {
           cargo_value: string | null
@@ -439,6 +492,48 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      voucher_claims: {
+        Row: {
+          claimed_at: string
+          id: string
+          order_id: string | null
+          used_at: string | null
+          user_id: string
+          voucher_id: string
+        }
+        Insert: {
+          claimed_at?: string
+          id?: string
+          order_id?: string | null
+          used_at?: string | null
+          user_id: string
+          voucher_id: string
+        }
+        Update: {
+          claimed_at?: string
+          id?: string
+          order_id?: string | null
+          used_at?: string | null
+          user_id?: string
+          voucher_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voucher_claims_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "voucher_claims_voucher_id_fkey"
+            columns: ["voucher_id"]
+            isOneToOne: false
+            referencedRelation: "discount_vouchers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
