@@ -8,7 +8,7 @@ const FloatingContactButton = () => {
   return (
     <motion.a
       href="mailto:info@mapettlogistics.com"
-      className="fixed bottom-32 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground rounded-full shadow-[0_0_20px_rgba(219,39,119,0.3)] hover:shadow-[0_0_30px_rgba(219,39,119,0.5)] transition-shadow duration-300 px-4 py-3"
+      className="fixed bottom-56 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground rounded-full shadow-[0_0_20px_rgba(219,39,119,0.3)] hover:shadow-[0_0_30px_rgba(219,39,119,0.5)] transition-shadow duration-300 px-4 py-3"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1, y: [0, -4, 0] }}
       transition={{ 
