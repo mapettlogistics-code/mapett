@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 // Margaret's email for super admin
-const SUPER_ADMIN_EMAIL = "info@mappetlogitics.com";
+const SUPER_ADMIN_EMAIL = "info@mapettlogistics.com";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
