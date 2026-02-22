@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Shield, HardHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
@@ -113,7 +112,7 @@ const Autoshop = () => {
         {/* Categories Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {categories.map((category, index) => (
-            <Link to={`/products?category=${category.categoryKey}`} key={category.title}>
+            <a href={`https://multistore.simiyu.app/products?category=${category.categoryKey}`} target="_blank" rel="noopener noreferrer" key={category.title}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +144,7 @@ const Autoshop = () => {
                   </div>
                 </div>
               </motion.div>
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -168,12 +167,12 @@ const Autoshop = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Link to="/products">
+          <a href="https://multistore.simiyu.app/products" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
             Explore All Products
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>
