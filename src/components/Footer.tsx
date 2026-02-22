@@ -107,7 +107,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {marketplace.map((item) => (
                 <li key={item}>
-                  <a href="#autoshop" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
                     {item}
                   </a>
                 </li>

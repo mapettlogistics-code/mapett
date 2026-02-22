@@ -176,9 +176,9 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('autoshop')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
+                <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
                   Autoshop <ChevronDown className="h-4 w-4" />
-                </button>
+                </a>
                 <AnimatePresence>
                   {activeDropdown === 'autoshop' && (
                     <motion.div
@@ -190,7 +190,9 @@ const Navbar = () => {
                       {marketplace.map((item) => (
                         <a
                           key={item}
-                          href="#autoshop"
+                          href="https://multistore.simiyu.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
                         >
                           {item}
@@ -218,7 +220,7 @@ const Navbar = () => {
               </Link>
               
               {/* Cart */}
-              <Link to="/cart" className="relative">
+              <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative">
                 <Button variant="ghost" size="icon">
                   <ShoppingCart className="h-5 w-5" />
                   {totalItems > 0 && (
@@ -227,7 +229,7 @@ const Navbar = () => {
                     </span>
                   )}
                 </Button>
-              </Link>
+              </a>
 
               {/* Auth */}
               {user ? (
@@ -251,9 +253,9 @@ const Navbar = () => {
                           <p className="text-sm text-muted-foreground">Signed in as</p>
                           <p className="text-sm font-medium truncate">{user.email}</p>
                         </div>
-                        <Link to="/cart" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           My Cart
-                        </Link>
+                        </a>
                         <Link to="/track" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           Track Orders
                         </Link>
@@ -278,14 +280,14 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
-              <Link to="/cart" className="relative p-2">
+              <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative p-2">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
                   <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
                     {totalItems}
                   </span>
                 )}
-              </Link>
+              </a>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 hover:bg-secondary rounded-lg transition-colors"
@@ -309,7 +311,7 @@ const Navbar = () => {
                 <Link to="/" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Home</Link>
                 <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
                 <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance</a>
-                <a href="#autoshop" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Autoshop</a>
+                <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Autoshop</a>
                 <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
                 <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
                 {/* Social Links */}

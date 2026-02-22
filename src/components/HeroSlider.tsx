@@ -124,7 +124,7 @@ const slides = [
     description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
     gradient: "from-primary/85 to-accent/75",
     image: sliderMarketplace,
-    link: "#autoshop",
+    link: "https://multistore.simiyu.app",
   },
 ];
 
@@ -216,6 +216,8 @@ const HeroSlider = () => {
               {/* CTA Button */}
               <motion.a
                 href={slide.link}
+                target={slide.link.startsWith("http") ? "_blank" : undefined}
+                rel={slide.link.startsWith("http") ? "noopener noreferrer" : undefined}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
