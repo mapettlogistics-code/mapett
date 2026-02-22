@@ -185,6 +185,7 @@ export type Database = {
           price: number
           rating: number | null
           stock_quantity: number | null
+          vendor_id: string | null
         }
         Insert: {
           category: string
@@ -198,6 +199,7 @@ export type Database = {
           price: number
           rating?: number | null
           stock_quantity?: number | null
+          vendor_id?: string | null
         }
         Update: {
           category?: string
@@ -211,8 +213,17 @@ export type Database = {
           price?: number
           rating?: number | null
           stock_quantity?: number | null
+          vendor_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "products_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -348,6 +359,87 @@ export type Database = {
         }
         Relationships: []
       }
+      vendors: {
+        Row: {
+          bank_account_number: string | null
+          bank_branch: string | null
+          bank_name: string | null
+          banner_url: string | null
+          business_name: string
+          categories: string[] | null
+          created_at: string
+          delivery_period: string | null
+          description: string | null
+          email: string | null
+          facebook_url: string | null
+          id: string
+          instagram_url: string | null
+          logo_url: string | null
+          mpesa_paybill: string | null
+          mpesa_phone: string | null
+          mpesa_till: string | null
+          phone: string | null
+          return_policy: string | null
+          shop_location: string | null
+          status: string
+          tiktok_url: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bank_account_number?: string | null
+          bank_branch?: string | null
+          bank_name?: string | null
+          banner_url?: string | null
+          business_name: string
+          categories?: string[] | null
+          created_at?: string
+          delivery_period?: string | null
+          description?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          instagram_url?: string | null
+          logo_url?: string | null
+          mpesa_paybill?: string | null
+          mpesa_phone?: string | null
+          mpesa_till?: string | null
+          phone?: string | null
+          return_policy?: string | null
+          shop_location?: string | null
+          status?: string
+          tiktok_url?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bank_account_number?: string | null
+          bank_branch?: string | null
+          bank_name?: string | null
+          banner_url?: string | null
+          business_name?: string
+          categories?: string[] | null
+          created_at?: string
+          delivery_period?: string | null
+          description?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          instagram_url?: string | null
+          logo_url?: string | null
+          mpesa_paybill?: string | null
+          mpesa_phone?: string | null
+          mpesa_till?: string | null
+          phone?: string | null
+          return_policy?: string | null
+          shop_location?: string | null
+          status?: string
+          tiktok_url?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -364,7 +456,7 @@ export type Database = {
       is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role: "admin" | "moderator" | "user" | "vendor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -492,7 +584,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: ["admin", "moderator", "user", "vendor"],
     },
   },
 } as const
