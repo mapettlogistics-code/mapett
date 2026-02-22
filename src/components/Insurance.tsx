@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Shield, Heart, Flame, Ship, Car, Home, Briefcase, 
+  Shield, Ship, Car, Briefcase, 
   Users, Plane, Building2, Package, Truck, ArrowRight, 
   CheckCircle2, X, Calculator
 } from "lucide-react";
@@ -14,13 +14,10 @@ import insuranceMarineImg from "@/assets/insurance-marine.jpg";
 import insuranceAirImg from "@/assets/insurance-air.jpg";
 import insuranceInlandImg from "@/assets/insurance-inland.jpg";
 import insuranceFreightImg from "@/assets/insurance-freight.jpg";
-import insurancePropertyImg from "@/assets/insurance-property.jpg";
-import insuranceFireImg from "@/assets/insurance-fire.jpg";
 import insuranceMotorImg from "@/assets/insurance-motor.jpg";
 import insuranceWarehouseImg from "@/assets/insurance-warehouse.jpg";
 import insuranceBusinessImg from "@/assets/insurance-business.jpg";
 import insuranceLifeImg from "@/assets/insurance-life.jpg";
-import insuranceHealthImg from "@/assets/insurance-health.jpg";
 import insuranceAccidentImg from "@/assets/insurance-accident.jpg";
 
 const insuranceTypes = [
@@ -57,22 +54,6 @@ const insuranceTypes = [
     image: insuranceFreightImg,
   },
   {
-    icon: Home,
-    title: "Property Insurance",
-    description: "Comprehensive coverage for buildings, equipment, and business assets.",
-    coverage: ["Fire & Lightning", "Burglary", "Natural Perils", "Business Interruption"],
-    baseRate: 0.08,
-    image: insurancePropertyImg,
-  },
-  {
-    icon: Flame,
-    title: "Fire Insurance",
-    description: "Protection against fire damage to commercial and industrial properties.",
-    coverage: ["Fire Damage", "Smoke Damage", "Firefighting Damage", "Temporary Relocation"],
-    baseRate: 0.06,
-    image: insuranceFireImg,
-  },
-  {
     icon: Car,
     title: "Motor Vehicle Insurance",
     description: "Comprehensive and third-party coverage for commercial fleet vehicles.",
@@ -105,19 +86,11 @@ const insuranceTypes = [
     image: insuranceLifeImg,
   },
   {
-    icon: Heart,
-    title: "Health Insurance",
-    description: "Comprehensive medical coverage for employees and families.",
-    coverage: ["Inpatient Cover", "Outpatient Cover", "Dental & Optical", "Maternity Benefits"],
-    baseRate: 0.03,
-    image: insuranceHealthImg,
-  },
-  {
     icon: Shield,
-    title: "Personal Accident Insurance",
-    description: "Coverage for accidental injuries and death for individuals.",
-    coverage: ["Accidental Death", "Permanent Disability", "Medical Expenses", "Weekly Benefits"],
-    baseRate: 0.01,
+    title: "WIBA & Employees Liability",
+    description: "Work Injury Benefits Act coverage and employer liability protection for workplace injuries and occupational diseases.",
+    coverage: ["Work Injury Benefits", "Employer Liability", "Occupational Diseases", "Compensation Cover"],
+    baseRate: 0.03,
     image: insuranceAccidentImg,
   },
 ];
