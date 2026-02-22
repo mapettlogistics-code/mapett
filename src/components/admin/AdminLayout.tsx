@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  Store,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -25,6 +26,7 @@ const menuItems = [
   { icon: Truck, label: "Shipments", href: "/admin/shipments" },
   { icon: ShoppingCart, label: "Orders", href: "/admin/orders" },
   { icon: Shield, label: "Insurance", href: "/admin/insurance" },
+  { icon: Store, label: "Vendors", href: "/admin/vendors" },
   { icon: Users, label: "Users", href: "/admin/users" },
   { icon: Settings, label: "Settings", href: "/admin/settings" },
 ];

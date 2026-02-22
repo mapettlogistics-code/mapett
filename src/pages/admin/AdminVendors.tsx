@@ -115,9 +115,9 @@ const AdminVendors = () => {
                   <TableCell>{new Date(v.created_at).toLocaleDateString()}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
-                      <Link to={`/shop/${v.id}`} target="_blank">
+                      <a href={`https://mappetstore.lovable.app/shop/${v.id}`} target="_blank" rel="noopener noreferrer">
                         <Button variant="ghost" size="icon"><Eye className="h-4 w-4" /></Button>
-                      </Link>
+                      </a>
                       <Button variant="ghost" size="icon" onClick={() => toggleStatus(v)} className={v.status === "active" ? "text-destructive" : "text-green-600"}>
                         {v.status === "active" ? <Ban className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />}
                       </Button>
