@@ -68,60 +68,108 @@ const QuoteSection = () => {
               </div>
               
               <form className="space-y-4">
+                {/* Contact Person & Company */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground">From</label>
+                    <label className="text-sm font-medium text-foreground">Contact Person Name</label>
                     <input
                       type="text"
-                      placeholder="Origin City"
+                      placeholder="Full name"
                       className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground">To</label>
+                    <label className="text-sm font-medium text-foreground">Company Name</label>
                     <input
                       type="text"
-                      placeholder="Destination"
+                      placeholder="Company name"
                       className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                     />
                   </div>
                 </div>
-                
+
+                {/* Phone & Email */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground">Service Type</label>
-                    <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <label className="text-sm font-medium text-foreground">Phone Number</label>
+                    <input
+                      type="tel"
+                      placeholder="+254 700 000 000"
+                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground">Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Service/Product Dropdown */}
+                <div>
+                  <label className="text-sm font-medium text-foreground">Service / Product</label>
+                  <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option value="">Select a service or product</option>
+                    <optgroup label="Logistics Services">
                       <option>Air Freight</option>
                       <option>Ocean Freight</option>
                       <option>Road Transport</option>
                       <option>Warehousing</option>
-                    </select>
+                      <option>Customs Clearance</option>
+                      <option>Refrigerated Cargo</option>
+                      <option>Special Cargo</option>
+                      <option>Intermodal Solutions</option>
+                    </optgroup>
+                    <optgroup label="Insurance">
+                      <option>Marine Insurance</option>
+                      <option>Cargo Insurance</option>
+                      <option>Motor Insurance</option>
+                      <option>Fire & Burglary Insurance</option>
+                      <option>Life Insurance</option>
+                      <option>Health Insurance</option>
+                      <option>Property Insurance</option>
+                      <option>Business Insurance</option>
+                    </optgroup>
+                    <optgroup label="Marketplace">
+                      <option>Tires</option>
+                      <option>Batteries</option>
+                      <option>Lubricants</option>
+                      <option>Industrial Supplies</option>
+                      <option>Accessories</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                {/* Container / BL Number */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-foreground">Container No.</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. MSKU1234567"
+                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground">Weight (kg)</label>
+                    <label className="text-sm font-medium text-foreground">BL No.</label>
                     <input
-                      type="number"
-                      placeholder="Enter weight"
+                      type="text"
+                      placeholder="Bill of Lading number"
                       className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                     />
                   </div>
                 </div>
 
+                {/* Free Text Area */}
                 <div>
-                  <label className="text-sm font-medium text-foreground">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-foreground">Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+254 700 000 000"
-                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  <label className="text-sm font-medium text-foreground">Additional Details</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Describe your requirements, cargo details, special instructions..."
+                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
                   />
                 </div>
 
