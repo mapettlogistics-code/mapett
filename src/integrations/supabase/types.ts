@@ -225,6 +225,59 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          ncba_reference_id: string | null
+          ncba_transaction_id: string | null
+          order_id: string | null
+          payment_method: string
+          phone_number: string
+          status: string
+          status_description: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          ncba_reference_id?: string | null
+          ncba_transaction_id?: string | null
+          order_id?: string | null
+          payment_method?: string
+          phone_number: string
+          status?: string
+          status_description?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          ncba_reference_id?: string | null
+          ncba_transaction_id?: string | null
+          order_id?: string | null
+          payment_method?: string
+          phone_number?: string
+          status?: string
+          status_description?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_transactions_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           category: string

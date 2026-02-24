@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.provision-admin]
 verify_jwt = false
+
+[functions.ncba-payment]
+verify_jwt = false
