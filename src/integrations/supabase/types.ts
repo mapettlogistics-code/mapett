@@ -106,11 +106,20 @@ export type Database = {
           created_at: string
           details: string | null
           email: string
+          first_name: string | null
           full_name: string
           id: string
+          id_passport_dl: string | null
           insurance_type: string
+          middle_name: string | null
+          nature_of_business: string | null
           phone: string
+          physical_address: string | null
+          pin_reg_cert: string | null
+          profession: string | null
+          salutation: string | null
           status: string
+          surname: string | null
           updated_at: string
         }
         Insert: {
@@ -119,11 +128,20 @@ export type Database = {
           created_at?: string
           details?: string | null
           email: string
+          first_name?: string | null
           full_name: string
           id?: string
+          id_passport_dl?: string | null
           insurance_type: string
+          middle_name?: string | null
+          nature_of_business?: string | null
           phone: string
+          physical_address?: string | null
+          pin_reg_cert?: string | null
+          profession?: string | null
+          salutation?: string | null
           status?: string
+          surname?: string | null
           updated_at?: string
         }
         Update: {
@@ -132,11 +150,20 @@ export type Database = {
           created_at?: string
           details?: string | null
           email?: string
+          first_name?: string | null
           full_name?: string
           id?: string
+          id_passport_dl?: string | null
           insurance_type?: string
+          middle_name?: string | null
+          nature_of_business?: string | null
           phone?: string
+          physical_address?: string | null
+          pin_reg_cert?: string | null
+          profession?: string | null
+          salutation?: string | null
           status?: string
+          surname?: string | null
           updated_at?: string
         }
         Relationships: []
