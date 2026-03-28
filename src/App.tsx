@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -21,6 +22,7 @@ import AdminInsurance from "./pages/admin/AdminInsurance";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminVendors from "./pages/admin/AdminVendors";
+import AdminContent from "./pages/admin/AdminContent";
 
 const queryClient = new QueryClient();
 
@@ -32,26 +34,29 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <CartProvider>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/track" element={<Track />} />
-              <Route path="/products" element={<Products />} />
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/shipments" element={<AdminShipments />} />
-              <Route path="/admin/orders" element={<AdminOrders />} />
-              <Route path="/admin/insurance" element={<AdminInsurance />} />
-              <Route path="/admin/vendors" element={<AdminVendors />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/settings" element={<AdminSettings />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <CurrencyProvider>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/track" element={<Track />} />
+                <Route path="/products" element={<Products />} />
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/content" element={<AdminContent />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="/admin/shipments" element={<AdminShipments />} />
+                <Route path="/admin/orders" element={<AdminOrders />} />
+                <Route path="/admin/insurance" element={<AdminInsurance />} />
+                <Route path="/admin/vendors" element={<AdminVendors />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/settings" element={<AdminSettings />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </CurrencyProvider>
           </CartProvider>
         </AuthProvider>
       </BrowserRouter>
