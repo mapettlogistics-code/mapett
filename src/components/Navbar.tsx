@@ -31,14 +31,10 @@ const Navbar = () => {
     "Air Cargo Insurance",
     "Inland Transit Insurance",
     "Freight Forwarder Liability",
-    "Property Insurance",
-    "Fire Insurance",
     "Motor Vehicle Insurance",
     "Warehouse Insurance",
-    "Business Insurance",
     "Group Life Insurance",
-    "Health Insurance",
-    "Personal Accident Insurance",
+    "WIBA & Employees Liability",
   ];
 
   const marketplace = [
@@ -46,6 +42,7 @@ const Navbar = () => {
     "Industrial Lubricants",
     "Vehicle Batteries",
     "Vehicle Accessories",
+    "Seals & Tags",
   ];
 
   return (

@@ -15,15 +15,11 @@ const Footer = () => {
     "Marine Cargo Insurance",
     "Air Cargo Insurance",
     "Inland Transit Insurance",
-    "Property Insurance",
-    "Fire Insurance",
+    "Freight Forwarder Liability",
     "Motor Vehicle Insurance",
     "Warehouse Insurance",
-    "Business Insurance",
     "Group Life Insurance",
-    "Health Insurance",
-    "Personal Accident Insurance",
-    "Freight Forwarder Liability",
+    "WIBA & Employees Liability",
   ];
 
   const marketplace = [
@@ -31,7 +27,7 @@ const Footer = () => {
     "Industrial Lubricants",
     "Vehicle Batteries",
     "Vehicle Accessories",
-    "Greases & Coolants",
+    "Seals & Tags",
   ];
 
   const company = [
