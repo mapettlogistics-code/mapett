@@ -70,14 +70,6 @@ const insuranceTypes = [
     image: insuranceWarehouseImg,
   },
   {
-    icon: Briefcase,
-    title: "Business Insurance",
-    description: "Tailored coverage for business operations and professional liability.",
-    coverage: ["Public Liability", "Professional Indemnity", "Directors & Officers", "Cyber Liability"],
-    baseRate: 0.15,
-    image: insuranceBusinessImg,
-  },
-  {
     icon: Users,
     title: "Group Life Insurance",
     description: "Life insurance coverage for employees and their dependents.",
