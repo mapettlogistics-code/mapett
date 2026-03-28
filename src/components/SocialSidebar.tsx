@@ -20,6 +20,7 @@ const SocialSidebar = () => {
     { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", isSvg: false },
     { icon: null, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", isSvg: "tiktok" },
     { icon: null, href: "https://www.pinterest.com/MapetteLogisticsLtd/", label: "Pinterest", isSvg: "pinterest" },
+    { icon: null, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", isSvg: "linkedin" },
   ];
 
   return (
@@ -49,6 +50,12 @@ const SocialSidebar = () => {
           ) : social.isSvg === "pinterest" ? (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
               <path d="M12 0a12 12 0 0 0-4.37 23.17c-.1-.94-.2-2.4.04-3.44l1.4-5.93s-.35-.71-.35-1.77c0-1.66.96-2.9 2.16-2.9 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 3.99-.28 1.2.6 2.17 1.78 2.17 2.14 0 3.79-2.26 3.79-5.52 0-2.88-2.07-4.9-5.03-4.9-3.42 0-5.43 2.57-5.43 5.22 0 1.04.4 2.15.9 2.75.1.12.11.22.08.34l-.34 1.36c-.05.22-.18.27-.41.16-1.52-.71-2.48-2.92-2.48-4.7 0-3.82 2.78-7.33 8.02-7.33 4.21 0 7.48 3 7.48 7.01 0 4.18-2.64 7.55-6.3 7.55-1.23 0-2.39-.64-2.79-1.4l-.76 2.89c-.27 1.06-1.01 2.4-1.5 3.21A12 12 0 1 0 12 0z"/>
+            </svg>
+          ) : social.isSvg === "linkedin" ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
             </svg>
           ) : social.icon ? (
             <social.icon className="h-5 w-5" />

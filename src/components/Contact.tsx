@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // TikTok icon component
@@ -16,7 +16,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+254 799 390 133"],
+      details: ["+254 799 390 133", "+254 725 649 202"],
       href: whatsappUrl,
     },
     {
@@ -43,6 +43,7 @@ const Contact = () => {
     { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram" },
     { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube" },
     { icon: TikTokIcon, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn" },
   ];
 
   return (
