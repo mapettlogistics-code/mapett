@@ -27,12 +27,12 @@ const Footer = () => {
 
   const autoshop = [
     "Automotive Lubricants",
-    "Vehicle Tires",
-    "Vehicle Accessories",
+    "Tires",
     "Vehicle Batteries",
-    "Food Grade Lubricants",
-    "Agricultural Lubricants",
-    "Seals & Tags",
+    "Safety Boots",
+    "Insurance",
+    "Industrial Lubricants",
+    "Vehicle Accessories",
   ];
 
   const company = [
