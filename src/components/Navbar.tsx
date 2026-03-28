@@ -248,6 +248,7 @@ const Navbar = () => {
                 </Button>
               </Link>
               
+              <PaymentIcons />
               {/* Cart */}
               <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative">
                 <Button variant="ghost" size="icon">
