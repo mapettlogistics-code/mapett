@@ -86,7 +86,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            
+            <PaymentIcons />
             <div className="flex items-center gap-3 border-l border-primary-foreground/30 pl-4">
               <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Facebook className="h-4 w-4" />
@@ -230,10 +230,8 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Payment Methods */}
-            <div className="hidden lg:flex items-center">
-              <PaymentIcons />
-            </div>
+
+
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
