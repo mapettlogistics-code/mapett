@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
 import Track from "./pages/Track";
 import Products from "./pages/Products";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/track" element={<Track />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<AdminDashboard />} />
