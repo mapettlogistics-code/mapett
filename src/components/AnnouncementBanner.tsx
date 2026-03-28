@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 
-const announcements = [
+const defaultAnnouncements = [
   "🚚 Free shipping on orders above KES 10,000 — Shop now at our Autoshop!",
   "📦 Track your shipments in real-time with Mapett Logistics",
   "🛡️ Get comprehensive cargo insurance — Request a quote today!",
@@ -10,17 +11,35 @@ const announcements = [
 ];
 
 const AnnouncementBanner = () => {
+  const [announcements, setAnnouncements] = useState<string[]>(defaultAnnouncements);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    const fetchAnnouncements = async () => {
+      const { data } = await supabase
+        .from("site_content")
+        .select("title")
+        .eq("section", "announcement")
+        .eq("is_active", true)
+        .order("display_order", { ascending: true });
+
+      if (data && data.length > 0) {
+        setAnnouncements(data.map(d => d.title).filter(Boolean) as string[]);
+      }
+    };
+    fetchAnnouncements();
+  }, []);
+
+  useEffect(() => {
+    if (announcements.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % announcements.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [announcements.length]);
 
-  if (!isVisible) return null;
+  if (!isVisible || announcements.length === 0) return null;
 
   return (
     <div className="bg-accent text-accent-foreground relative overflow-hidden">
