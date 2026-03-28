@@ -117,7 +117,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center h-16 overflow-hidden">
-              <img src={mapettLogo} alt="Mapett Logistics" className="h-24 w-auto object-cover object-bottom" />
+              <img src={mapettLogo} alt="Mapett Logistics" className="h-14 w-auto object-contain" />
             </Link>
 
             {/* Desktop Menu */}
