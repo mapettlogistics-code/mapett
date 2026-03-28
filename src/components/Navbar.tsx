@@ -5,6 +5,7 @@ import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut, 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import PaymentIcons from "@/components/PaymentIcons";
 import mapettLogo from "@/assets/mapett-logo.png";
 
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
+  const { currency, toggleCurrency } = useCurrency();
 
   const services = [
     "Customs Clearance",
@@ -234,7 +236,15 @@ const Navbar = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-3">
+              {/* Currency Toggle */}
+              <button
+                onClick={toggleCurrency}
+                className="px-3 py-1.5 rounded-lg bg-secondary text-foreground text-sm font-semibold hover:bg-secondary/80 transition-colors"
+                title="Switch currency"
+              >
+                {currency === "KES" ? "KES 🇰🇪" : "USD 🇺🇸"}
+              </button>
               <Link to="/track">
                 <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   Track Shipment
