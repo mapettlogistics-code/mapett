@@ -84,10 +84,6 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              <span>Shree Enclave, Off Links Road, Mombasa</span>
-            </div>
             <PaymentIcons />
             <div className="flex items-center gap-3 border-l border-primary-foreground/30 pl-4">
               <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
