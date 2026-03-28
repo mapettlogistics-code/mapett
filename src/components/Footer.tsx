@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Globe, Linkedin, Facebook, Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
+import PaymentIcons from "@/components/PaymentIcons";
 
 const Footer = () => {
   const services = [
@@ -174,12 +175,13 @@ const Footer = () => {
             © {new Date().getFullYear()} Mapett Logistics LTD. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-background/60 hover:text-primary transition-colors">
+            <Link to="/privacy-policy" className="text-sm text-background/60 hover:text-primary transition-colors">
               Privacy Policy
-            </a>
+            </Link>
             <a href="/documents/MAPETT_LOGISTICS_LIMITED_TERMS_AND_CONDITIONS.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-background/60 hover:text-primary transition-colors">
               Terms of Service
             </a>
+            <PaymentIcons />
           </div>
         </div>
       </div>
