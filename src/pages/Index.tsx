@@ -1,3 +1,4 @@
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import Navbar from "@/components/Navbar";
 import HeroSlider from "@/components/HeroSlider";
 import QuoteSection from "@/components/QuoteSection";
@@ -16,6 +17,7 @@ import FloatingContactButton from "@/components/FloatingContactButton";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <AnnouncementBanner />
       <Navbar />
       <HeroSlider />
       <QuoteSection />

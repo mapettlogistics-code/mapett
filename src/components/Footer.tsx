@@ -1,14 +1,16 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Globe, Linkedin, Facebook, Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const services = [
+    "Customs Clearance",
     "Air Freight",
     "Ocean Freight",
-    "Road Transport",
+    "Road & Rail Transport",
+    "Product Sourcing",
+    "Refrigerated Cargo",
+    "Special Cargo",
     "Warehousing",
-    "Customs Clearance",
-    "Project Cargo",
   ];
 
   const insurance = [
@@ -17,25 +19,27 @@ const Footer = () => {
     "Inland Transit Insurance",
     "Freight Forwarder Liability",
     "Motor Vehicle Insurance",
-    "Warehouse Insurance",
-    "Group Life Insurance",
-    "WIBA & Employees Liability",
+    "WIBA Insurance",
+    "Life Insurance",
+    "Personal Accident Insurance",
   ];
 
-  const marketplace = [
+  const autoshop = [
     "Automotive Lubricants",
-    "Industrial Lubricants",
-    "Vehicle Batteries",
+    "Vehicle Tires",
     "Vehicle Accessories",
+    "Vehicle Batteries",
+    "Food Grade Lubricants",
+    "Agricultural Lubricants",
     "Seals & Tags",
   ];
 
   const company = [
     { name: "About Us", href: "#about" },
     { name: "Our Team", href: "#about" },
-    { name: "Careers", href: "#contact" },
-    { name: "News & Updates", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Directions/Location", href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19", external: true },
+    { name: "Contact Us", href: "#contact" },
+    { name: "Live Support", href: "#contact" },
     { name: "Admin Portal", href: "/admin/login", isRoute: true },
   ];
 
@@ -58,20 +62,46 @@ const Footer = () => {
                 <Phone className="h-5 w-5" />
                 +254 799 390 133
               </a>
+              <a href="tel:+254725649202" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+                <Phone className="h-5 w-5" />
+                +254 725 649 202
+              </a>
               <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
                 sales@mapettlogistics.com
               </a>
-              <div className="flex items-center gap-3 text-background/70">
-                <MapPin className="h-5 w-5" />
-                Mombasa, Kenya
+              <a href="https://www.mapettlogistics.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+                <Globe className="h-5 w-5" />
+                www.mapettlogistics.com
+              </a>
+              <div className="flex items-start gap-3 text-background/70">
+                <MapPin className="h-5 w-5 shrink-0" />
+                <div>
+                  <p>Shree Enclave, Off Links Road</p>
+                  <p>P.O. Box 2039-80100, Mombasa, Kenya</p>
+                </div>
               </div>
+            </div>
+            {/* Social Links */}
+            <div className="flex items-center gap-3 mt-6">
+              <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="https://www.instagram.com/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a href="https://www.youtube.com/@MapettLogisticsLtd" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a href="https://www.linkedin.com/company/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <Linkedin className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-background mb-4">Services</h4>
+            <h4 className="text-lg font-semibold text-background mb-4">Products & Services</h4>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
@@ -85,7 +115,7 @@ const Footer = () => {
 
           {/* Insurance */}
           <div>
-            <h4 className="text-lg font-semibold text-background mb-4">Insurance</h4>
+            <h4 className="text-lg font-semibold text-background mb-4">Insurance Policies</h4>
             <ul className="space-y-2">
               {insurance.map((item) => (
                 <li key={item}>
@@ -97,11 +127,11 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Autoshop */}
+          {/* Auto Store */}
           <div>
-            <h4 className="text-lg font-semibold text-background mb-4">Autoshop</h4>
+            <h4 className="text-lg font-semibold text-background mb-4">Auto Store</h4>
             <ul className="space-y-2">
-              {marketplace.map((item) => (
+              {autoshop.map((item) => (
                 <li key={item}>
                   <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
                     {item}
@@ -121,6 +151,10 @@ const Footer = () => {
                     <Link to={item.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                       {item.name}
                     </Link>
+                  ) : item.external ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
+                      {item.name}
+                    </a>
                   ) : (
                     <a href={item.href} className="text-sm text-background/70 hover:text-primary transition-colors">
                       {item.name}
