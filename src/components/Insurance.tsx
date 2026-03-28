@@ -271,11 +271,19 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
   selectedType: string;
 }) => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    salutation: "",
+    firstName: "",
+    middleName: "",
+    surname: "",
     email: "",
     phone: "",
     company: "",
     insuranceType: selectedType,
+    physicalAddress: "",
+    idPassportDl: "",
+    profession: "",
+    natureOfBusiness: "",
+    pinRegCert: "",
     cargoValue: "",
     details: "",
   });
@@ -293,14 +301,24 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
     setIsSubmitting(true);
     
     try {
+      const fullName = [formData.salutation, formData.firstName, formData.middleName, formData.surname].filter(Boolean).join(" ");
       const { error } = await supabase
         .from('insurance_applications')
         .insert({
-          full_name: formData.fullName.trim(),
+          full_name: fullName,
+          salutation: formData.salutation.trim() || null,
+          first_name: formData.firstName.trim() || null,
+          middle_name: formData.middleName.trim() || null,
+          surname: formData.surname.trim() || null,
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           company: formData.company.trim() || null,
           insurance_type: formData.insuranceType,
+          physical_address: formData.physicalAddress.trim() || null,
+          id_passport_dl: formData.idPassportDl.trim() || null,
+          profession: formData.profession.trim() || null,
+          nature_of_business: formData.natureOfBusiness.trim() || null,
+          pin_reg_cert: formData.pinRegCert.trim() || null,
           cargo_value: formData.cargoValue.trim() || null,
           details: formData.details.trim() || null,
         });
@@ -310,11 +328,19 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
       toast.success("Application submitted successfully! Our team will contact you within 24 hours.");
       onClose();
       setFormData({
-        fullName: "",
+        salutation: "",
+        firstName: "",
+        middleName: "",
+        surname: "",
         email: "",
         phone: "",
         company: "",
         insuranceType: "",
+        physicalAddress: "",
+        idPassportDl: "",
+        profession: "",
+        natureOfBusiness: "",
+        pinRegCert: "",
         cargoValue: "",
         details: "",
       });
@@ -357,91 +383,98 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name Fields */}
+              <div className="grid grid-cols-4 gap-3">
+                <div>
+                  <label className="text-sm font-medium text-foreground">Salutation</label>
+                  <select
+                    value={formData.salutation}
+                    onChange={(e) => setFormData({ ...formData, salutation: e.target.value })}
+                    className="mt-1 w-full px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
+                  >
+                    <option value="">--</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Dr.">Dr.</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">First Name *</label>
+                  <input type="text" required value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} placeholder="First" className="mt-1 w-full px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Middle Name</label>
+                  <input type="text" value={formData.middleName} onChange={(e) => setFormData({ ...formData, middleName: e.target.value })} placeholder="Middle" className="mt-1 w-full px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Surname *</label>
+                  <input type="text" required value={formData.surname} onChange={(e) => setFormData({ ...formData, surname: e.target.value })} placeholder="Surname" className="mt-1 w-full px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm" />
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-foreground">Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    placeholder="John Doe"
-                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  />
+                  <label className="text-sm font-medium text-foreground">Email Address *</label>
+                  <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="john@company.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground">Phone Number *</label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+254 700 000 000"
-                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  />
+                  <input type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                 </div>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground">Email Address *</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@company.com"
-                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-foreground">Company Name</label>
-                <input
-                  type="text"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  placeholder="Your Company Ltd"
-                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="text-sm font-medium text-foreground">Insurance Type *</label>
-                <select
-                  required
-                  value={formData.insuranceType}
-                  onChange={(e) => setFormData({ ...formData, insuranceType: e.target.value })}
-                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                >
-                  <option value="">Select insurance type</option>
+                <label className="text-sm font-medium text-foreground">Insurance Policy *</label>
+                <select required value={formData.insuranceType} onChange={(e) => setFormData({ ...formData, insuranceType: e.target.value })} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                  <option value="">Select insurance policy</option>
                   {insuranceTypes.map((type) => (
-                    <option key={type.title} value={type.title}>
-                      {type.title}
-                    </option>
+                    <option key={type.title} value={type.title}>{type.title}</option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground">Estimated Value (KES)</label>
-                <input
-                  type="text"
-                  value={formData.cargoValue}
-                  onChange={(e) => setFormData({ ...formData, cargoValue: e.target.value })}
-                  placeholder="e.g., 5,000,000"
-                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                />
+                <label className="text-sm font-medium text-foreground">Physical Address</label>
+                <textarea value={formData.physicalAddress} onChange={(e) => setFormData({ ...formData, physicalAddress: e.target.value })} placeholder="Enter your physical address" rows={2} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground">ID / Passport / DL</label>
+                  <input type="text" value={formData.idPassportDl} onChange={(e) => setFormData({ ...formData, idPassportDl: e.target.value })} placeholder="ID number" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Profession</label>
+                  <input type="text" value={formData.profession} onChange={(e) => setFormData({ ...formData, profession: e.target.value })} placeholder="Your profession" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground">Business / Company</label>
+                  <input type="text" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Nature of Business</label>
+                  <input type="text" value={formData.natureOfBusiness} onChange={(e) => setFormData({ ...formData, natureOfBusiness: e.target.value })} placeholder="e.g. Import/Export" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground">PIN No / Reg Cert</label>
+                  <input type="text" value={formData.pinRegCert} onChange={(e) => setFormData({ ...formData, pinRegCert: e.target.value })} placeholder="KRA PIN or Reg Cert" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Insured Amount (KES)</label>
+                  <input type="text" value={formData.cargoValue} onChange={(e) => setFormData({ ...formData, cargoValue: e.target.value })} placeholder="e.g., 5,000,000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                </div>
               </div>
 
               <div>
                 <label className="text-sm font-medium text-foreground">Additional Details</label>
-                <textarea
-                  value={formData.details}
-                  onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                  placeholder="Describe your insurance needs, cargo type, destination, etc."
-                  rows={3}
-                  className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
-                />
+                <textarea value={formData.details} onChange={(e) => setFormData({ ...formData, details: e.target.value })} placeholder="Any additional information about your insurance needs" rows={3} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
               </div>
 
               <Button 
