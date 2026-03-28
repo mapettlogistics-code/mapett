@@ -310,6 +310,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
+              <PaymentIcons />
               <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative p-2">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
