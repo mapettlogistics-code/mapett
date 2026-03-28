@@ -2,22 +2,25 @@ const PaymentIcons = () => {
   return (
     <div className="flex items-center gap-2">
       {/* M-Pesa */}
-      <svg viewBox="0 0 80 30" className="h-7 w-auto" aria-label="M-Pesa">
-        <rect width="80" height="30" rx="4" fill="#4CAF50" />
-        <text x="40" y="19" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Arial, sans-serif">M-PESA</text>
-      </svg>
+      <div className="bg-white/20 rounded px-2 py-0.5 flex items-center">
+        <svg viewBox="0 0 80 24" className="h-5 w-auto" aria-label="M-Pesa">
+          <text x="40" y="17" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold" fontFamily="Arial, sans-serif">M-PESA</text>
+        </svg>
+      </div>
       {/* Visa */}
-      <svg viewBox="0 0 60 30" className="h-7 w-auto" aria-label="Visa">
-        <rect width="60" height="30" rx="4" fill="#1A1F71" />
-        <text x="30" y="20" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="Arial, sans-serif" fontStyle="italic">VISA</text>
-      </svg>
+      <div className="bg-white/20 rounded px-2 py-0.5 flex items-center">
+        <svg viewBox="0 0 60 24" className="h-5 w-auto" aria-label="Visa">
+          <text x="30" y="18" textAnchor="middle" fill="white" fontSize="15" fontWeight="bold" fontFamily="Arial, sans-serif" fontStyle="italic">VISA</text>
+        </svg>
+      </div>
       {/* Mastercard */}
-      <svg viewBox="0 0 60 30" className="h-7 w-auto" aria-label="Mastercard">
-        <rect width="60" height="30" rx="4" fill="#2D2D2D" />
-        <circle cx="24" cy="15" r="9" fill="#EB001B" />
-        <circle cx="36" cy="15" r="9" fill="#F79E1B" />
-        <path d="M30 8.2a9 9 0 0 1 0 13.6 9 9 0 0 1 0-13.6z" fill="#FF5F00" />
-      </svg>
+      <div className="bg-white/20 rounded px-1.5 py-0.5 flex items-center">
+        <svg viewBox="0 0 50 24" className="h-5 w-auto" aria-label="Mastercard">
+          <circle cx="18" cy="12" r="8" fill="#EB001B" opacity="0.9" />
+          <circle cx="32" cy="12" r="8" fill="#F79E1B" opacity="0.9" />
+          <path d="M25 5.5a8 8 0 0 1 0 13 8 8 0 0 1 0-13z" fill="#FF5F00" opacity="0.9" />
+        </svg>
+      </div>
     </div>
   );
 };
