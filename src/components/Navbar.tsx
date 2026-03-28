@@ -222,12 +222,6 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              <a href="#contact" className="font-medium text-foreground hover:text-primary transition-colors">
-                Contact Us
-              </a>
-              <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                Directions
-              </a>
             </div>
 
 
