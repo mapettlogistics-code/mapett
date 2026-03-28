@@ -26,13 +26,13 @@ const Footer = () => {
   ];
 
   const autoshop = [
-    "Automotive Lubricants",
-    "Tires",
-    "Vehicle Batteries",
-    "Safety Boots",
-    "Insurance",
-    "Industrial Lubricants",
-    "Vehicle Accessories",
+    { name: "Automotive Lubricants", category: "lubricants" },
+    { name: "Tires", category: "tires" },
+    { name: "Vehicle Batteries", category: "batteries" },
+    { name: "Safety Boots", category: "safety-boots" },
+    { name: "Insurance", category: "insurance" },
+    { name: "Industrial Lubricants", category: "industrial-lubricants" },
+    { name: "Vehicle Accessories", category: "accessories" },
   ];
 
   const company = [
@@ -143,9 +143,9 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-background mb-4">Auto Store</h4>
             <ul className="space-y-2">
               {autoshop.map((item) => (
-                <li key={item}>
-                  <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
-                    {item}
+                <li key={item.name}>
+                  <a href={`https://multistore.simiyu.app/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
+                    {item.name}
                   </a>
                 </li>
               ))}
