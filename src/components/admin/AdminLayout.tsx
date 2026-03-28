@@ -13,6 +13,7 @@ import {
   X,
   ChevronRight,
   Store,
+  FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,6 +23,7 @@ import mapettLogo from "@/assets/mapett-logo.png";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
+  { icon: FileText, label: "Content", href: "/admin/content" },
   { icon: Package, label: "Products", href: "/admin/products" },
   { icon: Truck, label: "Shipments", href: "/admin/shipments" },
   { icon: ShoppingCart, label: "Orders", href: "/admin/orders" },
