@@ -26,13 +26,13 @@ const Footer = () => {
   ];
 
   const autoshop = [
-    "Automotive Lubricants",
-    "Tires",
-    "Vehicle Batteries",
-    "Safety Boots",
-    "Insurance",
-    "Industrial Lubricants",
-    "Vehicle Accessories",
+    { name: "Automotive Lubricants", category: "lubricants" },
+    { name: "Tires", category: "tires" },
+    { name: "Vehicle Batteries", category: "batteries" },
+    { name: "Safety Boots", category: "safety-boots" },
+    { name: "Insurance", category: "insurance" },
+    { name: "Industrial Lubricants", category: "industrial-lubricants" },
+    { name: "Vehicle Accessories", category: "accessories" },
   ];
 
   const company = [
