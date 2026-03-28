@@ -177,7 +177,7 @@ const Footer = () => {
             <a href="#" className="text-sm text-background/60 hover:text-primary transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-sm text-background/60 hover:text-primary transition-colors">
+            <a href="/documents/MAPETT_LOGISTICS_LIMITED_TERMS_AND_CONDITIONS.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-background/60 hover:text-primary transition-colors">
               Terms of Service
             </a>
           </div>
