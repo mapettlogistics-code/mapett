@@ -28,6 +28,7 @@ type SiteContent = {
 const sections = [
   { key: "announcement", label: "Announcements", description: "Sliding banner messages at the top of the page" },
   { key: "hero_slide", label: "Hero Slides", description: "Main hero banner slides with images and CTAs" },
+  { key: "promo_banner", label: "Promo Banners", description: "Promotional offers, discounts, and ads displayed below the hero" },
   { key: "service", label: "Services", description: "Products & services section content" },
   { key: "insurance", label: "Insurance", description: "Insurance policies section content" },
 ];
@@ -216,6 +217,35 @@ const AdminContent = () => {
             <div className="space-y-2">
               <Label>Icon Name (Lucide icon)</Label>
               <Input value={form.icon} onChange={e => setForm(f => ({ ...f, icon: e.target.value }))} placeholder="Plane, Ship, Truck, etc." />
+            </div>
+          </div>
+        );
+      case "promo_banner":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Title *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="🚢 Import Clearance Special" />
+              </div>
+              <div className="space-y-2">
+                <Label>Subtitle</Label>
+                <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="Get 10% off customs clearance" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Description</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Promotion details..." rows={2} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Image URL</Label>
+                <Input value={form.image_url} onChange={e => setForm(f => ({ ...f, image_url: e.target.value }))} placeholder="https://..." />
+              </div>
+              <div className="space-y-2">
+                <Label>Link</Label>
+                <Input value={form.link} onChange={e => setForm(f => ({ ...f, link: e.target.value }))} placeholder="#contact or https://..." />
+              </div>
             </div>
           </div>
         );
