@@ -13,6 +13,7 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/customer-cha
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isChatHovered, setIsChatHovered] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -123,13 +124,29 @@ const ChatBot = () => {
       {/* Chat Button */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full hero-gradient shadow-glow flex items-center justify-center hover:opacity-90 transition-opacity"
-        whileHover={{ scale: 1.1 }}
+        className="fixed bottom-24 right-6 z-50 rounded-full hero-gradient shadow-glow flex items-center gap-2 hover:opacity-90 transition-opacity px-4 py-3"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: isOpen ? 0 : 1, scale: isOpen ? 0 : 1 }}
+        onMouseEnter={() => setIsChatHovered(true)}
+        onMouseLeave={() => setIsChatHovered(false)}
+        aria-label="AI Assistant"
       >
-        <MessageCircle className="h-6 w-6 text-primary-foreground" />
+        <MessageCircle className="h-6 w-6 text-primary-foreground flex-shrink-0" />
+        <AnimatePresence>
+          {isChatHovered && (
+            <motion.span
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "auto", opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-sm font-semibold text-primary-foreground whitespace-nowrap overflow-hidden"
+            >
+              AI Assistant
+            </motion.span>
+          )}
+        </AnimatePresence>
       </motion.button>
 
       {/* Chat Window */}
