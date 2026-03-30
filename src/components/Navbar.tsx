@@ -343,7 +343,7 @@ const Navbar = () => {
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
                   <p>📞 +254 799 390 133 | +254 725 649 202</p>
-                  <p>✉️ sales@mapettlogistics.com</p>
+                  <p>✉️ info@mapettlogistics.com</p>
                 </div>
                 {/* Social Links */}
                 <div className="flex items-center gap-3 py-2">
