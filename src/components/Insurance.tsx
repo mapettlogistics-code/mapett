@@ -424,14 +424,25 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
                 </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium text-foreground">Insurance Policy *</label>
-                <select required value={formData.insuranceType} onChange={(e) => setFormData({ ...formData, insuranceType: e.target.value })} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-                  <option value="">Select insurance policy</option>
-                  {insuranceTypes.map((type) => (
-                    <option key={type.title} value={type.title}>{type.title}</option>
-                  ))}
-                </select>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground">Insurance Policy *</label>
+                  <select required value={formData.insuranceType} onChange={(e) => setFormData({ ...formData, insuranceType: e.target.value })} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option value="">Select insurance policy</option>
+                    {insuranceTypes.map((type) => (
+                      <option key={type.title} value={type.title}>{type.title}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground">Preferred Insurer</label>
+                  <select value={(formData as any).preferredInsurer || ""} onChange={(e) => setFormData({ ...formData, preferredInsurer: e.target.value } as any)} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option value="">Select insurer</option>
+                    <option value="Britam">Britam</option>
+                    <option value="Sanlam">Sanlam</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
 
               <div>
@@ -446,7 +457,24 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground">Profession</label>
-                  <input type="text" value={formData.profession} onChange={(e) => setFormData({ ...formData, profession: e.target.value })} placeholder="Your profession" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                  <select value={formData.profession} onChange={(e) => setFormData({ ...formData, profession: e.target.value })} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option value="">Select profession</option>
+                    <option>Business Owner</option>
+                    <option>Importer/Exporter</option>
+                    <option>Freight Forwarder</option>
+                    <option>Clearing Agent</option>
+                    <option>Manufacturer</option>
+                    <option>Retailer</option>
+                    <option>Transporter</option>
+                    <option>Farmer/Agriculturalist</option>
+                    <option>Medical Professional</option>
+                    <option>Engineer</option>
+                    <option>Accountant</option>
+                    <option>Lawyer</option>
+                    <option>Teacher/Lecturer</option>
+                    <option>Government Employee</option>
+                    <option>Other</option>
+                  </select>
                 </div>
               </div>
 
@@ -457,7 +485,24 @@ const InsuranceForm = ({ isOpen, onClose, selectedType }: {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground">Nature of Business</label>
-                  <input type="text" value={formData.natureOfBusiness} onChange={(e) => setFormData({ ...formData, natureOfBusiness: e.target.value })} placeholder="e.g. Import/Export" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                  <select value={formData.natureOfBusiness} onChange={(e) => setFormData({ ...formData, natureOfBusiness: e.target.value })} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option value="">Select nature of business</option>
+                    <option>Import/Export</option>
+                    <option>Freight Forwarding</option>
+                    <option>Customs Clearance</option>
+                    <option>Manufacturing</option>
+                    <option>Retail/Wholesale</option>
+                    <option>Transport & Logistics</option>
+                    <option>Agriculture</option>
+                    <option>Construction</option>
+                    <option>Mining</option>
+                    <option>Hospitality</option>
+                    <option>Healthcare</option>
+                    <option>Education</option>
+                    <option>Technology</option>
+                    <option>Personal/Individual</option>
+                    <option>Other</option>
+                  </select>
                 </div>
               </div>
 

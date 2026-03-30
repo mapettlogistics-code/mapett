@@ -45,12 +45,12 @@ const Navbar = () => {
   ];
 
   const autoshop = [
-    "Automotive Lubricants",
-    "Vehicle Tires",
-    "Vehicle Accessories",
-    "Vehicle Batteries",
-    "Food Grade Lubricants",
-    "Agricultural Lubricants",
+    { name: "Automotive Lubricants", category: "lubricants" },
+    { name: "Vehicle Tires", category: "tires" },
+    { name: "Vehicle Batteries", category: "batteries" },
+    { name: "Safety Boots", category: "safety-boots" },
+    { name: "Industrial Lubricants", category: "industrial-lubricants" },
+    { name: "Vehicle Accessories", category: "accessories" },
   ];
 
   const TikTokSvg = () => (
@@ -80,9 +80,9 @@ const Navbar = () => {
               <Phone className="h-4 w-4" />
               +254 725 649 202
             </a>
-            <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
-              sales@mapettlogistics.com
+              info@mapettlogistics.com
             </a>
           </div>
           <div className="flex items-center gap-4">
@@ -214,8 +214,8 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {autoshop.map((item) => (
-                        <a key={item} href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item}
+                        <a key={item.name} href={`https://multistore.simiyu.app/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          {item.name}
                         </a>
                       ))}
                     </motion.div>
@@ -343,7 +343,7 @@ const Navbar = () => {
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
                   <p>📞 +254 799 390 133 | +254 725 649 202</p>
-                  <p>✉️ sales@mapettlogistics.com</p>
+                  <p>✉️ info@mapettlogistics.com</p>
                 </div>
                 {/* Social Links */}
                 <div className="flex items-center gap-3 py-2">

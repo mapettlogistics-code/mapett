@@ -67,6 +67,10 @@ const Footer = () => {
                 <Phone className="h-5 w-5" />
                 +254 725 649 202
               </a>
+              <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+                <Mail className="h-5 w-5" />
+                info@mapettlogistics.com
+              </a>
               <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
                 sales@mapettlogistics.com
