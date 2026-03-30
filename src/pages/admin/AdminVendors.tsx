@@ -115,7 +115,7 @@ const AdminVendors = () => {
                   <TableCell>{new Date(v.created_at).toLocaleDateString()}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
-                      <a href={`https://multistore.simiyu.app/shop/${v.id}`} target="_blank" rel="noopener noreferrer">
+                      <a href={`https://mappetstore.com/shop/${v.id}`} target="_blank" rel="noopener noreferrer">
                         <Button variant="ghost" size="icon"><Eye className="h-4 w-4" /></Button>
                       </a>
                       <Button variant="ghost" size="icon" onClick={() => toggleStatus(v)} className={v.status === "active" ? "text-destructive" : "text-green-600"}>
