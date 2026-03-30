@@ -1,6 +1,7 @@
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import Navbar from "@/components/Navbar";
 import HeroSlider from "@/components/HeroSlider";
+import PromoBanners from "@/components/PromoBanners";
 import QuoteSection from "@/components/QuoteSection";
 import Services from "@/components/Services";
 import Insurance from "@/components/Insurance";
@@ -20,8 +21,9 @@ const Index = () => {
       <AnnouncementBanner />
       <Navbar />
       <HeroSlider />
-      <QuoteSection />
+      <PromoBanners />
       <Services />
+      <QuoteSection />
       <Insurance />
       <Autoshop />
       <About />
