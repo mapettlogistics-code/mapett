@@ -13,6 +13,7 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/customer-cha
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isChatHovered, setIsChatHovered] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
