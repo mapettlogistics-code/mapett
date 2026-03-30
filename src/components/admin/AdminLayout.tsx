@@ -14,6 +14,8 @@ import {
   ChevronRight,
   Store,
   FileText,
+  Newspaper,
+  Megaphone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -24,6 +26,8 @@ import mapettLogo from "@/assets/mapett-logo.png";
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
   { icon: FileText, label: "Content", href: "/admin/content" },
+  { icon: Newspaper, label: "Blog", href: "/admin/blog" },
+  { icon: Megaphone, label: "Marketing", href: "/admin/marketing" },
   { icon: Package, label: "Products", href: "/admin/products" },
   { icon: Truck, label: "Shipments", href: "/admin/shipments" },
   { icon: ShoppingCart, label: "Orders", href: "/admin/orders" },

@@ -6,6 +6,7 @@ import QuoteSection from "@/components/QuoteSection";
 import Services from "@/components/Services";
 import Insurance from "@/components/Insurance";
 import Autoshop from "@/components/Marketplace";
+import BlogSection from "@/components/BlogSection";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ const Index = () => {
       <QuoteSection />
       <Insurance />
       <Autoshop />
+      <BlogSection />
       <About />
       <Contact />
       <Footer />

@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author: string | null
+          category: string | null
+          content: string
+          created_at: string | null
+          excerpt: string | null
+          id: string
+          image_url: string | null
+          is_published: boolean | null
+          published_at: string | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          content: string
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean | null
+          published_at?: string | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          content?: string
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean | null
+          published_at?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       cart_items: {
         Row: {
           created_at: string
@@ -165,6 +210,51 @@ export type Database = {
           status?: string
           surname?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      marketing_campaigns: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          name: string
+          recipient_count: number | null
+          recipient_group: string | null
+          scheduled_at: string | null
+          sent_at: string | null
+          status: string | null
+          subject: string | null
+          type: string
+          updated_at: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          name: string
+          recipient_count?: number | null
+          recipient_group?: string | null
+          scheduled_at?: string | null
+          sent_at?: string | null
+          status?: string | null
+          subject?: string | null
+          type?: string
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+          recipient_count?: number | null
+          recipient_group?: string | null
+          scheduled_at?: string | null
+          sent_at?: string | null
+          status?: string | null
+          subject?: string | null
+          type?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
