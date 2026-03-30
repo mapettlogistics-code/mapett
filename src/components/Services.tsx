@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Import service images
@@ -11,6 +11,7 @@ import customsImg from "@/assets/service-customs.jpg";
 import refrigeratedImg from "@/assets/service-refrigerated.jpg";
 import specialCargoImg from "@/assets/service-special-cargo.jpg";
 import intermodalImg from "@/assets/service-intermodal.jpg";
+import productSourcingImg from "@/assets/service-product-sourcing.jpg";
 
 const Services = () => {
   const services = [
@@ -69,6 +70,13 @@ const Services = () => {
       description: "Seamless multi-modal transport across road, rail, and sea.",
       features: ["Multi-Modal", "Door to Door", "Network"],
       image: intermodalImg,
+    },
+    {
+      icon: Search,
+      title: "Product Sourcing",
+      description: "We source quality products from China, Turkey, and other markets for your business.",
+      features: ["China Sourcing", "Turkey Sourcing", "Quality Assurance"],
+      image: productSourcingImg,
     },
   ];
 
