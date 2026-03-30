@@ -44,7 +44,7 @@ const AdminBlog = () => {
 
   const fetchPosts = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from("blog_posts")
       .select("*")
       .order("created_at", { ascending: false });
@@ -105,11 +105,11 @@ const AdminBlog = () => {
       };
 
       if (editing) {
-        const { error } = await supabase.from("blog_posts").update(payload).eq("id", editing.id);
+        const { error } = await (supabase as any).from("blog_posts").update(payload).eq("id", editing.id);
         if (error) throw error;
         toast.success("Post updated");
       } else {
-        const { error } = await supabase.from("blog_posts").insert(payload);
+        const { error } = await (supabase as any).from("blog_posts").insert(payload);
         if (error) throw error;
         toast.success("Post created");
       }
@@ -124,13 +124,13 @@ const AdminBlog = () => {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this post?")) return;
-    const { error } = await supabase.from("blog_posts").delete().eq("id", id);
+    const { error } = await (supabase as any).from("blog_posts").delete().eq("id", id);
     if (error) toast.error("Failed to delete");
     else { toast.success("Deleted"); fetchPosts(); }
   };
 
   const togglePublish = async (post: BlogPost) => {
-    const { error } = await supabase.from("blog_posts").update({
+    const { error } = await (supabase as any).from("blog_posts").update({
       is_published: !post.is_published,
       published_at: !post.is_published ? new Date().toISOString() : null,
     }).eq("id", post.id);

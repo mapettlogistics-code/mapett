@@ -59,13 +59,13 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await supabase
-        .from("blog_posts")
+        .from("blog_posts" as any)
         .select("id, title, slug, excerpt, image_url, author, category, published_at, created_at")
         .eq("is_published", true)
         .order("published_at", { ascending: false })
         .limit(3);
-      if (data && data.length > 0) {
-        setPosts(data);
+      if (data && (data as any[]).length > 0) {
+        setPosts(data as any[]);
       }
     };
     fetchPosts();

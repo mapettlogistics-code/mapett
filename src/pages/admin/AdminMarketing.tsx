@@ -42,7 +42,7 @@ const AdminMarketing = () => {
 
   const fetchCampaigns = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from("marketing_campaigns")
       .select("*")
       .order("created_at", { ascending: false });
@@ -90,11 +90,11 @@ const AdminMarketing = () => {
         status: form.status,
       };
       if (editing) {
-        const { error } = await supabase.from("marketing_campaigns").update(payload).eq("id", editing.id);
+        const { error } = await (supabase as any).from("marketing_campaigns").update(payload).eq("id", editing.id);
         if (error) throw error;
         toast.success("Campaign updated");
       } else {
-        const { error } = await supabase.from("marketing_campaigns").insert(payload);
+        const { error } = await (supabase as any).from("marketing_campaigns").insert(payload);
         if (error) throw error;
         toast.success("Campaign created");
       }
@@ -109,7 +109,7 @@ const AdminMarketing = () => {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this campaign?")) return;
-    const { error } = await supabase.from("marketing_campaigns").delete().eq("id", id);
+    const { error } = await (supabase as any).from("marketing_campaigns").delete().eq("id", id);
     if (error) toast.error("Failed to delete");
     else { toast.success("Deleted"); fetchCampaigns(); }
   };
