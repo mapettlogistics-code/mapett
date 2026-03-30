@@ -192,7 +192,7 @@ const Navbar = () => {
               </div>
 
               {/* Seals & Tags */}
-              <a href="https://multistore.simiyu.app/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+              <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
                 Seals & Tags
               </a>
 
@@ -202,7 +202,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('autoshop')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
+                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
                   Auto Store <ChevronDown className="h-4 w-4" />
                 </a>
                 <AnimatePresence>
@@ -214,7 +214,7 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {autoshop.map((item) => (
-                        <a key={item.name} href={`https://multistore.simiyu.app/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <a key={item.name} href={`https://mappetstore.com/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item.name}
                         </a>
                       ))}
@@ -245,7 +245,7 @@ const Navbar = () => {
               </Link>
               
                {/* Cart */}
-              <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative">
+              <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="relative">
                 <Button variant="ghost" size="icon">
                   <ShoppingCart className="h-5 w-5" />
                   {totalItems > 0 && (
@@ -278,7 +278,7 @@ const Navbar = () => {
                           <p className="text-sm text-muted-foreground">Signed in as</p>
                           <p className="text-sm font-medium truncate">{user.email}</p>
                         </div>
-                        <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           My Cart
                         </a>
                         <Link to="/track" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
@@ -305,7 +305,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
-              <a href="https://multistore.simiyu.app/cart" target="_blank" rel="noopener noreferrer" className="relative p-2">
+              <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="relative p-2">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
                   <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
@@ -336,8 +336,8 @@ const Navbar = () => {
                 <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
                 <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Products & Services</a>
                 <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance Policies</a>
-                <a href="https://multistore.simiyu.app/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
-                <a href="https://multistore.simiyu.app" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
+                <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
+                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
                 <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact Us</a>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}

@@ -27,7 +27,7 @@ const defaultBanners: Banner[] = [
     subtitle: "Premium lubricants at wholesale prices",
     description: "Free delivery on orders above KES 5,001 across Kenya.",
     image_url: null,
-    link: "https://multistore.simiyu.app/products?category=lubricants",
+    link: "https://mappetstore.com/products?category=lubricants",
   },
   {
     id: "3",

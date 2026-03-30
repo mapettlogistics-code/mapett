@@ -112,7 +112,7 @@ const Autoshop = () => {
         {/* Categories Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {categories.map((category, index) => (
-            <a href={`https://multistore.simiyu.app/products?category=${category.categoryKey}`} target="_blank" rel="noopener noreferrer" key={category.title}>
+            <a href={`https://mappetstore.com/products?category=${category.categoryKey}`} target="_blank" rel="noopener noreferrer" key={category.title}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +167,7 @@ const Autoshop = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <a href="https://multistore.simiyu.app/products" target="_blank" rel="noopener noreferrer">
+          <a href="https://mappetstore.com/products" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
             Explore All Products
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
