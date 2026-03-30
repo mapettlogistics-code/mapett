@@ -80,46 +80,81 @@ const Contact = () => {
               <h3 className="text-xl font-bold text-foreground mb-6">Send us a Message</h3>
               
               <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-4 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground">Full Name</label>
-                    <input
-                      type="text"
-                      placeholder="John Doe"
-                      className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    />
+                    <label className="text-sm font-medium text-foreground">Salutation</label>
+                    <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
+                      <option value="">--</option>
+                      <option>Mr.</option>
+                      <option>Mrs.</option>
+                      <option>Ms.</option>
+                      <option>Dr.</option>
+                    </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground">Email</label>
-                    <input
-                      type="email"
-                      placeholder="john@example.com"
-                      className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    />
+                    <label className="text-sm font-medium text-foreground">First Name</label>
+                    <input type="text" placeholder="First name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground">Middle Name</label>
+                    <input type="text" placeholder="Middle name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground">Surname</label>
+                    <input type="text" placeholder="Surname" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="text-sm font-medium text-foreground">Phone</label>
-                    <input
-                      type="tel"
-                      placeholder="+254 700 000 000"
-                      className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    />
+                    <label className="text-sm font-medium text-foreground">Email</label>
+                    <input type="email" placeholder="john@example.com" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground">Service</label>
-                    <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
-                      <option>Select a service</option>
+                    <label className="text-sm font-medium text-foreground">Phone</label>
+                    <input type="tel" placeholder="+254 700 000 000" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium text-foreground">Service</label>
+                  <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <option>Select a service</option>
+                    <optgroup label="Logistics Services">
+                      <option>Customs Clearance</option>
                       <option>Air Freight</option>
                       <option>Ocean Freight</option>
-                      <option>Road Transport</option>
+                      <option>Road & Rail Transport</option>
+                      <option>Product Sourcing (China, Turkey)</option>
+                      <option>Refrigerated Cargo</option>
+                      <option>Special Cargo</option>
                       <option>Warehousing</option>
-                      <option>Customs Clearance</option>
-                      <option>Marketplace Order</option>
-                    </select>
-                  </div>
+                      <option>Intermodal Solutions</option>
+                    </optgroup>
+                    <optgroup label="Insurance">
+                      <option>Marine Cargo Insurance</option>
+                      <option>Air Cargo Insurance</option>
+                      <option>Inland Transit Insurance</option>
+                      <option>Freight Forwarder Liability</option>
+                      <option>Motor Vehicle Insurance</option>
+                      <option>Warehouse Insurance</option>
+                      <option>Group Life Insurance</option>
+                      <option>WIBA & Employees Liability</option>
+                    </optgroup>
+                    <optgroup label="E-Commerce Solutions">
+                      <option>Social Media Pages Setup</option>
+                      <option>Social Media Cross-posting</option>
+                      <option>Online Shop Setup</option>
+                    </optgroup>
+                    <optgroup label="Auto Store">
+                      <option>Automotive Lubricants</option>
+                      <option>Vehicle Tires</option>
+                      <option>Vehicle Batteries</option>
+                      <option>Safety Boots</option>
+                      <option>Industrial Lubricants</option>
+                      <option>Vehicle Accessories</option>
+                    </optgroup>
+                  </select>
                 </div>
 
                 <div>
