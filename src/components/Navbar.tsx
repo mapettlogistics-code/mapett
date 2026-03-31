@@ -338,17 +338,14 @@ const Navbar = () => {
                       Track Shipment
                     </Button>
                   </Link>
-                  {user ? (
-                    <Button onClick={signOut} variant="destructive" className="w-full">
-                      Sign Out
-                    </Button>
-                  ) : (
-                    <Link to="/login" onClick={() => setIsOpen(false)}>
-                      <Button className="w-full hero-gradient text-primary-foreground">
-                        Sign In
+                  <ContactDialog
+                    trigger={
+                      <Button className="w-full hero-gradient text-primary-foreground" onClick={() => setIsOpen(false)}>
+                        <Mail className="mr-2 h-4 w-4" />
+                        Contact Us
                       </Button>
-                    </Link>
-                  )}
+                    }
+                  />
                 </div>
               </div>
             </motion.div>
