@@ -257,51 +257,15 @@ const Navbar = () => {
                 </Button>
               </a>
 
-              {/* Auth */}
-              {user ? (
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown('user')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                  <AnimatePresence>
-                    {activeDropdown === 'user' && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full right-0 mt-2 w-48 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                      >
-                        <div className="px-4 py-3 border-b border-border">
-                          <p className="text-sm text-muted-foreground">Signed in as</p>
-                          <p className="text-sm font-medium truncate">{user.email}</p>
-                        </div>
-                        <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          My Cart
-                        </a>
-                        <Link to="/track" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          Track Orders
-                        </Link>
-                        <button
-                          onClick={signOut}
-                          className="w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors text-destructive flex items-center gap-2"
-                        >
-                          <LogOut className="h-4 w-4" /> Sign Out
-                        </button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Link to="/login">
+              {/* Contact Us */}
+              <ContactDialog
+                trigger={
                   <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-                    Sign In
+                    <Mail className="mr-2 h-4 w-4" />
+                    Contact Us
                   </Button>
-                </Link>
-              )}
+                }
+              />
             </div>
 
             {/* Mobile Menu Button */}
