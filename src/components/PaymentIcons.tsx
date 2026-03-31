@@ -2,10 +2,10 @@ const PaymentIcons = () => {
   return (
     <div className="flex items-center gap-2">
       {/* M-Pesa - Official green branding */}
-      <div className="bg-white rounded px-2 py-0.5 flex items-center">
-        <svg viewBox="0 0 80 24" className="h-5 w-auto" aria-label="M-Pesa">
+      <div className="bg-white rounded px-1.5 py-0.5 flex items-center">
+        <svg viewBox="0 0 60 24" className="h-5 w-auto" aria-label="M-Pesa">
           <text x="0" y="17" fill="#4CAF50" fontSize="13" fontWeight="bold" fontFamily="Arial, sans-serif">M-</text>
-          <text x="22" y="17" fill="#E21B1B" fontSize="13" fontWeight="bold" fontFamily="Arial, sans-serif">PESA</text>
+          <text x="20" y="17" fill="#E21B1B" fontSize="13" fontWeight="bold" fontFamily="Arial, sans-serif">PESA</text>
         </svg>
       </div>
       {/* Visa - Official blue/gold */}
