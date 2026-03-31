@@ -80,6 +80,9 @@ const Services = () => {
     },
   ];
 
+  // Show 8 services on landing page (2 full rows of 4) — Intermodal stays in nav dropdown
+  const displayServices = services.filter(s => s.title !== "Intermodal Solutions");
+
   return (
     <section id="services" className="py-20 bg-secondary/30">
       <div className="container">
