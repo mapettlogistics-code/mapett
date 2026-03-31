@@ -80,6 +80,9 @@ const Services = () => {
     },
   ];
 
+  // Show 8 services on landing page (2 full rows of 4) — Intermodal stays in nav dropdown
+  const displayServices = services.filter(s => s.title !== "Intermodal Solutions");
+
   return (
     <section id="services" className="py-20 bg-secondary/30">
       <div className="container">
@@ -103,7 +106,7 @@ const Services = () => {
 
         {/* Services Grid - 4 columns on desktop */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.map((service, index) => (
+          {displayServices.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
