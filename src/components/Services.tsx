@@ -106,7 +106,7 @@ const Services = () => {
 
         {/* Services Grid - 4 columns on desktop */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.map((service, index) => (
+          {displayServices.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
