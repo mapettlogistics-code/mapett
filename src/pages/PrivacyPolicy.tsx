@@ -85,7 +85,7 @@ const PrivacyPolicy = () => {
             <p>For any questions about this Privacy Policy or to exercise your data rights, contact us:</p>
             <ul className="list-none space-y-1 mt-2">
               <li><strong>Email:</strong> info@mapettlogistics.com</li>
-              <li><strong>Phone:</strong> +254 799 390 133 / +254 725 649 202</li>
+              <li><strong>Phone:</strong> +254 799 390 133</li>
               <li><strong>Address:</strong> Shree Enclave, Off Links Road, P.O. Box 2039-80100, Mombasa, Kenya</li>
             </ul>
           </section>
