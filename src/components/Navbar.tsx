@@ -188,9 +188,9 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {ecommerce.map((item) => (
-                        <a key={item} href="#contact" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <button key={item} onClick={() => { scrollToSection("#contact"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item}
-                        </a>
+                        </button>
                       ))}
                     </motion.div>
                   )}
@@ -215,9 +215,9 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {insurance.map((item) => (
-                        <a key={item} href="#insurance" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <button key={item} onClick={() => { scrollToSection("#insurance"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item}
-                        </a>
+                        </button>
                       ))}
                     </motion.div>
                   )}
