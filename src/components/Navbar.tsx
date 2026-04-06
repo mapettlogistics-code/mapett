@@ -83,12 +83,10 @@ const Navbar = () => {
               <Phone className="h-4 w-4" />
               +254 725 649 202
             </a>
-            <div className="flex items-center gap-2">
+            <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
-              <a href="mailto:info@mapettlogistics.com" className="hover:opacity-80 transition-opacity">info@mapettlogistics.com</a>
-              <span className="opacity-50">|</span>
-              <a href="mailto:sales@mapettlogistics.com" className="hover:opacity-80 transition-opacity">sales@mapettlogistics.com</a>
-            </div>
+              info@mapettlogistics.com
+            </a>
           </div>
           <div className="flex items-center gap-4">
             <PaymentIcons />
