@@ -1,6 +1,15 @@
 import { Phone, Mail, MapPin, Globe, Linkedin, Facebook, Instagram, Youtube } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PaymentIcons from "@/components/PaymentIcons";
+
+const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>) => {
+  const el = document.querySelector(hash);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  } else {
+    navigate("/" + hash);
+  }
+};
 
 const Footer = () => {
   const services = [
