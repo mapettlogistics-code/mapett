@@ -47,6 +47,7 @@ const App = () => (
                 <Route path="/track" element={<Track />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<AdminDashboard />} />
