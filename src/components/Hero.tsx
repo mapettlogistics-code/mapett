@@ -93,7 +93,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-lg text-background/80 mb-8 max-w-xl">
-              From Mombasa Port to your doorstep, we provide comprehensive logistics solutions including air freight, ocean freight, road transport, and warehousing services.
+              From Mombasa Port to your doorstep, we provide comprehensive logistics solutions including air freight, ocean freight, road & rail transport, and warehousing services.
             </p>
 
             {/* CTA Buttons */}
@@ -210,7 +210,7 @@ const Hero = () => {
                   <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
                     <option>Air Freight</option>
                     <option>Ocean Freight</option>
-                    <option>Road Transport</option>
+                    <option>Road & Rail Transport</option>
                     <option>Warehousing</option>
                   </select>
                 </div>

@@ -38,7 +38,7 @@ const slides = [
   },
   {
     icon: Truck,
-    title: "ROAD TRANSPORT",
+    title: "ROAD & RAIL TRANSPORT",
     subtitle: "East Africa coverage",
     description: "Reliable road logistics across Kenya, Uganda, Tanzania, and beyond",
     gradient: "from-primary/80 to-pink-600/70",
