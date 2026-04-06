@@ -145,9 +145,9 @@ const Footer = () => {
             <ul className="space-y-2">
               {insurance.map((item) => (
                 <li key={item}>
-                  <a href="#insurance" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <button onClick={() => scrollToSection("#insurance", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                     {item}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -182,9 +182,9 @@ const Footer = () => {
                       {item.name}
                     </a>
                   ) : (
-                    <a href={item.href} className="text-sm text-background/70 hover:text-primary transition-colors">
+                    <button onClick={() => scrollToSection(item.href, navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                       {item.name}
-                    </a>
+                    </button>
                   )}
                 </li>
               ))}
