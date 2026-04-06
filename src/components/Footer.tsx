@@ -1,8 +1,18 @@
 import { Phone, Mail, MapPin, Globe, Linkedin, Facebook, Instagram, Youtube } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PaymentIcons from "@/components/PaymentIcons";
 
+const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>) => {
+  const el = document.querySelector(hash);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  } else {
+    navigate("/" + hash);
+  }
+};
+
 const Footer = () => {
+  const navigate = useNavigate();
   const services = [
     "Customs Clearance",
     "Air Freight",
@@ -121,9 +131,9 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="#services" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <button onClick={() => scrollToSection("#services", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                     {service}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -135,9 +145,9 @@ const Footer = () => {
             <ul className="space-y-2">
               {insurance.map((item) => (
                 <li key={item}>
-                  <a href="#insurance" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <button onClick={() => scrollToSection("#insurance", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                     {item}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -172,9 +182,9 @@ const Footer = () => {
                       {item.name}
                     </a>
                   ) : (
-                    <a href={item.href} className="text-sm text-background/70 hover:text-primary transition-colors">
+                    <button onClick={() => scrollToSection(item.href, navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                       {item.name}
-                    </a>
+                    </button>
                   )}
                 </li>
               ))}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,17 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
   const { currency, toggleCurrency } = useCurrency();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (hash: string) => {
+    if (location.pathname !== "/") {
+      navigate("/" + hash);
+    } else {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const services = [
     "Customs Clearance",
@@ -126,9 +137,9 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-6">
-              <a href="#about" className="font-medium text-foreground hover:text-primary transition-colors">
+              <button onClick={() => scrollToSection("#about")} className="font-medium text-foreground hover:text-primary transition-colors">
                 About Us
-              </a>
+              </button>
               
               {/* Products & Services Dropdown */}
               <div 
@@ -149,9 +160,9 @@ const Navbar = () => {
                     >
                       <div className="py-1">
                         {services.map((service) => (
-                          <a key={service} href="#services" className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
+                          <button key={service} onClick={() => { scrollToSection("#services"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
                             {service}
-                          </a>
+                          </button>
                         ))}
                       </div>
                     </motion.div>
@@ -177,9 +188,9 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {ecommerce.map((item) => (
-                        <a key={item} href="#contact" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <button key={item} onClick={() => { scrollToSection("#contact"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item}
-                        </a>
+                        </button>
                       ))}
                     </motion.div>
                   )}
@@ -204,9 +215,9 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {insurance.map((item) => (
-                        <a key={item} href="#insurance" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <button key={item} onClick={() => { scrollToSection("#insurance"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item}
-                        </a>
+                        </button>
                       ))}
                     </motion.div>
                   )}
@@ -319,13 +330,13 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
               <div className="container py-4 space-y-4">
-                <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
-                <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Products & Services</a>
-                <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance Policies</a>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#about"); setIsOpen(false); }}>About Us</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#services"); setIsOpen(false); }}>Products & Services</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance Policies</button>
                 <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
-                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contacts</a>
-                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>E-Commerce Solutions</a>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
