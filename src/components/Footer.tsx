@@ -12,6 +12,7 @@ const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>)
 };
 
 const Footer = () => {
+  const navigate = useNavigate();
   const services = [
     "Customs Clearance",
     "Air Freight",
