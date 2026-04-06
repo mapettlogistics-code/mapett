@@ -82,10 +82,6 @@ const Footer = () => {
                 <Mail className="h-5 w-5" />
                 info@mapettlogistics.com
               </a>
-              <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
-                <Mail className="h-5 w-5" />
-                sales@mapettlogistics.com
-              </a>
               <a href="https://www.mapettlogistics.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Globe className="h-5 w-5" />
                 www.mapettlogistics.com
