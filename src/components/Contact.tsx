@@ -39,11 +39,11 @@ const Contact = () => {
   ];
 
   const socials = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram" },
-    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube" },
-    { icon: TikTokIcon, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn" },
+    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook", brandColor: "#1877F2" },
+    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", brandColor: "#E4405F" },
+    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", brandColor: "#FF0000" },
+    { icon: TikTokIcon, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", brandColor: "#000000" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", brandColor: "#0A66C2" },
   ];
 
   return (
@@ -215,7 +215,9 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-opacity hover:opacity-80"
+                    style={{ backgroundColor: social.brandColor }}
+                    title={social.label}
                   >
                     <social.icon className="h-5 w-5" />
                   </a>
