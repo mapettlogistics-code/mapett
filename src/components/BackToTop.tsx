@@ -39,8 +39,9 @@ const BackToTop = () => {
           whileHover={{ scale: 1.15, boxShadow: "0 0 30px hsl(var(--primary) / 0.6)" }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToTop}
-          className="fixed bottom-44 right-6 z-40 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-[0_4px_20px_hsl(var(--primary)/0.4)] flex items-center justify-center transition-all duration-300 border-2 border-primary-foreground/20 backdrop-blur-sm"
+          className="fixed bottom-44 right-6 z-40 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-[0_4px_20px_hsl(var(--primary)/0.4)] flex items-center justify-center transition-all duration-300 border-2 border-primary-foreground/20 backdrop-blur-sm group/home"
           aria-label="Back to top"
+          title="Back to Top"
         >
           <motion.div
             animate={{ y: [0, -3, 0] }}

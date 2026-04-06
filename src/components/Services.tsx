@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ProductSourcingForm from "@/components/ProductSourcingForm";
 
 // Import service images
 import airFreightImg from "@/assets/service-air-freight.jpg";
@@ -14,6 +16,8 @@ import intermodalImg from "@/assets/service-intermodal.jpg";
 import productSourcingImg from "@/assets/service-product-sourcing.jpg";
 
 const Services = () => {
+  const [isSourcingOpen, setIsSourcingOpen] = useState(false);
+
   const services = [
     {
       icon: Plane,
@@ -152,9 +156,10 @@ const Services = () => {
                 <Button 
                   variant="ghost" 
                   size="sm"
+                  onClick={service.title === "Product Sourcing" ? () => setIsSourcingOpen(true) : undefined}
                   className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
                 >
-                  Learn More
+                  {service.title === "Product Sourcing" ? "Get Quote" : "Learn More"}
                   <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
               </div>
@@ -162,6 +167,8 @@ const Services = () => {
           ))}
         </div>
       </div>
+
+      <ProductSourcingForm isOpen={isSourcingOpen} onClose={() => setIsSourcingOpen(false)} />
     </section>
   );
 };

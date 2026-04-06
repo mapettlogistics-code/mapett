@@ -71,7 +71,7 @@ const insuranceTypes = [
   },
   {
     icon: Users,
-    title: "Group Life Insurance",
+    title: "Life Insurance",
     description: "Life insurance coverage for employees and their dependents.",
     coverage: ["Death Benefit", "Disability Cover", "Critical Illness", "Funeral Expenses"],
     baseRate: 0.02,

@@ -40,18 +40,20 @@ const Navbar = () => {
     "Inland Transit Insurance",
     "Freight Forwarder Liability",
     "Motor Vehicle Insurance",
-    "WIBA (Work Injury Benefit) Insurance",
+    "WIBA & Employees Liability",
     "Life Insurance",
-    "Personal Accident Insurance",
+    "Warehouse Insurance",
   ];
 
   const autoshop = [
     { name: "Automotive Lubricants", category: "lubricants" },
-    { name: "Vehicle Tires", category: "tires" },
-    { name: "Vehicle Batteries", category: "batteries" },
-    { name: "Safety Boots", category: "safety-boots" },
+    { name: "Food Grade Lubricants", category: "food-grade-lubricants" },
+    { name: "Agricultural Lubricants", category: "agricultural-lubricants" },
     { name: "Industrial Lubricants", category: "industrial-lubricants" },
     { name: "Vehicle Accessories", category: "accessories" },
+    { name: "Safety Shoes", category: "safety-shoes" },
+    { name: "Vehicle Tires", category: "tires" },
+    { name: "Vehicle Batteries", category: "batteries" },
   ];
 
   const TikTokSvg = () => (
@@ -148,20 +150,39 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-72 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       <div className="py-1">
-                        <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">Logistics</p>
                         {services.map((service) => (
                           <a key={service} href="#services" className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
                             {service}
                           </a>
                         ))}
-                        <div className="border-t border-border my-1" />
-                        <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">E-Commerce Solutions</p>
-                        {ecommerce.map((item) => (
-                          <a key={item} href="#contact" className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
-                            {item}
-                          </a>
-                        ))}
                       </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* E-Commerce Solutions Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('ecommerce')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
+                  E-Commerce Solutions <ChevronDown className="h-4 w-4" />
+                </button>
+                <AnimatePresence>
+                  {activeDropdown === 'ecommerce' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                    >
+                      {ecommerce.map((item) => (
+                        <a key={item} href="#contact" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          {item}
+                        </a>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -264,7 +285,7 @@ const Navbar = () => {
                 trigger={
                   <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
                     <Mail className="mr-2 h-4 w-4" />
-                    Contact Us
+                    Contacts
                   </Button>
                 }
               />
@@ -305,7 +326,8 @@ const Navbar = () => {
                 <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance Policies</a>
                 <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
-                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contact Us</a>
+                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contacts</a>
+                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>E-Commerce Solutions</a>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
@@ -344,7 +366,7 @@ const Navbar = () => {
                     trigger={
                       <Button className="w-full hero-gradient text-primary-foreground" onClick={() => setIsOpen(false)}>
                         <Mail className="mr-2 h-4 w-4" />
-                        Contact Us
+                        Contacts
                       </Button>
                     }
                   />

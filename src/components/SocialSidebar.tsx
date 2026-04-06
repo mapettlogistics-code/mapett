@@ -15,12 +15,12 @@ const SocialSidebar = () => {
   }, []);
 
   const socials = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook", isSvg: false },
-    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", isSvg: false },
-    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", isSvg: false },
-    { icon: null, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", isSvg: "tiktok" },
-    { icon: null, href: "https://www.pinterest.com/MapetteLogisticsLtd/", label: "Pinterest", isSvg: "pinterest" },
-    { icon: null, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", isSvg: "linkedin" },
+    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook", isSvg: false, brandColor: "#1877F2" },
+    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", isSvg: false, brandColor: "#E4405F" },
+    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", isSvg: false, brandColor: "#FF0000" },
+    { icon: null, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", isSvg: "tiktok", brandColor: "#000000" },
+    { icon: null, href: "https://www.pinterest.com/MapetteLogisticsLtd/", label: "Pinterest", isSvg: "pinterest", brandColor: "#E60023" },
+    { icon: null, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", isSvg: "linkedin", brandColor: "#0A66C2" },
   ];
 
   return (
@@ -35,7 +35,8 @@ const SocialSidebar = () => {
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors group"
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-white transition-opacity hover:opacity-80 group"
+          style={{ backgroundColor: social.brandColor }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, x: -10 }}
