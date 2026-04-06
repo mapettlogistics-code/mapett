@@ -35,7 +35,7 @@ const Services = () => {
     },
     {
       icon: Truck,
-      title: "Road Transport",
+      title: "Road & Rail Transport",
       description: "Efficient road logistics across East Africa with real-time tracking.",
       features: ["Cross Border", "Last Mile", "Fleet Management"],
       image: roadTransportImg,
