@@ -131,9 +131,9 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="#services" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <button onClick={() => scrollToSection("#services", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
                     {service}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
