@@ -26,6 +26,7 @@ import AdminVendors from "./pages/admin/AdminVendors";
 import AdminContent from "./pages/admin/AdminContent";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminMarketing from "./pages/admin/AdminMarketing";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
