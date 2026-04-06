@@ -26,6 +26,7 @@ import AdminVendors from "./pages/admin/AdminVendors";
 import AdminContent from "./pages/admin/AdminContent";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminMarketing from "./pages/admin/AdminMarketing";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
                 <Route path="/track" element={<Track />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<AdminDashboard />} />
