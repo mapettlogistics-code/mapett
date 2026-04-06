@@ -152,14 +152,16 @@ const BlogSection = () => {
                     <User className="h-3 w-3" />
                     {post.author}
                   </span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-                  >
-                    Read More
-                    <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <Link to={`/blog/${post.slug}`}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+                    >
+                      Read More
+                      <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.article>
