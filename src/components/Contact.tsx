@@ -16,7 +16,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+254 799 390 133", "+254 725 649 202"],
+      details: ["+254 799 390 133"],
       href: whatsappUrl,
     },
     {

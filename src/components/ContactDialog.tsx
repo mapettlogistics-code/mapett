@@ -42,7 +42,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+254 799 390 133", "+254 725 649 202"],
+      details: ["+254 799 390 133"],
       href: "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services.",
     },
     {

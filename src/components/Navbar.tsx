@@ -89,11 +89,6 @@ const Navbar = () => {
               <Phone className="h-4 w-4" />
               +254 799 390 133
             </a>
-            <span className="text-primary-foreground/60">|</span>
-            <a href="tel:+254725649202" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Phone className="h-4 w-4" />
-              +254 725 649 202
-            </a>
             <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
               info@mapettlogistics.com
@@ -340,7 +335,7 @@ const Navbar = () => {
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
-                  <p>📞 +254 799 390 133 | +254 725 649 202</p>
+                  <p>📞 +254 799 390 133</p>
                   <p>✉️ info@mapettlogistics.com | sales@mapettlogistics.com</p>
                 </div>
                 {/* Social Links */}
