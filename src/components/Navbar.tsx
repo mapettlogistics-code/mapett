@@ -330,13 +330,13 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
               <div className="container py-4 space-y-4">
-                <a href="#about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</a>
-                <a href="#services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Products & Services</a>
-                <a href="#insurance" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Insurance Policies</a>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#about"); setIsOpen(false); }}>About Us</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#services"); setIsOpen(false); }}>Products & Services</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance Policies</button>
                 <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
-                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Contacts</a>
-                <a href="#contact" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>E-Commerce Solutions</a>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
