@@ -137,9 +137,9 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-6">
-              <a href="#about" className="font-medium text-foreground hover:text-primary transition-colors">
+              <button onClick={() => scrollToSection("#about")} className="font-medium text-foreground hover:text-primary transition-colors">
                 About Us
-              </a>
+              </button>
               
               {/* Products & Services Dropdown */}
               <div 
@@ -160,9 +160,9 @@ const Navbar = () => {
                     >
                       <div className="py-1">
                         {services.map((service) => (
-                          <a key={service} href="#services" className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
+                          <button key={service} onClick={() => { scrollToSection("#services"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
                             {service}
-                          </a>
+                          </button>
                         ))}
                       </div>
                     </motion.div>
