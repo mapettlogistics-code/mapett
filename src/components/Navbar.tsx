@@ -16,6 +16,17 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
   const { currency, toggleCurrency } = useCurrency();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (hash: string) => {
+    if (location.pathname !== "/") {
+      navigate("/" + hash);
+    } else {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const services = [
     "Customs Clearance",
