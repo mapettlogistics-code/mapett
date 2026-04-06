@@ -22,7 +22,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@mapettlogistics.com", "sales@mapettlogistics.com"],
+      details: ["info@mapettlogistics.com"],
       href: "mailto:info@mapettlogistics.com",
     },
     {
