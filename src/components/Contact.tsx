@@ -1,55 +1,65 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteContent } from "@/hooks/useSiteContent";
+import * as LucideIcons from "lucide-react";
 
-// TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
   </svg>
 );
 
+const iconMap: Record<string, any> = { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, Linkedin, TikTok: TikTokIcon };
+
+const getIcon = (name: string | null) => {
+  if (!name) return Mail;
+  return (LucideIcons as any)[name] || iconMap[name] || Mail;
+};
+
+const defaultContactInfo = [
+  { title: "Phone", icon: "Phone", description: "+254 799 390 133", link: "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." },
+  { title: "Email", icon: "Mail", description: "info@mapettlogistics.com", link: "mailto:info@mapettlogistics.com" },
+  { title: "Location", icon: "MapPin", description: "Shree Ecclave, Off Links Road\nP.O. Box 2039-80100, Mombasa, Kenya", link: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" },
+  { title: "Working Hours", icon: "Clock", description: "Mon - Fri: 8:00 AM - 6:00 PM\nSat: 9:00 AM - 2:00 PM" },
+];
+
+const defaultSocials = [
+  { title: "Facebook", link: "https://web.facebook.com/profile.php?id=61584459897045", subtitle: "#1877F2" },
+  { title: "Instagram", link: "https://www.instagram.com/mapettlogisticsltd/", subtitle: "#E4405F" },
+  { title: "YouTube", link: "https://www.youtube.com/@MapettLogisticsLtd", subtitle: "#FF0000" },
+  { title: "TikTok", link: "https://www.tiktok.com/@mapettlogisticsltd", subtitle: "#000000" },
+  { title: "LinkedIn", link: "https://www.linkedin.com/company/mapettlogisticsltd/", subtitle: "#0A66C2" },
+];
+
 const Contact = () => {
-  const whatsappUrl = "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services.";
+  const { items: contactItems } = useSiteContent("contact_info", defaultContactInfo as any);
+  const { items: socialItems } = useSiteContent("social_link", defaultSocials as any);
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: "Phone",
-      details: ["+254 799 390 133"],
-      href: whatsappUrl,
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      details: ["info@mapettlogistics.com"],
-      href: "mailto:info@mapettlogistics.com",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      details: ["Shree Ecclave, Off Links Road", "P.O. Box 2039-80100, Mombasa, Kenya"],
-      href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19",
-    },
-    {
-      icon: Clock,
-      title: "Working Hours",
-      details: ["Mon - Fri: 8:00 AM - 6:00 PM", "Sat: 9:00 AM - 2:00 PM"],
-    },
-  ];
+  const contactInfo = contactItems.map(c => ({
+    icon: getIcon(c.icon),
+    title: c.title || "",
+    details: (c.description || "").split("\n").filter(Boolean),
+    href: c.link || undefined,
+  }));
 
-  const socials = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook", brandColor: "#1877F2" },
-    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", brandColor: "#E4405F" },
-    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", brandColor: "#FF0000" },
-    { icon: TikTokIcon, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", brandColor: "#000000" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", brandColor: "#0A66C2" },
-  ];
+  const socials = socialItems.map(s => {
+    const name = s.title || "";
+    let IconComp: any;
+    if (name.toLowerCase() === "tiktok") IconComp = TikTokIcon;
+    else if (name.toLowerCase() === "youtube") IconComp = Youtube;
+    else IconComp = getIcon(s.icon || name);
+    return {
+      icon: IconComp,
+      href: s.link || "",
+      label: name,
+      brandColor: s.subtitle || "#666",
+    };
+  });
 
   return (
     <section id="contact" className="py-24">
       <div className="container">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,7 +79,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -174,7 +183,6 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -205,7 +213,6 @@ const Contact = () => {
               </motion.a>
             ))}
 
-            {/* Social Links */}
             <div className="pt-4">
               <h4 className="font-semibold text-foreground mb-4">Follow Us</h4>
               <div className="flex gap-3">
@@ -225,7 +232,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Office Map */}
             <div className="pt-4">
               <h4 className="font-semibold text-foreground mb-4">Our Location</h4>
               <div className="rounded-xl overflow-hidden border border-border shadow-card">

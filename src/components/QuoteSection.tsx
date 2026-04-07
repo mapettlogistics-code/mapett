@@ -1,19 +1,39 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Truck, Package, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteContent } from "@/hooks/useSiteContent";
+import * as LucideIcons from "lucide-react";
+
+const getIcon = (name: string | null) => {
+  if (!name) return Package;
+  return (LucideIcons as any)[name] || Package;
+};
+
+const defaultStats = [
+  { title: "10+", subtitle: "Years Experience", icon: "Truck" },
+  { title: "50K+", subtitle: "Deliveries", icon: "Package" },
+  { title: "15+", subtitle: "Countries", icon: "Globe" },
+];
 
 const QuoteSection = () => {
-  const stats = [
-    { icon: Truck, value: "10+", label: "Years Experience" },
-    { icon: Package, value: "50K+", label: "Deliveries" },
-    { icon: Globe, value: "15+", label: "Countries" },
-  ];
+  const { items: sectionItems } = useSiteContent("quote_section");
+  const { items: statItems } = useSiteContent("quote_stat", defaultStats as any);
+
+  const section = sectionItems[0];
+  const badge = section?.subtitle || "Request a Quote";
+  const heading = section?.title || "Get Instant Pricing for Your Shipment";
+  const description = section?.description || "Fill out the form and our team will provide you with a competitive quote within 24 hours. From Mombasa Port to your doorstep.";
+
+  const stats = statItems.map(s => ({
+    icon: getIcon(s.icon),
+    value: s.title || "",
+    label: s.subtitle || "",
+  }));
 
   return (
     <section className="py-16 bg-secondary/30">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Info & Stats */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -21,16 +41,11 @@ const QuoteSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-              Request a Quote
+              {badge}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Get Instant Pricing for Your Shipment
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Fill out the form and our team will provide you with a competitive quote within 24 hours. From Mombasa Port to your doorstep.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{heading}</h2>
+            <p className="text-muted-foreground text-lg mb-8">{description}</p>
 
-            {/* Stats */}
             <div className="flex gap-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -49,7 +64,6 @@ const QuoteSection = () => {
             </div>
           </motion.div>
 
-          {/* Right - Quote Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,47 +82,28 @@ const QuoteSection = () => {
               </div>
               
               <form className="space-y-4">
-                {/* Contact Person & Company */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground">Contact Person Name</label>
-                    <input
-                      type="text"
-                      placeholder="Full name"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Company Name</label>
-                    <input
-                      type="text"
-                      placeholder="Company name"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                 </div>
 
-                {/* Phone & Email */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground">Phone Number</label>
-                    <input
-                      type="tel"
-                      placeholder="+254 700 000 000"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Email Address</label>
-                    <input
-                      type="email"
-                      placeholder="your@email.com"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                 </div>
 
-                {/* Service/Product Dropdown */}
                 <div>
                   <label className="text-sm font-medium text-foreground">Service / Product</label>
                   <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
@@ -143,34 +138,20 @@ const QuoteSection = () => {
                   </select>
                 </div>
 
-                {/* Container / BL Number */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground">Container No.</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. MSKU1234567"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="text" placeholder="e.g. MSKU1234567" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">BL No.</label>
-                    <input
-                      type="text"
-                      placeholder="Bill of Lading number"
-                      className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
+                    <input type="text" placeholder="Bill of Lading number" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
                   </div>
                 </div>
 
-                {/* Free Text Area */}
                 <div>
                   <label className="text-sm font-medium text-foreground">Additional Details</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Describe your requirements, cargo details, special instructions..."
-                    className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
-                  />
+                  <textarea rows={3} placeholder="Describe your requirements, cargo details, special instructions..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
                 </div>
 
                 <Button 
