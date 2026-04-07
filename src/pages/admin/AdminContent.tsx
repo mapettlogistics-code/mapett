@@ -131,7 +131,7 @@ const AdminContent = () => {
         if (error) throw error;
         toast.success("Content updated");
       } else {
-        const { error } = await supabase.from("site_content").insert({ ...payload, section: activeSection });
+        const { error } = await (supabase.from("site_content") as any).insert({ ...payload, section: activeSection });
         if (error) throw error;
         toast.success("Content created");
       }
