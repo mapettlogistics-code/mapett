@@ -123,7 +123,7 @@ const AdminContent = () => {
         icon: form.icon || null,
         display_order: form.display_order,
         is_active: form.is_active,
-        extra_data: Object.keys(form.extra_data).length > 0 ? form.extra_data : null,
+        extra_data: Object.keys(form.extra_data).length > 0 ? (form.extra_data as any) : null,
       };
 
       if (editingItem) {
