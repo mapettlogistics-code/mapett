@@ -31,6 +31,14 @@ const sections = [
   { key: "promo_banner", label: "Promo Banners", description: "Promotional offers, discounts, and ads displayed below the hero" },
   { key: "service", label: "Services", description: "Products & services section content" },
   { key: "insurance", label: "Insurance", description: "Insurance policies section content" },
+  { key: "about_main", label: "About Section", description: "Main about section heading, description, and bullet points" },
+  { key: "about_milestone", label: "Milestones", description: "Company timeline milestones (year, title, description)" },
+  { key: "about_value", label: "Core Values", description: "Company core values (icon, title, description)" },
+  { key: "contact_info", label: "Contact Info", description: "Phone, email, address, and working hours" },
+  { key: "social_link", label: "Social Links", description: "Social media profile links" },
+  { key: "company_info", label: "Company Info", description: "Brand name, tagline, footer description, copyright text" },
+  { key: "quote_section", label: "Quote Section", description: "Quote section heading, description, and stats" },
+  { key: "quote_stat", label: "Quote Stats", description: "Statistics displayed in the quote section" },
 ];
 
 const AdminContent = () => {
@@ -51,6 +59,7 @@ const AdminContent = () => {
     icon: "",
     display_order: 0,
     is_active: true,
+    extra_data: {} as Record<string, unknown>,
   });
 
   const fetchItems = async () => {
@@ -75,7 +84,7 @@ const AdminContent = () => {
   }, [isAdmin, activeSection]);
 
   const resetForm = () => {
-    setForm({ title: "", subtitle: "", description: "", image_url: "", link: "", icon: "", display_order: 0, is_active: true });
+    setForm({ title: "", subtitle: "", description: "", image_url: "", link: "", icon: "", display_order: 0, is_active: true, extra_data: {} });
     setEditingItem(null);
     setIsCreating(false);
   };
@@ -92,6 +101,7 @@ const AdminContent = () => {
       icon: item.icon || "",
       display_order: item.display_order,
       is_active: item.is_active,
+      extra_data: (item.extra_data as Record<string, unknown>) || {},
     });
   };
 
@@ -104,36 +114,24 @@ const AdminContent = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
+      const payload = {
+        title: form.title || null,
+        subtitle: form.subtitle || null,
+        description: form.description || null,
+        image_url: form.image_url || null,
+        link: form.link || null,
+        icon: form.icon || null,
+        display_order: form.display_order,
+        is_active: form.is_active,
+        extra_data: Object.keys(form.extra_data).length > 0 ? form.extra_data : null,
+      };
+
       if (editingItem) {
-        const { error } = await supabase
-          .from("site_content")
-          .update({
-            title: form.title || null,
-            subtitle: form.subtitle || null,
-            description: form.description || null,
-            image_url: form.image_url || null,
-            link: form.link || null,
-            icon: form.icon || null,
-            display_order: form.display_order,
-            is_active: form.is_active,
-          })
-          .eq("id", editingItem.id);
+        const { error } = await supabase.from("site_content").update(payload).eq("id", editingItem.id);
         if (error) throw error;
         toast.success("Content updated");
       } else {
-        const { error } = await supabase
-          .from("site_content")
-          .insert({
-            section: activeSection,
-            title: form.title || null,
-            subtitle: form.subtitle || null,
-            description: form.description || null,
-            image_url: form.image_url || null,
-            link: form.link || null,
-            icon: form.icon || null,
-            display_order: form.display_order,
-            is_active: form.is_active,
-          });
+        const { error } = await supabase.from("site_content").insert({ ...payload, section: activeSection });
         if (error) throw error;
         toast.success("Content created");
       }
@@ -159,10 +157,7 @@ const AdminContent = () => {
   };
 
   const toggleActive = async (item: SiteContent) => {
-    const { error } = await supabase
-      .from("site_content")
-      .update({ is_active: !item.is_active })
-      .eq("id", item.id);
+    const { error } = await supabase.from("site_content").update({ is_active: !item.is_active }).eq("id", item.id);
     if (error) {
       toast.error("Failed to update");
     } else {
@@ -171,6 +166,14 @@ const AdminContent = () => {
   };
 
   const sectionInfo = sections.find(s => s.key === activeSection);
+
+  const updateExtraData = (key: string, value: string) => {
+    setForm(f => ({ ...f, extra_data: { ...f.extra_data, [key]: value } }));
+  };
+
+  const getExtraDataValue = (key: string): string => {
+    return (form.extra_data[key] as string) || "";
+  };
 
   const renderFormFields = () => {
     switch (activeSection) {
@@ -187,6 +190,7 @@ const AdminContent = () => {
             </div>
           </div>
         );
+
       case "hero_slide":
         return (
           <div className="space-y-4">
@@ -220,6 +224,7 @@ const AdminContent = () => {
             </div>
           </div>
         );
+
       case "promo_banner":
         return (
           <div className="space-y-4">
@@ -249,6 +254,7 @@ const AdminContent = () => {
             </div>
           </div>
         );
+
       case "service":
       case "insurance":
         return (
@@ -277,22 +283,243 @@ const AdminContent = () => {
                 <Input value={form.link} onChange={e => setForm(f => ({ ...f, link: e.target.value }))} placeholder="#services" />
               </div>
             </div>
+            <div className="space-y-2">
+              <Label>Features (comma-separated)</Label>
+              <Input 
+                value={getExtraDataValue("features")} 
+                onChange={e => updateExtraData("features", e.target.value)} 
+                placeholder="Express Delivery, Global Network, Door to Door" 
+              />
+            </div>
+            {activeSection === "insurance" && (
+              <div className="space-y-2">
+                <Label>Base Rate (%)</Label>
+                <Input 
+                  type="number" 
+                  step="0.01"
+                  value={getExtraDataValue("base_rate")} 
+                  onChange={e => updateExtraData("base_rate", e.target.value)} 
+                  placeholder="0.15" 
+                />
+              </div>
+            )}
           </div>
         );
+
+      case "about_main":
+        return (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>Section Badge Text</Label>
+              <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="About Mapett Logistics" />
+            </div>
+            <div className="space-y-2">
+              <Label>Heading *</Label>
+              <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Your Trusted Partner in Kenya's Logistics" />
+            </div>
+            <div className="space-y-2">
+              <Label>Main Description</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Since 2015, Mapett Logistics has been..." rows={4} />
+            </div>
+            <div className="space-y-2">
+              <Label>Secondary Description</Label>
+              <Textarea 
+                value={getExtraDataValue("secondary_description")} 
+                onChange={e => updateExtraData("secondary_description", e.target.value)} 
+                placeholder="We combine traditional logistics excellence..." rows={3} 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Bullet Points (one per line)</Label>
+              <Textarea 
+                value={getExtraDataValue("bullets")} 
+                onChange={e => updateExtraData("bullets", e.target.value)} 
+                placeholder="End-to-end supply chain solutions&#10;Real-time shipment tracking&#10;Competitive pricing&#10;24/7 customer support" 
+                rows={4} 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Button Text</Label>
+              <Input 
+                value={getExtraDataValue("button_text")} 
+                onChange={e => updateExtraData("button_text", e.target.value)} 
+                placeholder="Learn More About Us" 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Values Section Heading</Label>
+              <Input 
+                value={getExtraDataValue("values_heading")} 
+                onChange={e => updateExtraData("values_heading", e.target.value)} 
+                placeholder="Our Core Values" 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Values Section Subtitle</Label>
+              <Input 
+                value={getExtraDataValue("values_subtitle")} 
+                onChange={e => updateExtraData("values_subtitle", e.target.value)} 
+                placeholder="The principles that guide everything we do" 
+              />
+            </div>
+          </div>
+        );
+
+      case "about_milestone":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Year *</Label>
+                <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="2015" />
+              </div>
+              <div className="space-y-2">
+                <Label>Title *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Founded" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Description</Label>
+              <Input value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Started with a vision to transform Kenya's logistics" />
+            </div>
+          </div>
+        );
+
+      case "about_value":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Title *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Excellence" />
+              </div>
+              <div className="space-y-2">
+                <Label>Icon (Lucide icon name)</Label>
+                <Input value={form.icon} onChange={e => setForm(f => ({ ...f, icon: e.target.value }))} placeholder="Award, Users, Clock, MapPin..." />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Description</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="We strive for the highest standards..." rows={2} />
+            </div>
+          </div>
+        );
+
+      case "contact_info":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Label *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Phone, Email, Location, Working Hours" />
+              </div>
+              <div className="space-y-2">
+                <Label>Icon (Lucide icon name)</Label>
+                <Input value={form.icon} onChange={e => setForm(f => ({ ...f, icon: e.target.value }))} placeholder="Phone, Mail, MapPin, Clock" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Details (one per line) *</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="+254 799 390 133" rows={2} />
+            </div>
+            <div className="space-y-2">
+              <Label>Link (optional)</Label>
+              <Input value={form.link} onChange={e => setForm(f => ({ ...f, link: e.target.value }))} placeholder="https://wa.me/254799390133 or mailto:..." />
+            </div>
+          </div>
+        );
+
+      case "social_link":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Platform Name *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Facebook, Instagram, YouTube, TikTok, LinkedIn, Pinterest" />
+              </div>
+              <div className="space-y-2">
+                <Label>Icon (Lucide icon name)</Label>
+                <Input value={form.icon} onChange={e => setForm(f => ({ ...f, icon: e.target.value }))} placeholder="Facebook, Instagram, Youtube, Linkedin" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Profile URL *</Label>
+              <Input value={form.link} onChange={e => setForm(f => ({ ...f, link: e.target.value }))} placeholder="https://facebook.com/..." />
+            </div>
+            <div className="space-y-2">
+              <Label>Brand Color (hex)</Label>
+              <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="#1877F2" />
+            </div>
+          </div>
+        );
+
+      case "company_info":
+        return (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>Info Key *</Label>
+              <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="brand_name, tagline, footer_description, copyright, website_url" />
+              <p className="text-xs text-muted-foreground">Use keys: brand_name, tagline, footer_description, copyright, website_url, address_line1, address_line2, po_box</p>
+            </div>
+            <div className="space-y-2">
+              <Label>Value *</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Enter the value for this setting..." rows={3} />
+            </div>
+          </div>
+        );
+
+      case "quote_section":
+        return (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>Badge Text</Label>
+              <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="Request a Quote" />
+            </div>
+            <div className="space-y-2">
+              <Label>Heading *</Label>
+              <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Get Instant Pricing for Your Shipment" />
+            </div>
+            <div className="space-y-2">
+              <Label>Description</Label>
+              <Textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Fill out the form and our team..." rows={3} />
+            </div>
+          </div>
+        );
+
+      case "quote_stat":
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Value *</Label>
+                <Input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="10+, 50K+, 15+" />
+              </div>
+              <div className="space-y-2">
+                <Label>Label *</Label>
+                <Input value={form.subtitle} onChange={e => setForm(f => ({ ...f, subtitle: e.target.value }))} placeholder="Years Experience" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Icon (Lucide icon name)</Label>
+              <Input value={form.icon} onChange={e => setForm(f => ({ ...f, icon: e.target.value }))} placeholder="Truck, Package, Globe" />
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
   };
 
   return (
-    <AdminLayout title="Content Management" subtitle="Edit website content, announcements, and banners">
+    <AdminLayout title="Content Management" subtitle="Edit all website content, sections, and settings">
       {/* Section Tabs */}
       <div className="flex flex-wrap gap-2 mb-6">
         {sections.map(s => (
           <button
             key={s.key}
             onClick={() => { setActiveSection(s.key); resetForm(); }}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
               activeSection === s.key
                 ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-foreground hover:bg-secondary/80"
