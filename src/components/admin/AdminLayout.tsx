@@ -77,7 +77,7 @@ const AdminLayout = ({ children, title, subtitle }: AdminLayoutProps) => {
       >
         <div className="p-4 border-b border-border flex items-center justify-between">
           {sidebarOpen && (
-            <img src={mapettLogo} alt="Mapett Logistics" className="h-10 w-auto object-contain" />
+            <img src={mapettLogo} alt="Mapett Logistics" className="h-12 w-auto object-contain" />
           )}
           <Button
             variant="ghost"

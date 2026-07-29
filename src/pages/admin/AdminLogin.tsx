@@ -95,7 +95,7 @@ const AdminLogin = () => {
         <div className="bg-card rounded-2xl shadow-card p-8 border border-border">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <img src={mapettLogo} alt="Mapett Logistics" className="h-20 w-auto object-contain" />
+            <img src={mapettLogo} alt="Mapett Logistics" className="h-24 w-auto object-contain" />
           </div>
 
           <div className="text-center mb-8">
