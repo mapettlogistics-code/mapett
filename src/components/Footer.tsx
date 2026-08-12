@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin, Globe, Linkedin, Facebook, Instagram, Youtube } fr
 import { Link, useNavigate } from "react-router-dom";
 import PaymentIcons from "@/components/PaymentIcons";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { getServicePageLink } from "@/data/serviceRoutes";
 
 const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>) => {
   const el = document.querySelector(hash);
@@ -56,7 +57,6 @@ const Footer = () => {
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",
-    "Product Sourcing",
     "Refrigerated Cargo",
     "Special Cargo",
     "Warehousing",
@@ -77,19 +77,19 @@ const Footer = () => {
     { name: "Automotive Lubricants", category: "lubricants" },
     { name: "Food Grade Lubricants", category: "food-grade-lubricants" },
     { name: "Agricultural Lubricants", category: "agricultural-lubricants" },
+    { name: "Construction Lubricants", category: "construction-lubricants" },
     { name: "Industrial Lubricants", category: "industrial-lubricants" },
     { name: "Vehicle Accessories", category: "accessories" },
     { name: "Safety Shoes", category: "safety-shoes" },
-    { name: "Vehicle Tires", category: "tires" },
-    { name: "Vehicle Batteries", category: "batteries" },
+    { name: "Seals & Tags", category: "seals-tags" },
   ];
 
   const company = [
-    { name: "About Us", href: "#about" },
-    { name: "Our Team", href: "#about" },
+    { name: "About Us", href: "/about", isRoute: true },
+    { name: "Our Team", href: "/about", isRoute: true },
     { name: "Directions/Location", href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19", external: true },
-    { name: "Contact Us", href: "#contact" },
-    { name: "Live Support", href: "#contact" },
+    { name: "Contact Us", href: "/#contact", isRoute: true },
+    { name: "Live Support", href: "/#contact", isRoute: true },
     { name: "Admin Portal", href: "/admin/login", isRoute: true },
   ];
 
@@ -175,9 +175,9 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
-                  <button onClick={() => scrollToSection("#services", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
+                  <Link to={getServicePageLink(service)} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {service}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -189,17 +189,17 @@ const Footer = () => {
             <ul className="space-y-2">
               {insurance.map((item) => (
                 <li key={item}>
-                  <button onClick={() => scrollToSection("#insurance", navigate)} className="text-sm text-background/70 hover:text-primary transition-colors text-left">
+                  <Link to="/#insurance" className="text-sm text-background/70 hover:text-primary transition-colors">
                     {item}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Auto Store */}
+          {/* Autostore & Lubricants */}
           <div>
-            <h4 className="text-lg font-semibold text-background mb-4">Auto Store</h4>
+            <h4 className="text-lg font-semibold text-background mb-4">Autostore & Lubricants</h4>
             <ul className="space-y-2">
               {autoshop.map((item) => (
                 <li key={item.name}>

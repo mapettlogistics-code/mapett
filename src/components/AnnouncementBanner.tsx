@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 
 const defaultAnnouncements = [
-  "🚚 Free shipping on orders above KES 10,000 — Shop now at our Autoshop!",
+  "🚚 Free shipping on orders above KES 10,000 — Shop now at Autostore & Lubricants!",
   "📦 Track your shipments in real-time with Mapett Logistics",
   "🛡️ Get comprehensive cargo insurance — Request a quote today!",
   "🔧 New arrivals: Automotive Lubricants & Vehicle Accessories now available",

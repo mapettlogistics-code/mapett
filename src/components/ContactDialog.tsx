@@ -156,7 +156,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Social Media Cross-posting</option>
               <option>Online Shop Setup</option>
             </optgroup>
-            <optgroup label="Auto Store">
+            <optgroup label="Autostore & Lubricants">
               <option>Automotive Lubricants</option>
               <option>Vehicle Tires</option>
               <option>Vehicle Batteries</option>

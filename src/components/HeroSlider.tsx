@@ -119,7 +119,7 @@ const slides = [
   },
   {
     icon: Store,
-    title: "AUTOSHOP",
+    title: "AUTOSTORE & LUBRICANTS",
     subtitle: "Quality auto products",
     description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
     gradient: "from-primary/85 to-accent/75",

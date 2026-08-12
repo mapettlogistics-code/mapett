@@ -6,16 +6,15 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
 import { useCart } from "@/contexts/CartContext";
-import { useCurrency } from "@/contexts/CurrencyContext";
 import PaymentIcons from "@/components/PaymentIcons";
 import mapettLogo from "@/assets/mapett-logo.png";
+import { getServicePageLink } from "@/data/serviceRoutes";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { user, signOut } = useAuth();
   const { totalItems } = useCart();
-  const { currency, toggleCurrency } = useCurrency();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,10 +32,29 @@ const Navbar = () => {
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",
-    "Product Sourcing (China, Turkey)",
     "Refrigerated Cargo Clearance & Transport",
     "Special Cargo Clearance & Transport",
     "Warehousing",
+  ];
+
+  const productServiceLinks = [
+    ...services.map((service) => ({
+      label: service,
+      href: getServicePageLink(service),
+      external: false as const,
+    })),
+    {
+      label: "Shop Seals & Tags",
+      href: "https://mappetstore.com/products?category=seals-tags",
+      external: true as const,
+      shopHighlight: true as const,
+    },
+    {
+      label: "Shop Autostore & Lubricants",
+      href: "https://mappetstore.com",
+      external: true as const,
+      shopHighlight: true as const,
+    },
   ];
 
   const ecommerce = [
@@ -60,11 +78,11 @@ const Navbar = () => {
     { name: "Automotive Lubricants", category: "lubricants" },
     { name: "Food Grade Lubricants", category: "food-grade-lubricants" },
     { name: "Agricultural Lubricants", category: "agricultural-lubricants" },
+    { name: "Construction Lubricants", category: "construction-lubricants" },
     { name: "Industrial Lubricants", category: "industrial-lubricants" },
     { name: "Vehicle Accessories", category: "accessories" },
     { name: "Safety Shoes", category: "safety-shoes" },
-    { name: "Vehicle Tires", category: "tires" },
-    { name: "Vehicle Batteries", category: "batteries" },
+    { name: "Seals & Tags", category: "seals-tags" },
   ];
 
   const TikTokSvg = () => (
@@ -78,6 +96,18 @@ const Navbar = () => {
       <path d="M12 0a12 12 0 0 0-4.37 23.17c-.1-.94-.2-2.4.04-3.44l1.4-5.93s-.35-.71-.35-1.77c0-1.66.96-2.9 2.16-2.9 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 3.99-.28 1.2.6 2.17 1.78 2.17 2.14 0 3.79-2.26 3.79-5.52 0-2.88-2.07-4.9-5.03-4.9-3.42 0-5.43 2.57-5.43 5.22 0 1.04.4 2.15.9 2.75.1.12.11.22.08.34l-.34 1.36c-.05.22-.18.27-.41.16-1.52-.71-2.48-2.92-2.48-4.7 0-3.82 2.78-7.33 8.02-7.33 4.21 0 7.48 3 7.48 7.01 0 4.18-2.64 7.55-6.3 7.55-1.23 0-2.39-.64-2.79-1.4l-.76 2.89c-.27 1.06-1.01 2.4-1.5 3.21A12 12 0 1 0 12 0z"/>
     </svg>
   );
+
+  const renderProductServiceLabel = (label: string, shopHighlight?: boolean) => {
+    if (shopHighlight) {
+      return <span className="text-primary font-semibold">{label}</span>;
+    }
+    return label;
+  };
+
+  const navLinkClass =
+    "text-[15px] font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
+  const navDropdownClass =
+    "flex items-center gap-0.5 text-[15px] font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
 
   return (
     <>
@@ -124,16 +154,17 @@ const Navbar = () => {
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center h-16 md:h-20">
-              <img src={mapettLogo} alt="Mapett Logistics" className="h-14 md:h-[4.5rem] w-auto object-contain" />
-            </Link>
+            <div className="flex items-center gap-8 lg:gap-10 min-w-0">
+              {/* Logo */}
+              <Link to="/" className="flex items-center h-16 md:h-20 shrink-0">
+                <img src={mapettLogo} alt="Mapett Logistics" className="h-14 md:h-[4.5rem] w-auto object-contain" />
+              </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center gap-6">
-              <button onClick={() => scrollToSection("#about")} className="font-medium text-foreground hover:text-primary transition-colors">
+              {/* Desktop Menu */}
+              <div className="hidden lg:flex items-center gap-3 xl:gap-4 min-w-0">
+              <Link to="/about" className={navLinkClass}>
                 About Us
-              </button>
+              </Link>
               
               {/* Products & Services Dropdown */}
               <div 
@@ -141,9 +172,10 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('services')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
-                  Products & Services <ChevronDown className="h-4 w-4" />
-                </button>
+                <Link to="/products-services" className={navDropdownClass}>
+                  <span>Products & Services</span>
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                </Link>
                 <AnimatePresence>
                   {activeDropdown === 'services' && (
                     <motion.div
@@ -153,84 +185,44 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-72 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       <div className="py-1">
-                        {services.map((service) => (
-                          <button key={service} onClick={() => { scrollToSection("#services"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-secondary transition-colors">
-                            {service}
-                          </button>
-                        ))}
+                        {productServiceLinks.map((item) =>
+                          item.external ? (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setActiveDropdown(null)}
+                              className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
+                            >
+                              {renderProductServiceLabel(item.label, "shopHighlight" in item && item.shopHighlight)}
+                            </a>
+                          ) : (
+                            <Link
+                              key={item.label}
+                              to={item.href}
+                              onClick={() => setActiveDropdown(null)}
+                              className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
+                            >
+                              {renderProductServiceLabel(item.label, "shopHighlight" in item && item.shopHighlight)}
+                            </Link>
+                          )
+                        )}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              {/* E-Commerce Solutions Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('ecommerce')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
-                  E-Commerce Solutions <ChevronDown className="h-4 w-4" />
-                </button>
-                <AnimatePresence>
-                  {activeDropdown === 'ecommerce' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {ecommerce.map((item) => (
-                        <button key={item} onClick={() => { scrollToSection("#contact"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Insurance Policies Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('insurance')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
-                  Insurance Policies <ChevronDown className="h-4 w-4" />
-                </button>
-                <AnimatePresence>
-                  {activeDropdown === 'insurance' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {insurance.map((item) => (
-                        <button key={item} onClick={() => { scrollToSection("#insurance"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Seals & Tags */}
-              <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                Seals & Tags
-              </a>
-
-              {/* Auto Store Dropdown */}
+              {/* Autostore & Lubricants Dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('autoshop')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 font-medium text-foreground hover:text-primary transition-colors">
-                  Auto Store <ChevronDown className="h-4 w-4" />
+                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
+                  <span>Autostore & Lubricants</span>
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </a>
                 <AnimatePresence>
                   {activeDropdown === 'autoshop' && (
@@ -250,21 +242,72 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
+              {/* Seals & Tags */}
+              <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
+                Seals & Tags
+              </a>
+
+              {/* Insurance Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('insurance')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className={navDropdownClass}>
+                  <span>Insurance</span>
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                </button>
+                <AnimatePresence>
+                  {activeDropdown === 'insurance' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                    >
+                      {insurance.map((item) => (
+                        <button key={item} onClick={() => { scrollToSection("#insurance"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          {item}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* E-Commerce Solutions Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('ecommerce')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className={navDropdownClass}>
+                  <span>E-Commerce Solutions</span>
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                </button>
+                <AnimatePresence>
+                  {activeDropdown === 'ecommerce' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                    >
+                      {ecommerce.map((item) => (
+                        <button key={item} onClick={() => { scrollToSection("#contact"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          {item}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
             </div>
-
-
-
+            </div>
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Currency Toggle */}
-              <button
-                onClick={toggleCurrency}
-                className="px-3 py-1.5 rounded-lg bg-secondary text-foreground text-sm font-semibold hover:bg-secondary/80 transition-colors"
-                title="Switch currency"
-              >
-                {currency === "KES" ? "KES 🇰🇪" : "USD 🇺🇸"}
-              </button>
               <Link to="/track">
                 <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   Track Shipment
@@ -324,13 +367,13 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
               <div className="container py-4 space-y-4">
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#about"); setIsOpen(false); }}>About Us</button>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#services"); setIsOpen(false); }}>Products & Services</button>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance Policies</button>
+                <Link to="/about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</Link>
+                <Link to="/products-services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Products & Services</Link>
+                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
-                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Auto Store</a>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance</button>
                 <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
+                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">

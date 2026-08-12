@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductSourcingForm from "@/components/ProductSourcingForm";
+import { getServicePageLink } from "@/data/serviceRoutes";
 
 // Import service images
 import airFreightImg from "@/assets/service-air-freight.jpg";
@@ -15,7 +17,7 @@ import specialCargoImg from "@/assets/service-special-cargo.jpg";
 import intermodalImg from "@/assets/service-intermodal.jpg";
 import productSourcingImg from "@/assets/service-product-sourcing.jpg";
 
-const Services = () => {
+const Services = ({ showAll = false }: { showAll?: boolean }) => {
   const [isSourcingOpen, setIsSourcingOpen] = useState(false);
 
   const services = [
@@ -84,11 +86,12 @@ const Services = () => {
     },
   ];
 
-  // Show 8 services on landing page (2 full rows of 4) — Intermodal stays in nav dropdown
-  const displayServices = services.filter(s => s.title !== "Intermodal Solutions");
+  const displayServices = showAll
+    ? services.filter(s => s.title !== "Product Sourcing")
+    : services.filter(s => s.title !== "Intermodal Solutions");
 
   return (
-    <section id="services" className="py-20 bg-secondary/30">
+    <section id="services" className={showAll ? "pt-8 pb-20 bg-secondary/30" : "py-20 bg-secondary/30"}>
       <div className="container">
         {/* Header */}
         <motion.div
@@ -153,15 +156,29 @@ const Services = () => {
                   ))}
                 </div>
 
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={service.title === "Product Sourcing" ? () => setIsSourcingOpen(true) : undefined}
-                  className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-                >
-                  {service.title === "Product Sourcing" ? "Get Quote" : "Learn More"}
-                  <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                {service.title === "Product Sourcing" ? (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsSourcingOpen(true)}
+                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+                  >
+                    Get Quote
+                    <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+                  >
+                    <Link to={getServicePageLink(service.title)}>
+                      Learn More
+                      <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                )}
               </div>
             </motion.div>
           ))}

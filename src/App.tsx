@@ -13,6 +13,15 @@ import Cart from "./pages/Cart";
 import Track from "./pages/Track";
 import Products from "./pages/Products";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AboutUs from "./pages/AboutUs";
+import ProductsServices from "./pages/ProductsServices";
+import AirFreight from "./pages/AirFreight";
+import CustomsClearance from "./pages/CustomsClearance";
+import OceanFreight from "./pages/OceanFreight";
+import RoadRailTransport from "./pages/RoadRailTransport";
+import RefrigeratedCargo from "./pages/RefrigeratedCargo";
+import SpecialCargo from "./pages/SpecialCargo";
+import Warehousing from "./pages/Warehousing";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -27,6 +36,7 @@ import AdminContent from "./pages/admin/AdminContent";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminMarketing from "./pages/admin/AdminMarketing";
 import BlogPost from "./pages/BlogPost";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +46,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <AuthProvider>
           <CartProvider>
             <CurrencyProvider>
@@ -46,6 +57,15 @@ const App = () => (
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/track" element={<Track />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/products-services" element={<ProductsServices />} />
+                <Route path="/air-freight" element={<AirFreight />} />
+                <Route path="/customs-clearance" element={<CustomsClearance />} />
+                <Route path="/ocean-freight" element={<OceanFreight />} />
+                <Route path="/road-rail-transport" element={<RoadRailTransport />} />
+                <Route path="/refrigerated-cargo" element={<RefrigeratedCargo />} />
+                <Route path="/special-cargo" element={<SpecialCargo />} />
+                <Route path="/warehousing" element={<Warehousing />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}

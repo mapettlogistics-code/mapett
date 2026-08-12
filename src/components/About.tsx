@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { CheckCircle, Award, Users, Clock, MapPin } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import * as LucideIcons from "lucide-react";
@@ -26,6 +27,8 @@ const defaultMilestones = [
 ];
 
 const About = () => {
+  const location = useLocation();
+  const isAboutPage = location.pathname === "/about";
   const { items: aboutItems } = useSiteContent("about_main");
   const { items: milestoneItems } = useSiteContent("about_milestone", defaultMilestones as any);
   const { items: valueItems } = useSiteContent("about_value", defaultValues as any);
@@ -34,7 +37,7 @@ const About = () => {
   const badge = about?.subtitle || "About Mapett Logistics";
   const heading = about?.title || "Your Trusted Partner in Kenya's Logistics";
   const mainDesc = about?.description || "Since 2015, Mapett Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
-  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "We combine traditional logistics excellence with modern e-commerce through our integrated autoshop, offering automotive lubricants, batteries, and accessories alongside our freight and warehousing services.";
+  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "We combine traditional logistics excellence with modern e-commerce through our integrated Autostore & Lubricants, offering automotive lubricants, batteries, and accessories alongside our freight and warehousing services.";
   const bulletsRaw = (about?.extra_data as any)?.bullets || "End-to-end supply chain solutions\nReal-time shipment tracking\nCompetitive pricing\n24/7 customer support";
   const bullets = bulletsRaw.split("\n").filter(Boolean);
   const buttonText = (about?.extra_data as any)?.button_text || "Learn More About Us";
@@ -54,7 +57,7 @@ const About = () => {
   }));
 
   return (
-    <section id="about" className="py-24 bg-secondary/30">
+    <section id="about" className={isAboutPage ? "pt-8 pb-24 bg-secondary/30" : "py-24 bg-secondary/30"}>
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div
@@ -86,9 +89,11 @@ const About = () => {
               ))}
             </div>
 
-            <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-              {buttonText}
-            </Button>
+            {!isAboutPage && (
+              <Button asChild className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
+                <Link to="/about">{buttonText}</Link>
+              </Button>
+            )}
           </motion.div>
 
           <motion.div

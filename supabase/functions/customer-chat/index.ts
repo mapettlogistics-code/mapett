@@ -22,7 +22,7 @@ serve(async (req) => {
 
 1. **Logistics Services**: Air freight, ocean freight, road transport, warehousing, and customs clearance across Kenya and East Africa.
 
-2. **Autoshop Products**: Automotive lubricants (engine oils, hydraulic oils), coolants, greases, vehicle batteries, and accessories. Prices are in Kenya Shillings (KES).
+2. **Autostore & Lubricants Products**: Automotive lubricants (engine oils, hydraulic oils), coolants, greases, vehicle batteries, and accessories. Prices are in Kenya Shillings (KES).
 
 3. **Company Info**:
    - Location: Shree Ecclave, Off Links Road, Mombasa, Kenya
