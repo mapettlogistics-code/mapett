@@ -11,7 +11,7 @@ const AdminSettings = () => {
   const [saving, setSaving] = useState(false);
   const [settings, setSettings] = useState({
     companyName: "Mapett Logistics",
-    email: "info@mappetlogitics.com",
+    email: "sales@mapettlogistics.com",
     phone: "+254 700 000 000",
     whatsapp: "+254 700 000 000",
     address: "Nairobi, Kenya",

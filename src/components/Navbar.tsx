@@ -9,6 +9,7 @@ import { useCart } from "@/contexts/CartContext";
 import PaymentIcons from "@/components/PaymentIcons";
 import mapettLogo from "@/assets/mapett-logo.png";
 import { getServicePageLink } from "@/data/serviceRoutes";
+import { AUTOSTORE_HOME, AUTOSTORE_CART, autostoreMenuItems } from "@/data/autostoreLinks";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,13 +46,13 @@ const Navbar = () => {
     })),
     {
       label: "Shop Seals & Tags",
-      href: "https://mappetstore.com/products?category=seals-tags",
+      href: "https://mapettauto.com/collections/seals-tags",
       external: true as const,
       shopHighlight: true as const,
     },
     {
       label: "Shop Autostore & Lubricants",
-      href: "https://mappetstore.com",
+      href: AUTOSTORE_HOME,
       external: true as const,
       shopHighlight: true as const,
     },
@@ -74,16 +75,7 @@ const Navbar = () => {
     "Warehouse Insurance",
   ];
 
-  const autoshop = [
-    { name: "Automotive Lubricants", category: "lubricants" },
-    { name: "Food Grade Lubricants", category: "food-grade-lubricants" },
-    { name: "Agricultural Lubricants", category: "agricultural-lubricants" },
-    { name: "Construction Lubricants", category: "construction-lubricants" },
-    { name: "Industrial Lubricants", category: "industrial-lubricants" },
-    { name: "Vehicle Accessories", category: "accessories" },
-    { name: "Safety Shoes", category: "safety-shoes" },
-    { name: "Seals & Tags", category: "seals-tags" },
-  ];
+  const autoshop = autostoreMenuItems;
 
   const TikTokSvg = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
@@ -105,9 +97,11 @@ const Navbar = () => {
   };
 
   const navLinkClass =
-    "text-[15px] font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
+    "text-nav font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
   const navDropdownClass =
-    "flex items-center gap-0.5 text-[15px] font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
+    "flex items-center gap-0.5 text-nav font-medium whitespace-nowrap text-foreground hover:text-primary transition-colors";
+  const mobileNavLinkClass =
+    "block py-2 text-nav font-medium text-foreground hover:text-primary transition-colors";
 
   return (
     <>
@@ -119,9 +113,9 @@ const Navbar = () => {
               <Phone className="h-4 w-4" />
               +254 799 390 133
             </a>
-            <a href="mailto:info@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
-              info@mapettlogistics.com
+              sales@mapettlogistics.com
             </a>
           </div>
           <div className="flex items-center gap-4">
@@ -161,7 +155,7 @@ const Navbar = () => {
               </Link>
 
               {/* Desktop Menu */}
-              <div className="hidden lg:flex items-center gap-3 xl:gap-4 min-w-0">
+              <div className="hidden lg:flex items-center gap-3 xl:gap-4 min-w-0 text-nav">
               <Link to="/about" className={navLinkClass}>
                 About Us
               </Link>
@@ -220,7 +214,7 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('autoshop')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
+                <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
                   <span>Autostore & Lubricants</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </a>
@@ -233,7 +227,7 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {autoshop.map((item) => (
-                        <a key={item.name} href={`https://mappetstore.com/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
                           {item.name}
                         </a>
                       ))}
@@ -243,7 +237,7 @@ const Navbar = () => {
               </div>
 
               {/* Seals & Tags */}
-              <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
+              <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
                 Seals & Tags
               </a>
 
@@ -315,7 +309,7 @@ const Navbar = () => {
               </Link>
               
                {/* Cart */}
-              <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="relative">
+              <a href={AUTOSTORE_CART} target="_blank" rel="noopener noreferrer" className="relative">
                 <Button variant="ghost" size="icon">
                   <ShoppingCart className="h-5 w-5" />
                   {totalItems > 0 && (
@@ -339,7 +333,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
-              <a href="https://mappetstore.com/cart" target="_blank" rel="noopener noreferrer" className="relative p-2">
+              <a href={AUTOSTORE_CART} target="_blank" rel="noopener noreferrer" className="relative p-2">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
                   <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
@@ -367,18 +361,18 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
               <div className="container py-4 space-y-4">
-                <Link to="/about" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>About Us</Link>
-                <Link to="/products-services" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Products & Services</Link>
-                <a href="https://mappetstore.com" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
-                <a href="https://mappetstore.com/products?category=seals-tags" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Seals & Tags</a>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance</button>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
-                <button className="block py-2 font-medium w-full text-left" onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
-                <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className="block py-2 font-medium" onClick={() => setIsOpen(false)}>Directions/Location</a>
+                <Link to="/about" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>About Us</Link>
+                <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
+                <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
+                <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance</button>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
+                <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
                   <p>📞 +254 799 390 133</p>
-                  <p>✉️ info@mapettlogistics.com</p>
+                  <p>✉️ sales@mapettlogistics.com</p>
                 </div>
                 {/* Social Links */}
                 <div className="flex items-center gap-3 py-2">

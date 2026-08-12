@@ -84,9 +84,9 @@ const PrivacyPolicy = () => {
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">9. Contact Us</h2>
             <p>For any questions about this Privacy Policy or to exercise your data rights, contact us:</p>
             <ul className="list-none space-y-1 mt-2">
-              <li><strong>Email:</strong> info@mapettlogistics.com</li>
+              <li><strong>Email:</strong> sales@mapettlogistics.com</li>
               <li><strong>Phone:</strong> +254 799 390 133</li>
-              <li><strong>Address:</strong> Shree Enclave, Off Links Road, P.O. Box 2039-80100, Mombasa, Kenya</li>
+              <li><strong>Address:</strong> Shree Plaza, Ground Floor, Nyali, P.O. Box 2039-80100, Mombasa, Kenya</li>
             </ul>
           </section>
 

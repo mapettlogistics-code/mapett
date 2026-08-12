@@ -25,10 +25,10 @@ serve(async (req) => {
 2. **Autostore & Lubricants Products**: Automotive lubricants (engine oils, hydraulic oils), coolants, greases, vehicle batteries, and accessories. Prices are in Kenya Shillings (KES).
 
 3. **Company Info**:
-   - Location: Shree Ecclave, Off Links Road, Mombasa, Kenya
+   - Location: Shree Plaza, Ground Floor, Nyali, Mombasa, Kenya
    - P.O. Box: 2039-80100
    - Phone/WhatsApp: +254 799 390 133
-   - Email: info@mapettlogistics.com
+   - Email: sales@mapettlogistics.com
    - Hours: Mon-Fri 8AM-6PM, Sat 9AM-2PM
    - Free delivery on orders above KES 5,001
 

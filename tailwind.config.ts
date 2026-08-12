@@ -78,6 +78,9 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Playfair Display', 'serif'],
       },
+      fontSize: {
+        nav: ["15px", { lineHeight: "1.25rem" }],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

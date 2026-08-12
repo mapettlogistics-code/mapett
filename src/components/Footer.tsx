@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PaymentIcons from "@/components/PaymentIcons";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { getServicePageLink } from "@/data/serviceRoutes";
+import { autostoreMenuItems } from "@/data/autostoreLinks";
 
 const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>) => {
   const el = document.querySelector(hash);
@@ -24,8 +25,8 @@ const defaultSocials = [
 
 const defaultContactInfo = [
   { title: "Phone", icon: "Phone", description: "+254 799 390 133", link: "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." },
-  { title: "Email", icon: "Mail", description: "info@mapettlogistics.com", link: "mailto:info@mapettlogistics.com" },
-  { title: "Location", icon: "MapPin", description: "Shree Enclave, Off Links Road\nP.O. Box 2039-80100, Mombasa, Kenya" },
+  { title: "Email", icon: "Mail", description: "sales@mapettlogistics.com", link: "mailto:sales@mapettlogistics.com" },
+  { title: "Location", icon: "MapPin", description: "Shree Plaza, Ground Floor, Nyali\nP.O. Box 2039-80100, Mombasa, Kenya" },
 ];
 
 const defaultCompanyInfo = [
@@ -47,7 +48,7 @@ const Footer = () => {
   const phone = contactItems.find(c => c.title === "Phone");
   const email = contactItems.find(c => c.title === "Email");
   const location = contactItems.find(c => c.title === "Location");
-  const locationLines = (location?.description || "Shree Enclave, Off Links Road\nP.O. Box 2039-80100, Mombasa, Kenya").split("\n");
+  const locationLines = (location?.description || "Shree Plaza, Ground Floor, Nyali\nP.O. Box 2039-80100, Mombasa, Kenya").split("\n");
 
   const footerDesc = getCompanyValue("footer_description", "Your trusted partner for comprehensive logistics solutions and automotive products across Kenya and East Africa.");
   const websiteUrl = getCompanyValue("website_url", "www.mapettlogistics.com");
@@ -73,16 +74,7 @@ const Footer = () => {
     "Warehouse Insurance",
   ];
 
-  const autoshop = [
-    { name: "Automotive Lubricants", category: "lubricants" },
-    { name: "Food Grade Lubricants", category: "food-grade-lubricants" },
-    { name: "Agricultural Lubricants", category: "agricultural-lubricants" },
-    { name: "Construction Lubricants", category: "construction-lubricants" },
-    { name: "Industrial Lubricants", category: "industrial-lubricants" },
-    { name: "Vehicle Accessories", category: "accessories" },
-    { name: "Safety Shoes", category: "safety-shoes" },
-    { name: "Seals & Tags", category: "seals-tags" },
-  ];
+  const autoshop = autostoreMenuItems;
 
   const company = [
     { name: "About Us", href: "/about", isRoute: true },
@@ -135,9 +127,9 @@ const Footer = () => {
                 <Phone className="h-5 w-5" />
                 {phone?.description || "+254 799 390 133"}
               </a>
-              <a href={email?.link || "mailto:info@mapettlogistics.com"} className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+              <a href={email?.link || "mailto:sales@mapettlogistics.com"} className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
-                {email?.description || "info@mapettlogistics.com"}
+                {email?.description || "sales@mapettlogistics.com"}
               </a>
               <a href={`https://${websiteUrl}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Globe className="h-5 w-5" />
@@ -203,7 +195,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {autoshop.map((item) => (
                 <li key={item.name}>
-                  <a href={`https://mappetstore.com/products?category=${item.category}`} target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-primary transition-colors">
                     {item.name}
                   </a>
                 </li>

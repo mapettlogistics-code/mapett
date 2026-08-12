@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, HardHat, Wheat, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
+import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
 
 // Import category images
 import categoryLubricants from "@/assets/category-lubricants.jpg";
@@ -120,7 +121,7 @@ const Autoshop = () => {
         {/* Categories Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {categories.map((category, index) => (
-            <a href={`https://mappetstore.com/products?category=${category.categoryKey}`} target="_blank" rel="noopener noreferrer" key={category.title}>
+            <a href={getAutostoreLink(category.title)} target="_blank" rel="noopener noreferrer" key={category.title}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +176,7 @@ const Autoshop = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <a href="https://mappetstore.com/products" target="_blank" rel="noopener noreferrer">
+          <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
             Explore All Products
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

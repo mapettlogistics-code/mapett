@@ -48,13 +48,13 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@mapettlogistics.com"],
-      href: "mailto:info@mapettlogistics.com",
+      details: ["sales@mapettlogistics.com"],
+      href: "mailto:sales@mapettlogistics.com",
     },
     {
       icon: MapPin,
       title: "Location",
-      details: ["Shree Enclave, Off Links Road", "P.O. Box 2039-80100, Mombasa, Kenya"],
+      details: ["Shree Plaza, Ground Floor, Nyali", "P.O. Box 2039-80100, Mombasa, Kenya"],
       href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19",
     },
     {

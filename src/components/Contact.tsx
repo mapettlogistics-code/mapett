@@ -19,8 +19,8 @@ const getIcon = (name: string | null) => {
 
 const defaultContactInfo = [
   { title: "Phone", icon: "Phone", description: "+254 799 390 133", link: "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." },
-  { title: "Email", icon: "Mail", description: "info@mapettlogistics.com", link: "mailto:info@mapettlogistics.com" },
-  { title: "Location", icon: "MapPin", description: "Shree Ecclave, Off Links Road\nP.O. Box 2039-80100, Mombasa, Kenya", link: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" },
+  { title: "Email", icon: "Mail", description: "sales@mapettlogistics.com", link: "mailto:sales@mapettlogistics.com" },
+  { title: "Location", icon: "MapPin", description: "Shree Plaza, Ground Floor, Nyali\nP.O. Box 2039-80100, Mombasa, Kenya", link: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" },
   { title: "Working Hours", icon: "Clock", description: "Mon - Fri: 8:00 AM - 6:00 PM\nSat: 9:00 AM - 2:00 PM" },
 ];
 
