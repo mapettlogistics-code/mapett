@@ -9,118 +9,118 @@ html {
 
 @layer base {
   :root {
-    /* ONE-inspired Magenta Pink & Deep Teal Blue Theme */
+    /* ONE-inspired Dark Red & Dark Blue Theme */
     --background: 0 0% 100%;
-    --foreground: 197 50% 12%;
+    --foreground: 215 50% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 197 50% 12%;
+    --card-foreground: 215 50% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 197 50% 12%;
+    --popover-foreground: 215 50% 12%;
 
-    /* ONE Magenta Pink Primary */
-    --primary: 328 100% 45%;
+    /* Dark Red Primary */
+    --primary: 356 88% 37%;
     --primary-foreground: 0 0% 100%;
     
-    /* Light pink for secondary */
-    --secondary: 328 40% 96%;
-    --secondary-foreground: 328 80% 35%;
+    /* Light red for secondary */
+    --secondary: 356 88% 96%;
+    --secondary-foreground: 356 88% 35%;
 
-    --muted: 197 20% 96%;
-    --muted-foreground: 197 20% 45%;
+    --muted: 215 20% 96%;
+    --muted-foreground: 215 20% 45%;
 
-    /* Deep Teal Blue Accent */
-    --accent: 197 78% 27%;
+    /* Dark Blue Accent */
+    --accent: 215 100% 15%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 197 20% 90%;
-    --input: 197 20% 90%;
-    --ring: 328 100% 45%;
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+    --ring: 356 88% 37%;
 
     --radius: 0.75rem;
 
-    /* Magenta Pink palette */
-    --pink-50: 328 100% 97%;
-    --pink-100: 328 95% 94%;
-    --pink-200: 328 90% 88%;
-    --pink-300: 328 85% 75%;
-    --pink-400: 328 90% 60%;
-    --pink-500: 328 100% 45%;
-    --pink-600: 328 100% 40%;
-    --pink-700: 328 100% 35%;
-    --pink-800: 328 100% 28%;
-    --pink-900: 328 100% 20%;
+    /* Dark Red palette */
+    --pink-50: 356 88% 97%;
+    --pink-100: 356 88% 94%;
+    --pink-200: 356 88% 88%;
+    --pink-300: 356 88% 75%;
+    --pink-400: 356 88% 60%;
+    --pink-500: 356 88% 37%;
+    --pink-600: 356 88% 35%;
+    --pink-700: 356 88% 32%;
+    --pink-800: 356 88% 28%;
+    --pink-900: 356 88% 20%;
 
-    /* Deep Teal Blue palette */
-    --navy-50: 197 40% 96%;
-    --navy-100: 197 45% 90%;
-    --navy-200: 197 50% 80%;
-    --navy-300: 197 55% 65%;
-    --navy-400: 197 60% 50%;
-    --navy-500: 197 70% 40%;
-    --navy-600: 197 78% 27%;
-    --navy-700: 197 80% 20%;
-    --navy-800: 197 75% 15%;
-    --navy-900: 197 70% 10%;
+    /* Dark Blue palette */
+    --navy-50: 215 40% 96%;
+    --navy-100: 215 45% 90%;
+    --navy-200: 215 50% 80%;
+    --navy-300: 215 55% 65%;
+    --navy-400: 215 60% 50%;
+    --navy-500: 215 70% 40%;
+    --navy-600: 215 100% 15%;
+    --navy-700: 215 100% 12%;
+    --navy-800: 215 100% 10%;
+    --navy-900: 215 100% 8%;
 
-    --navy: 197 78% 20%;
-    --navy-light: 197 70% 35%;
+    --navy: 215 100% 10%;
+    --navy-light: 215 100% 20%;
 
-    /* Gradients - Magenta pink dominant with teal blue accent */
-    --gradient-hero: linear-gradient(135deg, hsl(328 100% 45%) 0%, hsl(328 90% 40%) 50%, hsl(197 78% 27%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(328 40% 98%) 100%);
-    --gradient-dark: linear-gradient(135deg, hsl(197 78% 20%) 0%, hsl(328 80% 30%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(328 100% 45%) 0%, hsl(197 78% 30%) 100%);
+    /* Gradients - Dark red dominant with dark blue accent */
+    --gradient-hero: linear-gradient(135deg, hsl(356 88% 37%) 0%, hsl(356 88% 35%) 50%, hsl(215 100% 15%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(356 88% 98%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(215 100% 10%) 0%, hsl(356 88% 30%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(356 88% 37%) 0%, hsl(215 100% 20%) 100%);
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px -2px hsl(328 100% 45% / 0.1);
-    --shadow-md: 0 8px 24px -8px hsl(328 100% 45% / 0.15);
-    --shadow-lg: 0 16px 48px -16px hsl(328 100% 45% / 0.2);
-    --shadow-glow: 0 0 40px hsl(328 100% 45% / 0.3);
-    --shadow-blue: 0 8px 24px -8px hsl(197 78% 27% / 0.2);
+    --shadow-sm: 0 2px 8px -2px hsl(356 88% 37% / 0.1);
+    --shadow-md: 0 8px 24px -8px hsl(356 88% 37% / 0.15);
+    --shadow-lg: 0 16px 48px -16px hsl(356 88% 37% / 0.2);
+    --shadow-glow: 0 0 40px hsl(356 88% 37% / 0.3);
+    --shadow-blue: 0 8px 24px -8px hsl(215 100% 15% / 0.2);
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 197 50% 20%;
-    --sidebar-primary: 197 78% 20%;
+    --sidebar-foreground: 215 50% 20%;
+    --sidebar-primary: 215 100% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 328 40% 96%;
-    --sidebar-accent-foreground: 328 100% 40%;
-    --sidebar-border: 197 20% 91%;
-    --sidebar-ring: 328 100% 45%;
+    --sidebar-accent: 356 88% 96%;
+    --sidebar-accent-foreground: 356 88% 37%;
+    --sidebar-border: 215 20% 91%;
+    --sidebar-ring: 356 88% 37%;
   }
 
   .dark {
-    --background: 197 50% 8%;
-    --foreground: 328 20% 95%;
+    --background: 215 50% 8%;
+    --foreground: 356 88% 95%;
 
-    --card: 197 45% 12%;
-    --card-foreground: 328 20% 95%;
+    --card: 215 45% 12%;
+    --card-foreground: 356 88% 95%;
 
-    --popover: 197 45% 12%;
-    --popover-foreground: 328 20% 95%;
+    --popover: 215 45% 12%;
+    --popover-foreground: 356 88% 95%;
 
-    --primary: 328 90% 55%;
+    --primary: 356 88% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 197 35% 18%;
-    --secondary-foreground: 328 40% 90%;
+    --secondary: 215 35% 18%;
+    --secondary-foreground: 356 88% 90%;
 
-    --muted: 197 30% 18%;
-    --muted-foreground: 328 15% 65%;
+    --muted: 215 30% 18%;
+    --muted-foreground: 356 88% 65%;
 
-    --accent: 328 70% 50%;
+    --accent: 215 100% 30%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 197 30% 20%;
-    --input: 197 30% 20%;
-    --ring: 328 90% 55%;
+    --border: 215 30% 20%;
+    --input: 215 30% 20%;
+    --ring: 356 88% 50%;
   }
 }
 
