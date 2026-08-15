@@ -181,7 +181,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {insurance.map((item) => (
                 <li key={item}>
-                  <Link to="/#insurance" className="text-sm text-background/70 hover:text-primary transition-colors">
+                  <Link to={getServicePageLink(item)} className="text-sm text-background/70 hover:text-primary transition-colors">
                     {item}
                   </Link>
                 </li>

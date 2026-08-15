@@ -35,7 +35,7 @@ const defaultBanners: Banner[] = [
     subtitle: "Comprehensive marine & air cargo insurance",
     description: "Get a quote in minutes. Partnering with Britam & Sanlam.",
     image_url: null,
-    link: "#insurance",
+    link: "/insurance",
   },
 ];
 

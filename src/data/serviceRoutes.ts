@@ -18,7 +18,7 @@ export const servicePageLinks: Record<string, string> = {
   "WIBA & Employees Liability": "/wiba-employees-coverage",
   "Life Insurance": "/life-insurance",
   "Warehouse Insurance": "/warehouse-insurance",
-  "Cargo Insurance": "/#insurance",
+  "Cargo Insurance": "/insurance",
 };
 
 export const getServicePageLink = (serviceName: string) =>

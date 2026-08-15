@@ -4,7 +4,6 @@ import HeroSlider from "@/components/HeroSlider";
 import PromoBanners from "@/components/PromoBanners";
 import QuoteSection from "@/components/QuoteSection";
 import Services from "@/components/Services";
-import Insurance from "@/components/Insurance";
 import Autoshop from "@/components/Marketplace";
 import BlogSection from "@/components/BlogSection";
 import About from "@/components/About";
@@ -25,7 +24,6 @@ const Index = () => {
       <PromoBanners />
       <Services />
       <QuoteSection />
-      <Insurance />
       <Autoshop />
       <BlogSection />
       <About />

@@ -106,7 +106,7 @@ const slides = [
     description: "Comprehensive cargo insurance covering all risk, marine, and transit protection",
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderInsurance,
-    link: "#insurance",
+    link: "/insurance",
   },
   {
     icon: MessageCircle,
