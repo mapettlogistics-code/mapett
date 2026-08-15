@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductSourcingForm from "@/components/ProductSourcingForm";
 import { getServicePageLink } from "@/data/serviceRoutes";
@@ -16,6 +16,7 @@ import refrigeratedImg from "@/assets/service-refrigerated.jpg";
 import specialCargoImg from "@/assets/service-special-cargo.jpg";
 import intermodalImg from "@/assets/service-intermodal.jpg";
 import productSourcingImg from "@/assets/service-product-sourcing.jpg";
+import insuranceImg from "@/assets/slider-warehouse.jpg";
 
 const Services = ({ showAll = false }: { showAll?: boolean }) => {
   const [isSourcingOpen, setIsSourcingOpen] = useState(false);
@@ -83,6 +84,13 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
       description: "We source quality products from China, Turkey, and other markets for your business.",
       features: ["China Sourcing", "Turkey Sourcing", "Quality Assurance"],
       image: productSourcingImg,
+    },
+    {
+      icon: Shield,
+      title: "Insurance",
+      description: "Comprehensive cargo and liability insurance coverage for complete protection.",
+      features: ["Cargo Protection", "Risk Coverage", "Peace of Mind"],
+      image: insuranceImg,
     },
   ];
 
