@@ -18,6 +18,10 @@ import {
   Warehouse,
   Boxes,
   BarChart3,
+  Heart,
+  Users,
+  Building2,
+  AlertTriangle,
 } from "lucide-react";
 import { ServicePageContent } from "@/components/ServicePageLayout";
 import sliderAirFreight from "@/assets/slider-air-freight.jpg";
@@ -383,4 +387,467 @@ export const warehousingContent: ServicePageContent = {
   ],
   relatedDescription: "Combine warehousing with our freight, customs, and transport services for a complete supply chain solution.",
   ctaLabel: "Request Warehousing Quote",
+};
+
+export const insuranceContent: ServicePageContent = {
+  badge: "Comprehensive Insurance",
+  icon: Shield,
+  heroImage: sliderWarehouse,
+  heroImageAlt: "Insurance protection coverage",
+  title: "Complete Cargo & Liability Insurance Solutions",
+  heroDescription:
+    "Comprehensive insurance coverage for your cargo and business operations. Marine, air, transit, and liability protection — ensuring peace of mind from origin to delivery.",
+  overviewTitle: "Insurance Coverage for Every Logistics Need",
+  overviewDescription:
+    "At Mapett Logistics, we understand that protecting your cargo and your business is essential. We offer comprehensive insurance solutions covering marine cargo, air freight, inland transit, motor vehicles, and employee liability. Partner with our insurance specialists to secure the right coverage at competitive rates — keeping your shipments and operations protected every step of the way.",
+  featuresTitle: "Our Insurance Coverage Options",
+  featuresSubtitle: "Comprehensive protection for cargo, vehicles, and business operations.",
+  features: [
+    { icon: Shield, title: "Cargo Protection", description: "Full coverage for marine, air, and inland transit cargo against loss and damage." },
+    { icon: Truck, title: "Vehicle Coverage", description: "Motor vehicle and commercial fleet insurance with comprehensive and third-party options." },
+    { icon: Users, title: "Liability Coverage", description: "Employee liability, WIBA coverage, and freight forwarder liability protection." },
+    { icon: Heart, title: "Additional Coverage", description: "Life insurance, warehouse coverage, and customized policy options available." },
+  ],
+  cargoTypes: [
+    "Marine cargo insurance",
+    "Air cargo and freight insurance",
+    "Inland transit insurance",
+    "Motor vehicle insurance",
+    "Freight forwarder liability",
+    "WIBA and employee liability",
+    "Life insurance",
+    "Warehouse and storage coverage",
+  ],
+  highlightsTitle: "Insurance Coverage Highlights",
+  highlights: [
+    "Marine cargo coverage for ocean freight shipments",
+    "Air cargo insurance for time-sensitive imports and exports",
+    "Inland transit protection for road and rail transport",
+    "Motor vehicle insurance for commercial fleets",
+    "Freight forwarder liability coverage",
+    "WIBA and employee liability policies",
+    "Life insurance and personal coverage options",
+    "Warehouse and inventory protection",
+  ],
+  processSteps: [
+    { step: "01", title: "Coverage Assessment", description: "We review your cargo type, value, route, and business operations to determine coverage needs." },
+    { step: "02", title: "Policy Recommendation", description: "Our insurance specialists recommend the best policy options at competitive premiums." },
+    { step: "03", title: "Policy Issuance", description: "Documentation is prepared, premium is paid, and your coverage takes effect immediately." },
+    { step: "04", title: "Claims Support", description: "In case of loss or damage, we provide rapid claims processing and settlement support." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Ocean Freight" },
+    { icon: Plane, label: "Air Freight" },
+    { icon: Truck, label: "Road Transport" },
+  ],
+  relatedDescription: "Integrate insurance protection with our freight and transport services for complete risk management.",
+  ctaLabel: "Get Insurance Quote",
+};
+
+export const marineCargoInsuranceContent: ServicePageContent = {
+  badge: "Marine Cargo Insurance",
+  icon: Ship,
+  heroImage: sliderOceanFreight,
+  heroImageAlt: "Marine cargo ship protection",
+  title: "Marine Cargo Insurance Coverage",
+  heroDescription:
+    "Comprehensive insurance for ocean freight shipments through Mombasa and international ports. All-risks coverage protecting your goods during sea transit.",
+  overviewTitle: "Protect Your Ocean Freight Shipments",
+  overviewDescription:
+    "Marine cargo insurance provides complete protection for your ocean freight shipments from origin port through Mombasa to final destination. Whether you're shipping containerized goods, break-bulk cargo, or specialized equipment, our marine cargo policies cover total loss, partial loss, and damage from perils including sinking, collision, theft, and weather-related incidents.",
+  featuresTitle: "Marine Cargo Coverage Features",
+  featuresSubtitle: "Comprehensive protection for all-risks ocean freight scenarios.",
+  features: [
+    { icon: Shield, title: "All-Risks Coverage", description: "Protection against total loss, partial loss, damage, and inherent risks of sea transport." },
+    { icon: Globe, title: "Worldwide Coverage", description: "Coverage from any origin port to any destination worldwide through Mombasa." },
+    { icon: Clock, title: "Fast Claims Processing", description: "Rapid damage assessment and claim settlement to minimize your financial impact." },
+    { icon: FileCheck, title: "Easy Documentation", description: "Simple policy issuance and claims filing integrated with your shipping process." },
+  ],
+  cargoTypes: [
+    "Containerized general cargo",
+    "Break-bulk shipments",
+    "Heavy-lift and project cargo",
+    "Reefer container goods",
+    "Hazardous and specialized cargo",
+    "High-value electronics and machinery",
+  ],
+  highlightsTitle: "Marine Cargo Insurance Highlights",
+  highlights: [
+    "Coverage for FCL and LCL shipments",
+    "Policy issuance within 24 hours",
+    "Coverage effective from warehouse to warehouse",
+    "No waiting period for claims",
+    "Competitive premiums based on cargo value and route",
+    "24/7 claims hotline and support",
+  ],
+  processSteps: [
+    { step: "01", title: "Quote Request", description: "Provide cargo details, value, origin, and destination for instant marine cargo insurance quote." },
+    { step: "02", title: "Policy Review", description: "Review coverage terms, exclusions, and deductible before proceeding." },
+    { step: "03", title: "Policy Issuance", description: "Payment is collected and marine cargo certificate is issued immediately." },
+    { step: "04", title: "Claims Handling", description: "In case of loss or damage, submit documentation and we handle the claim process." },
+  ],
+  relatedServices: [
+    { icon: Plane, label: "Air Cargo Insurance" },
+    { icon: Truck, label: "Inland Transit Insurance" },
+    { icon: Shield, label: "Comprehensive Insurance" },
+  ],
+  relatedDescription: "Pair marine cargo insurance with other coverage types for complete logistics protection.",
+  ctaLabel: "Get Marine Cargo Quote",
+};
+
+export const airCargoInsuranceContent: ServicePageContent = {
+  badge: "Air Cargo Insurance",
+  icon: Plane,
+  heroImage: sliderAirFreight,
+  heroImageAlt: "Air cargo insurance protection",
+  title: "Air Cargo Insurance Coverage",
+  heroDescription:
+    "Complete insurance protection for air freight shipments. Fast, all-risks coverage for time-sensitive goods moving through JKIA and international airports.",
+  overviewTitle: "Protect Your Air Freight Shipments",
+  overviewDescription:
+    "Air cargo insurance provides comprehensive coverage for your time-sensitive shipments moving via commercial airlines. From high-value electronics and pharmaceuticals to perishables and documents, our air cargo policies protect against loss, damage, and delays. Coverage is available for shipments departing and arriving at JKIA as well as international airports worldwide.",
+  featuresTitle: "Air Cargo Coverage Features",
+  featuresSubtitle: "Comprehensive protection for fast-moving air freight.",
+  features: [
+    { icon: Shield, title: "All-Risks Coverage", description: "Complete protection against loss, damage, and accident during air transport." },
+    { icon: Clock, title: "Express Processing", description: "Instant policy issuance and rapid claims handling for time-sensitive shipments." },
+    { icon: Globe, title: "Global Coverage", description: "Protection for air freight from any origin airport to any destination globally." },
+    { icon: Package, title: "Cargo Protection", description: "Coverage for all cargo types including fragile, hazardous, and high-value goods." },
+  ],
+  cargoTypes: [
+    "Electronics and consumer goods",
+    "Pharmaceuticals and medical supplies",
+    "Perishable and temperature-sensitive goods",
+    "High-value jewelry and precious goods",
+    "Documents and samples",
+    "Industrial machinery and parts",
+  ],
+  highlightsTitle: "Air Cargo Insurance Highlights",
+  highlights: [
+    "Coverage effective from warehouse to warehouse",
+    "Policy issuance within 1 hour",
+    "Express claims processing",
+    "No mandatory waiting period",
+    "Coverage for domestic and international flights",
+    "24/7 emergency claims support",
+  ],
+  processSteps: [
+    { step: "01", title: "Coverage Details", description: "Provide airway bill number, cargo value, and destination for quote." },
+    { step: "02", title: "Instant Quote", description: "Receive insurance quote and policy terms within minutes." },
+    { step: "03", title: "Quick Issuance", description: "Policy certificate is issued and effective before your flight departs." },
+    { step: "04", title: "Claim Support", description: "Submit claim documentation and receive settlement within 5-7 working days." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Marine Cargo Insurance" },
+    { icon: Truck, label: "Inland Transit Insurance" },
+    { icon: Shield, label: "Comprehensive Insurance" },
+  ],
+  relatedDescription: "Combine air cargo insurance with transit and comprehensive coverage for full logistics protection.",
+  ctaLabel: "Get Air Cargo Quote",
+};
+
+export const inlandTransitInsuranceContent: ServicePageContent = {
+  badge: "Inland Transit Insurance",
+  icon: Truck,
+  heroImage: sliderRoadTransport,
+  heroImageAlt: "Inland transit cargo protection",
+  title: "Inland Transit Insurance Coverage",
+  heroDescription:
+    "Comprehensive protection for cargo moving by road and rail across Kenya and East Africa. Coverage for loss and damage during inland transportation.",
+  overviewTitle: "Protect Your Overland Shipments",
+  overviewDescription:
+    "Inland transit insurance provides complete coverage for your cargo moving by road and rail across Kenya, Uganda, Tanzania, Rwanda, and other East African destinations. Whether you're evacuating containers from Mombasa Port, cross-border trucking, or distributing goods nationally, our transit insurance protects against loss, theft, accident, and damage from natural perils.",
+  featuresTitle: "Inland Transit Coverage Features",
+  featuresSubtitle: "Comprehensive protection for overland cargo movement.",
+  features: [
+    { icon: Shield, title: "Road & Rail Coverage", description: "Protection for cargo moving by truck or rail across borders and through region." },
+    { icon: Route, title: "Cross-Border Protection", description: "Coverage for international transit through established East African trade routes." },
+    { icon: Clock, title: "Flexible Policies", description: "Single trip, annual, or long-term transit policies available based on your needs." },
+    { icon: FileCheck, title: "Claim Documentation", description: "Simple claim process with minimal paperwork and fast settlement." },
+  ],
+  cargoTypes: [
+    "Container evacuation from ports",
+    "General merchandise and retail goods",
+    "Construction and industrial materials",
+    "Agricultural and perishable products",
+    "Cross-border commercial shipments",
+    "Bulk and break-bulk cargo",
+  ],
+  highlightsTitle: "Inland Transit Insurance Highlights",
+  highlights: [
+    "Coverage from origin to final destination",
+    "Single trip and annual transit policies",
+    "Cross-border coverage to Uganda, Tanzania, Rwanda",
+    "Competitive rates based on cargo type and value",
+    "Optional theft and roadside accident coverage",
+    "GPS-tracked fleet discounts available",
+  ],
+  processSteps: [
+    { step: "01", title: "Trip Details", description: "Provide cargo type, value, origin, destination, and vehicle details." },
+    { step: "02", title: "Policy Quote", description: "Receive competitive quote for single-trip or annual transit coverage." },
+    { step: "03", title: "Policy Activation", description: "Premium payment and policy becomes effective on same day." },
+    { step: "04", title: "Claims Management", description: "In case of incident, submit loss details and we process claim within 10 days." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Marine Cargo Insurance" },
+    { icon: Plane, label: "Air Cargo Insurance" },
+    { icon: Truck, label: "Motor Vehicle Insurance" },
+  ],
+  relatedDescription: "Combine transit coverage with vehicle and comprehensive insurance for complete transportation protection.",
+  ctaLabel: "Get Transit Quote",
+};
+
+export const motorVehicleInsuranceContent: ServicePageContent = {
+  badge: "Motor Vehicle Insurance",
+  icon: Truck,
+  heroImage: sliderRoadTransport,
+  heroImageAlt: "Motor vehicle fleet insurance",
+  title: "Motor Vehicle Insurance Coverage",
+  heroDescription:
+    "Comprehensive and third-party motor vehicle insurance for commercial fleets. Protection for trucks, vans, and vehicles used in logistics operations.",
+  overviewTitle: "Protect Your Commercial Fleet",
+  overviewDescription:
+    "Motor vehicle insurance provides coverage for trucks, commercial vans, and other vehicles used in logistics and transport operations. Our policies offer comprehensive protection covering collision, theft, third-party liability, and other driving-related risks. Whether you operate a small fleet or large logistics operation, we provide competitive rates and flexible policy options tailored to your business needs.",
+  featuresTitle: "Motor Vehicle Coverage Features",
+  featuresSubtitle: "Comprehensive protection for commercial vehicle operations.",
+  features: [
+    { icon: Shield, title: "Comprehensive Coverage", description: "Collision, theft, natural perils, malicious damage, and road accident protection." },
+    { icon: Scale, title: "Third-Party Liability", description: "Legal liability coverage for injury or property damage to third parties." },
+    { icon: Clock, title: "Flexible Policies", description: "Annual, multi-year, and fleet-wide policies with customizable coverage levels." },
+    { icon: AlertTriangle, title: "Emergency Assistance", description: "24/7 roadside assistance, towing, and emergency support included." },
+  ],
+  cargoTypes: [
+    "Heavy-duty trucks and articulated lorries",
+    "Commercial vans and pickups",
+    "Flatbeds and specialized trailers",
+    "Refrigerated commercial vehicles",
+    "Cross-border commercial trucks",
+    "Urban delivery and distribution vehicles",
+  ],
+  highlightsTitle: "Motor Vehicle Insurance Highlights",
+  highlights: [
+    "Comprehensive and third-party options available",
+    "Nationwide and cross-border coverage",
+    "24/7 roadside assistance and towing",
+    "Driver training discounts available",
+    "No claim bonus for claim-free years",
+    "Fast claim processing with nationwide network",
+  ],
+  processSteps: [
+    { step: "01", title: "Fleet Assessment", description: "Provide vehicle details, usage, routes, and driver information for quote." },
+    { step: "02", title: "Quote & Review", description: "Receive customized insurance quote with coverage options and pricing." },
+    { step: "03", title: "Policy Issuance", description: "Documents are prepared, premium is paid, and coverage is effective immediately." },
+    { step: "04", title: "Ongoing Support", description: "Claims are handled through our nationwide network with 24/7 support available." },
+  ],
+  relatedServices: [
+    { icon: Users, label: "WIBA & Employees Liability" },
+    { icon: Heart, label: "Life Insurance" },
+    { icon: FileCheck, label: "Freight Forwarder Liability" },
+  ],
+  relatedDescription: "Combine vehicle coverage with liability and employee protection for comprehensive business insurance.",
+  ctaLabel: "Get Vehicle Quote",
+};
+
+export const freightForwarderLiabilityContent: ServicePageContent = {
+  badge: "Freight Forwarder Liability",
+  icon: Package,
+  heroImage: sliderWarehouse,
+  heroImageAlt: "Freight forwarder liability coverage",
+  title: "Freight Forwarder Liability Insurance",
+  heroDescription:
+    "Professional liability coverage for freight forwarders and logistics providers. Protection against claims arising from cargo loss, damage, and service failures.",
+  overviewTitle: "Protect Your Freight Forwarding Business",
+  overviewDescription:
+    "Freight forwarder liability insurance provides professional indemnity coverage for logistics companies, freight forwarders, and cargo handlers. This policy protects your business against claims for loss of cargo, delay in delivery, incorrect documentation, and other professional service failures. Coverage is essential for any logistics operation handling client shipments and cargo.",
+  featuresTitle: "Forwarder Liability Coverage Features",
+  featuresSubtitle: "Professional indemnity protection for logistics operators.",
+  features: [
+    { icon: Shield, title: "Professional Indemnity", description: "Coverage for liability claims arising from professional service failures." },
+    { icon: Scale, title: "Cargo Loss Coverage", description: "Protection against claims for cargo loss, damage, or mishandling." },
+    { icon: FileCheck, title: "Documentation Errors", description: "Coverage for financial loss resulting from incorrect documentation or procedures." },
+    { icon: Clock, title: "Defense Costs", description: "Legal costs and court expenses covered separately from policy limits." },
+  ],
+  cargoTypes: [
+    "General cargo handling",
+    "Container and breakbulk operations",
+    "Customs clearance services",
+    "Warehouse and storage operations",
+    "Road and sea freight services",
+    "Documentation and administrative services",
+  ],
+  highlightsTitle: "Forwarder Liability Highlights",
+  highlights: [
+    "Coverage limits from KES 5M to 50M+",
+    "Annual policies with automatic renewal",
+    "Coverage worldwide for international operations",
+    "Defense costs covered outside policy limit",
+    "Professional indemnity and cargo liability included",
+    "Dedicated freight forwarder specialist support",
+  ],
+  processSteps: [
+    { step: "01", title: "Business Review", description: "Provide details on your freight forwarding operations, cargo types, and annual turnover." },
+    { step: "02", title: "Risk Assessment", description: "Our underwriters assess your operations and recommend appropriate coverage limits." },
+    { step: "03", title: "Policy Issuance", description: "Custom policy is prepared with your specific coverage requirements." },
+    { step: "04", title: "Claims Service", description: "Professional claims handling through experienced freight industry specialists." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Marine Cargo Insurance" },
+    { icon: Plane, label: "Air Cargo Insurance" },
+    { icon: Truck, label: "Motor Vehicle Insurance" },
+  ],
+  relatedDescription: "Combine professional liability with cargo coverage for comprehensive freight forwarding protection.",
+  ctaLabel: "Get Liability Quote",
+};
+
+export const wibaEmployeesCoverageContent: ServicePageContent = {
+  badge: "WIBA & Employees Liability",
+  icon: Users,
+  heroImage: sliderWarehouse,
+  heroImageAlt: "Employee liability and WIBA coverage",
+  title: "WIBA & Employee Liability Insurance",
+  heroDescription:
+    "Comprehensive employee liability and Work Injury Benefit Act coverage. Protecting your business and staff from workplace injury and accident claims.",
+  overviewTitle: "Protect Your Team & Business",
+  overviewDescription:
+    "WIBA and employee liability insurance provides comprehensive coverage for workplace injuries and accidents involving your staff. This protection is mandatory under Kenya's Work Injury Benefit Act (WIBA) and covers medical costs, disability benefits, and compensation claims. Our policies ensure your business remains protected against significant financial exposure from employee-related incidents.",
+  featuresTitle: "WIBA & Employee Coverage Features",
+  featuresSubtitle: "Compliance and protection for your workforce.",
+  features: [
+    { icon: Shield, title: "WIBA Compliance", description: "Full compliance with Work Injury Benefit Act requirements for Kenyan employers." },
+    { icon: Heart, title: "Medical Coverage", description: "Coverage for medical treatment and rehabilitation costs for work-related injuries." },
+    { icon: Scale, title: "Disability Benefits", description: "Compensation for temporary and permanent disabilities resulting from workplace accidents." },
+    { icon: Clock, title: "Death Benefits", description: "Lump sum and dependent allowance payments in case of employee death from workplace injury." },
+  ],
+  cargoTypes: [
+    "Warehouse and storage facility staff",
+    "Truck drivers and transport operators",
+    "Loading and unloading workers",
+    "Customs clearance specialists",
+    "Office and administrative staff",
+    "Cross-border transport workers",
+  ],
+  highlightsTitle: "WIBA & Employee Coverage Highlights",
+  highlights: [
+    "Mandatory WIBA coverage for all employees",
+    "Coverage for workplace accidents and occupational diseases",
+    "Medical and hospitalization expenses included",
+    "Disability and death benefits protection",
+    "Employer's liability coverage included",
+    "Compliance with Kenyan labor regulations",
+  ],
+  processSteps: [
+    { step: "01", title: "Employee Register", description: "Provide your employee register with number of staff and job classifications." },
+    { step: "02", title: "Coverage Assessment", description: "We calculate coverage based on payroll and risk classification of your business." },
+    { step: "03", title: "Policy Issuance", description: "WIBA certificate and employer liability policy are issued with immediate cover." },
+    { step: "04", title: "Claims Support", description: "Accident claims are processed with fast approval and benefit payment." },
+  ],
+  relatedServices: [
+    { icon: Truck, label: "Motor Vehicle Insurance" },
+    { icon: Heart, label: "Life Insurance" },
+    { icon: Package, label: "Freight Forwarder Liability" },
+  ],
+  relatedDescription: "Combine WIBA coverage with vehicle and life insurance for complete employee and business protection.",
+  ctaLabel: "Get WIBA Quote",
+};
+
+export const lifeInsuranceContent: ServicePageContent = {
+  badge: "Life Insurance",
+  icon: Heart,
+  heroImage: sliderWarehouse,
+  heroImageAlt: "Life insurance protection",
+  title: "Life Insurance Coverage",
+  heroDescription:
+    "Personal and group life insurance for you and your family. Financial security and peace of mind with flexible, affordable coverage options.",
+  overviewTitle: "Protect Your Family's Future",
+  overviewDescription:
+    "Life insurance provides financial protection for your family and dependents in the event of your death. Our flexible life insurance policies offer competitive premiums with various coverage levels and benefit options. Whether you need individual or group life coverage, we provide policies that fit your financial situation and family needs.",
+  featuresTitle: "Life Insurance Coverage Features",
+  featuresSubtitle: "Flexible protection for personal and financial security.",
+  features: [
+    { icon: Heart, title: "Death Benefit", description: "Lump sum payment to beneficiaries upon your death for financial security." },
+    { icon: Clock, title: "Flexible Terms", description: "Term life and whole life policies with flexible coverage periods and amounts." },
+    { icon: Scale, title: "Premium Options", description: "Affordable monthly premiums with optional payment flexibility." },
+    { icon: Shield, title: "Family Protection", description: "Coverage options for spouses and dependents as part of your policy." },
+  ],
+  cargoTypes: [
+    "Individual term life insurance",
+    "Whole life insurance policies",
+    "Group life insurance for employees",
+    "Mortgage protection insurance",
+    "Income protection insurance",
+    "Child education endowment plans",
+  ],
+  highlightsTitle: "Life Insurance Highlights",
+  highlights: [
+    "Coverage from KES 100,000 to 10M+",
+    "Term life policies with guaranteed rates",
+    "No medical exam options for smaller amounts",
+    "Flexible premium payment options",
+    "Quick claim processing for beneficiaries",
+    "Optional additional rider benefits",
+  ],
+  processSteps: [
+    { step: "01", title: "Needs Assessment", description: "Determine the coverage amount needed based on your financial obligations." },
+    { step: "02", title: "Quote & Application", description: "Receive personalized quote and complete simple application form." },
+    { step: "03", title: "Underwriting", description: "Quick underwriting process with minimal medical requirements for standard amounts." },
+    { step: "04", title: "Policy Issue", description: "Policy is issued and coverage is effective with premium payments beginning." },
+  ],
+  relatedServices: [
+    { icon: Users, label: "WIBA & Employees Liability" },
+    { icon: Truck, label: "Motor Vehicle Insurance" },
+    { icon: Building2, label: "Warehouse Insurance" },
+  ],
+  relatedDescription: "Combine life insurance with other personal and business coverage for comprehensive financial protection.",
+  ctaLabel: "Get Life Insurance Quote",
+};
+
+export const warehouseInsuranceContent: ServicePageContent = {
+  badge: "Warehouse Insurance",
+  icon: Building2,
+  heroImage: sliderWarehouse,
+  heroImageAlt: "Warehouse and storage facility coverage",
+  title: "Warehouse Insurance Coverage",
+  heroDescription:
+    "Complete insurance protection for warehouse facilities and stored inventory. Coverage against fire, theft, and property damage for storage operations.",
+  overviewTitle: "Protect Your Warehouse Operations",
+  overviewDescription:
+    "Warehouse insurance provides comprehensive coverage for your storage facilities and the inventory held within. This includes protection against fire, theft, natural disasters, and other perils. Whether you operate your own warehouse or use third-party storage, our policies protect your property and goods, ensuring business continuity in case of loss or damage.",
+  featuresTitle: "Warehouse Coverage Features",
+  featuresSubtitle: "Complete protection for storage facilities and inventory.",
+  features: [
+    { icon: Building2, title: "Property Coverage", description: "Building structure, equipment, and fixtures protection against fire and theft." },
+    { icon: Boxes, title: "Inventory Coverage", description: "Stored goods and inventory protected against all-risks including fire and water damage." },
+    { icon: Shield, title: "Business Interruption", description: "Coverage for lost income if your warehouse is damaged and operations interrupted." },
+    { icon: Clock, title: "Rapid Restoration", description: "Quick claims processing and support to get your warehouse back in operation." },
+  ],
+  cargoTypes: [
+    "General merchandise inventory",
+    "Perishable goods storage",
+    "Hazardous material storage",
+    "High-value electronics and goods",
+    "Agricultural products",
+    "Industrial raw materials",
+  ],
+  highlightsTitle: "Warehouse Insurance Highlights",
+  highlights: [
+    "Coverage for bonded and non-bonded warehouses",
+    "Fire, theft, and natural disaster protection",
+    "Business interruption coverage included",
+    "Annual or multi-year policy options",
+    "Inventory valuation support",
+    "24-hour emergency hotline",
+  ],
+  processSteps: [
+    { step: "01", title: "Facility Assessment", description: "Provide warehouse location, size, construction, security features, and inventory value." },
+    { step: "02", title: "Risk Evaluation", description: "Our underwriters assess facility conditions and recommend appropriate coverage." },
+    { step: "03", title: "Policy Customization", description: "Policy is customized with your specific property and inventory protection needs." },
+    { step: "04", title: "Claims Handling", description: "Fast claims assessment and settlement for property damage or inventory loss." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Marine Cargo Insurance" },
+    { icon: Truck, label: "Inland Transit Insurance" },
+    { icon: FileCheck, label: "Freight Forwarder Liability" },
+  ],
+  relatedDescription: "Combine warehouse coverage with cargo and liability insurance for complete property and inventory protection.",
+  ctaLabel: "Get Warehouse Quote",
 };

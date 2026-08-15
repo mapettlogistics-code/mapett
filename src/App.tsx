@@ -22,6 +22,15 @@ import RoadRailTransport from "./pages/RoadRailTransport";
 import RefrigeratedCargo from "./pages/RefrigeratedCargo";
 import SpecialCargo from "./pages/SpecialCargo";
 import Warehousing from "./pages/Warehousing";
+import Insurance from "./pages/Insurance";
+import MarineCargoInsurance from "./pages/MarineCargoInsurance";
+import AirCargoInsurance from "./pages/AirCargoInsurance";
+import InlandTransitInsurance from "./pages/InlandTransitInsurance";
+import MotorVehicleInsurance from "./pages/MotorVehicleInsurance";
+import FreightForwarderLiability from "./pages/FreightForwarderLiability";
+import WIBAEmployeesCoverage from "./pages/WIBAEmployeesCoverage";
+import LifeInsurance from "./pages/LifeInsurance";
+import WarehouseInsurance from "./pages/WarehouseInsurance";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -66,6 +75,15 @@ const App = () => (
                 <Route path="/refrigerated-cargo" element={<RefrigeratedCargo />} />
                 <Route path="/special-cargo" element={<SpecialCargo />} />
                 <Route path="/warehousing" element={<Warehousing />} />
+                <Route path="/insurance" element={<Insurance />} />
+                <Route path="/marine-cargo-insurance" element={<MarineCargoInsurance />} />
+                <Route path="/air-cargo-insurance" element={<AirCargoInsurance />} />
+                <Route path="/inland-transit-insurance" element={<InlandTransitInsurance />} />
+                <Route path="/motor-vehicle-insurance" element={<MotorVehicleInsurance />} />
+                <Route path="/freight-forwarder-liability" element={<FreightForwarderLiability />} />
+                <Route path="/wiba-employees-coverage" element={<WIBAEmployeesCoverage />} />
+                <Route path="/life-insurance" element={<LifeInsurance />} />
+                <Route path="/warehouse-insurance" element={<WarehouseInsurance />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}
