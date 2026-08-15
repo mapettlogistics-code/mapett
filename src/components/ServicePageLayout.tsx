@@ -46,6 +46,11 @@ interface ServicePageLayoutProps {
 
 const ServicePageLayout = ({ content }: ServicePageLayoutProps) => {
   const Icon = content.icon;
+  const isInsurancePage =
+    content.badge.toLowerCase().includes("insurance") ||
+    content.title.toLowerCase().includes("insurance");
+  const allLinkLabel = isInsurancePage ? "All Insurance Policies" : "All Products & Services";
+  const allLinkTo = isInsurancePage ? "/insurance" : "/products-services";
 
   return (
     <div className="min-h-screen bg-background">
@@ -87,7 +92,7 @@ const ServicePageLayout = ({ content }: ServicePageLayoutProps) => {
                   variant="outline"
                   className="border-background/60 bg-transparent text-background hover:bg-background/15 hover:text-background hover:border-background"
                 >
-                  <Link to="/products-services">All Products & Services</Link>
+                  <Link to={allLinkTo}>{allLinkLabel}</Link>
                 </Button>
               </div>
             </motion.div>

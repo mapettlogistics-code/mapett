@@ -90,7 +90,7 @@ const Insurance = () => {
               Insurance Services
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Comprehensive Insurance Solutions
+              Comprehensive Insurance Policies
             </h2>
             <p className="text-muted-foreground text-lg">
               Protect your cargo, assets, and business with our wide range of insurance products tailored for the logistics industry.
@@ -144,7 +144,7 @@ const Insurance = () => {
                       className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
                     >
                       <Link to={getServicePageLink(item.title)}>
-                        Apply Now
+                        View Policy
                         <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
                       </Link>
                     </Button>
