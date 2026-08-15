@@ -36,6 +36,7 @@ const Navbar = () => {
     "Refrigerated Cargo Clearance & Transport",
     "Special Cargo Clearance & Transport",
     "Warehousing",
+    "Insurance",
   ];
 
   const productServiceLinks = [
@@ -247,10 +248,10 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown('insurance')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className={navDropdownClass}>
+                <Link to="/insurance" className={navDropdownClass}>
                   <span>Insurance</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
-                </button>
+                </Link>
                 <AnimatePresence>
                   {activeDropdown === 'insurance' && (
                     <motion.div
@@ -260,9 +261,14 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {insurance.map((item) => (
-                        <button key={item} onClick={() => { scrollToSection("#insurance"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                        <Link 
+                          key={item} 
+                          to={getServicePageLink(item)}
+                          onClick={() => setActiveDropdown(null)} 
+                          className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                        >
                           {item}
-                        </button>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -365,7 +371,7 @@ const Navbar = () => {
                 <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#insurance"); setIsOpen(false); }}>Insurance</button>
+                <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
