@@ -49,7 +49,7 @@ const Signup = () => {
         <div className="bg-card rounded-2xl shadow-card p-8 border border-border">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-foreground mb-2">Create Account</h1>
-            <p className="text-muted-foreground">Join Mapett Logistics today</p>
+            <p className="text-muted-foreground">Join Mapett Travel & Logistics today</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

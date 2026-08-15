@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const WhatsAppButton = () => {
   const [hovered, setHovered] = useState(false);
   const phoneNumber = "254799390133";
-  const message = "Hello! I'm interested in Mapett Logistics services.";
+  const message = "Hello! I'm interested in Mapett Travel & Logistics services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (

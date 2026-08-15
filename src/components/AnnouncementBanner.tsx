@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const defaultAnnouncements = [
   "🚚 Free shipping on orders above KES 10,000 — Shop now at Autostore & Lubricants!",
-  "📦 Track your shipments in real-time with Mapett Logistics",
+  "📦 Track your shipments in real-time with Mapett Travel & Logistics",
   "🛡️ Get comprehensive cargo insurance — Request a quote today!",
   "🔧 New arrivals: Automotive Lubricants & Vehicle Accessories now available",
 ];

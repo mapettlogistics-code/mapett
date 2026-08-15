@@ -36,7 +36,6 @@ const Navbar = () => {
     "Refrigerated Cargo Clearance & Transport",
     "Special Cargo Clearance & Transport",
     "Warehousing",
-    "Insurance",
   ];
 
   const productServiceLinks = [
@@ -152,7 +151,7 @@ const Navbar = () => {
             <div className="flex items-center gap-8 lg:gap-10 min-w-0">
               {/* Logo */}
               <Link to="/" className="flex items-center h-20 md:h-24 shrink-0">
-                <img src={mapettLogo} alt="Mapett Logistics" className="h-14 md:h-20 w-auto object-contain" />
+                <img src={mapettLogo} alt="Mapett Travel & Logistics" className="h-14 md:h-20 w-auto object-contain" />
               </Link>
 
               {/* Desktop Menu */}

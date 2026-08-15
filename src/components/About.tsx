@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import { CheckCircle, Award, Users, Clock, MapPin } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -34,9 +35,9 @@ const About = () => {
   const { items: valueItems } = useSiteContent("about_value", defaultValues as any);
 
   const about = aboutItems[0];
-  const badge = about?.subtitle || "About Mapett Logistics";
+  const badge = about?.subtitle || "About Mapett Travel & Logistics";
   const heading = about?.title || "Your Trusted Partner in Kenya's Logistics";
-  const mainDesc = about?.description || "Since 2015, Mapett Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
+  const mainDesc = about?.description || "Since 2015, Mapett Travel & Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
   const secondaryDesc = (about?.extra_data as any)?.secondary_description || "We combine traditional logistics excellence with modern e-commerce through our integrated Autostore & Lubricants, offering automotive lubricants, batteries, and accessories alongside our freight and warehousing services.";
   const bulletsRaw = (about?.extra_data as any)?.bullets || "End-to-end supply chain solutions\nReal-time shipment tracking\nCompetitive pricing\n24/7 customer support";
   const bullets = bulletsRaw.split("\n").filter(Boolean);

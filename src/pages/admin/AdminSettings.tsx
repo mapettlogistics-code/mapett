@@ -10,12 +10,12 @@ import AdminLayout from "@/components/admin/AdminLayout";
 const AdminSettings = () => {
   const [saving, setSaving] = useState(false);
   const [settings, setSettings] = useState({
-    companyName: "Mapett Logistics",
+    companyName: "Mapett Travel & Logistics",
     email: "sales@mapettlogistics.com",
     phone: "+254 700 000 000",
     whatsapp: "+254 700 000 000",
     address: "Nairobi, Kenya",
-    about: "Mapett Logistics is your trusted partner in logistics, freight, and insurance services across East Africa and beyond.",
+    about: "Mapett Travel & Logistics is your trusted partner in logistics, freight, and insurance services across East Africa and beyond.",
   });
 
   const handleSave = async () => {
