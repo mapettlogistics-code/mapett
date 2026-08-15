@@ -59,9 +59,12 @@ const Navbar = () => {
   ];
 
   const ecommerce = [
-    "Social Media Pages Setup",
-    "Social Media Cross-posting Setup",
-    "Online Shop Setup",
+    "Air Travel & Flight Booking",
+    "Visa Processing",
+    "Hotel Booking",
+    "Travel Insurance",
+    "Travel Essentials",
+    "Tours & Safari Packages",
   ];
 
   const insurance = [
@@ -121,22 +124,22 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <PaymentIcons />
             <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
-              <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
+              <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="https://www.instagram.com/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E4405F" }}>
+              <a href="https://www.instagram.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E4405F" }}>
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://www.youtube.com/@MapettLogisticsLtd" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#FF0000" }}>
+              <a href="https://www.youtube.com/@MapetttravelandLogistics" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#FF0000" }}>
                 <Youtube className="h-4 w-4" />
               </a>
-              <a href="https://www.linkedin.com/company/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#0A66C2" }}>
+              <a href="https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#0A66C2" }}>
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://www.tiktok.com/@mapettlogisticsltd" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#000000" }}>
+              <a href="https://www.tiktok.com/@mapetttravelandlogistics" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#000000" }}>
                 <TikTokSvg />
               </a>
-              <a href="https://www.pinterest.com/MapetteLogisticsLtd/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E60023" }}>
+              <a href="https://www.pinterest.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E60023" }}>
                 <PinterestSvg />
               </a>
             </div>
@@ -160,7 +163,7 @@ const Navbar = () => {
                 About Us
               </Link>
               
-              {/* Products & Services Dropdown */}
+              {/* Products & Services dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('services')}
@@ -274,14 +277,14 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* E-Commerce Solutions Dropdown */}
+              {/* Mapett Travel dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('ecommerce')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button className={navDropdownClass}>
-                  <span>E-Commerce Solutions</span>
+                  <span>Mapett Travel</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </button>
                 <AnimatePresence>
@@ -371,7 +374,7 @@ const Navbar = () => {
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance</Link>
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>E-Commerce Solutions</button>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Mapett Travel</button>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
@@ -382,22 +385,22 @@ const Navbar = () => {
                 {/* Social Links */}
                 <div className="flex items-center gap-3 py-2">
                   <span className="text-sm text-muted-foreground">Follow us:</span>
-                  <a href="https://web.facebook.com/profile.php?id=61584459897045" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Facebook className="h-4 w-4" />
                   </a>
-                  <a href="https://www.instagram.com/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.instagram.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href="https://www.youtube.com/@MapettLogisticsLtd" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.youtube.com/@MapetttravelandLogistics" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Youtube className="h-4 w-4" />
                   </a>
-                  <a href="https://www.linkedin.com/company/mapettlogisticsltd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Linkedin className="h-4 w-4" />
                   </a>
-                  <a href="https://www.tiktok.com/@mapettlogisticsltd" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.tiktok.com/@mapetttravelandlogistics" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <TikTokSvg />
                   </a>
-                  <a href="https://www.pinterest.com/MapetteLogisticsLtd/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.pinterest.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <PinterestSvg />
                   </a>
                 </div>

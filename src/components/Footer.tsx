@@ -16,12 +16,12 @@ const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>)
 };
 
 const defaultSocials = [
-  { title: "Facebook", link: "https://web.facebook.com/profile.php?id=61584459897045", subtitle: "#1877F2" },
-  { title: "Instagram", link: "https://www.instagram.com/mapettlogisticsltd/", subtitle: "#E4405F" },
-  { title: "YouTube", link: "https://www.youtube.com/@MapettLogisticsLtd", subtitle: "#FF0000" },
-  { title: "TikTok", link: "https://www.tiktok.com/@mapettlogisticsltd", subtitle: "#000000" },
-  { title: "LinkedIn", link: "https://www.linkedin.com/company/mapettlogisticsltd/", subtitle: "#0A66C2" },
-  { title: "Pinterest", link: "https://www.pinterest.com/MapetteLogisticsLtd/", subtitle: "#E60023" },
+  { title: "Facebook", link: "https://www.facebook.com/mapetttravelandlogistics/", subtitle: "#1877F2" },
+  { title: "Instagram", link: "https://www.instagram.com/mapetttravelandlogistics/", subtitle: "#E4405F" },
+  { title: "YouTube", link: "https://www.youtube.com/@MapetttravelandLogistics", subtitle: "#FF0000" },
+  { title: "TikTok", link: "https://www.tiktok.com/@mapetttravelandlogistics", subtitle: "#000000" },
+  { title: "LinkedIn", link: "https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/", subtitle: "#0A66C2" },
+  { title: "Pinterest", link: "https://www.pinterest.com/mapetttravelandlogistics/", subtitle: "#E60023" },
 ];
 
 const defaultContactInfo = [

@@ -29,7 +29,7 @@ const sections = [
   { key: "announcement", label: "Announcements", description: "Sliding banner messages at the top of the page" },
   { key: "hero_slide", label: "Hero Slides", description: "Main hero banner slides with images and CTAs" },
   { key: "promo_banner", label: "Promo Banners", description: "Promotional offers, discounts, and ads displayed below the hero" },
-  { key: "service", label: "Services", description: "Products & services section content" },
+  { key: "service", label: "Services", description: "Products & Services section content" },
   { key: "insurance", label: "Insurance", description: "Insurance policies section content" },
   { key: "about_main", label: "About Section", description: "Main about section heading, description, and bullet points" },
   { key: "about_milestone", label: "Milestones", description: "Company timeline milestones (year, title, description)" },

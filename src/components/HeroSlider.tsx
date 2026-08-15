@@ -92,7 +92,7 @@ const slides = [
   },
   {
     icon: ShoppingCart,
-    title: "eCOMMERCE SOLUTIONS",
+    title: "MAPETT TRAVEL",
     subtitle: "Digital shipping",
     description: "Quick, convenient tools to save time and streamline your logistics",
     gradient: "from-primary/80 to-pink-600/70",

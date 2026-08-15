@@ -151,7 +151,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Group Life Insurance</option>
               <option>WIBA & Employees Liability</option>
             </optgroup>
-            <optgroup label="E-Commerce Solutions">
+            <optgroup label="Mapett Travel">
               <option>Social Media Pages Setup</option>
               <option>Social Media Cross-posting</option>
               <option>Online Shop Setup</option>

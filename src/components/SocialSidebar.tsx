@@ -15,12 +15,12 @@ const SocialSidebar = () => {
   }, []);
 
   const socials = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584459897045", label: "Facebook", isSvg: false, brandColor: "#1877F2" },
-    { icon: Instagram, href: "https://www.instagram.com/mapettlogisticsltd/", label: "Instagram", isSvg: false, brandColor: "#E4405F" },
-    { icon: Youtube, href: "https://www.youtube.com/@MapettLogisticsLtd", label: "YouTube", isSvg: false, brandColor: "#FF0000" },
-    { icon: null, href: "https://www.tiktok.com/@mapettlogisticsltd", label: "TikTok", isSvg: "tiktok", brandColor: "#000000" },
-    { icon: null, href: "https://www.pinterest.com/MapetteLogisticsLtd/", label: "Pinterest", isSvg: "pinterest", brandColor: "#E60023" },
-    { icon: null, href: "https://www.linkedin.com/company/mapettlogisticsltd/", label: "LinkedIn", isSvg: "linkedin", brandColor: "#0A66C2" },
+    { icon: Facebook, href: "https://www.facebook.com/mapetttravelandlogistics/", label: "Facebook", isSvg: false, brandColor: "#1877F2" },
+    { icon: Instagram, href: "https://www.instagram.com/mapetttravelandlogistics/", label: "Instagram", isSvg: false, brandColor: "#E4405F" },
+    { icon: Youtube, href: "https://www.youtube.com/@MapetttravelandLogistics", label: "YouTube", isSvg: false, brandColor: "#FF0000" },
+    { icon: null, href: "https://www.tiktok.com/@mapetttravelandlogistics", label: "TikTok", isSvg: "tiktok", brandColor: "#000000" },
+    { icon: null, href: "https://www.pinterest.com/mapetttravelandlogistics/", label: "Pinterest", isSvg: "pinterest", brandColor: "#E60023" },
+    { icon: null, href: "https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/", label: "LinkedIn", isSvg: "linkedin", brandColor: "#0A66C2" },
   ];
 
   return (
