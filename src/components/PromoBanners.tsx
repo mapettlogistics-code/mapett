@@ -27,7 +27,7 @@ const defaultBanners: Banner[] = [
     subtitle: "Premium lubricants at wholesale prices",
     description: "Free delivery on orders above KES 5,001 across Kenya.",
     image_url: null,
-    link: "https://mapettauto.com/collections/automotive-lubricants",
+    link: "https://mapett.com/collections/automotive-lubricants",
   },
   {
     id: "3",

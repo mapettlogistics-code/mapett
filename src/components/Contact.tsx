@@ -159,7 +159,6 @@ const Contact = () => {
                       <option>Automotive Lubricants</option>
                       <option>Vehicle Tires</option>
                       <option>Vehicle Batteries</option>
-                      <option>Safety Boots</option>
                       <option>Industrial Lubricants</option>
                       <option>Vehicle Accessories</option>
                     </optgroup>

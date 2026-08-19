@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, HardHat, Wheat, Utensils } from "lucide-react";
+import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Wheat, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
 import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
@@ -8,7 +8,6 @@ import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
 import categoryLubricants from "@/assets/category-lubricants.jpg";
 import categoryTires from "@/assets/category-tires.jpg";
 import categoryBatteries from "@/assets/category-batteries.jpg";
-import categoryBoots from "@/assets/category-boots.jpg";
 import categoryIndustrial from "@/assets/category-industrial.jpg";
 import categoryAccessories from "@/assets/category-accessories.jpg";
 
@@ -60,15 +59,6 @@ const Autoshop = () => {
       image: categoryAccessories,
     },
     {
-      icon: HardHat,
-      title: "Safety Shoes",
-      description: "Industrial safety footwear for workplace protection",
-      productCount: 24,
-      color: "from-amber-600 to-amber-800",
-      categoryKey: "safety-shoes",
-      image: categoryBoots,
-    },
-    {
       icon: CircleDot,
       title: "Vehicle Tires",
       description: "Quality tires for all vehicle types - cars, trucks, and motorbikes",
@@ -92,7 +82,6 @@ const Autoshop = () => {
     { category: "lubricants", title: "Automotive Lubricants", color: "from-primary to-pink-600" },
     { category: "tires", title: "Vehicle Tires", color: "from-gray-600 to-gray-800" },
     { category: "batteries", title: "Vehicle Batteries", color: "from-yellow-500 to-orange-600" },
-    { category: "safety-shoes", title: "Safety Shoes", color: "from-amber-600 to-amber-800" },
     { category: "accessories", title: "Vehicle Accessories", color: "from-pink-400 to-primary" },
   ];
 

@@ -31,6 +31,9 @@ import FreightForwarderLiability from "./pages/FreightForwarderLiability";
 import WIBAEmployeesCoverage from "./pages/WIBAEmployeesCoverage";
 import LifeInsurance from "./pages/LifeInsurance";
 import WarehouseInsurance from "./pages/WarehouseInsurance";
+import AirportTransfers from "./pages/AirportTransfers";
+import TravelServicePage from "./pages/TravelServicePage";
+import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -84,6 +87,14 @@ const App = () => (
                 <Route path="/wiba-employees-coverage" element={<WIBAEmployeesCoverage />} />
                 <Route path="/life-insurance" element={<LifeInsurance />} />
                 <Route path="/warehouse-insurance" element={<WarehouseInsurance />} />
+                <Route path="/airport-transfers" element={<AirportTransfers />} />
+                <Route path="/flight-booking" element={<TravelServicePage service="flight-booking" />} />
+                <Route path="/visa-processing" element={<TravelServicePage service="visa-processing" />} />
+                <Route path="/hotel-booking" element={<TravelServicePage service="hotel-booking" />} />
+                <Route path="/travel-insurance" element={<TravelServicePage service="travel-insurance" />} />
+                <Route path="/travel-essentials" element={<TravelServicePage service="travel-essentials" />} />
+                <Route path="/tours-safaris" element={<TravelServicePage service="tours-safaris" />} />
+                <Route path="/team" element={<Team />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}

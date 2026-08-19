@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, ShoppingCart, User, LogOut, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
-import { useCart } from "@/contexts/CartContext";
 import PaymentIcons from "@/components/PaymentIcons";
 import mapettLogo from "@/assets/mapett-logo.png";
 import { getServicePageLink } from "@/data/serviceRoutes";
-import { AUTOSTORE_HOME, AUTOSTORE_CART, autostoreMenuItems } from "@/data/autostoreLinks";
+import { AUTOSTORE_HOME, autostoreMenuItems } from "@/data/autostoreLinks";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { user, signOut } = useAuth();
-  const { totalItems } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,7 +44,7 @@ const Navbar = () => {
     })),
     {
       label: "Shop Seals & Tags",
-      href: "https://mapettauto.com/collections/seals-tags",
+      href: "https://mapett.com/collections/seals-tags",
       external: true as const,
       shopHighlight: true as const,
     },
@@ -59,12 +57,13 @@ const Navbar = () => {
   ];
 
   const ecommerce = [
-    "Air Travel & Flight Booking",
-    "Visa Processing",
-    "Hotel Booking",
-    "Travel Insurance",
-    "Travel Essentials",
-    "Tours & Safari Packages",
+    { label: "Air Travel & Flight Booking", href: "/flight-booking" },
+    { label: "Visa Processing", href: "/visa-processing" },
+    { label: "Airport Transfers", href: "/airport-transfers" },
+    { label: "Hotel Booking", href: "/hotel-booking" },
+    { label: "Travel Insurance", href: "/travel-insurance" },
+    { label: "Travel Essentials", href: "/travel-essentials" },
+    { label: "Tours & Safari Packages", href: "/tours-safaris" },
   ];
 
   const insurance = [
@@ -240,7 +239,7 @@ const Navbar = () => {
               </div>
 
               {/* Seals & Tags */}
-              <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
+              <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
                 Seals & Tags
               </a>
 
@@ -296,9 +295,9 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
                       {ecommerce.map((item) => (
-                        <button key={item} onClick={() => { scrollToSection("#contact"); setActiveDropdown(null); }} className="block w-full text-left px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item}
-                        </button>
+                        <Link key={item.label} to={item.href} onClick={() => setActiveDropdown(null)} className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                          {item.label}
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -316,18 +315,6 @@ const Navbar = () => {
                 </Button>
               </Link>
               
-               {/* Cart */}
-              <a href={AUTOSTORE_CART} target="_blank" rel="noopener noreferrer" className="relative">
-                <Button variant="ghost" size="icon">
-                  <ShoppingCart className="h-5 w-5" />
-                  {totalItems > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Button>
-              </a>
-
               {/* Contact Us */}
               <ContactDialog
                 trigger={
@@ -341,14 +328,6 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
-              <a href={AUTOSTORE_CART} target="_blank" rel="noopener noreferrer" className="relative p-2">
-                <ShoppingCart className="h-5 w-5" />
-                {totalItems > 0 && (
-                  <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
-                    {totalItems}
-                  </span>
-                )}
-              </a>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 hover:bg-secondary rounded-lg transition-colors"
@@ -372,9 +351,10 @@ const Navbar = () => {
                 <Link to="/about" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>About Us</Link>
                 <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
-                <a href="https://mapettauto.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
+                <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Mapett Travel</button>
+                {ecommerce.map((item) => <Link key={item.label} to={item.href} className={`${mobileNavLinkClass} pl-4`} onClick={() => setIsOpen(false)}>{item.label}</Link>)}
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
                 <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}

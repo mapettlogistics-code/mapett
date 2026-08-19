@@ -189,6 +189,36 @@ html {
   }
 }
 
+@keyframes partners-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-marquee {
+  overflow: hidden;
+}
+
+.partners-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: partners-marquee 28s linear infinite;
+}
+
+.partners-marquee:hover .partners-marquee__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee__track {
+    animation: none;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

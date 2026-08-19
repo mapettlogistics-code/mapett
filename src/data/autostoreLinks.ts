@@ -1,14 +1,13 @@
-export const AUTOSTORE_HOME = "https://mapettauto.com/";
-export const AUTOSTORE_CART = "https://mapettauto.com/cart";
+export const AUTOSTORE_HOME = "https://mapett.com/";
+export const AUTOSTORE_CART = "https://mapett.com/cart";
 
 export const autostoreCollectionLinks: Record<string, string> = {
-  "Automotive Lubricants": "https://mapettauto.com/collections/automotive-lubricants",
-  "Food Grade Lubricants": "https://mapettauto.com/collections/food-grade-lubricants",
-  "Agricultural Lubricants": "https://mapettauto.com/collections/agricultural-lubricants",
-  "Construction Lubricants": "https://mapettauto.com/collections/construction-lubricants",
-  "Industrial Lubricants": "https://mapettauto.com/collections/industrial-construction-lubricants",
-  "Safety Shoes": "https://mapettauto.com/collections/safety-shoes",
-  "Seals & Tags": "https://mapettauto.com/collections/seals-tags",
+  "Automotive Lubricants": "https://mapett.com/collections/automotive-lubricants",
+  "Food Grade Lubricants": "https://mapett.com/collections/food-grade-lubricants",
+  "Agricultural Lubricants": "https://mapett.com/collections/agricultural-lubricants",
+  "Construction Lubricants": "https://mapett.com/collections/construction-lubricants",
+  "Industrial Lubricants": "https://mapett.com/collections/industrial-construction-lubricants",
+  "Seals & Tags": "https://mapett.com/collections/seals-tags",
 };
 
 export const autostoreMenuItems = [
@@ -18,7 +17,6 @@ export const autostoreMenuItems = [
   { name: "Construction Lubricants", href: autostoreCollectionLinks["Construction Lubricants"] },
   { name: "Industrial Lubricants", href: autostoreCollectionLinks["Industrial Lubricants"] },
   { name: "Vehicle Accessories", href: AUTOSTORE_HOME },
-  { name: "Safety Shoes", href: autostoreCollectionLinks["Safety Shoes"] },
   { name: "Seals & Tags", href: autostoreCollectionLinks["Seals & Tags"] },
 ];
 

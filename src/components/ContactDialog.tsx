@@ -152,15 +152,18 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>WIBA & Employees Liability</option>
             </optgroup>
             <optgroup label="Mapett Travel">
-              <option>Social Media Pages Setup</option>
-              <option>Social Media Cross-posting</option>
-              <option>Online Shop Setup</option>
+              <option>Air Travel & Flight Booking</option>
+              <option>Visa Processing</option>
+              <option>Airport Transfers</option>
+              <option>Hotel Booking</option>
+              <option>Travel Insurance</option>
+              <option>Travel Essentials</option>
+              <option>Tours & Safari Packages</option>
             </optgroup>
             <optgroup label="Autostore & Lubricants">
               <option>Automotive Lubricants</option>
               <option>Vehicle Tires</option>
               <option>Vehicle Batteries</option>
-              <option>Safety Boots</option>
               <option>Industrial Lubricants</option>
               <option>Vehicle Accessories</option>
             </optgroup>

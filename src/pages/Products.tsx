@@ -29,7 +29,6 @@ const categories = [
   { value: "lubricants", label: "Automotive Lubricants" },
   { value: "tires", label: "Tires" },
   { value: "batteries", label: "Vehicle Batteries" },
-  { value: "boots", label: "Safety Boots" },
   { value: "accessories", label: "Vehicle Accessories" },
   { value: "industrial", label: "Industrial Lubricants" },
 ];
@@ -74,7 +73,7 @@ const Products = () => {
         console.error("Error fetching products:", error);
         setProducts([]);
       } else {
-        let filtered = data || [];
+        let filtered = (data || []).filter((product) => !/boot|shoe/i.test(`${product.name} ${product.category}`));
 
         // Apply search filter
         if (searchTerm) {

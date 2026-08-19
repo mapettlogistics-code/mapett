@@ -5,6 +5,7 @@ import PaymentIcons from "@/components/PaymentIcons";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { getServicePageLink } from "@/data/serviceRoutes";
 import { autostoreMenuItems } from "@/data/autostoreLinks";
+import PartnersMarquee from "@/components/PartnersMarquee";
 
 const scrollToSection = (hash: string, navigate: ReturnType<typeof useNavigate>) => {
   const el = document.querySelector(hash);
@@ -79,7 +80,7 @@ const Footer = () => {
 
   const company = [
     { name: "About Us", href: "/about", isRoute: true },
-    { name: "Our Team", href: "/about", isRoute: true },
+    { name: "Our Team", href: "/team", isRoute: true },
     { name: "Directions/Location", href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19", external: true },
     { name: "Contact Us", href: "/#contact", isRoute: true },
     { name: "Live Support", href: "/#contact", isRoute: true },
@@ -113,7 +114,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="dark-gradient text-background">
+    <>
+      <PartnersMarquee />
+      <footer className="dark-gradient text-background">
       <div className="container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6">
           {/* Brand */}
@@ -247,7 +250,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 
