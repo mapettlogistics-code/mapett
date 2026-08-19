@@ -65,7 +65,12 @@ const BlogSection = () => {
         .order("published_at", { ascending: false })
         .limit(3);
       if (data && (data as any[]).length > 0) {
-        setPosts(data as any[]);
+        const livePosts = data as BlogPost[];
+        const liveSlugs = new Set(livePosts.map((post) => post.slug));
+        const fallbackPosts = defaultPosts.filter((post) => !liveSlugs.has(post.slug));
+
+        // Keep the homepage grid complete while real posts are still being added.
+        setPosts([...livePosts, ...fallbackPosts].slice(0, 3));
       }
     };
     fetchPosts();
