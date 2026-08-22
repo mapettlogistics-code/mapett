@@ -45,13 +45,6 @@ const insuranceOptions = [
     image: insuranceFreightImg,
   },
   {
-    icon: Car,
-    title: "Motor Vehicle Insurance",
-    description: "Comprehensive and third-party coverage for commercial fleet vehicles.",
-    features: ["Third Party Liability", "Comprehensive Cover", "Passenger Liability"],
-    image: insuranceMotorImg,
-  },
-  {
     icon: Building2,
     title: "Warehouse Insurance",
     description: "Coverage for goods stored in warehouses against various risks.",

@@ -412,7 +412,6 @@ export const insuranceContent: ServicePageContent = {
     "Marine cargo insurance",
     "Air cargo and freight insurance",
     "Inland transit insurance",
-    "Motor vehicle insurance",
     "Freight forwarder liability",
     "WIBA and employee liability",
     "Life insurance",
@@ -423,7 +422,6 @@ export const insuranceContent: ServicePageContent = {
     "Marine cargo coverage for ocean freight shipments",
     "Air cargo insurance for time-sensitive imports and exports",
     "Inland transit protection for road and rail transport",
-    "Motor vehicle insurance for commercial fleets",
     "Freight forwarder liability coverage",
     "WIBA and employee liability policies",
     "Life insurance and personal coverage options",
@@ -591,61 +589,9 @@ export const inlandTransitInsuranceContent: ServicePageContent = {
   relatedServices: [
     { icon: Ship, label: "Marine Cargo Insurance" },
     { icon: Plane, label: "Air Cargo Insurance" },
-    { icon: Truck, label: "Motor Vehicle Insurance" },
   ],
-  relatedDescription: "Combine transit coverage with vehicle and comprehensive insurance for complete transportation protection.",
+  relatedDescription: "Combine transit coverage with cargo insurance for complete transportation protection.",
   ctaLabel: "Get Transit Quote",
-};
-
-export const motorVehicleInsuranceContent: ServicePageContent = {
-  badge: "Motor Vehicle Insurance",
-  icon: Truck,
-  heroImage: sliderRoadTransport,
-  heroImageAlt: "Motor vehicle fleet insurance",
-  title: "Motor Vehicle Insurance Coverage",
-  heroDescription:
-    "Comprehensive and third-party motor vehicle insurance for commercial fleets. Protection for trucks, vans, and vehicles used in logistics operations.",
-  overviewTitle: "Protect Your Commercial Fleet",
-  overviewDescription:
-    "Motor vehicle insurance provides coverage for trucks, commercial vans, and other vehicles used in logistics and transport operations. Our policies offer comprehensive protection covering collision, theft, third-party liability, and other driving-related risks. Whether you operate a small fleet or large logistics operation, we provide competitive rates and flexible policy options tailored to your business needs.",
-  featuresTitle: "Motor Vehicle Coverage Features",
-  featuresSubtitle: "Comprehensive protection for commercial vehicle operations.",
-  features: [
-    { icon: Shield, title: "Comprehensive Coverage", description: "Collision, theft, natural perils, malicious damage, and road accident protection." },
-    { icon: Scale, title: "Third-Party Liability", description: "Legal liability coverage for injury or property damage to third parties." },
-    { icon: Clock, title: "Flexible Policies", description: "Annual, multi-year, and fleet-wide policies with customizable coverage levels." },
-    { icon: AlertTriangle, title: "Emergency Assistance", description: "24/7 roadside assistance, towing, and emergency support included." },
-  ],
-  cargoTypes: [
-    "Heavy-duty trucks and articulated lorries",
-    "Commercial vans and pickups",
-    "Flatbeds and specialized trailers",
-    "Refrigerated commercial vehicles",
-    "Cross-border commercial trucks",
-    "Urban delivery and distribution vehicles",
-  ],
-  highlightsTitle: "Motor Vehicle Insurance Highlights",
-  highlights: [
-    "Comprehensive and third-party options available",
-    "Nationwide and cross-border coverage",
-    "24/7 roadside assistance and towing",
-    "Driver training discounts available",
-    "No claim bonus for claim-free years",
-    "Fast claim processing with nationwide network",
-  ],
-  processSteps: [
-    { step: "01", title: "Fleet Assessment", description: "Provide vehicle details, usage, routes, and driver information for quote." },
-    { step: "02", title: "Quote & Review", description: "Receive customized insurance quote with coverage options and pricing." },
-    { step: "03", title: "Policy Issuance", description: "Documents are prepared, premium is paid, and coverage is effective immediately." },
-    { step: "04", title: "Ongoing Support", description: "Claims are handled through our nationwide network with 24/7 support available." },
-  ],
-  relatedServices: [
-    { icon: Users, label: "WIBA & Employees Liability" },
-    { icon: Heart, label: "Life Insurance" },
-    { icon: FileCheck, label: "Freight Forwarder Liability" },
-  ],
-  relatedDescription: "Combine vehicle coverage with liability and employee protection for comprehensive business insurance.",
-  ctaLabel: "Get Vehicle Quote",
 };
 
 export const freightForwarderLiabilityContent: ServicePageContent = {
@@ -693,7 +639,6 @@ export const freightForwarderLiabilityContent: ServicePageContent = {
   relatedServices: [
     { icon: Ship, label: "Marine Cargo Insurance" },
     { icon: Plane, label: "Air Cargo Insurance" },
-    { icon: Truck, label: "Motor Vehicle Insurance" },
   ],
   relatedDescription: "Combine professional liability with cargo coverage for comprehensive freight forwarding protection.",
   ctaLabel: "Get Liability Quote",
@@ -742,11 +687,10 @@ export const wibaEmployeesCoverageContent: ServicePageContent = {
     { step: "04", title: "Claims Support", description: "Accident claims are processed with fast approval and benefit payment." },
   ],
   relatedServices: [
-    { icon: Truck, label: "Motor Vehicle Insurance" },
     { icon: Heart, label: "Life Insurance" },
     { icon: Package, label: "Freight Forwarder Liability" },
   ],
-  relatedDescription: "Combine WIBA coverage with vehicle and life insurance for complete employee and business protection.",
+  relatedDescription: "Combine WIBA coverage with life insurance for complete employee and business protection.",
   ctaLabel: "Get WIBA Quote",
 };
 
@@ -794,7 +738,6 @@ export const lifeInsuranceContent: ServicePageContent = {
   ],
   relatedServices: [
     { icon: Users, label: "WIBA & Employees Liability" },
-    { icon: Truck, label: "Motor Vehicle Insurance" },
     { icon: Building2, label: "Warehouse Insurance" },
   ],
   relatedDescription: "Combine life insurance with other personal and business coverage for comprehensive financial protection.",

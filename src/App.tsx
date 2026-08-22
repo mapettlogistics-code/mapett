@@ -26,7 +26,6 @@ import Insurance from "./pages/Insurance";
 import MarineCargoInsurance from "./pages/MarineCargoInsurance";
 import AirCargoInsurance from "./pages/AirCargoInsurance";
 import InlandTransitInsurance from "./pages/InlandTransitInsurance";
-import MotorVehicleInsurance from "./pages/MotorVehicleInsurance";
 import FreightForwarderLiability from "./pages/FreightForwarderLiability";
 import WIBAEmployeesCoverage from "./pages/WIBAEmployeesCoverage";
 import LifeInsurance from "./pages/LifeInsurance";
@@ -82,7 +81,6 @@ const App = () => (
                 <Route path="/marine-cargo-insurance" element={<MarineCargoInsurance />} />
                 <Route path="/air-cargo-insurance" element={<AirCargoInsurance />} />
                 <Route path="/inland-transit-insurance" element={<InlandTransitInsurance />} />
-                <Route path="/motor-vehicle-insurance" element={<MotorVehicleInsurance />} />
                 <Route path="/freight-forwarder-liability" element={<FreightForwarderLiability />} />
                 <Route path="/wiba-employees-coverage" element={<WIBAEmployeesCoverage />} />
                 <Route path="/life-insurance" element={<LifeInsurance />} />

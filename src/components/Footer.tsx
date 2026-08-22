@@ -70,7 +70,6 @@ const Footer = () => {
     "Air Cargo Insurance",
     "Inland Transit Insurance",
     "Freight Forwarder Liability",
-    "Motor Vehicle Insurance",
     "WIBA & Employees Liability",
     "Life Insurance",
     "Warehouse Insurance",

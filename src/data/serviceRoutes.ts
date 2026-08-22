@@ -13,7 +13,6 @@ export const servicePageLinks: Record<string, string> = {
   "Marine Cargo Insurance": "/marine-cargo-insurance",
   "Air Cargo Insurance": "/air-cargo-insurance",
   "Inland Transit Insurance": "/inland-transit-insurance",
-  "Motor Vehicle Insurance": "/motor-vehicle-insurance",
   "Freight Forwarder Liability": "/freight-forwarder-liability",
   "WIBA & Employees Liability": "/wiba-employees-coverage",
   "Life Insurance": "/life-insurance",

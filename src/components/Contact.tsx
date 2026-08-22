@@ -140,16 +140,15 @@ const Contact = () => {
                       <option>Warehousing</option>
                       <option>Intermodal Solutions</option>
                     </optgroup>
-                    <optgroup label="Insurance">
-                      <option>Marine Cargo Insurance</option>
-                      <option>Air Cargo Insurance</option>
-                      <option>Inland Transit Insurance</option>
-                      <option>Freight Forwarder Liability</option>
-                      <option>Motor Vehicle Insurance</option>
-                      <option>Warehouse Insurance</option>
-                      <option>Group Life Insurance</option>
-                      <option>WIBA & Employees Liability</option>
-                    </optgroup>
+                     <optgroup label="Insurance">
+                       <option>Marine Cargo Insurance</option>
+                       <option>Air Cargo Insurance</option>
+                       <option>Inland Transit Insurance</option>
+                       <option>Freight Forwarder Liability</option>
+                       <option>Warehouse Insurance</option>
+                       <option>Group Life Insurance</option>
+                       <option>WIBA & Employees Liability</option>
+                     </optgroup>
                     <optgroup label="Mapett Travel">
                       <option>Social Media Pages Setup</option>
                       <option>Social Media Cross-posting</option>

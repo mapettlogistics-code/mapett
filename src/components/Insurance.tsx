@@ -54,14 +54,6 @@ const insuranceTypes = [
     image: insuranceFreightImg,
   },
   {
-    icon: Car,
-    title: "Motor Vehicle Insurance",
-    description: "Comprehensive and third-party coverage for commercial fleet vehicles.",
-    coverage: ["Third Party Liability", "Comprehensive Cover", "Passenger Liability", "Windscreen Cover"],
-    baseRate: 0.04,
-    image: insuranceMotorImg,
-  },
-  {
     icon: Building2,
     title: "Warehouse Insurance",
     description: "Coverage for goods stored in warehouses against various risks.",

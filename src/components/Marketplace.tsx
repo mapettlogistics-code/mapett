@@ -80,9 +80,9 @@ const Autoshop = () => {
 
   const productSliders = [
     { category: "lubricants", title: "Automotive Lubricants", color: "from-primary to-pink-600" },
-    { category: "tires", title: "Vehicle Tires", color: "from-gray-600 to-gray-800" },
-    { category: "batteries", title: "Vehicle Batteries", color: "from-yellow-500 to-orange-600" },
-    { category: "accessories", title: "Vehicle Accessories", color: "from-pink-400 to-primary" },
+    { category: "food-grade-lubricants", title: "Food Grade Lubricants", color: "from-gray-600 to-gray-800" },
+    { category: "agricultural-lubricants", title: "Agricultural Lubriicants", color: "from-yellow-500 to-orange-600" },
+    { category: "industrial-lubricants", title: "Industrical Lubricants", color: "from-pink-400 to-primary" },
   ];
 
   return (

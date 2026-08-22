@@ -19,6 +19,15 @@ import sliderMarketplace from "@/assets/slider-marketplace.jpg";
 
 const slides = [
   {
+    icon: FileCheck,
+    title: "CUSTOMS CLEARANCE",
+    subtitle: "Smooth import & export",
+    description: "Expert customs services at Mombasa Port, JKIA, and all border points",
+    gradient: "from-accent/80 to-primary/80",
+    image: sliderCustoms,
+    link: "#services",
+  },
+  {
     icon: Plane,
     title: "AIR FREIGHT",
     subtitle: "Fast global delivery",
@@ -55,15 +64,6 @@ const slides = [
     link: "#services",
   },
   {
-    icon: FileCheck,
-    title: "CUSTOMS CLEARANCE",
-    subtitle: "Smooth import & export",
-    description: "Expert customs services at Mombasa Port, JKIA, and all border points",
-    gradient: "from-accent/80 to-primary/80",
-    image: sliderCustoms,
-    link: "#services",
-  },
-  {
     icon: Thermometer,
     title: "REFRIGERATED CARGO",
     subtitle: "Cold chain excellence",
@@ -90,14 +90,14 @@ const slides = [
     image: sliderIntermodal,
     link: "#services",
   },
-  {
-    icon: ShoppingCart,
-    title: "MAPETT TRAVEL",
-    subtitle: "Digital shipping",
-    description: "Quick, convenient tools to save time and streamline your logistics",
-    gradient: "from-primary/80 to-pink-600/70",
-    image: sliderEcommerce,
-    link: "#services",
+   {
+    icon: Store,
+    title: "AUTOSTORE & LUBRICANTS",
+    subtitle: "Quality auto products",
+    description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
+    gradient: "from-primary/85 to-accent/75",
+    image: sliderMarketplace,
+    link: "https://mapett.com/",
   },
   {
     icon: Shield,
@@ -109,6 +109,15 @@ const slides = [
     link: "/insurance",
   },
   {
+    icon: ShoppingCart,
+    title: "MAPETT TRAVEL",
+    subtitle: "Digital shipping",
+    description: "Quick, convenient tools to save time and streamline your logistics",
+    gradient: "from-primary/80 to-pink-600/70",
+    image: sliderEcommerce,
+    link: "#services",
+  },
+  {
     icon: MessageCircle,
     title: "LIVE SUPPORT",
     subtitle: "24/7 assistance",
@@ -116,15 +125,6 @@ const slides = [
     gradient: "from-accent/80 to-primary/80",
     image: sliderSupport,
     link: "#contact",
-  },
-  {
-    icon: Store,
-    title: "AUTOSTORE & LUBRICANTS",
-    subtitle: "Quality auto products",
-    description: "Shop tires, batteries, lubricants, safety boots and more for your fleet",
-    gradient: "from-primary/85 to-accent/75",
-    image: sliderMarketplace,
-    link: "https://mapett.com/",
   },
 ];
 
