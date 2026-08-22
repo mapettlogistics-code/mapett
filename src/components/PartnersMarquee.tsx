@@ -1,4 +1,14 @@
-const partners = Array.from({ length: 7 }, (_, index) => index + 1);
+const partners = [
+  { src: "/logos/nixgold.png", alt: "Nixgold" },
+  { src: "/logos/visa.png", alt: "Visa" },
+  { src: "/logos/safaricom.png", alt: "Safaricom" },
+  { src: "/logos/pil.png", alt: "PIL" },
+  { src: "/logos/ncba.png", alt: "NCBA" },
+  { src: "/logos/mastercard.jpg", alt: "Mastercard" },
+  { src: "/logos/maersk.png", alt: "Maersk" },
+  { src: "/logos/kra.png", alt: "KRA" },
+  { src: "/logos/cosco.png", alt: "COSCO" },
+];
 
 const PartnersMarquee = () => (
   <section className="overflow-hidden border-y border-border bg-secondary/35 py-10" aria-labelledby="partners-heading">
@@ -9,8 +19,8 @@ const PartnersMarquee = () => (
     <div className="partners-marquee" role="presentation">
       <div className="partners-marquee__track">
         {[...partners, ...partners].map((partner, index) => (
-          <div key={`${partner}-${index}`} className="flex h-24 w-52 shrink-0 items-center justify-center rounded-xl border border-border bg-card p-4 shadow-sm">
-            <img src="/placeholder.svg" alt={`Partner logo placeholder ${partner}`} className="h-full w-full object-contain" />
+          <div key={`${partner.alt}-${index}`} className="flex h-24 w-40 shrink-0 items-center justify-center rounded-xl border border-border bg-card p-4 shadow-sm">
+            <img src={partner.src} alt={partner.alt} className="h-full w-full object-contain" />
           </div>
         ))}
       </div>
