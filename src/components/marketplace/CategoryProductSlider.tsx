@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import ProductShareButtons from "./ProductShareButtons";
 
+
 type Product = {
   id: string;
   name: string;
@@ -88,12 +89,12 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
   const getFallbackProducts = (): Product[] => {
     const fallbacks: Record<string, Product[]> = {
       lubricants: [
-        { id: "1", name: "DELSTAR 30D MULTIGRADE 15W40", category: "Engine Oil", price: 650, original_price: 900, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_30D_MULTIGRADE_15W40_1L.webp", is_featured: true },
-        { id: "2", name: "DELSTAR DIFFERENTIAL OIL HDX SAE 85W140", category: "Engine Oil", price: 14500, original_price: 18000, rating: 4.9, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_DIFF_OIL_85W140_HDX_20L_1.webp", is_featured: true },
-        { id: "3", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-       
-      
-      
+        { id: "1", name: "DELSTAR 30D MULTIGRADE 15W40", category: "Engine Oil", price: 650, original_price: 900, rating: 4.8, image_url: "public/products/DELSTAR_30D_MULTIGRADE_15W40_1L.webp", is_featured: true },
+        { id: "2", name: "DELSTAR DIFFERENTIAL OIL HDX SAE 85W140", category: "Gear Box Oil", price: 14500, original_price: 18000, rating: 4.9, image_url: "public/products/DELSTAR_DIFF_OIL_85W140_HDX_20L_1.webp", is_featured: true },
+        { id: "3", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Gear Box Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+        { id: "4", name: "DELSTAR LITHIUM COMPLEX GREASE EP3", category: "Industrial Grease", price: 900, original_price: 1500, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_EP3_500G.webp", is_featured: true },
+        { id: "5", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+        { id: "6", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
       ],
       tires: [
         { id: "t1", name: "Heavy Duty Truck Tire 315/80R22.5", category: "Tires", price: 32000, original_price: 38000, rating: 4.7, image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", is_featured: true },

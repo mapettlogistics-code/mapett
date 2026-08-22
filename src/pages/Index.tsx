@@ -13,6 +13,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SocialSidebar from "@/components/SocialSidebar";
 import BackToTop from "@/components/BackToTop";
 import FloatingContactButton from "@/components/FloatingContactButton";
+// Add import:
+import FloatingSearchButton from "@/components/FloatingSearchButton";
+
 
 const Index = () => {
   return (
@@ -32,6 +35,7 @@ const Index = () => {
       <SocialSidebar />
       <BackToTop />
       <FloatingContactButton />
+      <FloatingSearchButton />
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin, Search } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
 import PaymentIcons from "@/components/PaymentIcons";
@@ -14,7 +13,6 @@ import { AUTOSTORE_HOME, autostoreMenuItems } from "@/data/autostoreLinks";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -304,32 +302,6 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
               </div>
-
-              {isSearchOpen ? (
-                <div className="flex items-center gap-2">
-                  <Input
-                    type="search"
-                    placeholder="Search services, products..."
-                    className="h-9 w-48 xl:w-64 text-sm"
-                    autoFocus
-                  />
-                  <button
-                    onClick={() => setIsSearchOpen(false)}
-                    className="p-2 hover:bg-secondary rounded-lg transition-colors"
-                    aria-label="Close search"
-                  >
-                    <X className="h-5 w-5 text-foreground" />
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setIsSearchOpen(true)}
-                  className="p-2 hover:bg-secondary rounded-lg transition-colors"
-                  aria-label="Search"
-                >
-                  <Search className="h-5 w-5 text-foreground" />
-                </button>
-              )}
             </div>
             </div>
 
@@ -374,11 +346,7 @@ const Navbar = () => {
               className="lg:hidden bg-card border-t border-border"
             >
                <div className="container py-4 space-y-4">
-                 <Link to="/about" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>About Us</Link>
-                 <button className={`${mobileNavLinkClass} w-full text-left flex items-center gap-2`} onClick={() => setIsOpen(false)}>
-                   <Search className="h-4 w-4" />
-                   Search
-                 </button>
+                <Link to="/about" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>About Us</Link>
                 <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
