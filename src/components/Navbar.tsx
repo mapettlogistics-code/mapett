@@ -31,8 +31,8 @@ const Navbar = () => {
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",
-    "Refrigerated Cargo Clearance & Transport",
-    "Special Cargo Clearance & Transport",
+    "Refrigerated Cargo",
+    "Special Cargo",
     "Warehousing",
   ];
 

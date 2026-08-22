@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Search } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProductSourcingForm from "@/components/ProductSourcingForm";
 import { getServicePageLink } from "@/data/serviceRoutes";
 
 // Import service images
@@ -15,12 +13,16 @@ import customsImg from "@/assets/service-customs.jpg";
 import refrigeratedImg from "@/assets/service-refrigerated.jpg";
 import specialCargoImg from "@/assets/service-special-cargo.jpg";
 import intermodalImg from "@/assets/service-intermodal.jpg";
-import productSourcingImg from "@/assets/service-product-sourcing.jpg";
 
 const Services = ({ showAll = false }: { showAll?: boolean }) => {
-  const [isSourcingOpen, setIsSourcingOpen] = useState(false);
-
   const services = [
+    {
+      icon: FileCheck,
+      title: "Customs Clearance",
+      description: "Expert customs services at Mombasa Port, JKIA, and border points.",
+      features: ["Documentation", "Compliance", "Fast Clearance"],
+      image: customsImg,
+    },
     {
       icon: Plane,
       title: "Air Freight",
@@ -50,13 +52,6 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
       image: warehouseImg,
     },
     {
-      icon: FileCheck,
-      title: "Customs Clearance",
-      description: "Expert customs services at Mombasa Port, JKIA, and border points.",
-      features: ["Documentation", "Compliance", "Fast Clearance"],
-      image: customsImg,
-    },
-    {
       icon: Thermometer,
       title: "Refrigerated Cargo",
       description: "Temperature-controlled transport for perishable goods.",
@@ -77,18 +72,9 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
       features: ["Multi-Modal", "Door to Door", "Network"],
       image: intermodalImg,
     },
-    {
-      icon: Search,
-      title: "Product Sourcing",
-      description: "We source quality products from China, Turkey, and other markets for your business.",
-      features: ["China Sourcing", "Turkey Sourcing", "Quality Assurance"],
-      image: productSourcingImg,
-    },
   ];
 
-  const displayServices = showAll
-    ? services.filter(s => s.title !== "Product Sourcing")
-    : services.filter(s => s.title !== "Intermodal Solutions");
+  const displayServices = services;
 
   return (
     <section id="services" className={showAll ? "pt-8 pb-20 bg-secondary/30" : "py-20 bg-secondary/30"}>
@@ -156,36 +142,22 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
                   ))}
                 </div>
 
-                {service.title === "Product Sourcing" ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsSourcingOpen(true)}
-                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-                  >
-                    Get Quote
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="sm"
+                  className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+                >
+                  <Link to={getServicePageLink(service.title)}>
+                    Learn More
                     <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                ) : (
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="sm"
-                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-                  >
-                    <Link to={getServicePageLink(service.title)}>
-                      Learn More
-                      <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                )}
+                  </Link>
+                </Button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <ProductSourcingForm isOpen={isSourcingOpen} onClose={() => setIsSourcingOpen(false)} />
     </section>
   );
 };
