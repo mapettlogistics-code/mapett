@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,7 +21,7 @@ const getIcon = (name: string | null) => {
 const defaultContactInfo = [
   { title: "Phone", icon: "Phone", description: "+254 799 390 133", link: "https://wa.me/254799390133?text=Hello!%20I'm%20interested%20in%20Mapett%20Logistics%20services." },
   { title: "Email", icon: "Mail", description: "sales@mapettlogistics.com", link: "mailto:sales@mapettlogistics.com" },
-  { title: "Location", icon: "MapPin", description: "Shree Plaza, Ground Floor, Nyali\nP.O. Box 2039-80100, Mombasa, Kenya", link: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" },
+  { title: "Location", icon: "MapPin", description: "Shree Plaza, Ground Floor, Nyali\nP.O. Box 2039-80100, Mombasa, Kenya", link: "https://maps.app.goo.gl/5Bx5fhPSsvGBhZ8b8" },
   { title: "Working Hours", icon: "Clock", description: "Mon - Fri: 8:00 AM - 6:00 PM\nSat: 9:00 AM - 2:00 PM" },
 ];
 
@@ -87,7 +88,7 @@ const Contact = () => {
           >
             <div className="bg-card rounded-2xl p-8 shadow-card border border-border">
               <h3 className="text-xl font-bold text-foreground mb-6">Send us a Message</h3>
-              
+               
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-4 gap-4">
                   <div>
@@ -121,7 +122,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Phone</label>
-                    <input type="tel" placeholder="+254 700 000 000" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <div className="mt-2 flex gap-2">
+                      <select className="px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option>+254</option>
+                        <option>+250</option>
+                      </select>
+                      <input type="tel" placeholder="700 000 000" className="flex-1 px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    </div>
                   </div>
                 </div>
 
@@ -130,36 +137,43 @@ const Contact = () => {
                   <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
                     <option>Select a service</option>
                     <optgroup label="Logistics Services">
-                      <option>Customs Clearance</option>
+                      <option>Customs Clearing & Forwarding</option>
                       <option>Air Freight</option>
                       <option>Ocean Freight</option>
                       <option>Road & Rail Transport</option>
-                      <option>Product Sourcing (China, Turkey)</option>
                       <option>Refrigerated Cargo</option>
                       <option>Special Cargo</option>
                       <option>Warehousing</option>
                       <option>Intermodal Solutions</option>
                     </optgroup>
-                     <optgroup label="Insurance">
+                     <optgroup label="Insurance Policies">
                        <option>Marine Cargo Insurance</option>
                        <option>Air Cargo Insurance</option>
                        <option>Inland Transit Insurance</option>
                        <option>Freight Forwarder Liability</option>
-                       <option>Warehouse Insurance</option>
-                       <option>Group Life Insurance</option>
                        <option>WIBA & Employees Liability</option>
+                       <option>Life Insurance</option>
+                       <option>Warehouse Insurance</option>
                      </optgroup>
                     <optgroup label="Mapett Travel">
-                      <option>Social Media Pages Setup</option>
-                      <option>Social Media Cross-posting</option>
-                      <option>Online Shop Setup</option>
+                      <option>Air Tickets</option>
+                      <option>Hotel Booking</option>
+                      <option>Visa Processing</option>
+                      <option>Tour & Safari Packages</option>
+                      <option>Airport Transfers</option>
+                      <option>Travel Insurance</option>
+                      <option>Travel Essentials</option>
                     </optgroup>
                     <optgroup label="Autostore & Lubricants">
                       <option>Automotive Lubricants</option>
+                      <option>Food Grade Lubricants</option>
+                      <option>Agricultural Lubricants</option>
+                      <option>Industrial Lubricants</option>
+                      <option>Construction Lubricants</option>
                       <option>Vehicle Tires</option>
                       <option>Vehicle Batteries</option>
-                      <option>Industrial Lubricants</option>
                       <option>Vehicle Accessories</option>
+                      <option>Seals & Tags</option>
                     </optgroup>
                   </select>
                 </div>

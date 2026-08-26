@@ -8,13 +8,13 @@ import BlogSection from "@/components/BlogSection";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ChatBot from "@/components/ChatBot";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import TrackShipmentButton from "@/components/TrackShipmentButton"
 import SocialSidebar from "@/components/SocialSidebar";
 import BackToTop from "@/components/BackToTop";
-import FloatingContactButton from "@/components/FloatingContactButton";
-// Add import:
 import FloatingSearchButton from "@/components/FloatingSearchButton";
+import FeatureBanner from "@/components/FeatureBanner";
+import PromoCircleSection from "@/components/PromoCircleSection";
 
 
 const Index = () => {
@@ -23,6 +23,8 @@ const Index = () => {
       <AnnouncementBanner />
       <Navbar />
       <HeroSlider />
+      <FeatureBanner />
+      <PromoCircleSection />
       <Services />
       <QuoteSection />
       <Autoshop />
@@ -30,12 +32,11 @@ const Index = () => {
       <About />
       <Contact />
       <Footer />
-      <ChatBot />
       <WhatsAppButton />
       <SocialSidebar />
       <BackToTop />
-      <FloatingContactButton />
       <FloatingSearchButton />
+      <TrackShipmentButton />
     </div>
   );
 };

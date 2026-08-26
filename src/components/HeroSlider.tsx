@@ -17,15 +17,17 @@ import sliderInsurance from "@/assets/slider-insurance.jpg";
 import sliderSupport from "@/assets/slider-support.jpg";
 import sliderMarketplace from "@/assets/slider-marketplace.jpg";
 
+
 const slides = [
   {
     icon: FileCheck,
-    title: "CUSTOMS CLEARANCE",
+    title: "CUSTOMS CLEARING & FORWARDING",
     subtitle: "Smooth import & export",
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
     image: sliderCustoms,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Plane,
@@ -35,6 +37,7 @@ const slides = [
     gradient: "from-primary/90 to-accent/70",
     image: sliderAirFreight,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Ship,
@@ -44,6 +47,7 @@ const slides = [
     gradient: "from-accent/90 to-primary/70",
     image: sliderOceanFreight,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Truck,
@@ -53,6 +57,7 @@ const slides = [
     gradient: "from-primary/80 to-pink-600/70",
     image: sliderRoadTransport,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Warehouse,
@@ -62,6 +67,7 @@ const slides = [
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderWarehouse,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Thermometer,
@@ -71,6 +77,7 @@ const slides = [
     gradient: "from-primary/85 to-accent/75",
     image: sliderRefrigerated,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Container,
@@ -80,6 +87,7 @@ const slides = [
     gradient: "from-primary/90 to-accent/70",
     image: sliderSpecialCargo,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Network,
@@ -89,6 +97,7 @@ const slides = [
     gradient: "from-accent/90 to-primary/70",
     image: sliderIntermodal,
     link: "#services",
+    sendInquiryLink: "#contact",
   },
    {
     icon: Store,
@@ -98,24 +107,27 @@ const slides = [
     gradient: "from-primary/85 to-accent/75",
     image: sliderMarketplace,
     link: "https://mapett.com/",
+    sendInquiryLink: "#contact",
   },
   {
     icon: Shield,
-    title: "INSURANCE SERVICES",
+    title: "INSURANCE POLICIES",
     subtitle: "Protect your cargo",
     description: "Comprehensive cargo insurance covering all risk, marine, and transit protection",
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderInsurance,
     link: "/insurance",
+    sendInquiryLink: "#contact",
   },
   {
     icon: ShoppingCart,
-    title: "MAPETT TRAVEL",
-    subtitle: "Digital shipping",
-    description: "Quick, convenient tools to save time and streamline your logistics",
+    title: "TOURS & SAFARIS",
+    subtitle: "Explore Kenya & beyond",
+    description: "Curated travel packages, safaris, and unforgettable experiences across East Africa",
     gradient: "from-primary/80 to-pink-600/70",
     image: sliderEcommerce,
-    link: "#services",
+    link: "/tours-safaris",
+    sendInquiryLink: "#contact",
   },
   {
     icon: MessageCircle,
@@ -125,6 +137,7 @@ const slides = [
     gradient: "from-accent/80 to-primary/80",
     image: sliderSupport,
     link: "#contact",
+    sendInquiryLink: "#contact",
   },
 ];
 
@@ -156,7 +169,7 @@ const HeroSlider = () => {
   const IconComponent = slide.icon;
 
   return (
-    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       {/* Background Image - Changes with each slide */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -213,44 +226,44 @@ const HeroSlider = () => {
                 {slide.description}
               </p>
 
-              {/* CTA Button */}
-              <motion.a
-                href={slide.link}
-                target={slide.link.startsWith("http") ? "_blank" : undefined}
-                rel={slide.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-6 py-5 text-base font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3">
+                <motion.a
+                  href={slide.link}
+                  target={slide.link.startsWith("http") ? "_blank" : undefined}
+                  rel={slide.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Learn More
-                </Button>
-              </motion.a>
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-6 py-5 text-base font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
+                  >
+                    Learn More
+                  </Button>
+                </motion.a>
+                <motion.a
+                  href={slide.sendInquiryLink}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground px-6 py-5 text-base font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
+                  >
+                    Send Enquiry
+                  </Button>
+                </motion.a>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Navigation Controls */}
         <div className="absolute bottom-6 left-0 right-0">
-          <div className="container flex items-center justify-between">
-            {/* Dots Navigation */}
-            <div className="flex items-center gap-1.5">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? "bg-primary w-6" 
-                      : "bg-white/40 hover:bg-white/60"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-
+          <div className="container flex items-center justify-end">
+        
             {/* Arrow Navigation */}
             <div className="flex items-center gap-2">
               <Button

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck } from "lucide-react";
+import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServicePageLink } from "@/data/serviceRoutes";
 
@@ -18,7 +18,7 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
   const services = [
     {
       icon: FileCheck,
-      title: "Customs Clearance",
+      title: "Customs Clearing & Forwarding",
       description: "Expert customs services at Mombasa Port, JKIA, and border points.",
       features: ["Documentation", "Compliance", "Fast Clearance"],
       image: customsImg,
@@ -142,17 +142,30 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
                   ))}
                 </div>
 
-                <Button
-                  asChild
-                  variant="ghost"
-                  size="sm"
-                  className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
-                >
-                  <Link to={getServicePageLink(service.title)}>
-                    Learn More
-                    <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
+                <div className="flex flex-col gap-2">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="text-primary hover:text-primary hover:bg-primary/10 p-0 h-auto text-sm group/btn"
+                  >
+                    <Link to={getServicePageLink(service.title)}>
+                      Learn More
+                      <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <Link to="#contact">
+                      <Mail className="mr-1 h-3 w-3" />
+                      Send Inquiry
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </motion.div>
           ))}

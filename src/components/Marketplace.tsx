@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Wheat, Utensils } from "lucide-react";
+import { ArrowRight, Droplets, Battery, Wrench, Car, CircleDot, Wheat, Utensils, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryProductSlider from "./marketplace/CategoryProductSlider";
 import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
@@ -47,6 +47,15 @@ const Autoshop = () => {
       productCount: 32,
       color: "from-primary to-pink-700",
       categoryKey: "industrial-lubricants",
+      image: categoryIndustrial,
+    },
+    {
+      icon: Hammer,
+      title: "Construction Lubricants",
+      description: "Heavy-duty lubricants for construction equipment and machinery",
+      productCount: 18,
+      color: "from-orange-500 to-red-600",
+      categoryKey: "construction-lubricants",
       image: categoryIndustrial,
     },
     {

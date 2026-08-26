@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
@@ -249,7 +249,7 @@ const Navbar = () => {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link to="/insurance" className={navDropdownClass}>
-                  <span>Insurance</span>
+                  <span>Insurance Policies</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </Link>
                 <AnimatePresence>
@@ -306,23 +306,23 @@ const Navbar = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Link to="/track">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Track Shipment
-                </Button>
-              </Link>
-              
-              {/* Contact Us */}
-              <ContactDialog
-                trigger={
-                  <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Contacts
-                  </Button>
-                }
-              />
-            </div>
+             <div className="hidden lg:flex items-center gap-3">
+               <Link to="/track">
+                 <Button variant="outline" className="border-primary text-primary">
+                   <Truck className="mr-2 h-4 w-4" />
+                   Track 
+                 </Button>
+               </Link>
+               {/* Contact Us */}
+               <ContactDialog
+                 trigger={
+                   <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
+                     <Mail className="mr-2 h-4 w-4" />
+                     Contact Us
+                   </Button>
+                 }
+               />
+             </div>
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
@@ -350,11 +350,12 @@ const Navbar = () => {
                 <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
-                <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance</Link>
+                <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance Policies</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Mapett Travel</button>
                 {ecommerce.map((item) => <Link key={item.label} to={item.href} className={`${mobileNavLinkClass} pl-4`} onClick={() => setIsOpen(false)}>{item.label}</Link>)}
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contacts</button>
-                <a href="https://maps.app.goo.gl/yhs7ojNgfXvw72Y19" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
+                <Link to="/track" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Track</Link>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contact us</button>
+                <a href="https://maps.app.goo.gl/5Bx5fhPSsvGBhZ8b8" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}
                 <div className="py-2 space-y-1 text-sm text-muted-foreground">
                   <p>📞 +254 799 390 133</p>
