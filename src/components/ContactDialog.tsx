@@ -300,16 +300,17 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Contruction Lubricants</option>
               <option>Industrial Lubricants</option>
               <option>Vehicle Accessories</option>
-              <option>Seals & Tags</option>
+              <option>Vehicle Batteries</option>
+              <option>Vehicle Tyres</option>
+              <option>Safety Shoes</option>
             </optgroup>
-
-
-
-
-
-
-
-            
+            <optgroup label="Seals & Tags">
+              <option>Bolt Security Seals</option>
+              <option>Cable & Specialized Security Seals</option>
+              <option>Pull-Tight Plastic Security Seals</option>
+              <option>Metal Security Seals</option>
+              <option>Metre Security Seals</option>
+            </optgroup>
           </select>
           <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
           <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90">

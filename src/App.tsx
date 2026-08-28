@@ -13,6 +13,9 @@ import Cart from "./pages/Cart";
 import Track from "./pages/Track";
 import Products from "./pages/Products";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import ShippingReturnsPolicy from "./pages/ShippingReturnsPolicy";
+import TermsConditions from "./pages/TermsConditions";
 import AboutUs from "./pages/AboutUs";
 import ProductsServices from "./pages/ProductsServices";
 import AirFreight from "./pages/AirFreight";
@@ -94,6 +97,10 @@ const App = () => (
                 <Route path="/tours-safaris" element={<TravelServicePage service="tours-safaris" />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/shipping-returns-policy" element={<ShippingReturnsPolicy />} />
+                <Route path="/terms-conditions" element={<TermsConditions />} />
+
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />

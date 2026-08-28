@@ -56,7 +56,7 @@ const Footer = () => {
   const websiteUrl = getCompanyValue("website_url", "www.mapettlogistics.com");
 
   const services = [
-    "Customs Clearance",
+    "Customs Clearing & Forwading",
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",
@@ -239,12 +239,18 @@ const Footer = () => {
             © {new Date().getFullYear()} Mapett Travel & Logistics LTD. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
+            <Link to="/cookie-policy" className="text-sm text-background/60 hover:text-primary transition-colors">
+              Cookie Policy
+            </Link>
             <Link to="/privacy-policy" className="text-sm text-background/60 hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <a href="/documents/MAPETT_LOGISTICS_LIMITED_TERMS_AND_CONDITIONS.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-background/60 hover:text-primary transition-colors">
-              Terms of Service
-            </a>
+            <Link to="/shipping-returns-policy" className="text-sm text-background/60 hover:text-primary transition-colors">
+              Shipping & Returns Policy
+            </Link>
+            <Link to="/terms-conditions" className="text-sm text-background/60 hover:text-primary transition-colors">
+              Terms & Conditions
+            </Link>
             <PaymentIcons />
           </div>
         </div>
