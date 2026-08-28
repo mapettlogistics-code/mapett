@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin, Truck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin, Truck, Search } from "lucide-react";import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
 import PaymentIcons from "@/components/PaymentIcons";
@@ -14,6 +13,7 @@ import { sealsTagsMenuItems, SEALS_TAGS_HOME } from "@/data/sealsTagsLinks";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -102,9 +102,16 @@ const Navbar = () => {
               sales@mapettlogistics.com
             </a>
           </div>
-          <div className="flex items-center gap-4">
-            <PaymentIcons />
-            <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
+            <div className="flex items-center gap-4">
+             <PaymentIcons />
+             <button
+               onClick={() => setIsSearchOpen(true)}
+               className="flex items-center justify-center w-7 h-7 rounded hover:opacity-80 transition-opacity"
+               aria-label="Search"
+             >
+               <Search className="h-4 w-4" />
+             </button>
+             <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
               <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />
               </a>
@@ -402,7 +409,48 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      {/* Search Modal */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm flex items-start justify-center pt-24"
+          >
+            <div className="w-full max-w-2xl mx-4">
+              <div className="bg-card border border-border rounded-xl shadow-2xl p-4">
+                <div className="flex items-center gap-3">
+                  <Search className="h-5 w-5 text-muted-foreground shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search services, products, pages..."
+                    className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-base"
+                    autoFocus
+                  />
+                  <button
+                    onClick={() => setIsSearchOpen(false)}
+                    className="p-2 hover:bg-secondary rounded-lg transition-colors"
+                    aria-label="Close search"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+                <div className="mt-4 pt-4 border-t border-border">
+                  <p className="text-sm text-muted-foreground">Popular searches:</p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Air Freight</button>
+                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Customs Clearance</button>
+                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Travel Insurance</button>
+                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Track Shipment</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+   </nav>
     </>
   );
 };
