@@ -21,7 +21,68 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
+  const countryFlags: Record<string, string> = {
+    "+254": "🇰🇪",
+    "+1": "🇺🇸",
+    "+7": "🇷🇺",
+    "+20": "🇪🇬",
+    "+27": "🇿🇦",
+    "+30": "🇬🇷",
+    "+31": "🇳🇱",
+    "+32": "🇧🇪",
+    "+33": "🇫🇷",
+    "+34": "🇪🇸",
+    "+39": "🇮🇹",
+    "+44": "🇬🇧",
+    "+49": "🇩🇪",
+    "+55": "🇧🇷",
+    "+61": "🇦🇺",
+    "+62": "🇮🇩",
+    "+63": "🇵🇭",
+    "+65": "🇸🇬",
+    "+66": "🇹🇭",
+    "+81": "🇯🇵",
+    "+82": "🇰🇷",
+    "+84": "🇻🇳",
+    "+86": "🇨🇳",
+    "+90": "🇹🇷",
+    "+91": "🇮🇳",
+    "+92": "🇵🇰",
+    "+93": "🇦🇫",
+    "+94": "🇱🇰",
+    "+95": "🇲🇲",
+    "+98": "🇮🇷",
+    "+212": "🇲🇦",
+    "+213": "🇩🇿",
+    "+216": "🇹🇳",
+    "+218": "🇱🇾",
+    "+234": "🇳🇬",
+    "+255": "🇹🇿",
+    "+256": "🇺🇬",
+    "+263": "🇿🇼",
+    "+351": "🇵🇹",
+    "+352": "🇱🇺",
+    "+353": "🇮🇪",
+    "+354": "🇮🇸",
+    "+356": "🇲🇹",
+    "+371": "🇱🇻",
+    "+372": "🇪🇪",
+    "+380": "🇺🇦",
+    "+420": "🇨🇿",
+    "+43": "🇦🇹",
+    "+41": "🇨🇭",
+    "+48": "🇵🇱",
+    "+52": "🇲🇽",
+    "+60": "🇲🇾",
+    "+64": "🇳🇿",
+    "+963": "🇸🇾",
+    "+966": "🇸🇦",
+    "+971": "🇦🇪",
+    "+972": "🇮🇱",
+    "+974": "🇶🇦",
+    "+977": "🇳🇵",
+    "+998": "🇺🇿",
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.firstName || !form.email || !form.message) {
@@ -112,7 +173,10 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
           </div>
            <div className="grid grid-cols-2 gap-3">
             <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-                        <div className="flex gap-2">
+              <div className="flex gap-2">
+              <span className="text-xl leading-none flex items-center justify-center w-10 shrink-0">
+                {countryFlags[form.countryCode] || "🌍"}
+              </span>
               <select
                 name="countryCode"
                 value={form.countryCode}
@@ -238,6 +302,14 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Vehicle Accessories</option>
               <option>Seals & Tags</option>
             </optgroup>
+
+
+
+
+
+
+
+            
           </select>
           <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
           <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90">

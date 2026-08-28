@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactDialog from "@/components/ContactDialog";
 
 // New slider images with popular cargo brands
 import sliderAirFreight from "@/assets/slider-air-freight.jpg";
@@ -26,8 +27,7 @@ const slides = [
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
     image: sliderCustoms,
-    link: "#services",
-    sendInquiryLink: "#contact",
+    link: "#services",   
   },
   {
     icon: Plane,
@@ -37,7 +37,6 @@ const slides = [
     gradient: "from-primary/90 to-accent/70",
     image: sliderAirFreight,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Ship,
@@ -47,7 +46,6 @@ const slides = [
     gradient: "from-accent/90 to-primary/70",
     image: sliderOceanFreight,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Truck,
@@ -57,7 +55,6 @@ const slides = [
     gradient: "from-primary/80 to-pink-600/70",
     image: sliderRoadTransport,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Warehouse,
@@ -67,7 +64,6 @@ const slides = [
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderWarehouse,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Thermometer,
@@ -77,7 +73,6 @@ const slides = [
     gradient: "from-primary/85 to-accent/75",
     image: sliderRefrigerated,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Container,
@@ -87,7 +82,6 @@ const slides = [
     gradient: "from-primary/90 to-accent/70",
     image: sliderSpecialCargo,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Network,
@@ -97,7 +91,6 @@ const slides = [
     gradient: "from-accent/90 to-primary/70",
     image: sliderIntermodal,
     link: "#services",
-    sendInquiryLink: "#contact",
   },
    {
     icon: Store,
@@ -107,7 +100,6 @@ const slides = [
     gradient: "from-primary/85 to-accent/75",
     image: sliderMarketplace,
     link: "https://mapett.com/",
-    sendInquiryLink: "#contact",
   },
   {
     icon: Shield,
@@ -117,7 +109,6 @@ const slides = [
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderInsurance,
     link: "/insurance",
-    sendInquiryLink: "#contact",
   },
   {
     icon: ShoppingCart,
@@ -127,7 +118,6 @@ const slides = [
     gradient: "from-primary/80 to-pink-600/70",
     image: sliderEcommerce,
     link: "/tours-safaris",
-    sendInquiryLink: "#contact",
   },
   {
     icon: MessageCircle,
@@ -137,7 +127,6 @@ const slides = [
     gradient: "from-accent/80 to-primary/80",
     image: sliderSupport,
     link: "#contact",
-    sendInquiryLink: "#contact",
   },
 ];
 
@@ -242,19 +231,17 @@ const HeroSlider = () => {
                     Learn More
                   </Button>
                 </motion.a>
-                <motion.a
-                  href={slide.sendInquiryLink}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground px-6 py-5 text-base font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
-                  >
-                    Send Enquiry
-                  </Button>
-                </motion.a>
+                  <ContactDialog
+                  trigger={
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground px-6 py-5 text-base font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
+                    >
+                      Send Enquiry
+                    </Button>
+                  }
+                />
               </div>
             </motion.div>
           </AnimatePresence>

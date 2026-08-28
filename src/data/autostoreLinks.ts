@@ -7,7 +7,10 @@ export const autostoreCollectionLinks: Record<string, string> = {
   "Agricultural Lubricants": "https://mapett.com/collections/agricultural-lubricants",
   "Construction Lubricants": "https://mapett.com/collections/construction-lubricants",
   "Industrial Lubricants": "https://mapett.com/collections/industrial-construction-lubricants",
-  "Seals & Tags": "https://mapett.com/collections/seals-tags",
+  "Vehicle Accessories": "https://mapett.com/collections/vehicle-accessories",
+  "Vehicle Batteries": "https://mapett.com/collections/vehicle-batteries",
+  "Vehicle Tyres": "https://mapett.com/collections/vehicle-tyres",
+  "Safety Shoes": "https://mapett.com/collections/safety-shoes",
 };
 
 export const autostoreMenuItems = [
@@ -16,8 +19,10 @@ export const autostoreMenuItems = [
   { name: "Agricultural Lubricants", href: autostoreCollectionLinks["Agricultural Lubricants"] },
   { name: "Construction Lubricants", href: autostoreCollectionLinks["Construction Lubricants"] },
   { name: "Industrial Lubricants", href: autostoreCollectionLinks["Industrial Lubricants"] },
-  { name: "Vehicle Accessories", href: AUTOSTORE_HOME },
-  { name: "Seals & Tags", href: autostoreCollectionLinks["Seals & Tags"] },
+  { name: "Vehicle Accessories", href: autostoreCollectionLinks["Vehicle Accessories"] },
+  { name: "Vehicle Batteries", href: autostoreCollectionLinks["Vehicle Batteries"] },
+  { name: "Vehicle Tyres", href: autostoreCollectionLinks["Vehicle Tyres"] },
+  { name: "Safety Shoes", href: autostoreCollectionLinks["Safety Shoes"] },
 ];
 
 export const getAutostoreLink = (name: string) =>

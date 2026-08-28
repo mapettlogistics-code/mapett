@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Warehouse, Thermometer, Container, Network, FileCheck, ArrowRight, Plane, Ship, Truck, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getServicePageLink } from "@/data/serviceRoutes";
+import ContactDialog from "@/components/ContactDialog";
 
 // Import service images
 import airFreightImg from "@/assets/service-air-freight.jpg";
@@ -154,17 +155,18 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
                       <ArrowRight className="ml-1 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                  >
-                    <Link to="#contact">
-                      <Mail className="mr-1 h-3 w-3" />
-                      Send Inquiry
-                    </Link>
-                  </Button>
+                    <ContactDialog
+                    trigger={
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                      >
+                        <Mail className="mr-1 h-3 w-3" />
+                        Send Inquiry
+                      </Button>
+                    }
+                  />
                 </div>
               </div>
             </motion.div>

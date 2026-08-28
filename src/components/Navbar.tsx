@@ -9,6 +9,7 @@ import PaymentIcons from "@/components/PaymentIcons";
 import mapettLogo from "@/assets/mapett-logo.png";
 import { getServicePageLink } from "@/data/serviceRoutes";
 import { AUTOSTORE_HOME, autostoreMenuItems } from "@/data/autostoreLinks";
+import { sealsTagsMenuItems, SEALS_TAGS_HOME } from "@/data/sealsTagsLinks";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
   };
 
   const services = [
-    "Customs Clearing & Fowarding",
+    "Customs Clearing & Forwarding",
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",
@@ -36,25 +37,7 @@ const Navbar = () => {
     "Warehousing",
   ];
 
-  const productServiceLinks = [
-    ...services.map((service) => ({
-      label: service,
-      href: getServicePageLink(service),
-      external: false as const,
-    })),
-    {
-      label: "Shop Seals & Tags",
-      href: "https://mapett.com/collections/seals-tags",
-      external: true as const,
-      shopHighlight: true as const,
-    },
-    {
-      label: "Shop Autostore & Lubricants",
-      href: AUTOSTORE_HOME,
-      external: true as const,
-      shopHighlight: true as const,
-    },
-  ];
+
 
   const ecommerce = [
     { label: "Air Tickets", href: "/flight-booking" },
@@ -168,7 +151,7 @@ const Navbar = () => {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link to="/products-services" className={navDropdownClass}>
-                  <span>Products & Services</span>
+                  <span>Services</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </Link>
                 <AnimatePresence>
@@ -179,31 +162,18 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: 10 }}
                       className="absolute top-full left-0 mt-2 w-72 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
                     >
-                      <div className="py-1">
-                        {productServiceLinks.map((item) =>
-                          item.external ? (
-                            <a
-                              key={item.label}
-                              href={item.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => setActiveDropdown(null)}
-                              className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
-                            >
-                              {renderProductServiceLabel(item.label, "shopHighlight" in item && item.shopHighlight)}
-                            </a>
-                          ) : (
-                            <Link
-                              key={item.label}
-                              to={item.href}
-                              onClick={() => setActiveDropdown(null)}
-                              className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
-                            >
-                              {renderProductServiceLabel(item.label, "shopHighlight" in item && item.shopHighlight)}
-                            </Link>
-                          )
-                        )}
-                      </div>
+                    <div className="py-1">
+                         {services.map((service) => (
+                           <Link
+                             key={service}
+                             to={getServicePageLink(service)}
+                             onClick={() => setActiveDropdown(null)}
+                             className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
+                           >
+                             {service}
+                           </Link>
+                         ))}
+                       </div> 
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -237,10 +207,40 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Seals & Tags */}
-              <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={navLinkClass}>
-                Seals & Tags
-              </a>
+             {/* Seals & Tags Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('seals')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <a href={SEALS_TAGS_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
+                  <span>Seals & Tags</span>
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                </a>
+                <AnimatePresence>
+                  {activeDropdown === 'seals' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                    >
+                      {sealsTagsMenuItems.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setActiveDropdown(null)}
+                          className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Insurance Dropdown */}
               <div 
@@ -310,7 +310,7 @@ const Navbar = () => {
                <Link to="/track">
                  <Button variant="outline" className="border-primary text-primary">
                    <Truck className="mr-2 h-4 w-4" />
-                   Track 
+                   Track Shipment
                  </Button>
                </Link>
                {/* Contact Us */}
