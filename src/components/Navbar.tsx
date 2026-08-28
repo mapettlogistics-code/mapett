@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   const services = [
-    "Customs Clearance",
+    "Customs Clearing & Fowarding",
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",

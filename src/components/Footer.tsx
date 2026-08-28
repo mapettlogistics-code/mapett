@@ -80,7 +80,7 @@ const Footer = () => {
   const company = [
     { name: "About Us", href: "/about", isRoute: true },
     { name: "Our Team", href: "/team", isRoute: true },
-    { name: "Directions/Location", href: "https://maps.app.goo.gl/yhs7ojNgfXvw72Y19", external: true },
+    { name: "Directions/Location", href: "https://maps.app.goo.gl/5Bx5fhPSsvGBhZ8b8", external: true },
     { name: "Contact Us", href: "/#contact", isRoute: true },
     { name: "Live Support", href: "/#contact", isRoute: true },
     { name: "Admin Portal", href: "/admin/login", isRoute: true },
