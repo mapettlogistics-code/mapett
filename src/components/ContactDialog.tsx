@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import CountryFlag from "react-country-flag";
 
 const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
@@ -21,67 +22,67 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const countryFlags: Record<string, string> = {
-    "+254": "🇰🇪",
-    "+1": "🇺🇸",
-    "+7": "🇷🇺",
-    "+20": "🇪🇬",
-    "+27": "🇿🇦",
-    "+30": "🇬🇷",
-    "+31": "🇳🇱",
-    "+32": "🇧🇪",
-    "+33": "🇫🇷",
-    "+34": "🇪🇸",
-    "+39": "🇮🇹",
-    "+44": "🇬🇧",
-    "+49": "🇩🇪",
-    "+55": "🇧🇷",
-    "+61": "🇦🇺",
-    "+62": "🇮🇩",
-    "+63": "🇵🇭",
-    "+65": "🇸🇬",
-    "+66": "🇹🇭",
-    "+81": "🇯🇵",
-    "+82": "🇰🇷",
-    "+84": "🇻🇳",
-    "+86": "🇨🇳",
-    "+90": "🇹🇷",
-    "+91": "🇮🇳",
-    "+92": "🇵🇰",
-    "+93": "🇦🇫",
-    "+94": "🇱🇰",
-    "+95": "🇲🇲",
-    "+98": "🇮🇷",
-    "+212": "🇲🇦",
-    "+213": "🇩🇿",
-    "+216": "🇹🇳",
-    "+218": "🇱🇾",
-    "+234": "🇳🇬",
-    "+255": "🇹🇿",
-    "+256": "🇺🇬",
-    "+263": "🇿🇼",
-    "+351": "🇵🇹",
-    "+352": "🇱🇺",
-    "+353": "🇮🇪",
-    "+354": "🇮🇸",
-    "+356": "🇲🇹",
-    "+371": "🇱🇻",
-    "+372": "🇪🇪",
-    "+380": "🇺🇦",
-    "+420": "🇨🇿",
-    "+43": "🇦🇹",
-    "+41": "🇨🇭",
-    "+48": "🇵🇱",
-    "+52": "🇲🇽",
-    "+60": "🇲🇾",
-    "+64": "🇳🇿",
-    "+963": "🇸🇾",
-    "+966": "🇸🇦",
-    "+971": "🇦🇪",
-    "+972": "🇮🇱",
-    "+974": "🇶🇦",
-    "+977": "🇳🇵",
-    "+998": "🇺🇿",
+   const phoneToCountryCode: Record<string, string> = {
+    "+254": "KE",
+    "+1": "US",
+    "+7": "RU",
+    "+20": "EG",
+    "+27": "ZA",
+    "+30": "GR",
+    "+31": "NL",
+    "+32": "BE",
+    "+33": "FR",
+    "+34": "ES",
+    "+39": "IT",
+    "+44": "GB",
+    "+49": "DE",
+    "+55": "BR",
+    "+61": "AU",
+    "+62": "ID",
+    "+63": "PH",
+    "+65": "SG",
+    "+66": "TH",
+    "+81": "JP",
+    "+82": "KR",
+    "+84": "VN",
+    "+86": "CN",
+    "+90": "TR",
+    "+91": "IN",
+    "+92": "PK",
+    "+93": "AF",
+    "+94": "LK",
+    "+95": "MM",
+    "+98": "IR",
+    "+212": "MA",
+    "+213": "DZ",
+    "+216": "TN",
+    "+218": "LY",
+    "+234": "NG",
+    "+255": "TZ",
+    "+256": "UG",
+    "+263": "ZW",
+    "+351": "PT",
+    "+352": "LU",
+    "+353": "IE",
+    "+354": "IS",
+    "+356": "MT",
+    "+371": "LV",
+    "+372": "EE",
+    "+380": "UA",
+    "+420": "CZ",
+    "+43": "AT",
+    "+41": "CH",
+    "+48": "PL",
+    "+52": "MX",
+    "+60": "MY",
+    "+64": "NZ",
+    "+963": "SY",
+    "+966": "SA",
+    "+971": "AE",
+    "+972": "IL",
+    "+974": "QA",
+    "+977": "NP",
+    "+998": "UZ",
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -174,85 +175,79 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
            <div className="grid grid-cols-2 gap-3">
             <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
               <div className="flex gap-2">
-              <span className="text-xl leading-none flex items-center justify-center w-10 shrink-0">
-                {countryFlags[form.countryCode] || "🌍"}
-              </span>
-              <select
-                name="countryCode"
-                value={form.countryCode}
-                onChange={handleChange}
-                className="px-2 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 w-28"
-              >
-                <option value="+254">🇰🇪 +254</option>
-                <option value="+1">🇺🇸 +1</option>
-                <option value="+7">🇷🇺 +7</option>
-                <option value="+20">🇪🇬 +20</option>
-                <option value="+27">🇿🇦 +27</option>
-                <option value="+30">🇬🇷 +30</option>
-                <option value="+31">🇳🇱 +31</option>
-                <option value="+32">🇧🇪 +32</option>
-                <option value="+33">🇫🇷 +33</option>
-                <option value="+34">🇪🇸 +34</option>
-                <option value="+39">🇮🇹 +39</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+49">🇩🇪 +49</option>
-                <option value="+55">🇧🇷 +55</option>
-                <option value="+61">🇦🇺 +61</option>
-                <option value="+62">🇮🇩 +62</option>
-                <option value="+63">🇵🇭 +63</option>
-                <option value="+65">🇸🇬 +65</option>
-                <option value="+66">🇹🇭 +66</option>
-                <option value="+81">🇯🇵 +81</option>
-                <option value="+82">🇰🇷 +82</option>
-                <option value="+84">🇻🇳 +84</option>
-                <option value="+86">🇨🇳 +86</option>
-                <option value="+90">🇹🇷 +90</option>
-                <option value="+91">🇮🇳 +91</option>
-                <option value="+92">🇵🇰 +92</option>
-                <option value="+93">🇦🇫 +93</option>
-                <option value="+94">🇱🇰 +94</option>
-                <option value="+95">🇲🇲 +95</option>
-                <option value="+98">🇮🇷 +98</option>
-                <option value="+212">🇲🇦 +212</option>
-                <option value="+213">🇩🇿 +213</option>
-                <option value="+216">🇹🇳 +216</option>
-                <option value="+218">🇱🇾 +218</option>
-                <option value="+234">🇳🇬 +234</option>
-                <option value="+254">🇰🇪 +254</option>
-                <option value="+255">🇹🇿 +255</option>
-                <option value="+256">🇺🇬 +256</option>
-                <option value="+263">🇿🇼 +263</option>
-                <option value="+351">🇵🇹 +351</option>
-                <option value="+352">🇱🇺 +352</option>
-                <option value="+353">🇮🇪 +353</option>
-                <option value="+354">🇮🇸 +354</option>
-                <option value="+356">🇲🇹 +356</option>
-                <option value="+371">🇱🇻 +371</option>
-                <option value="+372">🇪🇪 +372</option>
-                <option value="+380">🇺🇦 +380</option>
-                <option value="+420">🇨🇿 +420</option>
-                <option value="+43">🇦🇹 +43</option>
-                <option value="+41">🇨🇭 +41</option>
-                <option value="+48">🇵🇱 +48</option>
-                <option value="+52">🇲🇽 +52</option>
-                <option value="+60">🇲🇾 +60</option>
-                <option value="+63">🇵🇭 +63</option>
-                <option value="+64">🇳🇿 +64</option>
-                <option value="+65">🇸🇬 +65</option>
-                <option value="+66">🇹🇭 +66</option>
-                <option value="+84">🇻🇳 +84</option>
-                <option value="+90">🇹🇷 +90</option>
-                <option value="+91">🇮🇳 +91</option>
-                <option value="+92">🇵🇰 +92</option>
-                <option value="+94">🇱🇰 +94</option>
-                <option value="+963">🇸🇾 +963</option>
-                <option value="+966">🇸🇦 +966</option>
-                <option value="+971">🇦🇪 +971</option>
-                <option value="+972">🇮🇱 +972</option>
-                <option value="+974">🇶🇦 +974</option>
-                <option value="+977">🇳🇵 +977</option>
-                <option value="+998">🇺🇿 +998</option>
-              </select>
+                <CountryFlag 
+                 countryCode={phoneToCountryCode[form.countryCode] || "XX"} 
+                 svg 
+                 style={{ width: '28px', height: '20px', borderRadius: '2px' }}
+                 className="shrink-0"
+                 />
+                <select
+                 name="countryCode"
+                 value={form.countryCode}
+                 onChange={handleChange}
+                 className="px-2 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 w-28"
+               >
+                 <option value="+254">+254 Kenya</option>
+                 <option value="+1">+1 USA</option>
+                 <option value="+7">+7 Russia</option>
+                 <option value="+20">+20 Egypt</option>
+                 <option value="+27">+27 South Africa</option>
+                 <option value="+30">+30 Greece</option>
+                 <option value="+31">+31 Netherlands</option>
+                 <option value="+32">+32 Belgium</option>
+                 <option value="+33">+33 France</option>
+                 <option value="+34">+34 Spain</option>
+                 <option value="+39">+39 Italy</option>
+                 <option value="+44">+44 UK</option>
+                 <option value="+49">+49 Germany</option>
+                 <option value="+55">+55 Brazil</option>
+                 <option value="+61">+61 Australia</option>
+                 <option value="+62">+62 Indonesia</option>
+                 <option value="+63">+63 Philippines</option>
+                 <option value="+65">+65 Singapore</option>
+                 <option value="+66">+66 Thailand</option>
+                 <option value="+81">+81 Japan</option>
+                 <option value="+82">+82 South Korea</option>
+                 <option value="+84">+84 Vietnam</option>
+                 <option value="+86">+86 China</option>
+                 <option value="+90">+90 Turkey</option>
+                 <option value="+91">+91 India</option>
+                 <option value="+92">+92 Pakistan</option>
+                 <option value="+93">+93 Afghanistan</option>
+                 <option value="+94">+94 Sri Lanka</option>
+                 <option value="+95">+95 Myanmar</option>
+                 <option value="+98">+98 Iran</option>
+                 <option value="+212">+212 Morocco</option>
+                 <option value="+213">+213 Algeria</option>
+                 <option value="+216">+216 Tunisia</option>
+                 <option value="+218">+218 Libya</option>
+                 <option value="+234">+234 Nigeria</option>
+                 <option value="+255">+255 Tanzania</option>
+                 <option value="+256">+256 Uganda</option>
+                 <option value="+263">+263 Zimbabwe</option>
+                 <option value="+351">+351 Portugal</option>
+                 <option value="+352">+352 Luxembourg</option>
+                 <option value="+353">+353 Ireland</option>
+                 <option value="+354">+354 Iceland</option>
+                 <option value="+356">+356 Malta</option>
+                 <option value="+371">+371 Latvia</option>
+                 <option value="+372">+372 Estonia</option>
+                 <option value="+380">+380 Ukraine</option>
+                 <option value="+420">+420 Czech Republic</option>
+                 <option value="+43">+43 Austria</option>
+                 <option value="+41">+41 Switzerland</option>
+                 <option value="+48">+48 Poland</option>
+                 <option value="+52">+52 Mexico</option>
+                 <option value="+60">+60 Malaysia</option>
+                 <option value="+64">+64 New Zealand</option>
+                 <option value="+963">+963 Syria</option>
+                 <option value="+966">+966 Saudi Arabia</option>
+                 <option value="+971">+971 UAE</option>
+                 <option value="+972">+972 Israel</option>
+                 <option value="+974">+974 Qatar</option>
+                 <option value="+977">+977 Nepal</option>
+                 <option value="+998">+998 Uzbekistan</option>
+               </select>  
               <input
                 name="phone"
                 type="tel"
@@ -310,6 +305,8 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Pull-Tight Plastic Security Seals</option>
               <option>Metal Security Seals</option>
               <option>Metre Security Seals</option>
+              <option>Padlock Security Seals</option>
+              <option>Tamper-Evident Tape Security Seals</option>
             </optgroup>
           </select>
           <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
