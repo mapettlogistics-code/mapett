@@ -56,7 +56,7 @@ const Footer = () => {
   const websiteUrl = getCompanyValue("website_url", "www.mapettlogistics.com");
 
   const services = [
-    "Customs Clearing & Forwading",
+    "Customs Clearing & Forwarding",
     "Air Freight",
     "Ocean Freight",
     "Road & Rail Transport",

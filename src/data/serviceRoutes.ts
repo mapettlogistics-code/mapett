@@ -1,6 +1,6 @@
 export const servicePageLinks: Record<string, string> = {
   "Air Freight": "/air-freight",
-  "Customs Clearance": "/customs-clearance",
+  "Customs Clearing & Forwarding": "/customs-clearance",
   "Ocean Freight": "/ocean-freight",
   "Road & Rail Transport": "/road-rail-transport",
   "Road Transport": "/road-rail-transport",
@@ -18,6 +18,7 @@ export const servicePageLinks: Record<string, string> = {
   "Life Insurance": "/life-insurance",
   "Warehouse Insurance": "/warehouse-insurance",
   "Cargo Insurance": "/insurance",
+  "Intermodal Solutions": "/intermodal-solutions",
 };
 
 export const getServicePageLink = (serviceName: string) =>

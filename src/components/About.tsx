@@ -14,10 +14,11 @@ const getIcon = (name: string | null) => {
 };
 
 const defaultValues = [
-  { title: "Excellence", icon: "Award", description: "We strive for the highest standards in every delivery and service." },
-  { title: "Partnership", icon: "Users", description: "Building lasting relationships with our clients across Kenya." },
-  { title: "Reliability", icon: "Clock", description: "On-time delivery and consistent service you can count on." },
-  { title: "Local Expertise", icon: "MapPin", description: "Deep understanding of Kenya's logistics landscape and needs." },
+  { title: "Integrity", icon: "ShieldCheck", description: "We conduct business honestly, ethically and transparently, and we value trust in every relationship." },
+  { title: "Professionalism", icon: "BriefcaseBusiness", description: "We maintain high standards of competence, communication, accountability and customer service." },
+  { title: "Value for Money", icon: "Wallet", description: "We focus on solutions that deliver practical value, competitive commercial outcomes and responsible use of customer resources." },
+  { title: "Operational Efficiency", icon: "Gauge", description: "We continuously seek better ways to coordinate people, processes, technology and partners so that work is completed effectively." },
+  { title: "Innovation", icon: "Lightbulb", description: "We embrace technology, E-Commerce and new approaches that improve convenience, access and performance." },
 ];
 
 const defaultMilestones = [

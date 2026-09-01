@@ -51,9 +51,11 @@ const FeatureBanner = () => {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <feature.icon className="h-6 w-6" />
               </div>
-              <div>
+              <div className="w-full">
                 <h3 className="font-semibold text-foreground text-sm">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground mt-1">{feature.description}</p>
+                <p className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-[10px] text-muted-foreground">
+                  {feature.description}
+                </p>
               </div>
             </motion.div>
           ))}

@@ -169,7 +169,7 @@ const Contact = () => {
                       <option>Food Grade Lubricants</option>
                       <option>Agricultural Lubricants</option>
                       <option>Industrial Lubricants</option>
-                      <option>Construction Lubricants</option>
+                      <option>Safety Shoes</option>
                       <option>Vehicle Tires</option>
                       <option>Vehicle Batteries</option>
                       <option>Vehicle Accessories</option>

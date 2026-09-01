@@ -19,7 +19,7 @@ import TermsConditions from "./pages/TermsConditions";
 import AboutUs from "./pages/AboutUs";
 import ProductsServices from "./pages/ProductsServices";
 import AirFreight from "./pages/AirFreight";
-import CustomsClearance from "./pages/CustomsClearance";
+import CustomsClearingForwarding from "./pages/CustomsClearingForwarding";
 import OceanFreight from "./pages/OceanFreight";
 import RoadRailTransport from "./pages/RoadRailTransport";
 import RefrigeratedCargo from "./pages/RefrigeratedCargo";
@@ -35,6 +35,8 @@ import LifeInsurance from "./pages/LifeInsurance";
 import WarehouseInsurance from "./pages/WarehouseInsurance";
 import AirportTransfers from "./pages/AirportTransfers";
 import TravelServicePage from "./pages/TravelServicePage";
+import IntermodalSolutions from "./pages/IntermodalSolutions";
+
 import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -51,7 +53,6 @@ import AdminBlog from "./pages/admin/AdminBlog";
 import AdminMarketing from "./pages/admin/AdminMarketing";
 import BlogPost from "./pages/BlogPost";
 import ScrollToTop from "./components/ScrollToTop";
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -74,7 +75,7 @@ const App = () => (
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/products-services" element={<ProductsServices />} />
                 <Route path="/air-freight" element={<AirFreight />} />
-                <Route path="/customs-clearance" element={<CustomsClearance />} />
+                <Route path="/customs-clearing-forwarding" element={<CustomsClearingForwarding />} />
                 <Route path="/ocean-freight" element={<OceanFreight />} />
                 <Route path="/road-rail-transport" element={<RoadRailTransport />} />
                 <Route path="/refrigerated-cargo" element={<RefrigeratedCargo />} />
@@ -100,6 +101,7 @@ const App = () => (
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                 <Route path="/shipping-returns-policy" element={<ShippingReturnsPolicy />} />
                 <Route path="/terms-conditions" element={<TermsConditions />} />
+                <Route path="/intermodal-solutions" element={<IntermodalSolutions />} />
 
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 {/* Admin Routes */}

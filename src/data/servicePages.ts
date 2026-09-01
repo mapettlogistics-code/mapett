@@ -31,6 +31,8 @@ import sliderCustoms from "@/assets/slider-customs.jpg";
 import sliderRefrigerated from "@/assets/slider-refrigerated.jpg";
 import sliderSpecialCargo from "@/assets/slider-special-cargo.jpg";
 import sliderWarehouse from "@/assets/slider-warehouse.jpg";
+import sliderIntermodal from "@/assets/slider-intermodal.jpg";
+
 
 export const airFreightContent: ServicePageContent = {
   badge: "Air Freight",
@@ -83,8 +85,8 @@ export const airFreightContent: ServicePageContent = {
   ctaLabel: "Request Air Freight Quote",
 };
 
-export const customsClearanceContent: ServicePageContent = {
-  badge: "Customs Clearance",
+export const CustomsClearingForwardingContent: ServicePageContent = {
+  badge: "Customs Clearing & Forwarding",
   icon: FileCheck,
   heroImage: sliderCustoms,
   heroImageAlt: "Customs clearance at port",
@@ -793,4 +795,55 @@ export const warehouseInsuranceContent: ServicePageContent = {
   ],
   relatedDescription: "Combine warehouse coverage with cargo and liability insurance for complete property and inventory protection.",
   ctaLabel: "Get Warehouse Quote",
+};
+
+export const intermodalSolutionsContent: ServicePageContent = {
+  badge: "Intermodal Solutions",
+  icon: Container,
+  heroImage: sliderIntermodal,
+  heroImageAlt: "Intermodal logistics with container transfer",
+  title: "Seamless Intermodal Logistics Solutions",
+  heroDescription:
+    "Integrated multi-modal transport combining sea, rail, and road freight for efficient, cost-effective cargo delivery across East Africa and global markets.",
+  overviewTitle: "Multi-Modal Transport for Modern Supply Chains",
+  overviewDescription:
+    "Mapett Logistics offers comprehensive intermodal transport solutions that combine the cost-efficiency of ocean freight, the reliability of rail transport, and the flexibility of road delivery. Our integrated approach ensures seamless cargo movement from origin to destination, reducing transit times, lowering costs, and improving supply chain visibility.",
+  featuresTitle: "Why Choose Our Intermodal Services",
+  featuresSubtitle: "Optimized multi-modal transport for faster, more efficient cargo delivery.",
+  features: [
+    { icon: Route, title: "Seamless Transfers", description: "Expert cargo handling at intermodal terminals with secure container transfers between transport modes." },
+    { icon: Globe, title: "Global Connectivity", description: "Connections to major ports, rail networks, and highway systems ensuring worldwide reach." },
+    { icon: Package, title: "Container Consolidation", description: "Efficient load planning and container utilization maximizing space and minimizing costs." },
+    { icon: Shield, title: "End-to-End Visibility", description: "Real-time tracking across all transport modes with proactive monitoring and updates." },
+  ],
+  cargoTypes: [
+    "Containerized general cargo",
+    "Automotive and spare parts",
+    "Industrial machinery and equipment",
+    "Retail and FMCG products",
+    "Construction materials and hardware",
+    "Agricultural and food products",
+  ],
+  highlightsTitle: "Our Intermodal Capabilities",
+  highlights: [
+    "Mombasa Port to Inland destinations via rail and road",
+    "Connections to Nairobi, Kampala, Kigali, and Dar es Salaam",
+    "Standard 20ft, 40ft, and specialized container handling",
+    "Temperature-controlled intermodal solutions",
+    "Customs clearance integrated at all terminals",
+    "Real-time cargo tracking across all transport legs",
+  ],
+  processSteps: [
+    { step: "01", title: "Route Planning", description: "We analyze your cargo, origin, and destination to design the optimal intermodal route with best transit times." },
+    { step: "02", title: "Booking & Coordination", description: "We coordinate with all partners — shipping lines, rail operators, and transport companies — for seamless execution." },
+    { step: "03", title: "Cargo Movement", description: "Your cargo moves through multiple transport modes with secure handling and real-time tracking updates." },
+    { step: "04", title: "Final Delivery", description: "Cargo is delivered to your specified destination with full documentation and proof of delivery." },
+  ],
+  relatedServices: [
+    { icon: Ship, label: "Ocean Freight" },
+    { icon: Truck, label: "Road & Rail Transport" },
+    { icon: FileCheck, label: "Customs Clearance" },
+  ],
+  relatedDescription: "Combine intermodal solutions with our customs clearance and specialized cargo services for a complete logistics package.",
+  ctaLabel: "Request Intermodal Quote",
 };

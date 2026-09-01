@@ -10,6 +10,40 @@ import { getServicePageLink } from "@/data/serviceRoutes";
 import { AUTOSTORE_HOME, autostoreMenuItems } from "@/data/autostoreLinks";
 import { sealsTagsMenuItems, SEALS_TAGS_HOME } from "@/data/sealsTagsLinks";
 
+// Add after the imports section
+const searchableContent = [
+  { id: "air-freight", title: "Air Freight", description: "Fast global air cargo solutions", category: "Services", path: "/air-freight" },
+  { id: "ocean-freight", title: "Ocean Freight", description: "Cost-effective sea freight solutions", category: "Services", path: "/ocean-freight" },
+  { id: "customs-clearing-forwarding", title: "Customs Clearing & Forwarding", description: "Expert customs clearance services", category: "Services", path: "/customs-clearing-forwarding" },
+  { id: "road-rail", title: "Road & Rail Transport", description: "Reliable transport across East Africa", category: "Services", path: "/road-rail-transport" },
+  { id: "intermodal", title: "Intermodal Solutions", description: "Integrated multi-modal transport", category: "Services", path: "/intermodal-solutions" },
+  { id: "refrigerated", title: "Refrigerated Cargo", description: "Temperature-controlled logistics", category: "Services", path: "/refrigerated-cargo" },
+  { id: "special-cargo", title: "Special Cargo", description: "Oversized and heavy-lift handling", category: "Services", path: "/special-cargo" },
+  { id: "warehousing", title: "Warehousing", description: "Secure storage solutions", category: "Services", path: "/warehousing" },
+  { id: "insurance", title: "Insurance Policies", description: "Comprehensive cargo and liability coverage", category: "Services", path: "/insurance" },
+  { id: "marine-insurance", title: "Marine Cargo Insurance", description: "Ocean freight shipment protection", category: "Insurance", path: "/marine-cargo-insurance" },
+  { id: "air-insurance", title: "Air Cargo Insurance", description: "Air freight shipment protection", category: "Insurance", path: "/air-cargo-insurance" },
+  { id: "inland-insurance", title: "Inland Transit Insurance", description: "Road and rail transport coverage", category: "Insurance", path: "/inland-transit-insurance" },
+  { id: "liability-insurance", title: "Freight Forwarder Liability", description: "Professional liability coverage", category: "Insurance", path: "/freight-forwarder-liability" },
+  { id: "wiba", title: "WIBA & Employees Liability", description: "Workplace injury benefit coverage", category: "Insurance", path: "/wiba-employees-coverage" },
+  { id: "life-insurance", title: "Life Insurance", description: "Personal and group life coverage", category: "Insurance", path: "/life-insurance" },
+  { id: "warehouse-insurance", title: "Warehouse Insurance", description: "Storage facility and inventory protection", category: "Insurance", path: "/warehouse-insurance" },
+  { id: "about", title: "About Us", description: "Learn more about Mapett Travel & Logistics", category: "Company", path: "/about" },
+  { id: "track", title: "Track Shipment", description: "Track your cargo and shipments", category: "Tools", path: "/track" },
+  { id: "contact", title: "Contact Us", description: "Get in touch with our team", category: "Company", path: "/#contact" },
+  { id: "products-services", title: "Products & Services", description: "Browse our full range of services", category: "Services", path: "/products-services" },
+  { id: "autostore", title: "Autostore & Lubricants", description: "Automotive parts, lubricants and accessories", category: "Shop", path: "https://autostore.mapettlogistics.com" },
+  { id: "seals-tags", title: "Seals & Tags", description: "Security seals and cargo tracking tags", category: "Shop", path: "https://sealstags.mapettlogistics.com" },
+  { id: "airline-tickets", title: "Air Tickets Booking", description: "Book flights with competitive prices", category: "Travel", path: "/flight-booking" },
+  { id: "hotel-booking", title: "Hotel Booking", description: "Find and book accommodations", category: "Travel", path: "/hotel-booking" },
+  { id: "visa-processing", title: "Visa Processing", description: "Assistance with visa applications", category: "Travel", path: "/visa-processing" },
+  { id: "tours-safaris", title: "Tours & Safaris", description: "Kenya safari packages and tours", category: "Travel", path: "/tours-safaris" },
+  { id: "airport-transfers", title: "Airport Transfers", description: "Reliable airport transfer services", category: "Travel", path: "/airport-transfers" },
+  { id: "travel-insurance", title: "Travel Insurance", description: "Comprehensive travel protection", category: "Travel", path: "/travel-insurance" },
+  { id: "cart", title: "Shopping Cart", description: "View and manage your cart items", category: "Shop", path: "/cart" },
+  { id: "blog", title: "Blog & News", description: "Latest logistics and travel insights", category: "Content", path: "/blog" }
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -25,6 +59,46 @@ const Navbar = () => {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  // Add near the top with other state declarations
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Add search handler function
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const query = searchQuery.toLowerCase().trim();
+    
+    if (query) {
+      // Find matching content
+      const matches = searchableContent.filter(item => 
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+      );
+      
+      if (matches.length > 0) {
+        // Navigate to first match
+        window.location.href = matches[0].path;
+      } else {
+        // Fallback to general search page or products-services
+        window.location.href = "/products-services";
+      }
+      setSearchQuery("");
+      setIsSearchOpen(false);
+    }
+  };
+
+  // Add function to get search suggestions
+  const getSearchSuggestions = () => {
+    if (!searchQuery.trim()) return [];
+    
+    const query = searchQuery.toLowerCase().trim();
+    return searchableContent.filter(item => 
+      item.title.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query) ||
+      item.category.toLowerCase().includes(query)
+    ).slice(0, 5); // Limit to 5 suggestions
   };
 
   const services = [
@@ -105,12 +179,12 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
              <PaymentIcons />
              <button
-               onClick={() => setIsSearchOpen(true)}
-               className="flex items-center justify-center w-7 h-7 rounded hover:opacity-80 transition-opacity"
-               aria-label="Search"
-             >
-               <Search className="h-4 w-4" />
-             </button>
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-primary hover:bg-white/90 transition-all duration-200 shadow-md hover:shadow-lg border-2 border-white"
+              aria-label="Search"
+              >
+              <Search className="h-4 w-4" />
+              </button>
              <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
               <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />
@@ -282,14 +356,14 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Mapett Travel dropdown */}
+              {/* Travel Services dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('ecommerce')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button className={navDropdownClass}>
-                  <span>Mapett Travel</span>
+                  <span>Travel Services</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </button>
                 <AnimatePresence>
@@ -358,7 +432,7 @@ const Navbar = () => {
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance Policies</Link>
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Mapett Travel</button>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Travel Services</button>
                 {ecommerce.map((item) => <Link key={item.label} to={item.href} className={`${mobileNavLinkClass} pl-4`} onClick={() => setIsOpen(false)}>{item.label}</Link>)}
                 <Link to="/track" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Track</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contact us</button>
@@ -409,7 +483,8 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      {/* Search Modal */}
+
+        {/* Search Modal */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
@@ -418,38 +493,122 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -10 }}
             className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm flex items-start justify-center pt-24"
           >
-            <div className="w-full max-w-2xl mx-4">
+            <div className="w-full max-w-3xl mx-4">
               <div className="bg-card border border-border rounded-xl shadow-2xl p-4">
-                <div className="flex items-center gap-3">
-                  <Search className="h-5 w-5 text-muted-foreground shrink-0" />
-                  <input
-                    type="text"
-                    placeholder="Search services, products, pages..."
-                    className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-base"
-                    autoFocus
-                  />
-                  <button
-                    onClick={() => setIsSearchOpen(false)}
-                    className="p-2 hover:bg-secondary rounded-lg transition-colors"
-                    aria-label="Close search"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                </div>
+                <form onSubmit={handleSearch}>
+                  <div className="flex items-center gap-3">
+                    <Search className="h-5 w-5 text-muted-foreground shrink-0" />
+                    <input
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      type="text"
+                      placeholder="Search services, products, pages..."
+                      className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-base"
+                      autoFocus
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setIsSearchOpen(false)}
+                      className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+                      aria-label="Close search"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Search Suggestions */}
+                  {searchQuery.trim() && (
+                    <div className="mt-3 max-h-60 overflow-y-auto">
+                      {getSearchSuggestions().length > 0 ? (
+                        <div className="space-y-1">
+                          {getSearchSuggestions().map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => {
+                                window.location.href = item.path;
+                                setSearchQuery("");
+                                setIsSearchOpen(false);
+                              }}
+                              className="w-full text-left p-3 rounded-lg hover:bg-secondary transition-colors group"
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className="bg-primary/10 rounded-lg p-2 group-hover:bg-primary/20 transition-colors">
+                                  <Search className="h-4 w-4 text-primary" />
+                                </div>
+                                <div className="text-left">
+                                  <div className="font-medium text-foreground">{item.title}</div>
+                                  <div className="text-sm text-muted-foreground">{item.description}</div>
+                                  <div className="text-xs text-primary mt-1">{item.category}</div>
+                                </div>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-muted-foreground p-3">No matches found. Try searching for "services", "insurance", "track", "contact", etc.</p>
+                      )}
+                    </div>
+                  )}
+                </form>
+                
                 <div className="mt-4 pt-4 border-t border-border">
                   <p className="text-sm text-muted-foreground">Popular searches:</p>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Air Freight</button>
-                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Customs Clearance</button>
-                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Travel Insurance</button>
-                    <button onClick={() => setIsSearchOpen(false)} className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors">Track Shipment</button>
+                    <button 
+                      onClick={() => {
+                        setSearchQuery("Air Freight");
+                        setTimeout(() => {
+                          window.location.href = "/air-freight";
+                          setIsSearchOpen(false);
+                        }, 100);
+                      }} 
+                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                    >
+                      Air Freight
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setSearchQuery("Customs clearing & forwarding");
+                        setTimeout(() => {
+                          window.location.href = "/customs-clearing-forwarding";
+                          setIsSearchOpen(false);
+                        }, 100);
+                      }} 
+                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                    >
+                      Customs Clearing
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setSearchQuery("Insurance");
+                        setTimeout(() => {
+                          window.location.href = "/insurance";
+                          setIsSearchOpen(false);
+                        }, 100);
+                      }} 
+                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                    >
+                      Insurance
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setSearchQuery("Track Shipment");
+                        setTimeout(() => {
+                          window.location.href = "/track";
+                          setIsSearchOpen(false);
+                        }, 100);
+                      }} 
+                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                    >
+                      Track Shipment
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>  
    </nav>
     </>
   );

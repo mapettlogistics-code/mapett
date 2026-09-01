@@ -27,7 +27,7 @@ const slides = [
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
     image: sliderCustoms,
-    link: "#services",   
+    link: "/customs-clearance",     
   },
   {
     icon: Plane,
@@ -36,7 +36,7 @@ const slides = [
     description: "Time-sensitive shipments delivered worldwide with our extensive airline network",
     gradient: "from-primary/90 to-accent/70",
     image: sliderAirFreight,
-    link: "#services",
+    link: "/air-freight",
   },
   {
     icon: Ship,
@@ -45,7 +45,7 @@ const slides = [
     description: "FCL and LCL services connecting Mombasa to major ports globally",
     gradient: "from-accent/90 to-primary/70",
     image: sliderOceanFreight,
-    link: "#services",
+    link: "/ocean-freight",
   },
   {
     icon: Truck,
@@ -54,7 +54,7 @@ const slides = [
     description: "Reliable road logistics across Kenya, Uganda, Tanzania, and beyond",
     gradient: "from-primary/80 to-pink-600/70",
     image: sliderRoadTransport,
-    link: "#services",
+    link: "/road-rail-transport",
   },
   {
     icon: Warehouse,
@@ -63,7 +63,7 @@ const slides = [
     description: "Advanced inventory management with strategic locations across East Africa",
     gradient: "from-pink-600/80 to-primary/70",
     image: sliderWarehouse,
-    link: "#services",
+    link: "/warehousing",
   },
   {
     icon: Thermometer,
@@ -72,7 +72,7 @@ const slides = [
     description: "Temperature-controlled transport for perishable goods with real-time monitoring",
     gradient: "from-primary/85 to-accent/75",
     image: sliderRefrigerated,
-    link: "#services",
+    link: "/refrigerated-cargo",
   },
   {
     icon: Container,
@@ -81,7 +81,7 @@ const slides = [
     description: "Oversized, heavy-lift, and project cargo with specialized equipment",
     gradient: "from-primary/90 to-accent/70",
     image: sliderSpecialCargo,
-    link: "#services",
+    link: "/special-cargo",
   },
   {
     icon: Network,
@@ -116,7 +116,7 @@ const slides = [
     subtitle: "Explore Kenya & beyond",
     description: "Curated travel packages, safaris, and unforgettable experiences across East Africa",
     gradient: "from-primary/80 to-pink-600/70",
-    image: sliderEcommerce,
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85",
     link: "/tours-safaris",
   },
   {

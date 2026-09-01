@@ -50,15 +50,6 @@ const Autoshop = () => {
       image: categoryIndustrial,
     },
     {
-      icon: Hammer,
-      title: "Construction Lubricants",
-      description: "Heavy-duty lubricants for construction equipment and machinery",
-      productCount: 18,
-      color: "from-orange-500 to-red-600",
-      categoryKey: "construction-lubricants",
-      image: categoryIndustrial,
-    },
-    {
       icon: Car,
       title: "Vehicle Accessories",
       description: "Seat covers, boot organizers, car fridges and more",
@@ -84,6 +75,16 @@ const Autoshop = () => {
       color: "from-yellow-500 to-orange-600",
       categoryKey: "batteries",
       image: categoryBatteries,
+    },
+
+     {
+      icon: Car,
+      title: "Safety Shoes",
+      description: "Durable safety shoes and footwear for work and protection",
+      productCount: 24,
+      color: "from-purple-500 to-indigo-600",
+      categoryKey: "safety-shoes",
+      image: "/products/01KZRCAGEFSZNSYY4JYTTRXCKH.webp",
     },
   ];
 

@@ -77,8 +77,8 @@ const pages: Record<TravelService, PageContent> = {
     icon: Umbrella,
     highlights: ["Custom holiday and safari itineraries", "Family, group, and corporate packages", "Accommodation and transport coordination", "Local destination expertise"],
     cta: "Explore Tour Packages",
-    heroImage: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=2200&q=85",
-    heroImageAlt: "African safari wildlife at sunset",
+    heroImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85",
+    heroImageAlt: "Turquoise tropical beach with white sand and clear water",
   },
 };
 
@@ -93,7 +93,7 @@ const TravelServicePage = ({ service }: { service: TravelService }) => {
         <section className="relative overflow-hidden py-20 md:py-28">
           <div className="absolute inset-0"><img src={content.heroImage} alt={content.heroImageAlt} className="h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/80 to-foreground/45" /></div>
           <div className="container relative z-10"><motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-sm font-semibold text-primary-foreground"><Globe2 className="h-4 w-4" /> Mapett Travel</span>
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-sm font-semibold text-primary-foreground"><Globe2 className="h-4 w-4" /> Travel Services</span>
             <h1 className="mb-5 text-4xl font-bold text-background md:text-6xl">{content.title}</h1>
             <p className="mb-8 text-lg leading-relaxed text-background/85 md:text-xl">{content.intro}</p>
             <ContactDialog trigger={<Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">{content.cta} <ArrowRight className="ml-2 h-4 w-4" /></Button>} />
