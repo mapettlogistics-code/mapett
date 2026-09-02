@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store, Tag } from "lucide-react";
+import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDialog from "@/components/ContactDialog";
 
@@ -12,11 +12,11 @@ import sliderWarehouse from "@/assets/slider-warehouse.jpg";
 import sliderCustoms from "@/assets/slider-customs.jpg";
 import sliderRefrigerated from "@/assets/slider-refrigerated.jpg";
 import sliderSpecialCargo from "@/assets/slider-special-cargo.jpg";
-import sliderIntermodal from "@/assets/slider-intermodal.jpg";
 import sliderInsurance from "@/assets/slider-insurance.jpg";
 import sliderSupport from "@/assets/slider-support.jpg";
 import sliderMarketplace from "@/assets/slider-marketplace.jpg";
 import travelSolutionsImage from "@/assets/3 (1)-Picsart-AiImageEnhancer.png";
+import sealsTagsImage from "@/assets/576a413e-1bfe-4aa9-aec6-ef11171b00a5.png";
 import { SEALS_TAGS_HOME } from "@/data/sealsTagsLinks";
 
 
@@ -84,15 +84,6 @@ const slides = [
     image: sliderSpecialCargo,
     link: "/special-cargo",
   },
-  {
-    icon: Network,
-    title: "INTERMODAL SOLUTIONS",
-    subtitle: "Multi-modal transport",
-    description: "Connecting your cargo across road, rail, and sea networks globally",
-    gradient: "from-accent/90 to-primary/70",
-    image: sliderIntermodal,
-    link: "#services",
-  },
    {
     icon: Store,
     title: "AUTOSTORE & LUBRICANTS",
@@ -108,7 +99,7 @@ const slides = [
     subtitle: "Secure every shipment",
     description: "Tamper-evident security seals and tags that protect your cargo from dispatch to delivery.",
     gradient: "from-accent/85 to-primary/75",
-    image: sliderSpecialCargo,
+    image: sealsTagsImage,
     link: SEALS_TAGS_HOME,
   },
   {
