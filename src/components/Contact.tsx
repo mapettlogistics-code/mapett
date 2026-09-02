@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { toast } from "sonner";
 import * as LucideIcons from "lucide-react";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -33,7 +35,15 @@ const defaultSocials = [
   { title: "LinkedIn", link: "https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/", subtitle: "#0A66C2" },
 ];
 
+const phoneCountries: Record<string, string> = {
+  "+1": "US", "+7": "RU", "+20": "EG", "+27": "ZA", "+30": "GR", "+31": "NL", "+32": "BE", "+33": "FR", "+34": "ES", "+39": "IT", "+41": "CH", "+43": "AT", "+44": "GB", "+48": "PL", "+49": "DE", "+52": "MX", "+55": "BR", "+60": "MY", "+61": "AU", "+62": "ID", "+63": "PH", "+64": "NZ", "+65": "SG", "+66": "TH", "+81": "JP", "+82": "KR", "+84": "VN", "+86": "CN", "+90": "TR", "+91": "IN", "+92": "PK", "+93": "AF", "+94": "LK", "+95": "MM", "+98": "IR", "+211": "SS", "+212": "MA", "+213": "DZ", "+216": "TN", "+218": "LY", "+220": "GM", "+221": "SN", "+223": "ML", "+224": "GN", "+225": "CI", "+226": "BF", "+227": "NE", "+228": "TG", "+229": "BJ", "+230": "MU", "+231": "LR", "+232": "SL", "+233": "GH", "+234": "NG", "+235": "TD", "+236": "CF", "+237": "CM", "+238": "CV", "+239": "ST", "+240": "GQ", "+241": "GA", "+242": "CG", "+244": "AO", "+245": "GW", "+248": "SC", "+249": "SD", "+250": "RW", "+251": "ET", "+252": "SO", "+253": "DJ", "+254": "KE", "+255": "TZ", "+256": "UG", "+257": "BI", "+258": "MZ", "+260": "ZM", "+261": "MG", "+262": "RE", "+263": "ZW", "+264": "NA", "+265": "MW", "+266": "LS", "+267": "BW", "+268": "SZ", "+269": "KM", "+290": "SH", "+291": "ER", "+297": "AW", "+298": "FO", "+299": "GL", "+351": "PT", "+352": "LU", "+353": "IE", "+354": "IS", "+356": "MT", "+371": "LV", "+372": "EE", "+380": "UA", "+420": "CZ", "+963": "SY", "+966": "SA", "+971": "AE", "+972": "IL", "+974": "QA", "+977": "NP", "+998": "UZ",
+};
+
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "" });
   const { items: contactItems } = useSiteContent("contact_info", defaultContactInfo as any);
   const { items: socialItems } = useSiteContent("social_link", defaultSocials as any);
 
@@ -57,6 +67,38 @@ const Contact = () => {
       brandColor: s.subtitle || "#666",
     };
   });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (Object.values(form).some((value) => !value)) {
+      toast.error("Please complete every field before sending your message.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-inquiry-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}` },
+        body: JSON.stringify({ type: "inquiry", name: [form.salutation, form.firstName, form.middleName, form.surname].join(" "), email: form.email, phone: `${form.countryCode}${form.phone}`, service: form.service, message: form.message }),
+      });
+      if (!response.ok) throw new Error("Failed to send message");
+
+      toast.success("Message sent successfully to sales@mapettlogistics.com!");
+      setForm({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "" });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error("Failed to send your message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const countryCode = phoneCountries[form.countryCode] || "KE";
 
   return (
     <section id="contact" className="py-24">
@@ -89,11 +131,11 @@ const Contact = () => {
             <div className="bg-card rounded-2xl p-8 shadow-card border border-border">
               <h3 className="text-xl font-bold text-foreground mb-6">Send us a Message</h3>
                
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-4 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground">Salutation</label>
-                    <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <select name="salutation" value={form.salutation} onChange={handleChange} required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
                       <option value="">--</option>
                       <option>Mr.</option>
                       <option>Mrs.</option>
@@ -103,39 +145,39 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">First Name</label>
-                    <input type="text" placeholder="First name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <input type="text" name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name" required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Middle Name</label>
-                    <input type="text" placeholder="Middle name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <input type="text" name="middleName" value={form.middleName} onChange={handleChange} placeholder="Middle name" required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Surname</label>
-                    <input type="text" placeholder="Surname" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <input type="text" name="surname" value={form.surname} onChange={handleChange} placeholder="Surname" required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="text-sm font-medium text-foreground">Email</label>
-                    <input type="email" placeholder="john@example.com" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="john@example.com" required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground">Phone</label>
-                    <div className="mt-2 flex gap-2">
-                      <select className="px-3 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
-                        <option>+254</option>
-                        <option>+250</option>
+                    <div className="mt-2 flex h-12 items-center overflow-hidden rounded-lg border border-border bg-background">
+                      <img src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`} alt={countryCode} className="mx-3 h-4 w-[22px] rounded-sm object-cover" />
+                      <select name="countryCode" value={form.countryCode} onChange={handleChange} required className="h-full w-36 shrink-0 border-0 border-l border-border bg-transparent px-2 text-sm focus:outline-none focus:ring-0">
+                        {Object.entries(phoneCountries).map(([code, region]) => <option key={code} value={code}>{countryNames.of(region)} ({code})</option>)}
                       </select>
-                      <input type="tel" placeholder="700 000 000" className="flex-1 px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                      <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="700 000 000" required className="h-full min-w-0 flex-1 border-l border-border bg-transparent px-3 focus:outline-none" />
                     </div>
                   </div>
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-foreground">Service</label>
-                  <select className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
-                    <option>Select a service</option>
+                  <select name="service" value={form.service} onChange={handleChange} required className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <option value="">Select a service</option>
                     <optgroup label="Logistics Services">
                       <option>Customs Clearing & Forwarding</option>
                       <option>Air Freight</option>
@@ -146,20 +188,20 @@ const Contact = () => {
                       <option>Warehousing</option>
                       <option>Intermodal Solutions</option>
                     </optgroup>
-                     <optgroup label="Insurance Policies">
-                       <option>Marine Cargo Insurance</option>
-                       <option>Air Cargo Insurance</option>
-                       <option>Inland Transit Insurance</option>
-                       <option>Freight Forwarder Liability</option>
-                       <option>WIBA & Employees Liability</option>
-                       <option>Life Insurance</option>
-                       <option>Warehouse Insurance</option>
-                     </optgroup>
+                    <optgroup label="Insurance">
+                      <option>Marine Cargo Insurance</option>
+                      <option>Air Cargo Insurance</option>
+                      <option>Inland Transit Insurance</option>
+                      <option>Freight Forwarder Liability</option>
+                      <option>Warehouse Insurance</option>
+                      <option>Life Insurance</option>
+                      <option>WIBA & Employees Liability</option>
+                    </optgroup>
                     <optgroup label="Mapett Travel">
                       <option>Air Tickets</option>
                       <option>Hotel Booking</option>
                       <option>Visa Processing</option>
-                      <option>Tour & Safari Packages</option>
+                      <option>Tours & Safari Packages</option>
                       <option>Airport Transfers</option>
                       <option>Travel Insurance</option>
                       <option>Travel Essentials</option>
@@ -169,27 +211,40 @@ const Contact = () => {
                       <option>Food Grade Lubricants</option>
                       <option>Agricultural Lubricants</option>
                       <option>Industrial Lubricants</option>
-                      <option>Safety Shoes</option>
-                      <option>Vehicle Tires</option>
-                      <option>Vehicle Batteries</option>
+                      <option>Construction Lubricants</option>
                       <option>Vehicle Accessories</option>
-                      <option>Seals & Tags</option>
+                      <option>Vehicle Batteries</option>
+                      <option>Vehicle Tyres</option>
+                      <option>Safety Shoes</option>
                     </optgroup>
+                    <optgroup label="Seals & Tags">
+                    <option>Container & Cargo Seals</option>
+                    <option>Bolt Security Seals</option>
+                    <option>Cable Security Seals</option>
+                    <option>Plastic Security Seals</option>
+                    <option>Metal Security Seals</option>
+                    <option>Strap Security Seals</option>
+                    <option>Metre Security Seals</option>
+                    <option>Padlock Security Seals</option>
+                    <option>Clip Security Seals</option>
+                    <option>Tamper-Evident Papers</option>
+                    <option>Tamper-Evident Tapes</option>
+                  </optgroup>
                   </select>
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-foreground">Message</label>
-                  <textarea
+                  <textarea name="message" value={form.message} onChange={handleChange} required
                     rows={5}
                     placeholder="Tell us about your logistics needs..."
                     className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                   />
                 </div>
 
-                <Button className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
+                <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
                   <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>

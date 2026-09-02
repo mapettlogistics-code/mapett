@@ -169,8 +169,8 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.firstName || !form.email || !form.message) {
-      toast.error("Please fill in required fields (First Name, Email, Message)");
+    if (!form.salutation || !form.firstName || !form.middleName || !form.surname || !form.email || !form.countryCode || !form.phone || !form.service || !form.message) {
+      toast.error("Please complete every field before sending your inquiry.");
       return;
     }
     setLoading(true);
@@ -289,25 +289,26 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <h3 className="font-semibold text-foreground">Send an Inquiry</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <select name="salutation" value={form.salutation} onChange={handleChange} className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <select name="salutation" value={form.salutation} onChange={handleChange} required className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
               <option value="">--</option>
               <option>Mr.</option>
               <option>Mrs.</option>
               <option>Ms.</option>
               <option>Dr.</option>
             </select>
-            <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <input name="middleName" value={form.middleName} onChange={handleChange} placeholder="Middle name" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <input name="surname" value={form.surname} onChange={handleChange} placeholder="Surname" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+            <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name *" required className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+            <input name="middleName" value={form.middleName} onChange={handleChange} placeholder="Middle name *" required className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+            <input name="surname" value={form.surname} onChange={handleChange} placeholder="Surname *" required className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
           </div>
            <div className="grid grid-cols-2 gap-3">
-            <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+            <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email *" required className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
             <div className="flex h-10 items-center overflow-hidden rounded-lg border border-border bg-background shadow-sm">
               <CountryFlag countryCode={phoneToCountryCode[form.countryCode] || "KE"} />
               <select
                 name="countryCode"
                 value={form.countryCode}
                 onChange={handleChange}
+                required
                 className="h-10 border-0 bg-transparent px-2 text-sm font-medium text-foreground focus:outline-none focus:ring-0 min-w-[128px]"
               >
                 <option value="+244">Angola (+244)</option>
@@ -418,11 +419,12 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="700 000 000"
+                required
                 className="h-10 flex-1 border-l border-border bg-transparent px-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
               />
             </div>
           </div>
-          <select name="service" value={form.service} onChange={handleChange} className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
+          <select name="service" value={form.service} onChange={handleChange} required className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
             <option value="">Select a service</option>
             <optgroup label="Logistics Services">
               <option>Customs Clearing & Forwarding</option>
@@ -457,22 +459,27 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Food Grade Lubricants</option>
               <option>Agricultural Lubricants</option>
               <option>Industrial Lubricants</option>
+              <option>Construction Lubricants</option>
               <option>Vehicle Accessories</option>
               <option>Vehicle Batteries</option>
               <option>Vehicle Tyres</option>
               <option>Safety Shoes</option>
             </optgroup>
             <optgroup label="Seals & Tags">
+              <option>Container & Cargo Seals</option>
               <option>Bolt Security Seals</option>
-              <option>Cable & Specialized Security Seals</option>
-              <option>Pull-Tight Plastic Security Seals</option>
+              <option>Cable Security Seals</option>
+              <option>Plastic Security Seals</option>
               <option>Metal Security Seals</option>
+              <option>Strap Security Seals</option>
               <option>Metre Security Seals</option>
               <option>Padlock Security Seals</option>
-              <option>Tamper-Evident Tape Security Seals</option>
+              <option>Clip Security Seals</option>
+              <option>Tamper-Evident Papers</option>
+              <option>Tamper-Evident Tapes</option>
             </optgroup>
           </select>
-          <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
+          <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" required className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
           <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
             <Send className="mr-2 h-4 w-4" />
             {loading ? "Sending..." : "Send Inquiry"}

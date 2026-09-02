@@ -88,7 +88,7 @@ const handler = async (req: Request) => {
           Authorization: `Bearer ${RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "noreply@mapettlogistics.com",
+          from: "Mapett Logistics Enquiries <enquiries@mapettlogistics.com>",
           to: "sales@mapettlogistics.com",
           reply_to: emailRequest.email,
           subject: subject,

@@ -19,7 +19,6 @@ const defaultValues = [
   { title: "Value for Money", icon: "Wallet", description: "We focus on solutions that deliver practical value, competitive commercial outcomes and responsible use of customer resources." },
   { title: "Operational Efficiency", icon: "Gauge", description: "We continuously seek better ways to coordinate people, processes, technology and partners so that work is completed effectively." },
   { title: "Innovation", icon: "Lightbulb", description: "We embrace technology, E-Commerce and new approaches that improve convenience, access and performance." },
-  { title: "Customer Focus", icon: "Heart", description: "We listen to customers, understand their requirements and design practical solutions around their needs." },
 ];
 
 const defaultMilestones = [
@@ -59,26 +58,32 @@ const About = () => {
     description: v.description || "",
   }));
 
-  if (!values.some(value => value.title === "Customer Focus")) {
-    values.push({
-      icon: getIcon("Heart"),
-      title: "Customer Focus",
-      description: "We listen to customers, understand their requirements and design practical solutions around their needs.",
-    });
-  }
-
   return (
     <section id="about" className={isAboutPage ? "pt-8 pb-24 bg-secondary/30" : "py-24 bg-secondary/30"}>
       <div className="container">
+        <div className="mb-4 flex w-full flex-wrap items-center gap-3 sm:flex-nowrap">
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
+            {badge}
+          </span>
+          {isAboutPage && (
+            <Button asChild size="sm" className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90 sm:ml-auto">
+              <a
+                href="/documents/MAPETT%20LOGISTICS%20LIMITED%20PROFILE.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Company Profile
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          )}
+        </div>
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-              {badge}
-            </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
               {heading.includes("Kenya's Logistics") ? (
                 <>
@@ -100,18 +105,7 @@ const About = () => {
               ))}
             </div>
 
-            {isAboutPage ? (
-              <Button asChild className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-                <a
-                  href="/documents/MAPETT%20LOGISTICS%20LIMITED%20PROFILE.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Company Profile
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            ) : (
+            {!isAboutPage && (
               <Button asChild className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
                 <Link to="/about">{buttonText}</Link>
               </Button>
