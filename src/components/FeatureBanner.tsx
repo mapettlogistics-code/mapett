@@ -1,30 +1,27 @@
 import { motion } from "framer-motion";
-import { Plane, Ship, Truck, FileCheck, Shield, Award } from "lucide-react";
+import { ShoppingBag, Headset, BadgePercent, Truck } from "lucide-react";
+import clockImage from "@/assets/24-hours_548954.png";
 
 const features = [
   {
-    icon: Plane,
-    title: "Complete Travel Solutions",
+    image: clockImage,
+    title: "Round-the-Clock Support",
   },
   {
-    icon: Ship,
-    title: "Global Logistics",
+    icon: ShoppingBag,
+    title: "Shop Online Anytime, Anywhere",
   },
   {
-    icon: FileCheck,
-    title: "Customs Clearing & Forwarding",
+    icon: Headset,
+    title: "Dedicated Customer Care You Can Trust",
   },
   {
-    icon: Shield,
-    title: "Comprehensive Insurance",
-  },
-  {
-    icon: Award,
-    title: "Trusted Autostore",
+    icon: BadgePercent,
+    title: "Unbeatable Value for Money",
   },
   {
     icon: Truck,
-    title: "Reliable Delivery",
+    title: "Fast Country-Wide Delivery",
   },
 ];
 
@@ -32,7 +29,7 @@ const FeatureBanner = () => {
   return (
       <section className="bg-secondary/50 border-y border-border py-6">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -42,8 +39,12 @@ const FeatureBanner = () => {
               transition={{ delay: index * 0.1 }}
               className="flex flex-col items-center text-center gap-3"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <feature.icon className="h-6 w-6" />
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary overflow-hidden">
+                {feature.image ? (
+                  <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                ) : (
+                  feature.icon && <feature.icon className="h-6 w-6" />
+                )}
               </div>
               <div className="w-full">
                 <h3 className="font-semibold text-foreground text-sm">{feature.title}</h3>

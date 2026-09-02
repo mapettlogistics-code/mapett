@@ -105,6 +105,41 @@ const handler = async (req: Request) => {
         );
       }
 
+      // Send a confirmation copy to the customer so they know their message was received
+      const customerSubject = emailRequest.type === "quote"
+        ? "We've received your quote request - Mapett Logistics"
+        : "We've received your inquiry - Mapett Logistics";
+      const customerHtml = `
+        <h2>Thank you, ${emailRequest.name}!</h2>
+        <p>We've received your ${emailRequest.type === "quote" ? "quote request" : "inquiry"} and our team will get back to you shortly.</p>
+        <p><strong>Summary of what you submitted:</strong></p>
+        ${emailRequest.service ? `<p><strong>Service:</strong> ${emailRequest.service}</p>` : ""}
+        ${emailRequest.message ? `<p><strong>Message:</strong><br/>${emailRequest.message.replace(/\n/g, "<br>")}</p>` : ""}
+        <hr/>
+        <p>If you need urgent assistance, call or WhatsApp us at +254 799 390 133.</p>
+        <p><em>Mapett Travel & Logistics Limited</em></p>
+      `;
+      const customerEmailResponse = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "Mapett Logistics Enquiries <enquiries@mapettlogistics.com>",
+          to: emailRequest.email,
+          reply_to: "sales@mapettlogistics.com",
+          subject: customerSubject,
+          html: customerHtml,
+        }),
+      });
+
+      if (!customerEmailResponse.ok) {
+        const error = await customerEmailResponse.text();
+        console.error("Resend API error (customer confirmation):", error);
+        // Don't fail the request if only the customer confirmation fails; the sales email already sent
+      }
+
       // Also store in database for record keeping
       if (supabaseUrl && supabaseServiceKey) {
         const supabase = createClient(supabaseUrl, supabaseServiceKey);

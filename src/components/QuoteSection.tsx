@@ -1,24 +1,9 @@
-import { useState, type ComponentType } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, MapPin, Truck, Package, Globe } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { toast } from "sonner";
-import * as LucideIcons from "lucide-react";
-
-type IconComponent = ComponentType<{ className?: string }>;
-
-const getIcon = (name: string | null) => {
-  if (!name) return Package;
-  const icon = LucideIcons[name as keyof typeof LucideIcons];
-  return (typeof icon === "object" ? icon : Package) as IconComponent;
-};
-
-const defaultStats = [
-  { title: "10+", subtitle: "Years Experience", icon: "Truck" },
-  { title: "50K+", subtitle: "Deliveries", icon: "Package" },
-  { title: "15+", subtitle: "Countries", icon: "Globe" },
-];
 
 type CategoryType = "services" | "insurance" | "travel";
 
@@ -36,18 +21,11 @@ const QuoteSection = () => {
   });
 
   const { items: sectionItems } = useSiteContent("quote_section");
-  const { items: statItems } = useSiteContent("quote_stat", defaultStats);
 
   const section = sectionItems[0];
   const badge = section?.subtitle || "Request a Quote";
   const heading = section?.title || "Get Instant Pricing for Your Shipment, Insurance & Travel Service";
   const description = section?.description || "Select from our Services, Insurance, or Travel Services categories and fill out the quick quote form. Our team will provide you with a competitive quote tailored to your needs within 24 hours.";
-
-  const stats = statItems.map(s => ({
-    icon: getIcon(s.icon),
-    value: s.title || "",
-    label: s.subtitle || "",
-  }));
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -104,7 +82,7 @@ const QuoteSection = () => {
   };
 
   const categories: { id: CategoryType; label: string }[] = [
-    { id: "services", label: "Services" },
+    { id: "services", label: "Logistics Services" },
     { id: "insurance", label: "Insurance" },
     { id: "travel", label: "Travel Services" },
   ];
@@ -289,23 +267,6 @@ const QuoteSection = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{heading}</h2>
             <p className="text-muted-foreground text-lg mb-8">{description}</p>
-
-            <div className="flex gap-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <stat.icon className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div
