@@ -178,13 +178,50 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
       return;
     }
     setLoading(true);
-    // Compose WhatsApp message as fallback
+    
     const fullName = [form.salutation, form.firstName, form.surname].filter(Boolean).join(" ");
-    const text = `Hello! My name is ${fullName}.\nEmail: ${form.email}\nPhone: ${form.countryCode}${form.phone}\nService: ${form.service}\n\n${form.message}`;
-    window.open(`https://wa.me/254799390133?text=${encodeURIComponent(text)}`, "_blank");
-    toast.success("Redirecting to WhatsApp...");
-    setLoading(false);
-    setOpen(false);
+    
+    try {
+      // Send email via Supabase Edge Function
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-inquiry-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          type: "inquiry",
+          name: fullName,
+          email: form.email,
+          phone: form.countryCode + form.phone,
+          service: form.service,
+          message: form.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send inquiry");
+      }
+
+      toast.success("Inquiry sent successfully to sales@mapettlogistics.com!");
+      setOpen(false);
+      setForm({
+        salutation: "",
+        firstName: "",
+        surname: "",
+        email: "",
+        countryCode: "+254",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to send inquiry. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [

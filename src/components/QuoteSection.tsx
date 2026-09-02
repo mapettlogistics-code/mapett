@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Truck, Package, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { toast } from "@/hooks/use-toast";
 import * as LucideIcons from "lucide-react";
 
 const getIcon = (name: string | null) => {
@@ -20,6 +21,11 @@ type CategoryType = "services" | "insurance" | "travel";
 
 const QuoteSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "", company: "", phone: "", email: "", service: "", details: ""
+  });
+
   const { items: sectionItems } = useSiteContent("quote_section");
   const { items: statItems } = useSiteContent("quote_stat", defaultStats as any);
 
@@ -34,6 +40,52 @@ const QuoteSection = () => {
     label: s.subtitle || "",
   }));
 
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email) {
+      toast.error("Please fill in required fields");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-inquiry-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          type: "quote",
+          category: activeCategory,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          message: formData.details,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+      
+      toast.success("Quote request sent to sales@mapettlogistics.com!");
+      setFormData({ name: "", company: "", phone: "", email: "", service: "", details: "" });
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const categories: { id: CategoryType; label: string }[] = [
     { id: "services", label: "Services" },
     { id: "insurance", label: "Insurance" },
@@ -41,32 +93,32 @@ const QuoteSection = () => {
   ];
 
   const renderServicesForm = () => (
-    <form className="space-y-4">
+    <form onSubmit={handleFormSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Contact Person Name</label>
-          <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="text" name="name" value={formData.name} onChange={handleFormChange} placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Company Name</label>
-          <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="text" name="company" value={formData.company} onChange={handleFormChange} placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Phone Number</label>
-          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Email Address</label>
-          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
       </div>
 
       <div>
         <label className="text-sm font-medium text-foreground">Service Type</label>
-        <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+        <select name="service" value={formData.service} onChange={handleFormChange} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
           <option value="">Select a logistics service</option>
           <option>Air Freight</option>
           <option>Ocean Freight</option>
@@ -80,21 +132,17 @@ const QuoteSection = () => {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-foreground">Origin & Destination</label>
-        <input type="text" placeholder="e.g. Mombasa to Nairobi" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-      </div>
-
-      <div>
         <label className="text-sm font-medium text-foreground">Shipment Details</label>
-        <textarea rows={2} placeholder="Describe cargo type, weight, dimensions, special handling requirements..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Describe cargo type, weight, dimensions, special handling requirements..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
 
       <Button 
         type="submit"
+        disabled={loading}
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
       >
         <span className="flex items-center justify-center gap-2">
-          Get Logistics Quote
+          {loading ? "Sending..." : "Get Logistics Quote"}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
       </Button>
@@ -102,32 +150,32 @@ const QuoteSection = () => {
   );
 
   const renderInsuranceForm = () => (
-    <form className="space-y-4">
+    <form onSubmit={handleFormSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Contact Person Name</label>
-          <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="text" name="name" value={formData.name} onChange={handleFormChange} placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Company Name</label>
-          <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="text" name="company" value={formData.company} onChange={handleFormChange} placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Phone Number</label>
-          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Email Address</label>
-          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
       </div>
 
       <div>
         <label className="text-sm font-medium text-foreground">Insurance Type</label>
-        <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+        <select name="service" value={formData.service} onChange={handleFormChange} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
           <option value="">Select an insurance type</option>
           <option>Marine Cargo Insurance</option>
           <option>Air Cargo Insurance</option>
@@ -140,21 +188,17 @@ const QuoteSection = () => {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-foreground">Cargo/Coverage Details</label>
-        <input type="text" placeholder="Cargo type and estimated value" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-      </div>
-
-      <div>
         <label className="text-sm font-medium text-foreground">Coverage Requirements</label>
-        <textarea rows={2} placeholder="Coverage needs, special requirements, coverage period..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Coverage needs, special requirements, coverage period..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
 
       <Button 
         type="submit"
+        disabled={loading}
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
       >
         <span className="flex items-center justify-center gap-2">
-          Get Insurance Quote
+          {loading ? "Sending..." : "Get Insurance Quote"}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
       </Button>
@@ -162,26 +206,26 @@ const QuoteSection = () => {
   );
 
   const renderTravelForm = () => (
-    <form className="space-y-4">
+    <form onSubmit={handleFormSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Full Name</label>
-          <input type="text" placeholder="Your name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="text" name="name" value={formData.name} onChange={handleFormChange} placeholder="Your name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Email Address</label>
-          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium text-foreground">Phone Number</label>
-          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+          <input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
         </div>
         <div>
           <label className="text-sm font-medium text-foreground">Travel Service</label>
-          <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+          <select name="service" value={formData.service} onChange={handleFormChange} className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
             <option value="">Select a travel service</option>
             <option>Air Tickets</option>
             <option>Hotel Booking</option>
@@ -194,28 +238,18 @@ const QuoteSection = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="text-sm font-medium text-foreground">Travel Dates</label>
-          <input type="text" placeholder="e.g. 15 Dec - 22 Dec 2024" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-        </div>
-        <div>
-          <label className="text-sm font-medium text-foreground">Destination</label>
-          <input type="text" placeholder="Where would you like to travel?" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-        </div>
-      </div>
-
       <div>
         <label className="text-sm font-medium text-foreground">Travel Details</label>
-        <textarea rows={2} placeholder="Number of travelers, preferences, special requirements..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Travel dates, destination, number of travelers, preferences..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
 
       <Button 
         type="submit"
+        disabled={loading}
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
       >
         <span className="flex items-center justify-center gap-2">
-          Get Travel Quote
+          {loading ? "Sending..." : "Get Travel Quote"}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
       </Button>
