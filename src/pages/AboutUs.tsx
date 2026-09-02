@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import { motion } from "framer-motion";
-import { ExternalLink, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 
 const AboutUs = () => {
   return (
@@ -35,15 +35,6 @@ const AboutUs = () => {
                       MAPETT LOGISTICS LIMITED PROFILE
                     </h3>
                   </div>
-                  <a 
-                    href="/documents/MAPETT LOGISTICS LIMITED PROFILE.pdf" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    View Full Profile
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
                 </div>
                 
                 {/* PDF Viewer - View Only Mode */}

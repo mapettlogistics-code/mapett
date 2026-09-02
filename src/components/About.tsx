@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
-import { CheckCircle, Award, Users, Clock, MapPin } from "lucide-react";
+import { CheckCircle, Award, Users, Clock, MapPin, ExternalLink } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -19,13 +19,14 @@ const defaultValues = [
   { title: "Value for Money", icon: "Wallet", description: "We focus on solutions that deliver practical value, competitive commercial outcomes and responsible use of customer resources." },
   { title: "Operational Efficiency", icon: "Gauge", description: "We continuously seek better ways to coordinate people, processes, technology and partners so that work is completed effectively." },
   { title: "Innovation", icon: "Lightbulb", description: "We embrace technology, E-Commerce and new approaches that improve convenience, access and performance." },
+  { title: "Customer Focus", icon: "Heart", description: "We listen to customers, understand their requirements and design practical solutions around their needs." },
 ];
 
 const defaultMilestones = [
-  { subtitle: "2015", title: "Founded", description: "Started with a vision to transform Kenya's logistics" },
-  { subtitle: "2018", title: "Expansion", description: "Opened warehouses in Mombasa and Nairobi" },
-  { subtitle: "2021", title: "Digital Shift", description: "Launched online marketplace and tracking" },
-  { subtitle: "2025", title: "10 Years", description: "Celebrating a decade of excellence" },
+  { subtitle: "2020", title: "Founded", description: "Started with a vision to transform Kenya's logistics" },
+  { subtitle: "2022", title: "Expansion", description: "Opened offices in Mombasa and Nairobi" },
+  { subtitle: "2025", title: "Digital Shift", description: "Launched online websites" },
+  { subtitle: "2026", title: "5 Years", description: "Celebrating a decade of excellence" },
 ];
 
 const About = () => {
@@ -38,8 +39,8 @@ const About = () => {
   const about = aboutItems[0];
   const badge = about?.subtitle || "About Mapett Travel & Logistics";
   const heading = about?.title || "Your Trusted Partner in Kenya's Logistics";
-  const mainDesc = about?.description || "Since 2015, Mapett Travel & Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
-  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "We combine traditional logistics excellence with modern e-commerce through our integrated Autostore & Lubricants, offering automotive lubricants, batteries, and accessories alongside our freight and warehousing services.";
+  const mainDesc = about?.description || "Since 2020, Mapett Travel & Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
+  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "Our business has four divisions ; Mapett Logistics Solutions, Mapett Autostore & Lubricants Solutions, Travel Solutions & E-commerce Marketplace. ";
   const bulletsRaw = (about?.extra_data as any)?.bullets || "End-to-end supply chain solutions\nReal-time shipment tracking\nCompetitive pricing\n24/7 customer support";
   const bullets = bulletsRaw.split("\n").filter(Boolean);
   const buttonText = (about?.extra_data as any)?.button_text || "Learn More About Us";
@@ -57,6 +58,14 @@ const About = () => {
     title: v.title || "",
     description: v.description || "",
   }));
+
+  if (!values.some(value => value.title === "Customer Focus")) {
+    values.push({
+      icon: getIcon("Heart"),
+      title: "Customer Focus",
+      description: "We listen to customers, understand their requirements and design practical solutions around their needs.",
+    });
+  }
 
   return (
     <section id="about" className={isAboutPage ? "pt-8 pb-24 bg-secondary/30" : "py-24 bg-secondary/30"}>
@@ -91,7 +100,18 @@ const About = () => {
               ))}
             </div>
 
-            {!isAboutPage && (
+            {isAboutPage ? (
+              <Button asChild className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
+                <a
+                  href="/documents/MAPETT%20LOGISTICS%20LIMITED%20PROFILE.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Company Profile
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            ) : (
               <Button asChild className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
                 <Link to="/about">{buttonText}</Link>
               </Button>

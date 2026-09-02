@@ -25,7 +25,7 @@ const promos = [
   {
     src: "/promo-circles/customs-clearance.jpg",
     alt: "Customs Clearance",
-    link: "/customs-clearance",
+    link: "/customs-clearing-forwarding",
   },
   {
     src: "/promo-circles/insurance.jpg",

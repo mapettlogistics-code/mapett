@@ -106,6 +106,10 @@ const Contact = () => {
                     <input type="text" placeholder="First name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div>
+                    <label className="text-sm font-medium text-foreground">Middle Name</label>
+                    <input type="text" placeholder="Middle name" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                  </div>
+                  <div>
                     <label className="text-sm font-medium text-foreground">Surname</label>
                     <input type="text" placeholder="Surname" className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50" />
                   </div>

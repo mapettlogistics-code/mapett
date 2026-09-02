@@ -3,6 +3,9 @@ project_id = "mefiixczdxprchjvvwlr"
 [functions.customer-chat]
 verify_jwt = false
 
+[functions.send-inquiry-email]
+verify_jwt = false
+
 [functions.provision-admin]
 verify_jwt = false
 

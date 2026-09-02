@@ -46,6 +46,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   const [form, setForm] = useState({
     salutation: "",
     firstName: "",
+    middleName: "",
     surname: "",
     email: "",
     countryCode: "+254",
@@ -59,7 +60,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   };
   
   const phoneToCountryCode: Record<string, string> = {
-    "+254": "KE",
     "+1": "US",
     "+7": "RU",
     "+20": "EG",
@@ -70,12 +70,18 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     "+33": "FR",
     "+34": "ES",
     "+39": "IT",
+    "+41": "CH",
+    "+43": "AT",
     "+44": "GB",
+    "+48": "PL",
     "+49": "DE",
+    "+52": "MX",
     "+55": "BR",
+    "+60": "MY",
     "+61": "AU",
     "+62": "ID",
     "+63": "PH",
+    "+64": "NZ",
     "+65": "SG",
     "+66": "TH",
     "+81": "JP",
@@ -96,7 +102,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     "+218": "LY",
     "+220": "GM",
     "+221": "SN",
-    "+222": "MR",
     "+223": "ML",
     "+224": "GN",
     "+225": "CI",
@@ -113,13 +118,11 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     "+236": "CF",
     "+237": "CM",
     "+238": "CV",
-    "+239": "ST",
     "+240": "GQ",
     "+241": "GA",
     "+242": "CG",
     "+244": "AO",
     "+245": "GW",
-    "+246": "IO",
     "+248": "SC",
     "+249": "SD",
     "+250": "RW",
@@ -141,7 +144,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     "+267": "BW",
     "+268": "SZ",
     "+269": "KM",
-    "+27": "ZA",
     "+290": "SH",
     "+291": "ER",
     "+297": "AW",
@@ -156,12 +158,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     "+372": "EE",
     "+380": "UA",
     "+420": "CZ",
-    "+43": "AT",
-    "+41": "CH",
-    "+48": "PL",
-    "+52": "MX",
-    "+60": "MY",
-    "+64": "NZ",
     "+963": "SY",
     "+966": "SA",
     "+971": "AE",
@@ -179,7 +175,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     }
     setLoading(true);
     
-    const fullName = [form.salutation, form.firstName, form.surname].filter(Boolean).join(" ");
+    const fullName = [form.salutation, form.firstName, form.middleName, form.surname].filter(Boolean).join(" ");
     
     try {
       // Send email via Supabase Edge Function
@@ -201,7 +197,11 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send inquiry");
+        const errorBody = await response.text();
+        const message = errorBody.includes("NOT_FOUND")
+          ? "The email function is not deployed in Supabase yet. Please deploy send-inquiry-email first."
+          : "Failed to send inquiry";
+        throw new Error(message);
       }
 
       toast.success("Inquiry sent successfully to sales@mapettlogistics.com!");
@@ -209,6 +209,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
       setForm({
         salutation: "",
         firstName: "",
+        middleName: "",
         surname: "",
         email: "",
         countryCode: "+254",
@@ -218,7 +219,10 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
       });
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Failed to send inquiry. Please try again.");
+      const message = error instanceof Error && error.message
+        ? error.message
+        : "Failed to send inquiry. Please try again.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -284,7 +288,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
         {/* Inquiry Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <h3 className="font-semibold text-foreground">Send an Inquiry</h3>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <select name="salutation" value={form.salutation} onChange={handleChange} className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
               <option value="">--</option>
               <option>Mr.</option>
@@ -293,6 +297,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Dr.</option>
             </select>
             <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+            <input name="middleName" value={form.middleName} onChange={handleChange} placeholder="Middle name" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
             <input name="surname" value={form.surname} onChange={handleChange} placeholder="Surname" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
           </div>
            <div className="grid grid-cols-2 gap-3">

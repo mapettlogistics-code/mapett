@@ -1,6 +1,6 @@
 export const servicePageLinks: Record<string, string> = {
   "Air Freight": "/air-freight",
-  "Customs Clearing & Forwarding": "/customs-clearance",
+  "Customs Clearing & Forwarding": "/customs-clearing-forwarding",
   "Ocean Freight": "/ocean-freight",
   "Road & Rail Transport": "/road-rail-transport",
   "Road Transport": "/road-rail-transport",

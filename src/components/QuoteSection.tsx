@@ -74,13 +74,22 @@ const QuoteSection = () => {
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to send");
+      if (!response.ok) {
+        const errorBody = await response.text();
+        const message = errorBody.includes("NOT_FOUND")
+          ? "The email function is not deployed in Supabase yet. Please deploy send-inquiry-email first."
+          : "Failed to send quote request";
+        throw new Error(message);
+      }
       
       toast.success("Quote request sent to sales@mapettlogistics.com!");
       setFormData({ name: "", company: "", phone: "", email: "", service: "", details: "" });
     } catch (error) {
       console.error(error);
-      toast.error("Failed to send. Please try again.");
+      const message = error instanceof Error && error.message
+        ? error.message
+        : "Failed to send. Please try again.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -127,7 +136,6 @@ const QuoteSection = () => {
           <option>Customs Clearing & Forwarding</option>
           <option>Refrigerated Cargo</option>
           <option>Special Cargo</option>
-          <option>Intermodal Solutions</option>
         </select>
       </div>
 

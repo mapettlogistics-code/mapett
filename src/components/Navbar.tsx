@@ -356,14 +356,14 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Travel Services dropdown */}
+              {/* Travel Solutions dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('ecommerce')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button className={navDropdownClass}>
-                  <span>Travel Services</span>
+                  <span>Travel Solutions</span>
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                 </button>
                 <AnimatePresence>
@@ -560,7 +560,7 @@ const Navbar = () => {
                         setTimeout(() => {
                           window.location.href = "/air-freight";
                           setIsSearchOpen(false);
-                        }, 100);
+                        }, 100);                                    
                       }} 
                       className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
                     >

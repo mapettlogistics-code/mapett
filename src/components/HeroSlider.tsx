@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store } from "lucide-react";
+import { ChevronLeft, ChevronRight, Warehouse, Thermometer, Container, Network, ShoppingCart, MessageCircle, Plane, Ship, Truck, FileCheck, Shield, Store, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDialog from "@/components/ContactDialog";
 
@@ -13,10 +13,11 @@ import sliderCustoms from "@/assets/slider-customs.jpg";
 import sliderRefrigerated from "@/assets/slider-refrigerated.jpg";
 import sliderSpecialCargo from "@/assets/slider-special-cargo.jpg";
 import sliderIntermodal from "@/assets/slider-intermodal.jpg";
-import sliderEcommerce from "@/assets/slider-ecommerce.jpg";
 import sliderInsurance from "@/assets/slider-insurance.jpg";
 import sliderSupport from "@/assets/slider-support.jpg";
 import sliderMarketplace from "@/assets/slider-marketplace.jpg";
+import travelSolutionsImage from "@/assets/3 (1)-Picsart-AiImageEnhancer.png";
+import { SEALS_TAGS_HOME } from "@/data/sealsTagsLinks";
 
 
 const slides = [
@@ -27,7 +28,7 @@ const slides = [
     description: "Expert customs services at Mombasa Port, JKIA, and all border points",
     gradient: "from-accent/80 to-primary/80",
     image: sliderCustoms,
-    link: "/customs-clearance",     
+    link: "/customs-clearing-forwarding",
   },
   {
     icon: Plane,
@@ -102,6 +103,15 @@ const slides = [
     link: "https://mapett.com/",
   },
   {
+    icon: Tag,
+    title: "SEALS & TAGS",
+    subtitle: "Secure every shipment",
+    description: "Tamper-evident security seals and tags that protect your cargo from dispatch to delivery.",
+    gradient: "from-accent/85 to-primary/75",
+    image: sliderSpecialCargo,
+    link: SEALS_TAGS_HOME,
+  },
+  {
     icon: Shield,
     title: "INSURANCE POLICIES",
     subtitle: "Protect your cargo",
@@ -112,11 +122,11 @@ const slides = [
   },
   {
     icon: ShoppingCart,
-    title: "TOURS & SAFARIS",
-    subtitle: "Explore Kenya & beyond",
-    description: "Curated travel packages, safaris, and unforgettable experiences across East Africa",
+    title: "TRAVEL SOLUTIONS",
+    subtitle: "Flights, Hotels, Tours, VISA, Transfers, Travel Insurance",
+    description: "Your comprehensive, all-in-one gateway to seamless global travel planning and hassle-free trip booking.",
     gradient: "from-primary/80 to-pink-600/70",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85",
+    image: travelSolutionsImage,
     link: "/tours-safaris",
   },
   {
