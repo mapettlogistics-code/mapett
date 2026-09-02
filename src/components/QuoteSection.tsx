@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Truck, Package, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,10 @@ const defaultStats = [
   { title: "15+", subtitle: "Countries", icon: "Globe" },
 ];
 
+type CategoryType = "services" | "insurance" | "travel";
+
 const QuoteSection = () => {
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
   const { items: sectionItems } = useSiteContent("quote_section");
   const { items: statItems } = useSiteContent("quote_stat", defaultStats as any);
 
@@ -29,6 +33,194 @@ const QuoteSection = () => {
     value: s.title || "",
     label: s.subtitle || "",
   }));
+
+  const categories: { id: CategoryType; label: string }[] = [
+    { id: "services", label: "Services" },
+    { id: "insurance", label: "Insurance" },
+    { id: "travel", label: "Travel Services" },
+  ];
+
+  const renderServicesForm = () => (
+    <form className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Contact Person Name</label>
+          <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Company Name</label>
+          <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Phone Number</label>
+          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Email Address</label>
+          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Service Type</label>
+        <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+          <option value="">Select a logistics service</option>
+          <option>Air Freight</option>
+          <option>Ocean Freight</option>
+          <option>Road & Rail Transport</option>
+          <option>Warehousing</option>
+          <option>Customs Clearing & Forwarding</option>
+          <option>Refrigerated Cargo</option>
+          <option>Special Cargo</option>
+          <option>Intermodal Solutions</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Origin & Destination</label>
+        <input type="text" placeholder="e.g. Mombasa to Nairobi" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Shipment Details</label>
+        <textarea rows={2} placeholder="Describe cargo type, weight, dimensions, special handling requirements..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+      </div>
+
+      <Button 
+        type="submit"
+        className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
+      >
+        <span className="flex items-center justify-center gap-2">
+          Get Logistics Quote
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </span>
+      </Button>
+    </form>
+  );
+
+  const renderInsuranceForm = () => (
+    <form className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Contact Person Name</label>
+          <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Company Name</label>
+          <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Phone Number</label>
+          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Email Address</label>
+          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Insurance Type</label>
+        <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+          <option value="">Select an insurance type</option>
+          <option>Marine Cargo Insurance</option>
+          <option>Air Cargo Insurance</option>
+          <option>Inland Transit Insurance</option>
+          <option>Freight Forwarder Liability</option>
+          <option>Warehouse Insurance</option>
+          <option>Life Insurance</option>
+          <option>WIBA & Employees Coverage</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Cargo/Coverage Details</label>
+        <input type="text" placeholder="Cargo type and estimated value" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Coverage Requirements</label>
+        <textarea rows={2} placeholder="Coverage needs, special requirements, coverage period..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+      </div>
+
+      <Button 
+        type="submit"
+        className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
+      >
+        <span className="flex items-center justify-center gap-2">
+          Get Insurance Quote
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </span>
+      </Button>
+    </form>
+  );
+
+  const renderTravelForm = () => (
+    <form className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Full Name</label>
+          <input type="text" placeholder="Your name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Email Address</label>
+          <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Phone Number</label>
+          <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Travel Service</label>
+          <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+            <option value="">Select a travel service</option>
+            <option>Air Tickets</option>
+            <option>Hotel Booking</option>
+            <option>Visa Processing</option>
+            <option>Tours & Safari Packages</option>
+            <option>Airport Transfers</option>
+            <option>Travel Insurance</option>
+            <option>Travel Essentials</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-foreground">Travel Dates</label>
+          <input type="text" placeholder="e.g. 15 Dec - 22 Dec 2024" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Destination</label>
+          <input type="text" placeholder="Where would you like to travel?" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-foreground">Travel Details</label>
+        <textarea rows={2} placeholder="Number of travelers, preferences, special requirements..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+      </div>
+
+      <Button 
+        type="submit"
+        className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
+      >
+        <span className="flex items-center justify-center gap-2">
+          Get Travel Quote
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </span>
+      </Button>
+    </form>
+  );
 
   return (
     <section className="py-16 bg-secondary/30">
@@ -80,90 +272,35 @@ const QuoteSection = () => {
                   <p className="text-muted-foreground text-sm">Get pricing in minutes</p>
                 </div>
               </div>
-              
-              <form className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Contact Person Name</label>
-                    <input type="text" placeholder="Full name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Company Name</label>
-                    <input type="text" placeholder="Company name" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Phone Number</label>
-                    <input type="tel" placeholder="+254 700 000 000" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Email Address</label>
-                    <input type="email" placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                </div>
+              {/* Category Tabs */}
+              <div className="flex gap-3 mb-6 border-b border-border">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-4 py-3 font-medium text-sm transition-all border-b-2 ${
+                      activeCategory === category.id
+                        ? "border-primary text-primary"
+                        : "border-transparent text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
 
-                <div>
-                  <label className="text-sm font-medium text-foreground">Service / Product</label>
-                  <select className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-                    <option value="">Select a service or product</option>
-                    <optgroup label="Logistics Services">
-                      <option>Air Freight</option>
-                      <option>Ocean Freight</option>
-                      <option>Road & Rail Transport</option>
-                      <option>Warehousing</option>
-                      <option>Customs Clearance</option>
-                      <option>Refrigerated Cargo</option>
-                      <option>Special Cargo</option>
-                      <option>Intermodal Solutions</option>
-                    </optgroup>
-                    <optgroup label="Insurance">
-                      <option>Marine Insurance</option>
-                      <option>Cargo Insurance</option>
-                      <option>Motor Insurance</option>
-                      <option>Fire & Burglary Insurance</option>
-                      <option>Life Insurance</option>
-                      <option>Health Insurance</option>
-                      <option>Property Insurance</option>
-                      <option>Business Insurance</option>
-                    </optgroup>
-                    <optgroup label="Marketplace">
-                      <option>Tires</option>
-                      <option>Batteries</option>
-                      <option>Lubricants</option>
-                      <option>Industrial Supplies</option>
-                      <option>Accessories</option>
-                    </optgroup>
-                  </select>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Container No.</label>
-                    <input type="text" placeholder="e.g. MSKU1234567" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground">BL No.</label>
-                    <input type="text" placeholder="Bill of Lading number" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-foreground">Additional Details</label>
-                  <textarea rows={3} placeholder="Describe your requirements, cargo details, special instructions..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
-                </div>
-
-                <Button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Get Instant Quote
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </form>
+              {/* Forms for each category */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                key={activeCategory}
+              >
+                {activeCategory === "services" && renderServicesForm()}
+                {activeCategory === "insurance" && renderInsuranceForm()}
+                {activeCategory === "travel" && renderTravelForm()}
+              </motion.div>
             </div>
           </motion.div>
         </div>
