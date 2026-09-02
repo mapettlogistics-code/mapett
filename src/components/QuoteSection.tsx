@@ -25,8 +25,8 @@ const QuoteSection = () => {
 
   const section = sectionItems[0];
   const badge = section?.subtitle || "Request a Quote";
-  const heading = section?.title || "Get Instant Pricing for Your Shipment";
-  const description = section?.description || "Fill out the form and our team will provide you with a competitive quote within 24 hours. From Mombasa Port to your doorstep.";
+  const heading = section?.title || "Get Instant Pricing for Your Shipment, Insurance & Travel Service";
+  const description = section?.description || "Select from our Services, Insurance, or Travel Services categories and fill out the quick quote form. Our team will provide you with a competitive quote tailored to your needs within 24 hours.";
 
   const stats = statItems.map(s => ({
     icon: getIcon(s.icon),
