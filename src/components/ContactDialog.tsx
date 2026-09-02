@@ -46,7 +46,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
   const [form, setForm] = useState({
     salutation: "",
     firstName: "",
-    middleName: "",
     surname: "",
     email: "",
     countryCode: "+254",
@@ -180,7 +179,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     }
     setLoading(true);
     // Compose WhatsApp message as fallback
-    const fullName = [form.salutation, form.firstName, form.middleName, form.surname].filter(Boolean).join(" ");
+    const fullName = [form.salutation, form.firstName, form.surname].filter(Boolean).join(" ");
     const text = `Hello! My name is ${fullName}.\nEmail: ${form.email}\nPhone: ${form.countryCode}${form.phone}\nService: ${form.service}\n\n${form.message}`;
     window.open(`https://wa.me/254799390133?text=${encodeURIComponent(text)}`, "_blank");
     toast.success("Redirecting to WhatsApp...");
@@ -248,7 +247,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
         {/* Inquiry Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <h3 className="font-semibold text-foreground">Send an Inquiry</h3>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             <select name="salutation" value={form.salutation} onChange={handleChange} className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50">
               <option value="">--</option>
               <option>Mr.</option>
@@ -257,7 +256,6 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Dr.</option>
             </select>
             <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="First name *" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <input name="middleName" value={form.middleName} onChange={handleChange} placeholder="Middle name" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
             <input name="surname" value={form.surname} onChange={handleChange} placeholder="Surname" className="px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
           </div>
            <div className="grid grid-cols-2 gap-3">
