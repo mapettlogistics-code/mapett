@@ -20,6 +20,7 @@ interface EmailRequest {
   service?: string;
   message?: string;
   details?: Record<string, any>;
+  subscribe?: boolean; // marketing email opt-in from the submitting form
 }
 
 const handler = async (req: Request) => {
@@ -158,6 +159,22 @@ const handler = async (req: Request) => {
 
         if (dbError) {
           console.error("Database error:", dbError);
+        }
+
+        // Capture marketing consent as a subscriber contact
+        if (emailRequest.subscribe) {
+          const { error: subscriberError } = await supabase.from("subscribers").upsert({
+            email: emailRequest.email,
+            name: emailRequest.name,
+            phone: emailRequest.phone || null,
+            source: emailRequest.type,
+            subscribed: true,
+            unsubscribed_at: null,
+          }, { onConflict: "email" });
+
+          if (subscriberError) {
+            console.error("Subscriber capture error:", subscriberError);
+          }
         }
       }
 

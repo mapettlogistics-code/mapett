@@ -17,7 +17,7 @@ const QuoteSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: ""
+    firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true
   });
 
   const { items: sectionItems } = useSiteContent("quote_section");
@@ -28,8 +28,8 @@ const QuoteSection = () => {
   const description = section?.description || "Select from our Services, Insurance, or Travel Services categories and fill out the quick quote form. Our team will provide you with a competitive quote tailored to your needs within 24 hours.";
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target as HTMLInputElement;
+    setFormData(prev => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -57,6 +57,7 @@ const QuoteSection = () => {
           phone: `${formData.countryCode}${formData.phone}`,
           service: formData.service,
           message: formData.details,
+          subscribe: formData.subscribe,
         }),
       });
 
@@ -69,7 +70,7 @@ const QuoteSection = () => {
       }
       
       toast.success("Quote request sent to sales@mapettlogistics.com!");
-      setFormData({ firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "" });
+      setFormData({ firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true });
     } catch (error) {
       console.error(error);
       const message = error instanceof Error && error.message
@@ -120,6 +121,13 @@ const QuoteSection = () => {
     );
   };
 
+  const renderSubscribeCheckbox = () => (
+    <label className="flex items-start gap-2 text-xs text-muted-foreground">
+      <input type="checkbox" name="subscribe" checked={formData.subscribe} onChange={handleFormChange} className="mt-0.5" />
+      Keep me updated with news, offers and promotions from Mapett Logistics.
+    </label>
+  );
+
   const renderServicesForm = () => (
     <form onSubmit={handleFormSubmit} className="space-y-4">
       {renderNameFields()}
@@ -150,6 +158,8 @@ const QuoteSection = () => {
         <label className="text-sm font-medium text-foreground">Shipment Details</label>
         <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Describe cargo type, weight, dimensions, special handling requirements..." required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
+
+      {renderSubscribeCheckbox()}
 
       <Button 
         type="submit"
@@ -195,6 +205,8 @@ const QuoteSection = () => {
         <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Coverage needs, special requirements, coverage period..." required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
 
+      {renderSubscribeCheckbox()}
+
       <Button 
         type="submit"
         disabled={loading}
@@ -237,6 +249,8 @@ const QuoteSection = () => {
         <label className="text-sm font-medium text-foreground">Travel Details</label>
         <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Travel dates, destination, number of travelers, preferences..." required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
+
+      {renderSubscribeCheckbox()}
 
       <Button 
         type="submit"

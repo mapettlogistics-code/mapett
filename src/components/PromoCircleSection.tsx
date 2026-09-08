@@ -1,80 +1,120 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const promos = [
   {
-    src: "/public/promo-circles/suitcase2.jpg",
+    src: "/promo-circles/26JA_Thumbnail_Top-Sellers.gif",
     alt: "Special Offer",
-    link: "/products-services",
+    link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/new-arrival.jpg",
+    src: "/promo-circles/banger-deals-ii.png",
     alt: "New Arrival",
-    link: "/autostore",
+    link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/autostore.jpg",
+    src: "/promo-circles/extra2.png",
     alt: "Autostore",
     link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/travel-deal.jpg",
+    src: "/promo-circles/flash-sale.png",
     alt: "Travel Deal",
-    link: "/flight-booking",
+    link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/customs-clearance.jpg",
+    src: "/promo-circles/FREELINK1.png",
     alt: "Customs Clearance",
-    link: "/customs-clearing-forwarding",
+    link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/insurance.jpg",
+    src: "/promo-circles/newonmapett.png",
     alt: "Insurance",
-    link: "/insurance",
+    link: "https://mapett.com/",
   },
   {
-    src: "/promo-circles/logistics.jpg",
+    src: "/promo-circles/newonmapett.png",
     alt: "Logistics",
-    link: "/road-rail-transport",
+    link: "https://mapett.com/",
+  },
+  {
+    src: "/promo-circles/flash-sale.png",
+    alt: "Travel Deal",
+    link: "https://mapett.com/",
   },
 ];
 
 const PromoCircleSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Visible items count based on container width
+  const getItemWidth = () => 192; // 160px item + 32px gap (approx)
 
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let animationId: number;
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5;
-
-    const animate = () => {
-      if (!isHovered) {
-        scrollPosition += scrollSpeed;
-        if (scrollPosition >= container.scrollWidth - container.clientWidth) {
-          scrollPosition = 0;
-        }
-        container.scrollLeft = scrollPosition;
-      }
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [isHovered]);
+  const scrollToIndex = (index: number) => {
+    if (scrollRef.current) {
+      const scrollAmount = index * getItemWidth();
+      scrollRef.current.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+      setActiveIndex(index);
+    }
+  };
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 300;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+      const itemWidth = getItemWidth();
+      const currentPosition = scrollRef.current.scrollLeft;
+      const maxPosition = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+      
+      let newPosition;
+      if (direction === "right") {
+        newPosition = Math.min(currentPosition + itemWidth, maxPosition);
+      } else {
+        newPosition = Math.max(currentPosition - itemWidth, 0);
+      }
+      
+      scrollRef.current.scrollTo({
+        left: newPosition,
         behavior: "smooth",
       });
+      
+      // Calculate new active index
+      const newIndex = Math.round(newPosition / itemWidth);
+      setActiveIndex(newIndex);
     }
   };
+
+  // Update active index on scroll
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    
+    const container = scrollRef.current;
+    let ticking = false;
+    
+    const updateActiveIndex = () => {
+      if (!container) return;
+      const index = Math.round(container.scrollLeft / getItemWidth());
+      setActiveIndex(Math.min(index, promos.length - 1));
+      ticking = false;
+    };
+    
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateActiveIndex);
+        ticking = true;
+      }
+    };
+    
+    container.addEventListener('scroll', onScroll);
+    return () => container.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Limit visible progress indicators (show first 5 + ...)
+  const visibleDots = promos.length <= 6 ? promos.length : 4;
+  const showAllDots = promos.length <= 6;
 
   return (
     <section className="py-12 bg-background">
@@ -86,44 +126,71 @@ const PromoCircleSection = () => {
           <div className="flex gap-2">
             <button
               onClick={() => scroll("left")}
-              className="w-9 h-9 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
+              disabled={activeIndex === 0}
+              className="w-9 h-9 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Scroll left"
             >
-              ←
+              <ArrowLeft className="h-4 w-4" />
             </button>
+            
             <button
               onClick={() => scroll("right")}
-              className="w-9 h-9 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
+              disabled={activeIndex >= promos.length - 1}
+              className="w-9 h-9 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Scroll right"
             >
-              →
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
 
         <div
           ref={scrollRef}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-p-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {promos.map((promo, index) => (
-            <motion.a
-              key={promo.alt}
-              href={promo.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
+              key={`${promo.alt}-${index}`}
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group flex-shrink-0 w-40 h-40 rounded-full overflow-hidden border-4 border-primary shadow-lg hover:shadow-xl transition-all"
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className={`group flex-shrink-0 w-40 h-40 rounded-full overflow-hidden border-4 shadow-lg transition-all ${
+                activeIndex === index 
+                  ? 'border-primary scale-105 shadow-xl' 
+                  : 'border-muted hover:border-primary hover:scale-105'
+              }`}
             >
-              <img
-                src={promo.src}
-                alt={promo.alt}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </motion.a>
+              <a
+                href={promo.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full h-full"
+              >
+                <img
+                  src={promo.src}
+                  alt={promo.alt}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </a>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* Bottom Navigation Dots */}
+        <div className="mt-6 flex justify-center gap-3">
+          {promos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToIndex(index)}
+              className={`relative transition-all duration-300 ${
+                activeIndex === index 
+                  ? 'w-6 h-3 bg-primary rounded-full' 
+                  : 'w-3 h-3 bg-muted rounded-full hover:bg-primary/50'
+              }`}
+              aria-label={`Go to promo ${index + 1}`}
+            />
           ))}
         </div>
       </div>

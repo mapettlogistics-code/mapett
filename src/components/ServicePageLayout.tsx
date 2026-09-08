@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ContactDialog from "@/components/ContactDialog";
 import { Button } from "@/components/ui/button";
 import { getServicePageLink } from "@/data/serviceRoutes";
+import { Helmet } from 'react-helmet-async';
 
 export interface ServiceFeature {
   icon: LucideIcon;
@@ -54,6 +55,33 @@ const ServicePageLayout = ({ content }: ServicePageLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Structured Data for this service page */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": content.title,
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "Mapett Travel & Logistics",
+              "url": "https://www.mapettlogistics.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Shree Plaza, Ground Floor, Nyali",
+                "addressLocality": "Mombasa",
+                "postalCode": "2039-80100",
+                "addressCountry": "KE"
+              },
+              "telephone": "+254 799 390 133",
+              "email": "sales@mapettlogistics.com"
+            },
+            "description": content.heroDescription,
+            "areaServed": ["Kenya", "East Africa"]
+          })}
+        </script>
+      </Helmet>
+
       <Navbar />
 
       <main>

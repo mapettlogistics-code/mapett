@@ -30,6 +30,7 @@ const AdminMarketing = () => {
   const [editing, setEditing] = useState<Campaign | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [sendingId, setSendingId] = useState<string | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -112,6 +113,26 @@ const AdminMarketing = () => {
     const { error } = await (supabase as any).from("marketing_campaigns").delete().eq("id", id);
     if (error) toast.error("Failed to delete");
     else { toast.success("Deleted"); fetchCampaigns(); }
+  };
+
+  const handleSend = async (campaign: Campaign) => {
+    if (campaign.type !== "email") {
+      toast.error("Only email campaigns can be sent from here");
+      return;
+    }
+    if (!confirm(`Send "${campaign.name}" to all subscribed contacts now?`)) return;
+    setSendingId(campaign.id);
+    try {
+      const { data, error } = await supabase.functions.invoke("send-campaign", { body: { campaignId: campaign.id } });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      toast.success(`Campaign sent to ${data?.recipientCount ?? 0} subscribers`);
+      fetchCampaigns();
+    } catch (error: any) {
+      toast.error(error.message || "Failed to send campaign");
+    } finally {
+      setSendingId(null);
+    }
   };
 
   const statusColors: Record<string, string> = {
@@ -223,6 +244,12 @@ const AdminMarketing = () => {
                   {c.status.charAt(0).toUpperCase() + c.status.slice(1)}
                 </span>
                 <Button variant="ghost" size="icon" onClick={() => startEdit(c)}><Pencil className="h-4 w-4" /></Button>
+                {c.type === "email" && c.status === "draft" && (
+                  <Button size="sm" onClick={() => handleSend(c)} disabled={sendingId === c.id} className="hero-gradient text-primary-foreground">
+                    {sendingId === c.id ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                    Send Now
+                  </Button>
+                )}
                 <Button variant="ghost" size="icon" onClick={() => handleDelete(c.id)} className="text-destructive hover:text-destructive"><Trash2 className="h-4 w-4" /></Button>
               </div>
             );

@@ -53,6 +53,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
     phone: "",
     service: "",
     message: "",
+    subscribe: true,
   });
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -193,6 +194,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
           phone: form.countryCode + form.phone,
           service: form.service,
           message: form.message,
+          subscribe: form.subscribe,
         }),
       });
 
@@ -216,6 +218,7 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
         phone: "",
         service: "",
         message: "",
+        subscribe: true,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -480,6 +483,10 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
             </optgroup>
           </select>
           <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Tell us about your needs... *" required className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
+          <label className="flex items-start gap-2 text-xs text-muted-foreground">
+            <input type="checkbox" name="subscribe" checked={form.subscribe} onChange={(e) => setForm((prev) => ({ ...prev, subscribe: e.target.checked }))} className="mt-0.5" />
+            Keep me updated with news, offers and promotions from Mapett Logistics.
+          </label>
           <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
             <Send className="mr-2 h-4 w-4" />
             {loading ? "Sending..." : "Send Inquiry"}

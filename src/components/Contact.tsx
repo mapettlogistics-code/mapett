@@ -43,7 +43,7 @@ const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "" });
+  const [form, setForm] = useState({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "", subscribe: true });
   const { items: contactItems } = useSiteContent("contact_info", defaultContactInfo as any);
   const { items: socialItems } = useSiteContent("social_link", defaultSocials as any);
 
@@ -74,7 +74,8 @@ const Contact = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (Object.values(form).some((value) => !value)) {
+    const { subscribe, ...requiredFields } = form;
+    if (Object.values(requiredFields).some((value) => !value)) {
       toast.error("Please complete every field before sending your message.");
       return;
     }
@@ -84,12 +85,12 @@ const Contact = () => {
       const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-inquiry-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}` },
-        body: JSON.stringify({ type: "inquiry", name: [form.salutation, form.firstName, form.middleName, form.surname].join(" "), email: form.email, phone: `${form.countryCode}${form.phone}`, service: form.service, message: form.message }),
+        body: JSON.stringify({ type: "inquiry", name: [form.salutation, form.firstName, form.middleName, form.surname].join(" "), email: form.email, phone: `${form.countryCode}${form.phone}`, service: form.service, message: form.message, subscribe: form.subscribe }),
       });
       if (!response.ok) throw new Error("Failed to send message");
 
       toast.success("Message sent successfully to sales@mapettlogistics.com!");
-      setForm({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "" });
+      setForm({ salutation: "", firstName: "", middleName: "", surname: "", email: "", countryCode: "+254", phone: "", service: "", message: "", subscribe: true });
     } catch (error) {
       console.error("Contact form error:", error);
       toast.error("Failed to send your message. Please try again.");
@@ -241,6 +242,11 @@ const Contact = () => {
                     className="mt-2 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                   />
                 </div>
+
+                <label className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <input type="checkbox" name="subscribe" checked={form.subscribe} onChange={(e) => setForm((current) => ({ ...current, subscribe: e.target.checked }))} className="mt-0.5" />
+                  Keep me updated with news, offers and promotions from Mapett Logistics.
+                </label>
 
                 <Button type="submit" disabled={loading} className="w-full hero-gradient text-primary-foreground shadow-glow hover:opacity-90 group">
                   <Send className="mr-2 h-5 w-5" />

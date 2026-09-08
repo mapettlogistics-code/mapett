@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.ncba-payment]
 verify_jwt = false
+
+[functions.send-campaign]
+verify_jwt = true

@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
-import { ShoppingBag, Headset, BadgePercent, Truck } from "lucide-react";
-import clockImage from "@/assets/24-hours_548954.png";
+import clockImage from "@/assets/247-re.png";
+import shoppingBagImage from "@/assets/fast-response.png";
+import headsetImage from "@/assets/delivery.png";
+import BadgePercentImage from "@/assets/secure.png";
+import TruckImage from "@/assets/quality.png";
+import GlobalImage from "@/assets/global.png";
+
 
 const features = [
   {
@@ -8,28 +13,32 @@ const features = [
     title: "Round-the-Clock Support",
   },
   {
-    icon: ShoppingBag,
-    title: "Shop Online Anytime, Anywhere",
+    image: shoppingBagImage,
+    title: "Fast Response",
   },
   {
-    icon: Headset,
-    title: "Dedicated Customer Care You Can Trust",
+    image: headsetImage,
+    title: "Fast Delivery",
   },
   {
-    icon: BadgePercent,
-    title: "Unbeatable Value for Money",
+    image: BadgePercentImage,
+    title: "Trusted &Secure",
   },
   {
-    icon: Truck,
-    title: "Fast Country-Wide Delivery",
+    image: TruckImage,
+    title: "Premium Quality",
+  },
+  {
+    image: GlobalImage,
+    title: "Global Reach",
   },
 ];
 
 const FeatureBanner = () => {
   return (
-      <section className="bg-secondary/50 border-y border-border py-6">
+    <section className="bg-secondary/50 border-y border-border py-5">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="flex items-center justify-between gap-2">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -37,13 +46,17 @@ const FeatureBanner = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center text-center gap-3"
+              className="flex flex-col items-center text-center flex-1"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary overflow-hidden">
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
                 {feature.image ? (
-                  <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title} 
+                    className="max-w-full max-h-full w-auto h-auto object-contain" 
+                  />
                 ) : (
-                  feature.icon && <feature.icon className="h-6 w-6" />
+                  feature.image && <img src={feature.image} alt={feature.title} className="h-25 w-25 text-primary drop-shadow-md" />
                 )}
               </div>
               <div className="w-full">
