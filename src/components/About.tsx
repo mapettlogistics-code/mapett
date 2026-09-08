@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import * as LucideIcons from "lucide-react";
 
-
 const iconMap: Record<string, any> = { Award, Users, Clock, MapPin, CheckCircle };
 
 const getIcon = (name: string | null) => {
