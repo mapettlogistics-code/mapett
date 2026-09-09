@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
 
 type CategoryType = "services" | "insurance" | "travel";
 
@@ -12,20 +12,198 @@ const phoneToCountryCode: Record<string, string> = {
 };
 
 const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+const departureLocations = [
+  "Nairobi, Kenya",
+  "Mombasa, Kenya",
+  "Kisumu, Kenya",
+  "Nakuru, Kenya",
+  "Eldoret, Kenya",
+  "Malindi, Kenya",
+  "Diani, Kenya",
+  "Kampala, Uganda",
+  "Dar es Salaam, Tanzania",
+  "Arusha, Tanzania",
+  "Zanzibar, Tanzania",
+  "Kigali, Rwanda",
+  "Bujumbura, Burundi",
+  "Addis Ababa, Ethiopia",
+  "Johannesburg, South Africa",
+  "Cape Town, South Africa",
+  "London, United Kingdom",
+  "Dubai, United Arab Emirates",
+  "Doha, Qatar",
+  "New York, United States",
+  "Paris, France",
+  "Amsterdam, Netherlands",
+  "Istanbul, Turkey",
+  "Mumbai, India",
+  "Singapore",
+];
+
+const destinationCountries = [
+  "Kenya",
+  "Uganda",
+  "Tanzania",
+  "Rwanda",
+  "Burundi",
+  "Ethiopia",
+  "South Africa",
+  "United Kingdom",
+  "United Arab Emirates",
+  "Qatar",
+  "United States",
+  "France",
+  "Germany",
+  "Italy",
+  "Spain",
+  "Netherlands",
+  "Turkey",
+  "India",
+  "China",
+  "Japan",
+  "Australia",
+  "Canada",
+  "Brazil",
+  "Egypt",
+];
+
+interface AutocompleteProps {
+  label: string;
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+  required?: boolean;
+  icon?: React.ReactNode;
+}
+
+const AutocompleteField = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  options,
+  required = false,
+  icon,
+}: AutocompleteProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(value.toLowerCase())
+  );
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => Math.min(prev + 1, filteredOptions.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => Math.max(prev - 1, 0));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
+        onChange(filteredOptions[highlightedIndex]);
+        setIsOpen(false);
+        setHighlightedIndex(-1);
+      }
+    } else if (e.key === "Escape") {
+      setIsOpen(false);
+      setHighlightedIndex(-1);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <label className="text-sm font-medium text-foreground">{label}</label>
+      <div className="relative mt-1">
+        {icon && (
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
+            {icon}
+          </div>
+        )}
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value);
+            setIsOpen(true);
+            setHighlightedIndex(-1);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setIsOpen(false)}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          required={required}
+          className={`mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
+            icon ? "pl-10 pr-10" : ""
+          }`}
+        />
+        {value && (
+          <button
+            type="button"
+            onClick={() => {
+              onChange("");
+              setHighlightedIndex(-1);
+            }}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Clear"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+
+      <AnimatePresence>
+        {isOpen && filteredOptions.length > 0 && value.trim() && (
+          <motion.ul
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            className="absolute left-0 right-0 top-full z-20 mt-1 max-h-56 overflow-y-auto rounded-lg border border-border bg-background shadow-card-hover"
+          >
+            {filteredOptions.map((option, index) => (
+              <li key={option}>
+                <button
+                  type="button"
+                  onMouseEnter={() => setHighlightedIndex(index)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    onChange(option);
+                    setIsOpen(false);
+                    setHighlightedIndex(-1);
+                  }}
+                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-2 ${
+                    index === highlightedIndex
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  }`}
+                >
+                  {icon && <span className="text-primary shrink-0">{icon}</span>}
+                  <span>{option}</span>
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const QuoteSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
   const [loading, setLoading] = useState(false);
   const [formType, setFormType] = useState<"book" | "quote">("quote");
-  
-  // Travel-specific state moved to parent component
-  const [travelDetails, setTravelDetails] = useState({
+
+    const [travelDetails, setTravelDetails] = useState({
     dateOfDeparture: "",
     returnDate: "",
     departingFrom: "",
     destination: "",
     adults: "1",
     kids: "0",
+    childrenAges: "",
   });
 
   const [formData, setFormData] = useState({
@@ -50,9 +228,12 @@ const QuoteSection = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.firstName || !formData.middleName || !formData.surname || !formData.countryCode || !formData.phone || !formData.email || !formData.service || !formData.details) {
-      toast.error("Please complete every field before requesting a quote.");
+
+        const kidsCount = parseInt(travelDetails.kids) || 0;
+    const hasInvalidChildrenAges = kidsCount > 0 && !travelDetails.childrenAges.trim();
+
+    if (!formData.firstName || !formData.middleName || !formData.surname || !formData.countryCode || !formData.phone || !formData.email || !formData.service || !formData.details || hasInvalidChildrenAges) {
+      toast.error(hasInvalidChildrenAges ? "Please enter the age(s) of your children." : "Please complete every field before requesting a quote.");
       return;
     }
 
@@ -84,11 +265,10 @@ const QuoteSection = () => {
           : "Failed to send quote request";
         throw new Error(message);
       }
-      
+
       toast.success("Quote request sent to sales@mapettlogistics.com!");
       setFormData({ firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true });
-      setTravelDetails({ dateOfDeparture: "", returnDate: "", departingFrom: "", destination: "", adults: "1", kids: "0" });
-      setFormType("quote");
+      setTravelDetails({ dateOfDeparture: "", returnDate: "", departingFrom: "", destination: "", adults: "1", kids: "0", childrenAges: "" });      setFormType("quote");
     } catch (error) {
       console.error(error);
       const message = error instanceof Error && error.message
@@ -146,79 +326,101 @@ const QuoteSection = () => {
     </label>
   );
 
-  const renderTravelDetailsFields = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="text-sm font-medium text-foreground">Date of Departure</label>
-        <input 
-          type="date" 
-          name="dateOfDeparture" 
-          value={travelDetails.dateOfDeparture} 
-          onChange={handleTravelDetailChange}
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          required
-        />
+     const renderTravelDetailsFields = () => {
+    const service = formData.service;
+    const hideDates = service === "Hotel Booking" || service === "Tours & Safari Packages";
+    const hideDeparture = service === "Hotel Booking" || service === "Tours & Safari Packages";
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {!hideDates && (
+          <div>
+            <label className="text-sm font-medium text-foreground">Date of Departure</label>
+            <input
+              type="date"
+              name="dateOfDeparture"
+              value={travelDetails.dateOfDeparture}
+              onChange={handleTravelDetailChange}
+              className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              required
+            />
+          </div>
+        )}
+        {!hideDates && (
+          <div>
+            <label className="text-sm font-medium text-foreground">Return Date</label>
+            <input
+              type="date"
+              name="returnDate"
+              value={travelDetails.returnDate}
+              onChange={handleTravelDetailChange}
+              className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              required
+            />
+          </div>
+        )}
+        {!hideDeparture && (
+          <div className="w-full">
+            <AutocompleteField
+              label="Departing From"
+              placeholder="Start typing a city or country..."
+              value={travelDetails.departingFrom}
+              onChange={(value) => setTravelDetails(prev => ({ ...prev, departingFrom: value }))}
+              options={departureLocations}
+              required
+              icon={<MapPin className="h-4 w-4" />}
+            />
+          </div>
+        )}
+        <div className="w-full">
+          <AutocompleteField
+            label="Destination Country"
+            placeholder="Start typing a country..."
+            value={travelDetails.destination}
+            onChange={(value) => setTravelDetails(prev => ({ ...prev, destination: value }))}
+            options={destinationCountries}
+            required
+            icon={<Search className="h-4 w-4" />}
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Number of Adults</label>
+          <input
+            type="number"
+            name="adults"
+            value={travelDetails.adults}
+            onChange={handleTravelDetailChange}
+            min="1"
+            className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            required
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-foreground">Number of Kids</label>
+          <input
+            type="number"
+            name="kids"
+            value={travelDetails.kids}
+            onChange={handleTravelDetailChange}
+            min="0"
+            className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          />
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium text-foreground">Age of Children (1-18 years)</label>
+          <input
+            type="text"
+            name="childrenAges"
+            value={travelDetails.childrenAges}
+            onChange={handleTravelDetailChange}
+            placeholder="e.g. 5, 8, 12 (comma separated)"
+            className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          />
+          <p className="mt-1 text-xs text-muted-foreground">Enter ages separated by commas if you have more than one child (1-18 years).</p>
+        </div>
       </div>
-      <div>
-        <label className="text-sm font-medium text-foreground">Return Date</label>
-        <input 
-          type="date" 
-          name="returnDate" 
-          value={travelDetails.returnDate} 
-          onChange={handleTravelDetailChange}
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          required
-        />
-      </div>
-      <div>
-        <label className="text-sm font-medium text-foreground">Departing From</label>
-        <input 
-          type="text" 
-          name="departingFrom" 
-          value={travelDetails.departingFrom} 
-          onChange={handleTravelDetailChange}
-          placeholder="City or Country"
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          required
-        />
-      </div>
-      <div>
-        <label className="text-sm font-medium text-foreground">Destination Country</label>
-        <input 
-          type="text" 
-          name="destination" 
-          value={travelDetails.destination} 
-          onChange={handleTravelDetailChange}
-          placeholder="City or Country"
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          required
-        />
-      </div>
-      <div>
-        <label className="text-sm font-medium text-foreground">Number of Adults</label>
-        <input 
-          type="number" 
-          name="adults" 
-          value={travelDetails.adults} 
-          onChange={handleTravelDetailChange}
-          min="1"
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          required
-        />
-      </div>
-      <div>
-        <label className="text-sm font-medium text-foreground">Number of Kids</label>
-        <input 
-          type="number" 
-          name="kids" 
-          value={travelDetails.kids} 
-          onChange={handleTravelDetailChange}
-          min="0"
-          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-        />
-      </div>
-    </div>
-  );
+    );
+  };
 
   const renderServicesForm = () => (
     <form onSubmit={handleFormSubmit} className="space-y-4">
@@ -253,7 +455,7 @@ const QuoteSection = () => {
 
       {renderSubscribeCheckbox()}
 
-      <Button 
+      <Button
         type="submit"
         disabled={loading}
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
@@ -299,7 +501,7 @@ const QuoteSection = () => {
 
       {renderSubscribeCheckbox()}
 
-      <Button 
+      <Button
         type="submit"
         disabled={loading}
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
@@ -313,77 +515,110 @@ const QuoteSection = () => {
   );
 
   const renderTravelForm = () => (
-    <form onSubmit={handleFormSubmit} className="space-y-4">
-      {renderNameFields()}
-      <div className="grid grid-cols-2 gap-4">
-        {renderPhoneField()}
-        <div>
-          <label className="text-sm font-medium text-foreground">Email Address</label>
-          <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
-        </div>
-      </div>
-
-      <div>
-        <label className="text-sm font-medium text-foreground">Travel Service</label>
-        <select name="service" value={formData.service} onChange={handleFormChange} required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-          <option value="">Select a travel service</option>
-          <option>Air Tickets</option>
-          <option>Hotel Booking</option>
-          <option>Visa Processing</option>
-          <option>Tours & Safari Packages</option>
-          {/* <option>Airport Transfers</option> */}
-          <option>Travel Insurance</option>
-         {/* <option>Travel Essentials</option> */}
-        </select>
-      </div>
-
-      {/* Option Selection - Book Now or Get Quote */}
-      <div className="flex gap-4 pt-2">
-        <button
-          type="button"
-          onClick={() => setFormType("book")}
-          className={`flex-1 py-3 rounded-lg font-medium transition-all ${
-            formType === "book"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-          }`}
+    <div className="space-y-4">
+      {/* Small Book Now button — redirects to regal-tours.com */}
+      <div className="flex justify-end">
+        <a
+          href="https://regal-tours.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors group"
         >
           Book Now
-        </button>
-        <button
-          type="button"
-          onClick={() => setFormType("quote")}
-          className={`flex-1 py-3 rounded-lg font-medium transition-all ${
-            formType === "quote"
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-          }`}
+          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+
+      {/* Datalists for autocomplete */}
+      <datalist id="departureLocations">
+        <option value="Nairobi, Kenya" />
+        <option value="Mombasa, Kenya" />
+        <option value="Kisumu, Kenya" />
+        <option value="Nakuru, Kenya" />
+        <option value="Eldoret, Kenya" />
+        <option value="Malindi, Kenya" />
+        <option value="Diani, Kenya" />
+        <option value="Kampala, Uganda" />
+        <option value="Dar es Salaam, Tanzania" />
+        <option value="Arusha, Tanzania" />
+        <option value="Zanzibar, Tanzania" />
+        <option value="Kigali, Rwanda" />
+        <option value="Bujumbura, Burundi" />
+        <option value="Addis Ababa, Ethiopia" />
+        <option value="Johannesburg, South Africa" />
+        <option value="Cape Town, South Africa" />
+        <option value="London, United Kingdom" />
+        <option value="Dubai, United Arab Emirates" />
+        <option value="Doha, Qatar" />
+        <option value="New York, United States" />
+      </datalist>
+      <datalist id="destinationCountries">
+        <option value="Kenya" />
+        <option value="Uganda" />
+        <option value="Tanzania" />
+        <option value="Rwanda" />
+        <option value="Burundi" />
+        <option value="Ethiopia" />
+        <option value="South Africa" />
+        <option value="United Kingdom" />
+        <option value="United Arab Emirates" />
+        <option value="Qatar" />
+        <option value="United States" />
+        <option value="France" />
+        <option value="Germany" />
+        <option value="Italy" />
+        <option value="Spain" />
+        <option value="Netherlands" />
+        <option value="Turkey" />
+        <option value="India" />
+        <option value="China" />
+        <option value="Japan" />
+      </datalist>
+
+      {/* Full form — always visible */}
+      <form onSubmit={handleFormSubmit} className="space-y-4">
+        {renderNameFields()}
+        <div className="grid grid-cols-2 gap-4">
+          {renderPhoneField()}
+          <div>
+            <label className="text-sm font-medium text-foreground">Email Address</label>
+            <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
+          </div>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-foreground">Travel Service</label>
+          <select name="service" value={formData.service} onChange={handleFormChange} required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+            <option value="">Select a travel service</option>
+            <option>Air Tickets</option>
+            <option>Hotel Booking</option>
+            <option>Visa Processing</option>
+            <option>Tours & Safari Packages</option>
+            <option>Travel Insurance</option>
+          </select>
+        </div>
+
+        {renderTravelDetailsFields()}
+
+        <div>
+          <label className="text-sm font-medium text-foreground">Travel Details</label>
+          <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Additional preferences, special requests..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+        </div>
+
+        {renderSubscribeCheckbox()}
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
         >
-          Get Quote
-        </button>
-      </div>
-
-      {/* Show travel details fields only for Quote option */}
-      {formType === "quote" && renderTravelDetailsFields()}
-
-      <div>
-        <label className="text-sm font-medium text-foreground">Travel Details</label>
-        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Additional preferences, special requests..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
-      </div>
-
-      {renderSubscribeCheckbox()}
-
-      <Button 
-        type="submit"
-        disabled={loading}
-        className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
-      >
-        <span className="flex items-center justify-center gap-2">
-          {loading ? "Sending..." : formType === "book" ? "Proceed to Booking" : "Get Travel Quote"}
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </span>
-      </Button>
-    </form>
+          <span className="flex items-center justify-center gap-2">
+            {loading ? "Sending..." : "Submit Request"}
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </Button>
+      </form>
+    </div>
   );
 
   return (
