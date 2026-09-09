@@ -82,7 +82,6 @@ const Footer = () => {
     { name: "Our Team", href: "/team", isRoute: true },
     { name: "Directions/Location", href: "https://maps.app.goo.gl/5Bx5fhPSsvGBhZ8b8", external: true },
     { name: "Contact Us", href: "/#contact", isRoute: true },
-    { name: "Live Support", href: "/#contact", isRoute: true },
     { name: "Admin Portal", href: "/admin/login", isRoute: true },
   ];
 

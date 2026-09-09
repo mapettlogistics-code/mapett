@@ -1,7 +1,23 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, User, LogOut, Facebook, Instagram, Youtube, Linkedin, Truck, Search } from "lucide-react";import { Button } from "@/components/ui/button";
+import {
+  Menu,
+  X,
+  Phone,
+  Mail,
+  MapPin,
+  ChevronDown,
+  User,
+  LogOut,
+  Facebook,
+  Instagram,
+  Youtube,
+  Linkedin,
+  Truck,
+  Search,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import ContactDialog from "@/components/ContactDialog";
 import PaymentIcons from "@/components/PaymentIcons";
@@ -38,7 +54,7 @@ const searchableContent = [
   { id: "hotel-booking", title: "Hotel Booking", description: "Find and book accommodations", category: "Travel", path: "/hotel-booking" },
   { id: "visa-processing", title: "Visa Processing", description: "Assistance with visa applications", category: "Travel", path: "/visa-processing" },
   { id: "tours-safaris", title: "Tours & Safaris", description: "Kenya safari packages and tours", category: "Travel", path: "/tours-safaris" },
-  { id: "airport-transfers", title: "Airport Transfers", description: "Reliable airport transfer services", category: "Travel", path: "/airport-transfers" },
+  // { id: "airport-transfers", title: "Airport Transfers", description: "Reliable airport transfer services", category: "Travel", path: "/airport-transfers" },
   { id: "travel-insurance", title: "Travel Insurance", description: "Comprehensive travel protection", category: "Travel", path: "/travel-insurance" },
   { id: "cart", title: "Shopping Cart", description: "View and manage your cart items", category: "Shop", path: "/cart" },
   { id: "blog", title: "Blog & News", description: "Latest logistics and travel insights", category: "Content", path: "/blog" }
@@ -68,15 +84,15 @@ const Navbar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const query = searchQuery.toLowerCase().trim();
-    
+
     if (query) {
       // Find matching content
-      const matches = searchableContent.filter(item => 
+      const matches = searchableContent.filter(item =>
         item.title.toLowerCase().includes(query) ||
         item.description.toLowerCase().includes(query) ||
         item.category.toLowerCase().includes(query)
       );
-      
+
       if (matches.length > 0) {
         // Navigate to first match
         window.location.href = matches[0].path;
@@ -92,9 +108,9 @@ const Navbar = () => {
   // Add function to get search suggestions
   const getSearchSuggestions = () => {
     if (!searchQuery.trim()) return [];
-    
+
     const query = searchQuery.toLowerCase().trim();
-    return searchableContent.filter(item => 
+    return searchableContent.filter(item =>
       item.title.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query) ||
       item.category.toLowerCase().includes(query)
@@ -111,16 +127,12 @@ const Navbar = () => {
     "Warehousing",
   ];
 
-
-
   const ecommerce = [
     { label: "Air Tickets", href: "/flight-booking" },
     { label: "Hotel Booking", href: "/hotel-booking" },
     { label: "Visa Processing", href: "/visa-processing" },
     { label: "Tour & Safaris Packages", href: "/tours-safaris" },
-    { label: "Airport Transfers", href: "/airport-transfers" },
     { label: "Travel Insurance", href: "/travel-insurance" },
-    { label: "Travel Essentials", href: "/travel-essentials" },
   ];
 
   const insurance = [
@@ -176,16 +188,16 @@ const Navbar = () => {
               sales@mapettlogistics.com
             </a>
           </div>
-            <div className="flex items-center gap-4">
-             <PaymentIcons />
-             <button
+          <div className="flex items-center gap-4">
+            <PaymentIcons />
+            <button
               onClick={() => setIsSearchOpen(true)}
               className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-primary hover:bg-white/90 transition-all duration-200 shadow-md hover:shadow-lg border-2 border-white"
               aria-label="Search"
-              >
+            >
               <Search className="h-4 w-4" />
-              </button>
-             <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
+            </button>
+            <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
               <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />
               </a>
@@ -221,189 +233,189 @@ const Navbar = () => {
 
               {/* Desktop Menu */}
               <div className="hidden lg:flex items-center gap-3 xl:gap-4 min-w-0 text-nav">
-              <Link to="/about" className={navLinkClass}>
-                About Us
-              </Link>
-              
-              {/* Products & Services dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('services')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link to="/products-services" className={navDropdownClass}>
-                  <span>Services</span>
-                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                <Link to="/about" className={navLinkClass}>
+                  About Us
                 </Link>
-                <AnimatePresence>
-                  {activeDropdown === 'services' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-72 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                    <div className="py-1">
-                         {services.map((service) => (
-                           <Link
-                             key={service}
-                             to={getServicePageLink(service)}
-                             onClick={() => setActiveDropdown(null)}
-                             className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
-                           >
-                             {service}
-                           </Link>
-                         ))}
-                       </div> 
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
 
-              {/* Autostore & Lubricants Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('autoshop')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
-                  <span>Autostore & Lubricants</span>
-                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
-                </a>
-                <AnimatePresence>
-                  {activeDropdown === 'autoshop' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {autoshop.map((item) => (
-                        <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item.name}
-                        </a>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {/* Products & Services dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('services')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link to="/products-services" className={navDropdownClass}>
+                    <span>Services</span>
+                    <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                  </Link>
+                  <AnimatePresence>
+                    {activeDropdown === 'services' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-72 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        <div className="py-1">
+                          {services.map((service) => (
+                            <Link
+                              key={service}
+                              to={getServicePageLink(service)}
+                              onClick={() => setActiveDropdown(null)}
+                              className="block px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
+                            >
+                              {service}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-             {/* Seals & Tags Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('seals')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <a href={SEALS_TAGS_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
-                  <span>Seals & Tags</span>
-                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
-                </a>
-                <AnimatePresence>
-                  {activeDropdown === 'seals' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {sealsTagsMenuItems.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => setActiveDropdown(null)}
-                          className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {/* Autostore & Lubricants Dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('autoshop')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
+                    <span>Autostore & Lubricants</span>
+                    <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                  </a>
+                  <AnimatePresence>
+                    {activeDropdown === 'autoshop' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-56 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        {autoshop.map((item) => (
+                          <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                            {item.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-              {/* Insurance Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('insurance')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link to="/insurance" className={navDropdownClass}>
-                  <span>Insurance Policies</span>
-                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
-                </Link>
-                <AnimatePresence>
-                  {activeDropdown === 'insurance' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {insurance.map((item) => (
-                        <Link 
-                          key={item} 
-                          to={getServicePageLink(item)}
-                          onClick={() => setActiveDropdown(null)} 
-                          className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {/* Seals & Tags Dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('seals')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <a href={SEALS_TAGS_HOME} target="_blank" rel="noopener noreferrer" className={navDropdownClass}>
+                    <span>Seals & Tags</span>
+                    <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                  </a>
+                  <AnimatePresence>
+                    {activeDropdown === 'seals' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        {sealsTagsMenuItems.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setActiveDropdown(null)}
+                            className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                          >
+                            {item.name}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-              {/* Travel Solutions dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown('ecommerce')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className={navDropdownClass}>
-                  <span>Travel Solutions</span>
-                  <ChevronDown className="h-3.5 w-3.5 shrink-0" />
-                </button>
-                <AnimatePresence>
-                  {activeDropdown === 'ecommerce' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
-                    >
-                      {ecommerce.map((item) => (
-                        <Link key={item.label} to={item.href} onClick={() => setActiveDropdown(null)} className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Insurance Dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('insurance')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link to="/insurance" className={navDropdownClass}>
+                    <span>Insurance Policies</span>
+                    <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                  </Link>
+                  <AnimatePresence>
+                    {activeDropdown === 'insurance' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        {insurance.map((item) => (
+                          <Link
+                            key={item}
+                            to={getServicePageLink(item)}
+                            onClick={() => setActiveDropdown(null)}
+                            className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                          >
+                            {item}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+               
+                {/* Travel Solutions dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setActiveDropdown('travel-services')}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link to="/travel-services" className={navDropdownClass}>
+                    <span>Travel Solutions</span>
+                    <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+                  </Link>
+                  <AnimatePresence>
+                    {activeDropdown === 'travel-services' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-card-hover border border-border overflow-hidden"
+                      >
+                        {ecommerce.map((item) => (
+                          <Link key={item.label} to={item.href} onClick={() => setActiveDropdown(null)} className="block px-4 py-3 text-sm hover:bg-secondary transition-colors">
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
             </div>
 
             {/* CTA Buttons */}
-             <div className="hidden lg:flex items-center gap-3">
-               <Link to="/track">
-                 <Button variant="outline" className="border-primary text-primary">
-                   <Truck className="mr-2 h-4 w-4" />
-                   Track Shipment
-                 </Button>
-               </Link>
-               {/* Contact Us */}
-               <ContactDialog
-                 trigger={
-                   <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
-                     <Mail className="mr-2 h-4 w-4" />
-                     Contact Us
-                   </Button>
-                 }
-               />
-             </div>
+            <div className="hidden lg:flex items-center gap-3">
+              <Link to="/track">
+                <Button variant="outline" className="border-primary text-primary">
+                  <Truck className="mr-2 h-4 w-4" />
+                  Track Shipment
+                </Button>
+              </Link>
+              {/* Contact Us */}
+              <ContactDialog
+                trigger={
+                  <Button className="hero-gradient text-primary-foreground shadow-glow hover:opacity-90">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Contact Us
+                  </Button>
+                }
+              />
+            </div>
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
@@ -426,13 +438,14 @@ const Navbar = () => {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden bg-card border-t border-border"
             >
-               <div className="container py-4 space-y-4">
+              <div className="container py-4 space-y-4">
                 <Link to="/about" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>About Us</Link>
                 <Link to="/products-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Products & Services</Link>
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance Policies</Link>
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Travel Services</button>
+                <Link to="/travel-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Travel Services</Link>
+                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Travel Solutions</button>
                 {ecommerce.map((item) => <Link key={item.label} to={item.href} className={`${mobileNavLinkClass} pl-4`} onClick={() => setIsOpen(false)}>{item.label}</Link>)}
                 <Link to="/track" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Track</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contact us</button>
@@ -485,131 +498,131 @@ const Navbar = () => {
         </AnimatePresence>
 
         {/* Search Modal */}
-      <AnimatePresence>
-        {isSearchOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm flex items-start justify-center pt-24"
-          >
-            <div className="w-full max-w-3xl mx-4">
-              <div className="bg-card border border-border rounded-xl shadow-2xl p-4">
-                <form onSubmit={handleSearch}>
-                  <div className="flex items-center gap-3">
-                    <Search className="h-5 w-5 text-muted-foreground shrink-0" />
-                    <input
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      type="text"
-                      placeholder="Search services, products, pages..."
-                      className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-base"
-                      autoFocus
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setIsSearchOpen(false)}
-                      className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-                      aria-label="Close search"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
-                  </div>
-                  
-                  {/* Search Suggestions */}
-                  {searchQuery.trim() && (
-                    <div className="mt-3 max-h-60 overflow-y-auto">
-                      {getSearchSuggestions().length > 0 ? (
-                        <div className="space-y-1">
-                          {getSearchSuggestions().map((item) => (
-                            <button
-                              key={item.id}
-                              onClick={() => {
-                                window.location.href = item.path;
-                                setSearchQuery("");
-                                setIsSearchOpen(false);
-                              }}
-                              className="w-full text-left p-3 rounded-lg hover:bg-secondary transition-colors group"
-                            >
-                              <div className="flex items-start gap-3">
-                                <div className="bg-primary/10 rounded-lg p-2 group-hover:bg-primary/20 transition-colors">
-                                  <Search className="h-4 w-4 text-primary" />
-                                </div>
-                                <div className="text-left">
-                                  <div className="font-medium text-foreground">{item.title}</div>
-                                  <div className="text-sm text-muted-foreground">{item.description}</div>
-                                  <div className="text-xs text-primary mt-1">{item.category}</div>
-                                </div>
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-sm text-muted-foreground p-3">No matches found. Try searching for "services", "insurance", "track", "contact", etc.</p>
-                      )}
+        <AnimatePresence>
+          {isSearchOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm flex items-start justify-center pt-24"
+            >
+              <div className="w-full max-w-3xl mx-4">
+                <div className="bg-card border border-border rounded-xl shadow-2xl p-4">
+                  <form onSubmit={handleSearch}>
+                    <div className="flex items-center gap-3">
+                      <Search className="h-5 w-5 text-muted-foreground shrink-0" />
+                      <input
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        type="text"
+                        placeholder="Search services, products, pages..."
+                        className="flex-1 bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-base"
+                        autoFocus
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setIsSearchOpen(false)}
+                        className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+                        aria-label="Close search"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
                     </div>
-                  )}
-                </form>
-                
-                <div className="mt-4 pt-4 border-t border-border">
-                  <p className="text-sm text-muted-foreground">Popular searches:</p>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    <button 
-                      onClick={() => {
-                        setSearchQuery("Air Freight");
-                        setTimeout(() => {
-                          window.location.href = "/air-freight";
-                          setIsSearchOpen(false);
-                        }, 100);                                    
-                      }} 
-                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
-                    >
-                      Air Freight
-                    </button>
-                    <button 
-                      onClick={() => {
-                        setSearchQuery("Customs clearing & forwarding");
-                        setTimeout(() => {
-                          window.location.href = "/customs-clearing-forwarding";
-                          setIsSearchOpen(false);
-                        }, 100);
-                      }} 
-                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
-                    >
-                      Customs Clearing
-                    </button>
-                    <button 
-                      onClick={() => {
-                        setSearchQuery("Insurance");
-                        setTimeout(() => {
-                          window.location.href = "/insurance";
-                          setIsSearchOpen(false);
-                        }, 100);
-                      }} 
-                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
-                    >
-                      Insurance
-                    </button>
-                    <button 
-                      onClick={() => {
-                        setSearchQuery("Track Shipment");
-                        setTimeout(() => {
-                          window.location.href = "/track";
-                          setIsSearchOpen(false);
-                        }, 100);
-                      }} 
-                      className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
-                    >
-                      Track Shipment
-                    </button>
+
+                    {/* Search Suggestions */}
+                    {searchQuery.trim() && (
+                      <div className="mt-3 max-h-60 overflow-y-auto">
+                        {getSearchSuggestions().length > 0 ? (
+                          <div className="space-y-1">
+                            {getSearchSuggestions().map((item) => (
+                              <button
+                                key={item.id}
+                                onClick={() => {
+                                  window.location.href = item.path;
+                                  setSearchQuery("");
+                                  setIsSearchOpen(false);
+                                }}
+                                className="w-full text-left p-3 rounded-lg hover:bg-secondary transition-colors group"
+                              >
+                                <div className="flex items-start gap-3">
+                                  <div className="bg-primary/10 rounded-lg p-2 group-hover:bg-primary/20 transition-colors">
+                                    <Search className="h-4 w-4 text-primary" />
+                                  </div>
+                                  <div className="text-left">
+                                    <div className="font-medium text-foreground">{item.title}</div>
+                                    <div className="text-sm text-muted-foreground">{item.description}</div>
+                                    <div className="text-xs text-primary mt-1">{item.category}</div>
+                                  </div>
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-sm text-muted-foreground p-3">No matches found. Try searching for "services", "insurance", "track", "contact", etc.</p>
+                        )}
+                      </div>
+                    )}
+                  </form>
+
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <p className="text-sm text-muted-foreground">Popular searches:</p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <button
+                        onClick={() => {
+                          setSearchQuery("Air Freight");
+                          setTimeout(() => {
+                            window.location.href = "/air-freight";
+                            setIsSearchOpen(false);
+                          }, 100);
+                        }}
+                        className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                      >
+                        Air Freight
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSearchQuery("Customs clearing & forwarding");
+                          setTimeout(() => {
+                            window.location.href = "/customs-clearing-forwarding";
+                            setIsSearchOpen(false);
+                          }, 100);
+                        }}
+                        className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                      >
+                        Customs Clearing
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSearchQuery("Insurance");
+                          setTimeout(() => {
+                            window.location.href = "/insurance";
+                            setIsSearchOpen(false);
+                          }, 100);
+                        }}
+                        className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                      >
+                        Insurance
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSearchQuery("Track Shipment");
+                          setTimeout(() => {
+                            window.location.href = "/track";
+                            setIsSearchOpen(false);
+                          }, 100);
+                        }}
+                        className="px-3 py-1.5 bg-secondary rounded-full text-sm hover:bg-secondary/80 transition-colors"
+                      >
+                        Track Shipment
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>  
-   </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
     </>
   );
 };

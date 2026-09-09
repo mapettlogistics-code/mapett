@@ -6,7 +6,8 @@
     "noUnusedParameters": false,
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+        "./supabase/functions"
       ]
     },
     "skipLibCheck": true,

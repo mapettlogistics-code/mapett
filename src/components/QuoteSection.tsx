@@ -331,9 +331,9 @@ const QuoteSection = () => {
           <option>Hotel Booking</option>
           <option>Visa Processing</option>
           <option>Tours & Safari Packages</option>
-          <option>Airport Transfers</option>
+          {/* <option>Airport Transfers</option> */}
           <option>Travel Insurance</option>
-          <option>Travel Essentials</option>
+         {/* <option>Travel Essentials</option> */}
         </select>
       </div>
 

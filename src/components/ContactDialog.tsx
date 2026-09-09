@@ -453,9 +453,8 @@ const ContactDialog = ({ trigger }: { trigger: React.ReactNode }) => {
               <option>Hotel Booking</option>
               <option>Visa Processing</option>
               <option>Tours & Safari Packages</option>
-              <option>Airport Transfers</option>
-              <option>Travel Insurance</option>
-              <option>Travel Essentials</option>
+            {/* <option>Airport Transfers</option> */}
+            {/* <option>Travel Essentials</option> */}
             </optgroup>
             <optgroup label="Autostore & Lubricants">
               <option>Automotive Lubricants</option>

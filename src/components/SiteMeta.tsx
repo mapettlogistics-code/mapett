@@ -104,11 +104,11 @@ const pageMeta: Record<string, MetaContent> = {
     description: "Protect your warehouse, stock, and inventory against key operational risks with Mapett insurance.",
     keywords: "warehouse insurance Kenya, inventory insurance, business property insurance",
   },
-  "/airport-transfers": {
-    title: "Airport Transfers in Kenya - Mapett Travel",
-    description: "Reliable airport transfers and ground transportation in Kenya for business and leisure travelers.",
-    keywords: "airport transfers Kenya, Mombasa airport transfer, Nairobi airport transport",
-  },
+  // "/airport-transfers": {
+  //   title: "Airport Transfers in Kenya - Mapett Travel",
+  //   description: "Reliable airport transfers and ground transportation in Kenya for business and leisure travelers.",
+  //   keywords: "airport transfers Kenya, Mombasa airport transfer, Nairobi airport transport",
+  // },
   "/flight-booking": {
     title: "Flight Booking Services - Mapett Travel",
     description: "Book domestic and international flights with Mapett Travel and get support for your complete journey.",
@@ -129,11 +129,11 @@ const pageMeta: Record<string, MetaContent> = {
     description: "Travel protection for medical emergencies, cancellations, baggage, and unexpected journey risks.",
     keywords: "travel insurance Kenya, holiday insurance, international travel cover",
   },
-  "/travel-essentials": {
-    title: "Travel Essentials - Mapett Travel",
-    description: "Shop useful travel essentials and accessories for smoother journeys with Mapett Travel.",
-    keywords: "travel essentials Kenya, travel accessories, travel products",
-  },
+ // "/travel-essentials": {
+  //  title: "Travel Essentials - Mapett Travel",
+   // description: "Shop useful travel essentials and accessories for smoother journeys with Mapett Travel.",
+   // keywords: "travel essentials Kenya, travel accessories, travel products",
+ // },
   "/tours-safaris": {
     title: "Tours & Safaris in Kenya - Mapett Travel",
     description: "Plan memorable Kenya tours, safaris, and travel experiences with Mapett Travel.",

@@ -13,7 +13,6 @@ import sliderCustoms from "@/assets/slider-customs.jpg";
 import sliderRefrigerated from "@/assets/slider-refrigerated.jpg";
 import sliderSpecialCargo from "@/assets/slider-special-cargo.jpg";
 import sliderInsurance from "@/assets/slider-insurance.jpg";
-import sliderSupport from "@/assets/slider-support.jpg";
 import sliderMarketplace from "@/assets/slider-marketplace.jpg";
 import travelSolutionsImage from "@/assets/3 (1)-Picsart-AiImageEnhancer.png";
 import sealsTagsImage from "@/assets/576a413e-1bfe-4aa9-aec6-ef11171b00a5.png";
@@ -119,15 +118,6 @@ const slides = [
     gradient: "from-primary/80 to-pink-600/70",
     image: travelSolutionsImage,
     link: "/tours-safaris",
-  },
-  {
-    icon: MessageCircle,
-    title: "LIVE SUPPORT",
-    subtitle: "24/7 assistance",
-    description: "Quick responses to your shipping queries across various regions",
-    gradient: "from-accent/80 to-primary/80",
-    image: sliderSupport,
-    link: "#contact",
   },
 ];
 

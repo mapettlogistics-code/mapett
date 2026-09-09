@@ -95,12 +95,13 @@ function App() {
                     <Route path="/wiba-employees-coverage" element={<WIBAEmployeesCoverage />} />
                     <Route path="/life-insurance" element={<LifeInsurance />} />
                     <Route path="/warehouse-insurance" element={<WarehouseInsurance />} />
-                    <Route path="/airport-transfers" element={<AirportTransfers />} />
+                    {/* <Route path="/airport-transfers" element={<AirportTransfers />} /> */}
+                    <Route path="/travel-services" element={<TravelServicePage />} />
                     <Route path="/flight-booking" element={<TravelServicePage service="flight-booking" />} />
                     <Route path="/visa-processing" element={<TravelServicePage service="visa-processing" />} />
                     <Route path="/hotel-booking" element={<TravelServicePage service="hotel-booking" />} />
                     <Route path="/travel-insurance" element={<TravelServicePage service="travel-insurance" />} />
-                    <Route path="/travel-essentials" element={<TravelServicePage service="travel-essentials" />} />
+                    {/* <Route path="/travel-essentials" element={<TravelServicePage service="travel-essentials" />} /> */}
                     <Route path="/tours-safaris" element={<TravelServicePage service="tours-safaris" />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />

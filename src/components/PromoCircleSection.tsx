@@ -6,41 +6,49 @@ const promos = [
   {
     src: "/promo-circles/26JA_Thumbnail_Top-Sellers.gif",
     alt: "Special Offer",
+    title: "Special Offers",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/banger-deals-ii.png",
     alt: "New Arrival",
+    title: "New Arrivals",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/extra2.png",
     alt: "Autostore",
+    title: "Autostore",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/flash-sale.png",
     alt: "Travel Deal",
+    title: "Travel Deals",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/FREELINK1.png",
     alt: "Customs Clearance",
+    title: "Customs Clearance",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/newonmapett.png",
     alt: "Insurance",
+    title: "Insurance",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/newonmapett.png",
     alt: "Logistics",
+    title: "Logistics",
     link: "https://mapett.com/",
   },
   {
     src: "/promo-circles/flash-sale.png",
     alt: "Travel Deal",
+    title: "Travel Deals",
     link: "https://mapett.com/",
   },
 ];
@@ -48,7 +56,7 @@ const promos = [
 const PromoCircleSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   // Visible items count based on container width
   const getItemWidth = () => 192; // 160px item + 32px gap (approx)
 
@@ -68,19 +76,19 @@ const PromoCircleSection = () => {
       const itemWidth = getItemWidth();
       const currentPosition = scrollRef.current.scrollLeft;
       const maxPosition = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-      
+
       let newPosition;
       if (direction === "right") {
         newPosition = Math.min(currentPosition + itemWidth, maxPosition);
       } else {
         newPosition = Math.max(currentPosition - itemWidth, 0);
       }
-      
+
       scrollRef.current.scrollTo({
         left: newPosition,
         behavior: "smooth",
       });
-      
+
       // Calculate new active index
       const newIndex = Math.round(newPosition / itemWidth);
       setActiveIndex(newIndex);
@@ -90,24 +98,24 @@ const PromoCircleSection = () => {
   // Update active index on scroll
   useEffect(() => {
     if (!scrollRef.current) return;
-    
+
     const container = scrollRef.current;
     let ticking = false;
-    
+
     const updateActiveIndex = () => {
       if (!container) return;
       const index = Math.round(container.scrollLeft / getItemWidth());
       setActiveIndex(Math.min(index, promos.length - 1));
       ticking = false;
     };
-    
+
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(updateActiveIndex);
         ticking = true;
       }
     };
-    
+
     container.addEventListener('scroll', onScroll);
     return () => container.removeEventListener('scroll', onScroll);
   }, []);
@@ -132,7 +140,7 @@ const PromoCircleSection = () => {
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
-            
+
             <button
               onClick={() => scroll("right")}
               disabled={activeIndex >= promos.length - 1}
@@ -155,29 +163,36 @@ const PromoCircleSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className={`group flex-shrink-0 w-40 h-40 rounded-full overflow-hidden border-4 shadow-lg transition-all ${
-                activeIndex === index 
-                  ? 'border-primary scale-105 shadow-xl' 
-                  : 'border-muted hover:border-primary hover:scale-105'
-              }`}
+              className="group flex flex-col items-center gap-3 flex-shrink-0"
             >
-              <a
-                href={promo.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full"
+              <div
+                className={`w-40 h-40 rounded-full overflow-hidden border-4 shadow-lg transition-all ${
+                  activeIndex === index
+                    ? 'border-primary scale-105 shadow-xl'
+                    : 'border-muted hover:border-primary hover:scale-105'
+                }`}
               >
-                <img
-                  src={promo.src}
-                  alt={promo.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </a>
+                <a
+                  href={promo.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full"
+                >
+                  <img
+                    src={promo.src}
+                    alt={promo.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <span className="text-sm font-bold text-foreground text-center">
+                {promo.title}
+              </span>
             </motion.div>
           ))}
         </div>
-        
+
         {/* Bottom Navigation Dots */}
         <div className="mt-6 flex justify-center gap-3">
           {promos.map((_, index) => (
@@ -185,8 +200,8 @@ const PromoCircleSection = () => {
               key={index}
               onClick={() => scrollToIndex(index)}
               className={`relative transition-all duration-300 ${
-                activeIndex === index 
-                  ? 'w-6 h-3 bg-primary rounded-full' 
+                activeIndex === index
+                  ? 'w-6 h-3 bg-primary rounded-full'
                   : 'w-3 h-3 bg-muted rounded-full hover:bg-primary/50'
               }`}
               aria-label={`Go to promo ${index + 1}`}
