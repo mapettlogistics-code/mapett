@@ -159,124 +159,125 @@ const HeroSlider = () => {
   const IconComponent = slide.icon;
 
   return (
-    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
-      {/* Background Image - Changes with each slide */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7 }}
-          className="absolute inset-0"
-        >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/40" />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Content */}
-      <div className="container relative z-10">
-        <div className="max-w-3xl">
+    <section className="relative pt-4 md:pt-6 pb-6 md:pb-8">
+      <div className="container">
+        <div className="relative min-h-[70vh] md:min-h-[75vh] flex items-center overflow-hidden rounded-[2rem] shadow-2xl">
+          {/* Background Image - Changes with each slide */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.5 }}
-              className="text-background"
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7 }}
+              className="absolute inset-0"
             >
-              {/* Icon Badge */}
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${slide.gradient} mb-4 shadow-xl`}
-              >
-                <IconComponent className="w-8 h-8 text-white" />
-              </motion.div>
-
-              {/* Title */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3">
-                {slide.title}
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-lg md:text-xl text-primary font-semibold mb-3">
-                {slide.subtitle}
-              </p>
-
-              {/* Description */}
-              <p className="text-base text-background/80 mb-6 max-w-xl">
-                {slide.description}
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-3">
-                <motion.a
-                  href={slide.link}
-                  target={slide.link.startsWith("http") ? "_blank" : undefined}
-                  rel={slide.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-6 py-5 text-base font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
-                  >
-                    Learn More
-                  </Button>
-                </motion.a>
-                  <ContactDialog
-                  trigger={
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground px-6 py-5 text-base font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
-                    >
-                      Send Enquiry
-                    </Button>
-                  }
-                />
-              </div>
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/40" />
             </motion.div>
           </AnimatePresence>
-        </div>
 
-        {/* Navigation Controls */}
-        <div className="absolute bottom-6 left-0 right-0">
-          <div className="container flex items-center justify-end">
-        
-            {/* Arrow Navigation */}
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={prevSlide}
-                className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={nextSlide}
-                className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </Button>
+          {/* Content */}
+          <div className="relative z-10 w-full px-6 md:px-10 lg:px-14 py-10">
+            <div className="max-w-3xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-background"
+                >
+                  {/* Icon Badge */}
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${slide.gradient} mb-4 shadow-xl`}
+                  >
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </motion.div>
+
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3">
+                    {slide.title}
+                  </h1>
+
+                  {/* Subtitle */}
+                  <p className="text-lg md:text-xl text-primary font-semibold mb-3">
+                    {slide.subtitle}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-base text-background/80 mb-6 max-w-xl">
+                    {slide.description}
+                  </p>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-wrap gap-3">
+                    <motion.a
+                      href={slide.link}
+                      target={slide.link.startsWith("http") ? "_blank" : undefined}
+                      rel={slide.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground px-6 py-5 text-base font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.4)] hover:shadow-[0_0_50px_rgba(219,39,119,0.6)] transition-all duration-300"
+                      >
+                        Learn More
+                      </Button>
+                    </motion.a>
+                      <ContactDialog
+                      trigger={
+                        <Button 
+                          size="lg" 
+                          variant="outline"
+                          className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground px-6 py-5 text-base font-semibold rounded-xl backdrop-blur-sm transition-all duration-300"
+                        >
+                          Send Enquiry
+                        </Button>
+                      }
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Controls */}
+            <div className="absolute bottom-6 left-0 right-0 px-6 md:px-10 lg:px-14">
+              <div className="flex items-center justify-end">
+
+                {/* Arrow Navigation */}
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={prevSlide}
+                    className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={nextSlide}
+                    className="w-10 h-10 rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

@@ -1,10 +1,33 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ShoppingCart, Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import ProductShareButtons from "./ProductShareButtons";
 
+// Define proper types for Shopify API response
+interface ShopifyVariant {
+  id: number;
+  title: string;
+  price: string;
+  available: boolean;
+}
+
+interface ShopifyImage {
+  id: number;
+  src: string;
+  width: number;
+  height: number;
+}
+
+interface ShopifyProduct {
+  id: number;
+  title: string;
+  product_type: string;
+  vendor: string;
+  variants: ShopifyVariant[];
+  images: ShopifyImage[];
+  available: boolean;
+}
 
 type Product = {
   id: string;
@@ -23,6 +46,42 @@ type CategoryProductSliderProps = {
   color: string;
 };
 
+// Hoisted to module scope — stable reference, safe to use in dependency arrays
+const getFallbackProducts = (category: string): Product[] => {
+  const fallbacks: Record<string, Product[]> = {
+    lubricants: [
+      { id: "1", name: "DELSTAR 30D MULTIGRADE 15W40", category: "Engine Oil", price: 650, original_price: 900, rating: 4.8, image_url: "/products/DELSTAR_30D_MULTIGRADE_15W40_1L.webp", is_featured: true },
+      { id: "2", name: "DELSTAR DIFFERENTIAL OIL HDX SAE 85W140", category: "Gear Box Oil", price: 14500, original_price: 18000, rating: 4.9, image_url: "/products/DELSTAR_DIFF_OIL_85W140_HDX_20L_1.webp", is_featured: true },
+      { id: "3", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Gear Box Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+      { id: "4", name: "DELSTAR LITHIUM COMPLEX GREASE EP3", category: "Industrial Grease", price: 900, original_price: 1500, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_EP3_500G.webp", is_featured: true },
+      { id: "5", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+      { id: "6", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+    ],
+    tires: [
+      { id: "t1", name: "Heavy Duty Truck Tire 315/80R22.5", category: "Tires", price: 32000, original_price: 38000, rating: 4.7, image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", is_featured: true },
+      { id: "t2", name: "All-Terrain SUV Tire 265/70R17", category: "Tires", price: 18500, original_price: 22000, rating: 4.6, image_url: "https://images.unsplash.com/photo-1605235186583-a8272b61f9fe?w=400", is_featured: true },
+    ],
+    batteries: [
+      { id: "b1", name: "Chloride Exide N70 Battery", category: "Batteries", price: 14500, original_price: 17000, rating: 4.8, image_url: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400", is_featured: true },
+      { id: "b2", name: "Rocket SMF Battery 100AH", category: "Batteries", price: 18000, original_price: 21500, rating: 4.7, image_url: "https://images.unsplash.com/photo-1609126529789-422abe5b8db1?w=400", is_featured: true },
+    ],
+    boots: [
+      { id: "s1", name: "Steel Toe Safety Boot", category: "Safety Boots", price: 4500, original_price: 5500, rating: 4.5, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", is_featured: true },
+      { id: "s2", name: "High-Cut Industrial Boot", category: "Safety Boots", price: 5200, original_price: 6200, rating: 4.6, image_url: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400", is_featured: true },
+    ],
+    accessories: [
+      { id: "a1", name: "Premium Seat Cover Set", category: "Accessories", price: 8500, original_price: 10000, rating: 4.4, image_url: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=400", is_featured: true },
+      { id: "a2", name: "Car Boot Organizer", category: "Accessories", price: 2800, original_price: 3500, rating: 4.3, image_url: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400", is_featured: true },
+    ],
+  };
+
+  const key = category.toLowerCase();
+  for (const [k, v] of Object.entries(fallbacks)) {
+    if (key.includes(k)) return v;
+  }
+  return fallbacks.lubricants;
+};
+
 const CategoryProductSlider = ({ category, title, color }: CategoryProductSliderProps) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,18 +89,58 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
   const [isHovered, setIsHovered] = useState(false);
   const { addToCart } = useCart();
 
+  // Shopify API integration
+  const fetchShopifyProducts = async (collectionHandle: string): Promise<Product[]> => {
+    try {
+      const response = await fetch(
+        `https://mapett.com/api/2023-10/products.json?collection_ids=${collectionHandle}`,
+        {
+          headers: {
+            "Accept": "application/json",
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Shopify API error: ${response.status}`);
+      }
+
+      const data = await response.json() as { products: ShopifyProduct[] };
+
+      return data.products.map((product: ShopifyProduct) => ({
+        id: product.id.toString(),
+        name: product.title,
+        category: product.product_type || "Automotive Lubricants",
+        price: parseFloat(product.variants[0]?.price || "0"),
+        original_price: null,
+        image_url: product.images[0]?.src || null,
+        rating: 4.5, // Default rating
+        is_featured: false,
+      }));
+    } catch (error) {
+      console.error("Error fetching Shopify products:", error);
+      return [];
+    }
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .ilike("category", `%${category}%`)
-        .limit(10);
+      try {
+        // Try Shopify first for lubricants
+        if (category.toLowerCase().includes("lubricant")) {
+          const shopifyProducts = await fetchShopifyProducts("automotive-lubricants");
+          if (shopifyProducts.length > 0) {
+            setProducts(shopifyProducts);
+            setLoading(false);
+            return;
+          }
+        }
 
-      if (error) {
+        // Fallback to local data
+        setProducts(getFallbackProducts(category));
+      } catch (error) {
         console.error("Error fetching products:", error);
-      } else {
-        setProducts(data || []);
+        setProducts(getFallbackProducts(category));
       }
       setLoading(false);
     };
@@ -60,12 +159,12 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
 
     const animate = () => {
       scrollPosition += scrollSpeed;
-      
+
       // Reset when reaching the end
       if (scrollPosition >= container.scrollWidth - container.clientWidth) {
         scrollPosition = 0;
       }
-      
+
       container.scrollLeft = scrollPosition;
       animationId = requestAnimationFrame(animate);
     };
@@ -85,43 +184,7 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
     }
   };
 
-  // Fallback products per category
-  const getFallbackProducts = (): Product[] => {
-    const fallbacks: Record<string, Product[]> = {
-      lubricants: [
-        { id: "1", name: "DELSTAR 30D MULTIGRADE 15W40", category: "Engine Oil", price: 650, original_price: 900, rating: 4.8, image_url: "public/products/DELSTAR_30D_MULTIGRADE_15W40_1L.webp", is_featured: true },
-        { id: "2", name: "DELSTAR DIFFERENTIAL OIL HDX SAE 85W140", category: "Gear Box Oil", price: 14500, original_price: 18000, rating: 4.9, image_url: "public/products/DELSTAR_DIFF_OIL_85W140_HDX_20L_1.webp", is_featured: true },
-        { id: "3", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Gear Box Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-        { id: "4", name: "DELSTAR LITHIUM COMPLEX GREASE EP3", category: "Industrial Grease", price: 900, original_price: 1500, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_EP3_500G.webp", is_featured: true },
-        { id: "5", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-        { id: "6", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-      ],
-      tires: [
-        { id: "t1", name: "Heavy Duty Truck Tire 315/80R22.5", category: "Tires", price: 32000, original_price: 38000, rating: 4.7, image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", is_featured: true },
-        { id: "t2", name: "All-Terrain SUV Tire 265/70R17", category: "Tires", price: 18500, original_price: 22000, rating: 4.6, image_url: "https://images.unsplash.com/photo-1605235186583-a8272b61f9fe?w=400", is_featured: true },
-      ],
-      batteries: [
-        { id: "b1", name: "Chloride Exide N70 Battery", category: "Batteries", price: 14500, original_price: 17000, rating: 4.8, image_url: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400", is_featured: true },
-        { id: "b2", name: "Rocket SMF Battery 100AH", category: "Batteries", price: 18000, original_price: 21500, rating: 4.7, image_url: "https://images.unsplash.com/photo-1609126529789-422abe5b8db1?w=400", is_featured: true },
-      ],
-      boots: [
-        { id: "s1", name: "Steel Toe Safety Boot", category: "Safety Boots", price: 4500, original_price: 5500, rating: 4.5, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", is_featured: true },
-        { id: "s2", name: "High-Cut Industrial Boot", category: "Safety Boots", price: 5200, original_price: 6200, rating: 4.6, image_url: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400", is_featured: true },
-      ],
-      accessories: [
-        { id: "a1", name: "Premium Seat Cover Set", category: "Accessories", price: 8500, original_price: 10000, rating: 4.4, image_url: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=400", is_featured: true },
-        { id: "a2", name: "Car Boot Organizer", category: "Accessories", price: 2800, original_price: 3500, rating: 4.3, image_url: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400", is_featured: true },
-      ],
-    };
-
-    const key = category.toLowerCase();
-    for (const [k, v] of Object.entries(fallbacks)) {
-      if (key.includes(k)) return v;
-    }
-    return fallbacks.lubricants;
-  };
-
-  const displayProducts = products.length > 0 ? products : getFallbackProducts();
+  const displayProducts = products.length > 0 ? products : getFallbackProducts(category);
 
   if (loading) {
     return (

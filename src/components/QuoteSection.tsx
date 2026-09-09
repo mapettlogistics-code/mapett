@@ -16,6 +16,18 @@ const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
 const QuoteSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
   const [loading, setLoading] = useState(false);
+  const [formType, setFormType] = useState<"book" | "quote">("quote");
+  
+  // Travel-specific state moved to parent component
+  const [travelDetails, setTravelDetails] = useState({
+    dateOfDeparture: "",
+    returnDate: "",
+    departingFrom: "",
+    destination: "",
+    adults: "1",
+    kids: "0",
+  });
+
   const [formData, setFormData] = useState({
     firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true
   });
@@ -30,6 +42,10 @@ const QuoteSection = () => {
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     setFormData(prev => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+  };
+
+  const handleTravelDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTravelDetails(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -71,6 +87,8 @@ const QuoteSection = () => {
       
       toast.success("Quote request sent to sales@mapettlogistics.com!");
       setFormData({ firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true });
+      setTravelDetails({ dateOfDeparture: "", returnDate: "", departingFrom: "", destination: "", adults: "1", kids: "0" });
+      setFormType("quote");
     } catch (error) {
       console.error(error);
       const message = error instanceof Error && error.message
@@ -126,6 +144,80 @@ const QuoteSection = () => {
       <input type="checkbox" name="subscribe" checked={formData.subscribe} onChange={handleFormChange} className="mt-0.5" />
       Keep me updated with news, offers and promotions from Mapett Logistics.
     </label>
+  );
+
+  const renderTravelDetailsFields = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="text-sm font-medium text-foreground">Date of Departure</label>
+        <input 
+          type="date" 
+          name="dateOfDeparture" 
+          value={travelDetails.dateOfDeparture} 
+          onChange={handleTravelDetailChange}
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          required
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium text-foreground">Return Date</label>
+        <input 
+          type="date" 
+          name="returnDate" 
+          value={travelDetails.returnDate} 
+          onChange={handleTravelDetailChange}
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          required
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium text-foreground">Departing From</label>
+        <input 
+          type="text" 
+          name="departingFrom" 
+          value={travelDetails.departingFrom} 
+          onChange={handleTravelDetailChange}
+          placeholder="City or Country"
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          required
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium text-foreground">Destination Country</label>
+        <input 
+          type="text" 
+          name="destination" 
+          value={travelDetails.destination} 
+          onChange={handleTravelDetailChange}
+          placeholder="City or Country"
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          required
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium text-foreground">Number of Adults</label>
+        <input 
+          type="number" 
+          name="adults" 
+          value={travelDetails.adults} 
+          onChange={handleTravelDetailChange}
+          min="1"
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+          required
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium text-foreground">Number of Kids</label>
+        <input 
+          type="number" 
+          name="kids" 
+          value={travelDetails.kids} 
+          onChange={handleTravelDetailChange}
+          min="0"
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+        />
+      </div>
+    </div>
   );
 
   const renderServicesForm = () => (
@@ -245,9 +337,38 @@ const QuoteSection = () => {
         </select>
       </div>
 
+      {/* Option Selection - Book Now or Get Quote */}
+      <div className="flex gap-4 pt-2">
+        <button
+          type="button"
+          onClick={() => setFormType("book")}
+          className={`flex-1 py-3 rounded-lg font-medium transition-all ${
+            formType === "book"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+          }`}
+        >
+          Book Now
+        </button>
+        <button
+          type="button"
+          onClick={() => setFormType("quote")}
+          className={`flex-1 py-3 rounded-lg font-medium transition-all ${
+            formType === "quote"
+              ? "bg-primary text-primary-foreground"
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+          }`}
+        >
+          Get Quote
+        </button>
+      </div>
+
+      {/* Show travel details fields only for Quote option */}
+      {formType === "quote" && renderTravelDetailsFields()}
+
       <div>
         <label className="text-sm font-medium text-foreground">Travel Details</label>
-        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Travel dates, destination, number of travelers, preferences..." required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
+        <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Additional preferences, special requests..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
       </div>
 
       {renderSubscribeCheckbox()}
@@ -258,7 +379,7 @@ const QuoteSection = () => {
         className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
       >
         <span className="flex items-center justify-center gap-2">
-          {loading ? "Sending..." : "Get Travel Quote"}
+          {loading ? "Sending..." : formType === "book" ? "Proceed to Booking" : "Get Travel Quote"}
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
       </Button>
