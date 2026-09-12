@@ -83,7 +83,7 @@ const slides = [
     image: sliderSpecialCargo,
     link: "/special-cargo",
   },
-   {
+  {
     icon: Store,
     title: "AUTOSTORE & LUBRICANTS",
     subtitle: "Quality auto products",
@@ -151,7 +151,7 @@ const HeroSlider = () => {
   return (
     <section className="relative pt-4 md:pt-6 pb-6 md:pb-8">
       <div className="container">
-        <div className="relative min-h-[60vh] md:min-h-[65vh] flex items-center overflow-hidden rounded-[2rem] shadow-2xl">        
+        <div className="relative min-h-[60vh] md:min-h-[65vh] flex items-center overflow-hidden rounded-[2rem] shadow-2xl">
         {/* Background Image - Changes with each slide */}
           <AnimatePresence mode="wait">
             <motion.div

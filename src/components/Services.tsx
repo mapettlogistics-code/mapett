@@ -99,7 +99,7 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
         </motion.div>
 
         {/* Services Grid - 4 columns on desktop */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayServices.map((service, index) => (
             <motion.div
               key={service.title}

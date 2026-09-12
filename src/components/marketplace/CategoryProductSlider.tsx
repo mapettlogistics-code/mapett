@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
 import ProductShareButtons from "./ProductShareButtons";
 
-
 type Product = {
   id: string;
   name: string;
@@ -15,6 +14,7 @@ type Product = {
   image_url: string | null;
   rating: number | null;
   is_featured: boolean | null;
+  link?: string;
 };
 
 type CategoryProductSliderProps = {
@@ -85,43 +85,57 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
     }
   };
 
-  // Fallback products per category
+  // Fallback products per category — each category has unique products
   const getFallbackProducts = (): Product[] => {
     const fallbacks: Record<string, Product[]> = {
       lubricants: [
-        { id: "1", name: "DELSTAR 30D MULTIGRADE 15W40", category: "Engine Oil", price: 650, original_price: 900, rating: 4.8, image_url: "public/products/DELSTAR_30D_MULTIGRADE_15W40_1L.webp", is_featured: true },
-        { id: "2", name: "DELSTAR DIFFERENTIAL OIL HDX SAE 85W140", category: "Gear Box Oil", price: 14500, original_price: 18000, rating: 4.9, image_url: "public/products/DELSTAR_DIFF_OIL_85W140_HDX_20L_1.webp", is_featured: true },
-        { id: "3", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Gear Box Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-        { id: "4", name: "DELSTAR LITHIUM COMPLEX GREASE EP3", category: "Industrial Grease", price: 900, original_price: 1500, rating: 4.8, image_url: "https://github.com/mapettlogistics-code/mapett/blob/main/public/products/DELSTAR_EP3_500G.webp", is_featured: true },
-        { id: "5", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
-        { id: "6", name: "DELSTAR GEAR OIL HDX SAE 80W90", category: "Hydraulic Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "public/products/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.webp", is_featured: true },
+        {id: "p1", name: "Petsar Long Life Coolant RTU Green", category: "Coolant", price: 250, original_price: 400, rating: 4.6, image_url: "https://mapett.com/cdn/shop/files/GREEN_COOLANT_1_LTRE.jpg?v=1737808776&width=600", is_featured: true, link: "https://mapett.com/products/petsar-long-life-coolant-rtu-green" },
+        {id: "d1", name: "Delstar 30D Multigrade 15E40", category: "Engine Oil", price: 650, original_price: 800, rating: 4.7, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_30D_MULTIGRADE_15W40_1L.jpg?v=1746752133&width=600", is_featured: true,link: " https://mapett.com/products/delstar-30d-multigrade-15e40" },
+        {id: "d2", name: "Delstar Syn SAE 10W40", category: "Engine Oil", price: 1000, original_price: 1250, rating: 4.8, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_SYN_SAE_10W40_1L.png?v=1766130560&width=600", is_featured: true, link: "https://mapett.com/products/delstar-syn-sae-10w40" },
+        {id: "p2", name: "Petsar HP SAE 15W40 API SL/CF", category: "Engine Oil", price: 2500, original_price: 2800, rating: 4.5, image_url: "https://mapett.com/cdn/shop/files/PETSARSUPERMULTIGRADE15W404L.jpg?v=1746752212&width=1100", is_featured: true, link: "https://mapett.com/products/petsar-hp-sae-15w40-api-sl-cf"},
+        {id: "l5", name: "Delstar Lithium Complex Grease EP3", category: "Industrial Grease", price: 900, original_price: 1300, rating: 4.7, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_EP3_500G.jpg?v=1746752150&width=600", is_featured: true, link: "https://mapett.com/products/delstar-lithium-complex-grease-ep3" },
+        {id: "l6", name: "Delstar Threadsol Grease", category: "Industrial Grease", price: 750, original_price: 1000, rating: 4.5, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_THREADSOL_GREASE.jpg?v=1746752177&width=600", is_featured: true, link: "https://mapett.com/products/delstar-threadsol-grease" },
+        {id: "s1", name: "Slusol Brake Clutch Fluid DOT 4", category: "Brake Fluid", price: 550, original_price: 750, rating: 4.6, image_url: "https://mapett.com/cdn/shop/files/BRAKE_CLUTCH_FLUID.jpg?v=1746752258&width=600", is_featured: true, link: "https://mapett.com/products/slusol-brake-clutch-fluid-dot-4" },
       ],
-      tires: [
-        { id: "t1", name: "Heavy Duty Truck Tire 315/80R22.5", category: "Tires", price: 32000, original_price: 38000, rating: 4.7, image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", is_featured: true },
-        { id: "t2", name: "All-Terrain SUV Tire 265/70R17", category: "Tires", price: 18500, original_price: 22000, rating: 4.6, image_url: "https://images.unsplash.com/photo-1605235186583-a8272b61f9fe?w=400", is_featured: true },
+      "food-grade-lubricants": [
+        {id: "fg1", name: "Beslux Brugarolas Gear ATOX 320", category: "Gear Oil", price: 65000, original_price: 70000, rating: 4.6, image_url: "https://mapett.com/cdn/shop/files/BESLUXDRUM_b84868b6-df35-4675-a669-2facc502522e.jpg?v=1746752118&width=600", is_featured: true, link: "https://mapett.com/products/beslux-brugarolas-gear-atox-320"},
+        {id: "fg2", name: "Beslux ATOX H2-3 Synthetic Food Grade Grease", category: "Industrial Grease", price: 39000, original_price: 40000, rating: 4.7, image_url: "https://mapett.com/cdn/shop/files/BRIGAROLAS18KG.jpg?v=1746752108&width=600", is_featured: true, link: "https://mapett.com/products/beslux-atox-h2-3-synthetic-food-grade-grease-copy"},
+        {id: "fg3", name: "Beslux ATOX 46 AW46", category: "Hydraulic Oil", price: 22000, original_price: 28000, rating: 4.5, image_url: "https://mapett.com/cdn/shop/files/BRIGAROLAS_36671571-9bda-4c03-bffb-8ad7ab83ca32.jpg?v=1746752121&width=1100", is_featured: true, link: "https://mapett.com/products/beslux-atox-46-aw46-copy"},
       ],
-      batteries: [
-        { id: "b1", name: "Chloride Exide N70 Battery", category: "Batteries", price: 14500, original_price: 17000, rating: 4.8, image_url: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400", is_featured: true },
-        { id: "b2", name: "Rocket SMF Battery 100AH", category: "Batteries", price: 18000, original_price: 21500, rating: 4.7, image_url: "https://images.unsplash.com/photo-1609126529789-422abe5b8db1?w=400", is_featured: true },
+      "agricultural-lubricants": [
+        { id: "ag1", name: "Slusol Hydraulic Oil AW 68", category: "Hydraulic Oil", price: 9000, original_price: 10000, rating: 4.7, image_url: "https://mapett.com/cdn/shop/files/slusol_hydraulic_oil_68.jpg?v=1746752304&width=600", is_featured: true, link: "https://mapett.com/products/slusol-hydraulic-oil-aw-68" },
+        { id: "ag2", name: "Slusol Hydraulic Oil AW 46", category: "Hydraulic Oil", price: 8800, original_price: 10800, rating: 4.6, image_url: "https://mapett.com/cdn/shop/files/SLUSOL_HYDRAULIC_OIL_46.jpg?v=1746752304&width=600", is_featured: true, link: "https://mapett.com/products/slusol-hydraulic-oil-aw-46" },
+        { id: "ag3", name: "Delstar Molysol Grease EP2", category: "Industrial Grease", price: 24000, original_price: 25000, rating: 4.5, image_url: "https://mapett.com/cdn/shop/files/DELSTARR_MOLYSOL_EP2.jpg?v=1746752161&width=600", is_featured: true, link: "https://mapett.com/products/delstar-molysol-grease-ep2" },
+        { id: "ag4", name: "Delstar Tractor Hydraulic and Transmission Fluid API GL-4", category: "Transmission Fluid", price: 14000, original_price: 15000, rating: 4.8, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_TRACTOR_TRANSMISSION_FLUID.jpg?v=1746752183&width=600", is_featured: true, link: "https://mapett.com/products/delstar-tractor-hydraulic-and-transmission-fluid-api-gl-4" },
       ],
-      boots: [
-        { id: "s1", name: "Steel Toe Safety Boot", category: "Safety Boots", price: 4500, original_price: 5500, rating: 4.5, image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", is_featured: true },
-        { id: "s2", name: "High-Cut Industrial Boot", category: "Safety Boots", price: 5200, original_price: 6200, rating: 4.6, image_url: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400", is_featured: true },
-      ],
-      accessories: [
-        { id: "a1", name: "Premium Seat Cover Set", category: "Accessories", price: 8500, original_price: 10000, rating: 4.4, image_url: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=400", is_featured: true },
-        { id: "a2", name: "Car Boot Organizer", category: "Accessories", price: 2800, original_price: 3500, rating: 4.3, image_url: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400", is_featured: true },
+      "industrial-lubricants": [
+        { id: "ind5", name: "Delstar Gear Oil HDX SAE 80W90", category: "Gear Oil", price: 13000, original_price: 16500, rating: 4.8, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_GEAR_OIL_80W90_HDX_20L_1.jpg?v=1786789492&width=600", is_featured: true, link: "https://mapett.com/products/delstar-gear-oil-hdx-sae-80w90" },
+        { id: "ind6", name: "Delstar Threadsol Grease", category: "Industrial Grease", price: 6100, original_price: 7000, rating: 4.5, image_url: "https://mapett.com/cdn/shop/files/DELSTAR_THREADSOL_GREASE.jpg?v=1746752177&width=1100", is_featured: true, link: "https://mapett.com/products/delstar-threadsol-grease" },
+        { id: "ind7", name: "Slusol HD Degreaser", category: "Degreaser", price: 500, original_price: 700, rating: 4.6, image_url: "https://mapett.com/cdn/shop/files/SLUSOL_HEAVY_DUTY_DEGREASER_1L.jpg?v=1746752295&width=600", is_featured: true, link: "https://mapett.com/products/slusol-hd-degreaser" },
+        { id: "ind8", name: "Slusol Gear Oil MS SAE 80W90 API GL-4", category: "Gear Oil", price: 650, original_price: 850, rating: 4.7, image_url: "https://mapett.com/cdn/shop/files/SLUSOL_GEAR_OIL_EP_80W90_1L.jpg?v=1746752290&width=600", is_featured: true, link: "https://mapett.com/products/slusol-gear-oil-ms-sae-80w90-api-gl-4" },
+        { id: "ind9", name: "Slusol Nu-Tec Grease EP2", category: "Industrial Grease", price: 550, original_price: 800, rating: 4.4, image_url: "https://mapett.com/cdn/shop/files/SLUSOL_NU_TEC_EP2_500G.jpg?v=1746752320&width=600", is_featured: true, link: "https://mapett.com/products/slusol-nu-tec-grease-ep2" },
       ],
     };
 
     const key = category.toLowerCase();
-    for (const [k, v] of Object.entries(fallbacks)) {
+    const sortedEntries = Object.entries(fallbacks).sort(
+      (a, b) => b[0].length - a[0].length
+    );
+    for (const [k, v] of sortedEntries) {
       if (key.includes(k)) return v;
     }
-    return fallbacks.lubricants;
   };
 
-  const displayProducts = products.length > 0 ? products : getFallbackProducts();
+  const deduplicate = (items: Product[]) => {
+    const seen = new Set<string>();
+    return items.filter((item) => {
+      const key = `${item.name}-${item.price}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
+  const displayProducts = deduplicate(products.length > 0 ? products : getFallbackProducts());
 
   if (loading) {
     return (
@@ -171,9 +185,12 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
         className="flex gap-4 overflow-x-auto scrollbar-hide pb-2"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {displayProducts.map((product, index) => (
-          <motion.div
+          {displayProducts.map((product, index) => (
+          <motion.a
             key={product.id}
+            href={product.link || "/products-services"}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
@@ -224,7 +241,7 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
                 </button>
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </div>
