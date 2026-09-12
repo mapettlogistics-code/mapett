@@ -189,14 +189,15 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <PaymentIcons />
-            <button
+              <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-primary hover:bg-white/90 transition-all duration-200 shadow-md hover:shadow-lg border-2 border-white"
+              className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 border-2 border-white/60 ring-2 ring-primary/30"
               aria-label="Search"
             >
               <Search className="h-4 w-4" />
+              <span className="text-sm font-medium">Search</span>
             </button>
+            <PaymentIcons />
             <div className="flex items-center gap-2 border-l border-primary-foreground/30 pl-4">
               <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />

@@ -21,23 +21,109 @@ const departureLocations = [
   "Malindi, Kenya",
   "Diani, Kenya",
   "Kampala, Uganda",
+  "Entebbe, Uganda",
+  "Jinja, Uganda",
   "Dar es Salaam, Tanzania",
   "Arusha, Tanzania",
   "Zanzibar, Tanzania",
+  "Mwanza, Tanzania",
+  "Dodoma, Tanzania",
   "Kigali, Rwanda",
   "Bujumbura, Burundi",
   "Addis Ababa, Ethiopia",
   "Johannesburg, South Africa",
   "Cape Town, South Africa",
   "London, United Kingdom",
-  "Dubai, United Arab Emirates",
-  "Doha, Qatar",
-  "New York, United States",
   "Paris, France",
   "Amsterdam, Netherlands",
+  "Brussels, Belgium",
+  "Frankfurt, Germany",
+  "Berlin, Germany",
+  "Munich, Germany",
+  "Rome, Italy",
+  "Milan, Italy",
+  "Madrid, Spain",
+  "Barcelona, Spain",
+  "Lisbon, Portugal",
+  "Zurich, Switzerland",
+  "Vienna, Austria",
+  "Athens, Greece",
   "Istanbul, Turkey",
+  "Dublin, Ireland",
+  "Copenhagen, Denmark",
+  "Stockholm, Sweden",
+  "Oslo, Norway",
+  "Helsinki, Finland",
+  "Warsaw, Poland",
+  "Prague, Czech Republic",
+  "Budapest, Hungary",
+  "Bucharest, Romania",
+  "Dubai, United Arab Emirates",
+  "Abu Dhabi, United Arab Emirates",
+  "Doha, Qatar",
+  "Riyadh, Saudi Arabia",
+  "Jeddah, Saudi Arabia",
+  "Muscat, Oman",
+  "Kuwait City, Kuwait",
+  "Manama, Bahrain",
+  "Amman, Jordan",
+  "Beirut, Lebanon",
+  "Tel Aviv, Israel",
   "Mumbai, India",
-  "Singapore",
+  "Delhi, India",
+  "Bangalore, India",
+  "Chennai, India",
+  "Hyderabad, India",
+  "Kolkata, India",
+  "Singapore, Singapore",
+  "Kuala Lumpur, Malaysia",
+  "Bangkok, Thailand",
+  "Phuket, Thailand",
+  "Jakarta, Indonesia",
+  "Bali, Indonesia",
+  "Manila, Philippines",
+  "Hong Kong, Hong Kong",
+  "Tokyo, Japan",
+  "Osaka, Japan",
+  "Seoul, South Korea",
+  "Beijing, China",
+  "Shanghai, China",
+  "Guangzhou, China",
+  "Shenzhen, China",
+  "Taipei, Taiwan",
+  "New York, United States",
+  "Los Angeles, United States",
+  "Chicago, United States",
+  "Miami, United States",
+  "Washington, United States",
+  "Boston, United States",
+  "Atlanta, United States",
+  "Houston, United States",
+  "Dallas, United States",
+  "San Francisco, United States",
+  "Toronto, Canada",
+  "Vancouver, Canada",
+  "Montreal, Canada",
+  "Calgary, Canada",
+  "Mexico City, Mexico",
+  "Cancun, Mexico",
+  "São Paulo, Brazil",
+  "Rio de Janeiro, Brazil",
+  "Buenos Aires, Argentina",
+  "Santiago, Chile",
+  "Lima, Peru",
+  "Bogotá, Colombia",
+  "Quito, Ecuador",
+  "Caracas, Venezuela",
+  "Montevideo, Uruguay",
+  "Sydney, Australia",
+  "Melbourne, Australia",
+  "Brisbane, Australia",
+  "Perth, Australia",
+  "Adelaide, Australia",
+  "Auckland, New Zealand",
+  "Wellington, New Zealand",
+  "Christchurch, New Zealand",
 ];
 
 const destinationCountries = [
@@ -65,6 +151,164 @@ const destinationCountries = [
   "Canada",
   "Brazil",
   "Egypt",
+
+  "Algeria",
+  "Angola",
+  "Benin",
+  "Botswana",
+  "Burkina Faso",
+  "Cameroon",
+  "Chad",
+  "Ghana",
+  "Libya",
+  "Madagascar",
+  "Malawi",
+  "Mali",
+  "Mauritius",
+  "Morocco",
+  "Mozambique",
+  "Namibia",
+  "Niger",
+  "Nigeria",
+  "Senegal",
+  "Seychelles",
+  "Sierra Leone",
+  "Somalia",
+  "South Sudan",
+  "Sudan",
+  "Togo",
+  "Tunisia",
+  "Zambia",
+  "Zimbabwe",
+
+  "Afghanistan",
+  "Armenia",
+  "Azerbaijan",
+  "Bahrain",
+  "Bangladesh",
+  "Bhutan",
+  "Brunei",
+  "Cambodia",
+  "Cyprus",
+  "Georgia",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Israel",
+  "Jordan",
+  "Kazakhstan",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Lebanon",
+  "Malaysia",
+  "Maldives",
+  "Mongolia",
+  "Myanmar",
+  "Nepal",
+  "North Korea",
+  "Oman",
+  "Pakistan",
+  "Palestine",
+  "Philippines",
+  "Saudi Arabia",
+  "Singapore",
+  "South Korea",
+  "Sri Lanka",
+  "Syria",
+  "Tajikistan",
+  "Thailand",
+  "Timor-Leste",
+  "Turkmenistan",
+  "Uzbekistan",
+  "Vietnam",
+  "Yemen",
+
+  "Albania",
+  "Andorra",
+  "Austria",
+  "Belarus",
+  "Belgium",
+  "Bosnia and Herzegovina",
+  "Bulgaria",
+  "Croatia",
+  "Czech Republic",
+  "Denmark",
+  "Estonia",
+  "Finland",
+  "Greece",
+  "Hungary",
+  "Iceland",
+  "Ireland",
+  "Latvia",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Malta",
+  "Moldova",
+  "Monaco",
+  "Montenegro",
+  "North Macedonia",
+  "Norway",
+  "Poland",
+  "Portugal",
+  "Romania",
+  "Russia",
+  "San Marino",
+  "Serbia",
+  "Slovakia",
+  "Slovenia",
+  "Sweden",
+  "Switzerland",
+  "Ukraine",
+  "Vatican City",
+
+  "Antigua and Barbuda",
+  "Bahamas",
+  "Barbados",
+  "Belize",
+  "Costa Rica",
+  "Cuba",
+  "Dominica",
+  "Dominican Republic",
+  "El Salvador",
+  "Grenada",
+  "Guatemala",
+  "Haiti",
+  "Honduras",
+  "Jamaica",
+  "Mexico",
+  "Nicaragua",
+  "Panama",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Trinidad and Tobago",
+
+  "Argentina",
+  "Bolivia",
+  "Chile",
+  "Colombia",
+  "Ecuador",
+  "Guyana",
+  "Paraguay",
+  "Peru",
+  "Suriname",
+  "Uruguay",
+  "Venezuela",
+
+  "Fiji",
+  "Kiribati",
+  "Marshall Islands",
+  "Micronesia",
+  "Nauru",
+  "Palau",
+  "Papua New Guinea",
+  "Samoa",
+  "Solomon Islands",
+  "Tonga",
+  "Tuvalu",
+  "Vanuatu",
 ];
 
 interface AutocompleteProps {
@@ -194,7 +438,7 @@ const AutocompleteField = ({
 const QuoteSection = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>("services");
   const [loading, setLoading] = useState(false);
-  const [formType, setFormType] = useState<"book" | "quote">("quote");
+  const [formType, setFormType] = useState<"select" | "quote">("select");
 
     const [travelDetails, setTravelDetails] = useState({
     dateOfDeparture: "",
@@ -203,8 +447,8 @@ const QuoteSection = () => {
     destination: "",
     adults: "1",
     kids: "0",
-    childrenAges: "",
-  });
+    childrenAges: [] as string[],
+});
 
   const [formData, setFormData] = useState({
     firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true
@@ -226,14 +470,25 @@ const QuoteSection = () => {
     setTravelDetails(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+ const handleChildAgeChange = (index: number, value: string) => {
+  setTravelDetails(prev => {
+    const newAges = [...prev.childrenAges];
+    newAges[index] = value;
+    return { ...prev, childrenAges: newAges };
+  });
+  };
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-        const kidsCount = parseInt(travelDetails.kids) || 0;
-    const hasInvalidChildrenAges = kidsCount > 0 && !travelDetails.childrenAges.trim();
+    const kidsCount = parseInt(travelDetails.kids) || 0;
+    const hasInvalidChildrenAges =
+      kidsCount > 0 &&
+      travelDetails.childrenAges.length < kidsCount ||
+      travelDetails.childrenAges.slice(0, kidsCount).some((age) => !age);
 
     if (!formData.firstName || !formData.middleName || !formData.surname || !formData.countryCode || !formData.phone || !formData.email || !formData.service || !formData.details || hasInvalidChildrenAges) {
-      toast.error(hasInvalidChildrenAges ? "Please enter the age(s) of your children." : "Please complete every field before requesting a quote.");
+      toast.error(hasInvalidChildrenAges ? "Please select the age of each child." : "Please complete every field before requesting a quote.");
       return;
     }
 
@@ -246,16 +501,20 @@ const QuoteSection = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({
+          body: JSON.stringify({
           type: "quote",
-          category: activeCategory,
-          name: [formData.firstName, formData.middleName, formData.surname].join(" "),
-          email: formData.email,
-          phone: `${formData.countryCode}${formData.phone}`,
-          service: formData.service,
-          message: formData.details,
-          subscribe: formData.subscribe,
-        }),
+           category: activeCategory,
+           name: [formData.firstName, formData.middleName, formData.surname].join(" "),
+           email: formData.email,
+           phone: `${formData.countryCode}${formData.phone}`,
+           service: formData.service,
+           message: formData.details,
+           subscribe: formData.subscribe,
+travelDetails: {
+             ...travelDetails,
+             childrenAges: travelDetails.childrenAges.join(","),
+           },
+         }),
       });
 
       if (!response.ok) {
@@ -268,7 +527,8 @@ const QuoteSection = () => {
 
       toast.success("Quote request sent to sales@mapettlogistics.com!");
       setFormData({ firstName: "", middleName: "", surname: "", countryCode: "+254", phone: "", email: "", service: "", details: "", subscribe: true });
-      setTravelDetails({ dateOfDeparture: "", returnDate: "", departingFrom: "", destination: "", adults: "1", kids: "0", childrenAges: "" });      setFormType("quote");
+      setTravelDetails({ dateOfDeparture: "", returnDate: "", departingFrom: "", destination: "", adults: "1", kids: "0", childrenAges: [] });      
+      setFormType("select");
     } catch (error) {
       console.error(error);
       const message = error instanceof Error && error.message
@@ -406,18 +666,29 @@ const QuoteSection = () => {
             className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
           />
         </div>
-        <div className="md:col-span-2">
-          <label className="text-sm font-medium text-foreground">Age of Children (1-18 years)</label>
-          <input
-            type="text"
-            name="childrenAges"
-            value={travelDetails.childrenAges}
-            onChange={handleTravelDetailChange}
-            placeholder="e.g. 5, 8, 12 (comma separated)"
-            className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-          />
-          <p className="mt-1 text-xs text-muted-foreground">Enter ages separated by commas if you have more than one child (1-18 years).</p>
-        </div>
+          {travelDetails.kids && parseInt(travelDetails.kids) > 0 && (
+          <div className="md:col-span-2 space-y-3">
+            <label className="text-sm font-medium text-foreground">Age of Children (1–18 years)</label>
+            {Array.from({ length: parseInt(travelDetails.kids) }).map((_, index) => (
+              <div key={index} className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                <label className="text-sm text-muted-foreground">Child {index + 1}</label>
+                <select
+                  value={travelDetails.childrenAges[index] || ""}
+                  onChange={(e) => handleChildAgeChange(index, e.target.value)}
+                  required
+                  className="px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                >
+                  <option value="">Select age</option>
+                  {Array.from({ length: 18 }).map((_, i) => (
+                    <option key={i + 1} value={String(i + 1)}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   };
@@ -516,19 +787,6 @@ const QuoteSection = () => {
 
   const renderTravelForm = () => (
     <div className="space-y-4">
-      {/* Small Book Now button — redirects to regal-tours.com */}
-      <div className="flex justify-end">
-        <a
-          href="https://regal-tours.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors group"
-        >
-          Book Now
-          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-        </a>
-      </div>
-
       {/* Datalists for autocomplete */}
       <datalist id="departureLocations">
         <option value="Nairobi, Kenya" />
@@ -537,21 +795,128 @@ const QuoteSection = () => {
         <option value="Nakuru, Kenya" />
         <option value="Eldoret, Kenya" />
         <option value="Malindi, Kenya" />
-        <option value="Diani, Kenya" />
+
         <option value="Kampala, Uganda" />
+        <option value="Entebbe, Uganda" />
+        <option value="Jinja, Uganda" />
+
         <option value="Dar es Salaam, Tanzania" />
         <option value="Arusha, Tanzania" />
         <option value="Zanzibar, Tanzania" />
+        <option value="Mwanza, Tanzania" />
+        <option value="Dodoma, Tanzania" />
+
         <option value="Kigali, Rwanda" />
         <option value="Bujumbura, Burundi" />
         <option value="Addis Ababa, Ethiopia" />
         <option value="Johannesburg, South Africa" />
         <option value="Cape Town, South Africa" />
+
+        {/* Europe */}
         <option value="London, United Kingdom" />
+        <option value="Paris, France" />
+        <option value="Amsterdam, Netherlands" />
+        <option value="Brussels, Belgium" />
+        <option value="Frankfurt, Germany" />
+        <option value="Berlin, Germany" />
+        <option value="Munich, Germany" />
+        <option value="Rome, Italy" />
+        <option value="Milan, Italy" />
+        <option value="Madrid, Spain" />
+        <option value="Barcelona, Spain" />
+        <option value="Lisbon, Portugal" />
+        <option value="Zurich, Switzerland" />
+        <option value="Vienna, Austria" />
+        <option value="Athens, Greece" />
+        <option value="Istanbul, Turkey" />
+        <option value="Dublin, Ireland" />
+        <option value="Copenhagen, Denmark" />
+        <option value="Stockholm, Sweden" />
+        <option value="Oslo, Norway" />
+        <option value="Helsinki, Finland" />
+        <option value="Warsaw, Poland" />
+        <option value="Prague, Czech Republic" />
+        <option value="Budapest, Hungary" />
+        <option value="Bucharest, Romania" />
+
+        {/* Middle East */}
         <option value="Dubai, United Arab Emirates" />
+        <option value="Abu Dhabi, United Arab Emirates" />
         <option value="Doha, Qatar" />
+        <option value="Riyadh, Saudi Arabia" />
+        <option value="Jeddah, Saudi Arabia" />
+        <option value="Muscat, Oman" />
+        <option value="Kuwait City, Kuwait" />
+        <option value="Manama, Bahrain" />
+        <option value="Amman, Jordan" />
+        <option value="Beirut, Lebanon" />
+        <option value="Tel Aviv, Israel" />
+
+        {/* Asia */}
+        <option value="Mumbai, India" />
+        <option value="Delhi, India" />
+        <option value="Bangalore, India" />
+        <option value="Chennai, India" />
+        <option value="Hyderabad, India" />
+        <option value="Kolkata, India" />
+        <option value="Dubai, United Arab Emirates" />
+        <option value="Singapore, Singapore" />
+        <option value="Kuala Lumpur, Malaysia" />
+        <option value="Bangkok, Thailand" />
+        <option value="Phuket, Thailand" />
+        <option value="Jakarta, Indonesia" />
+        <option value="Bali, Indonesia" />
+        <option value="Manila, Philippines" />
+        <option value="Hong Kong, Hong Kong" />
+        <option value="Tokyo, Japan" />
+        <option value="Osaka, Japan" />
+        <option value="Seoul, South Korea" />
+        <option value="Beijing, China" />
+        <option value="Shanghai, China" />
+        <option value="Guangzhou, China" />
+        <option value="Shenzhen, China" />
+        <option value="Taipei, Taiwan" />
+
+        {/* North America */}
         <option value="New York, United States" />
+        <option value="Los Angeles, United States" />
+        <option value="Chicago, United States" />
+        <option value="Miami, United States" />
+        <option value="Washington, United States" />
+        <option value="Boston, United States" />
+        <option value="Atlanta, United States" />
+        <option value="Houston, United States" />
+        <option value="Dallas, United States" />
+        <option value="San Francisco, United States" />
+        <option value="Toronto, Canada" />
+        <option value="Vancouver, Canada" />
+        <option value="Montreal, Canada" />
+        <option value="Calgary, Canada" />
+        <option value="Mexico City, Mexico" />
+        <option value="Cancun, Mexico" />
+
+        {/* South America */}
+        <option value="São Paulo, Brazil" />
+        <option value="Rio de Janeiro, Brazil" />
+        <option value="Buenos Aires, Argentina" />
+        <option value="Santiago, Chile" />
+        <option value="Lima, Peru" />
+        <option value="Bogotá, Colombia" />
+        <option value="Quito, Ecuador" />
+        <option value="Caracas, Venezuela" />
+        <option value="Montevideo, Uruguay" />
+
+        {/* Australia & Pacific */}
+        <option value="Sydney, Australia" />
+        <option value="Melbourne, Australia" />
+        <option value="Brisbane, Australia" />
+        <option value="Perth, Australia" />
+        <option value="Adelaide, Australia" />
+        <option value="Auckland, New Zealand" />
+        <option value="Wellington, New Zealand" />
+        <option value="Christchurch, New Zealand" />
       </datalist>
+
       <datalist id="destinationCountries">
         <option value="Kenya" />
         <option value="Uganda" />
@@ -573,51 +938,285 @@ const QuoteSection = () => {
         <option value="India" />
         <option value="China" />
         <option value="Japan" />
+
+        {/* Africa */}
+        <option value="Algeria" />
+        <option value="Angola" />
+        <option value="Benin" />
+        <option value="Botswana" />
+        <option value="Burkina Faso" />
+        <option value="Cabo Verde" />
+        <option value="Cameroon" />
+        <option value="Central African Republic" />
+        <option value="Chad" />
+        <option value="Comoros" />
+        <option value="Democratic Republic of the Congo" />
+        <option value="Djibouti" />
+        <option value="Egypt" />
+        <option value="Equatorial Guinea" />
+        <option value="Eritrea" />
+        <option value="Eswatini" />
+        <option value="Gabon" />
+        <option value="Gambia" />
+        <option value="Ghana" />
+        <option value="Guinea" />
+        <option value="Guinea-Bissau" />
+        <option value="Ivory Coast" />
+        <option value="Lesotho" />
+        <option value="Liberia" />
+        <option value="Libya" />
+        <option value="Madagascar" />
+        <option value="Malawi" />
+        <option value="Mali" />
+        <option value="Mauritania" />
+        <option value="Mauritius" />
+        <option value="Morocco" />
+        <option value="Mozambique" />
+        <option value="Namibia" />
+        <option value="Niger" />
+        <option value="Nigeria" />
+        <option value="Republic of the Congo" />
+        <option value="São Tomé and Príncipe" />
+        <option value="Senegal" />
+        <option value="Seychelles" />
+        <option value="Sierra Leone" />
+        <option value="Somalia" />
+        <option value="South Sudan" />
+        <option value="Sudan" />
+        <option value="Togo" />
+        <option value="Tunisia" />
+        <option value="Zambia" />
+        <option value="Zimbabwe" />
+
+        {/* Asia */}
+        <option value="Afghanistan" />
+        <option value="Armenia" />
+        <option value="Azerbaijan" />
+        <option value="Bahrain" />
+        <option value="Bangladesh" />
+        <option value="Bhutan" />
+        <option value="Brunei" />
+        <option value="Cambodia" />
+        <option value="Cyprus" />
+        <option value="Georgia" />
+        <option value="Indonesia" />
+        <option value="Iran" />
+        <option value="Iraq" />
+        <option value="Israel" />
+        <option value="Jordan" />
+        <option value="Kazakhstan" />
+        <option value="Kuwait" />
+        <option value="Kyrgyzstan" />
+        <option value="Laos" />
+        <option value="Lebanon" />
+        <option value="Malaysia" />
+        <option value="Maldives" />
+        <option value="Mongolia" />
+        <option value="Myanmar" />
+        <option value="Nepal" />
+        <option value="North Korea" />
+        <option value="Oman" />
+        <option value="Pakistan" />
+        <option value="Palestine" />
+        <option value="Philippines" />
+        <option value="Saudi Arabia" />
+        <option value="Singapore" />
+        <option value="South Korea" />
+        <option value="Sri Lanka" />
+        <option value="Syria" />
+        <option value="Tajikistan" />
+        <option value="Thailand" />
+        <option value="Timor-Leste" />
+        <option value="Turkmenistan" />
+        <option value="Uzbekistan" />
+        <option value="Vietnam" />
+        <option value="Yemen" />
+
+        {/* Europe */}
+        <option value="Albania" />
+        <option value="Andorra" />
+        <option value="Austria" />
+        <option value="Belarus" />
+        <option value="Belgium" />
+        <option value="Bosnia and Herzegovina" />
+        <option value="Bulgaria" />
+        <option value="Croatia" />
+        <option value="Czech Republic" />
+        <option value="Denmark" />
+        <option value="Estonia" />
+        <option value="Finland" />
+        <option value="Greece" />
+        <option value="Hungary" />
+        <option value="Iceland" />
+        <option value="Ireland" />
+        <option value="Latvia" />
+        <option value="Liechtenstein" />
+        <option value="Lithuania" />
+        <option value="Luxembourg" />
+        <option value="Malta" />
+        <option value="Moldova" />
+        <option value="Monaco" />
+        <option value="Montenegro" />
+        <option value="North Macedonia" />
+        <option value="Norway" />
+        <option value="Poland" />
+        <option value="Portugal" />
+        <option value="Romania" />
+        <option value="Russia" />
+        <option value="San Marino" />
+        <option value="Serbia" />
+        <option value="Slovakia" />
+        <option value="Slovenia" />
+        <option value="Sweden" />
+        <option value="Switzerland" />
+        <option value="Ukraine" />
+        <option value="Vatican City" />
+
+        {/* North America */}
+        <option value="Antigua and Barbuda" />
+        <option value="Bahamas" />
+        <option value="Barbados" />
+        <option value="Belize" />
+        <option value="Canada" />
+        <option value="Costa Rica" />
+        <option value="Cuba" />
+        <option value="Dominica" />
+        <option value="Dominican Republic" />
+        <option value="El Salvador" />
+        <option value="Grenada" />
+        <option value="Guatemala" />
+        <option value="Haiti" />
+        <option value="Honduras" />
+        <option value="Jamaica" />
+        <option value="Mexico" />
+        <option value="Nicaragua" />
+        <option value="Panama" />
+        <option value="Saint Kitts and Nevis" />
+        <option value="Saint Lucia" />
+        <option value="Saint Vincent and the Grenadines" />
+        <option value="Trinidad and Tobago" />
+
+        {/* South America */}
+        <option value="Argentina" />
+        <option value="Bolivia" />
+        <option value="Brazil" />
+        <option value="Chile" />
+        <option value="Colombia" />
+        <option value="Ecuador" />
+        <option value="Guyana" />
+        <option value="Paraguay" />
+        <option value="Peru" />
+        <option value="Suriname" />
+        <option value="Uruguay" />
+        <option value="Venezuela" />
+
+        {/* Oceania */}
+        <option value="Australia" />
+        <option value="Fiji" />
+        <option value="Kiribati" />
+        <option value="Marshall Islands" />
+        <option value="Micronesia" />
+        <option value="Nauru" />
+        <option value="New Zealand" />
+        <option value="Palau" />
+        <option value="Papua New Guinea" />
+        <option value="Samoa" />
+        <option value="Solomon Islands" />
+        <option value="Tonga" />
+        <option value="Tuvalu" />
+        <option value="Vanuatu" />
       </datalist>
 
-      {/* Full form — always visible */}
-      <form onSubmit={handleFormSubmit} className="space-y-4">
-        {renderNameFields()}
-        <div className="grid grid-cols-2 gap-4">
-          {renderPhoneField()}
-          <div>
-            <label className="text-sm font-medium text-foreground">Email Address</label>
-            <input type="email" name="email" value={formData.email} onChange={handleFormChange} placeholder="your@email.com" className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" required />
-          </div>
-        </div>
-
-        <div>
-          <label className="text-sm font-medium text-foreground">Travel Service</label>
-          <select name="service" value={formData.service} onChange={handleFormChange} required className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-            <option value="">Select a travel service</option>
-            <option>Air Tickets</option>
-            <option>Hotel Booking</option>
-            <option>Visa Processing</option>
-            <option>Tours & Safari Packages</option>
-            <option>Travel Insurance</option>
-          </select>
-        </div>
-
-        {renderTravelDetailsFields()}
-
-        <div>
-          <label className="text-sm font-medium text-foreground">Travel Details</label>
-          <textarea name="details" value={formData.details} onChange={handleFormChange} rows={2} placeholder="Additional preferences, special requests..." className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" />
-        </div>
-
-        {renderSubscribeCheckbox()}
-
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
+      {/* 1️⃣ Service selector — always visible */}
+      <div>
+        <label className="text-sm font-medium text-foreground">Travel Service</label>
+        <select
+          name="service"
+          value={formData.service}
+          onChange={handleFormChange}
+          required
+          className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
         >
-          <span className="flex items-center justify-center gap-2">
-            {loading ? "Sending..." : "Submit Request"}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </span>
-        </Button>
-      </form>
+          <option value="">Select a travel service</option>
+          <option>Air Tickets</option>
+          <option>Hotel Booking</option>
+          <option>Visa Processing</option>
+          <option>Tours & Safari Packages</option>
+          <option>Travel Insurance</option>
+        </select>
+      </div>
+
+      {/* 2️⃣ Book Now / Get Quote — appear only after service is chosen */}
+      {formData.service && (
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href="https://regal-tours.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-primary-foreground font-medium hover:opacity-90 transition-colors"
+          >
+            Book Now
+            <ArrowRight className="h-4 w-4" />
+          </a>
+          <Button
+            type="button"
+            onClick={() => setFormType("quote")}
+            className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/80"
+          >
+            Get Quote
+          </Button>
+        </div>
+      )}
+
+      {/* 3️⃣ Quote form — shown only after Get Quote */}
+      {formType === "quote" && (
+        <form onSubmit={handleFormSubmit} className="space-y-4">
+          {renderNameFields()}
+
+          <div className="grid grid-cols-2 gap-4">
+            {renderPhoneField()}
+            <div>
+              <label className="text-sm font-medium text-foreground">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleFormChange}
+                placeholder="your@email.com"
+                className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                required
+              />
+            </div>
+          </div>
+
+          {renderTravelDetailsFields()}
+
+          <div>
+            <label className="text-sm font-medium text-foreground">Travel Details</label>
+            <textarea
+              name="details"
+              value={formData.details}
+              onChange={handleFormChange}
+              rows={2}
+              placeholder="Additional preferences, special requests..."
+              className="mt-1 w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+            />
+          </div>
+
+          {renderSubscribeCheckbox()}
+
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-primary via-pink-500 to-accent text-primary-foreground py-6 text-lg font-semibold rounded-xl shadow-[0_0_30px_rgba(219,39,119,0.3)] hover:shadow-[0_0_40px_rgba(219,39,119,0.5)] transition-all duration-300 group"
+          >
+            <span className="flex items-center justify-center gap-2">
+              {loading ? "Sending..." : "Submit Request"}
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Button>
+        </form>
+      )}
     </div>
   );
 

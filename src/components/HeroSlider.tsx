@@ -151,8 +151,8 @@ const HeroSlider = () => {
   return (
     <section className="relative pt-4 md:pt-6 pb-6 md:pb-8">
       <div className="container">
-        <div className="relative min-h-[70vh] md:min-h-[75vh] flex items-center overflow-hidden rounded-[2rem] shadow-2xl">
-          {/* Background Image - Changes with each slide */}
+        <div className="relative min-h-[60vh] md:min-h-[65vh] flex items-center overflow-hidden rounded-[2rem] shadow-2xl">        
+        {/* Background Image - Changes with each slide */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}

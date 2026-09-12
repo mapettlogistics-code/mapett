@@ -5,9 +5,17 @@ const partners = [
   { src: "/logos/pil.png", alt: "PIL" },
   { src: "/logos/ncba.png", alt: "NCBA" },
   { src: "/logos/mastercard.jpg", alt: "Mastercard" },
-  { src: "/logos/maersk.png", alt: "Maersk" },
   { src: "/logos/kra.png", alt: "KRA" },
+  { src: "/logos/images-kpa.png", alt: "KPA" },
+  { src: "/logos/maersk.png", alt: "Maersk" },
   { src: "/logos/cosco.png", alt: "COSCO" },
+  { src: "/logos/one-express.png", alt: "Ocean Network Express" },
+  { src: "/logos/images.png", alt: "PESAPAL" },
+  { src: "/logos/HMM.png", alt: "HMM" },
+  { src: "/logos/hapag.png", alt: "Hapag-Lloyd" },
+  { src: "/logos/evergreen.png", alt: "Evergreen" },
+
+
 ];
 
 const PartnersMarquee = () => (

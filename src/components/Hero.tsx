@@ -53,8 +53,8 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative h-50 flex items-center overflow-hidden">
-      {/* Background Image */}
+   <section className="relative h-[280px] flex flex-col justify-center overflow-hidden">      
+   {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
