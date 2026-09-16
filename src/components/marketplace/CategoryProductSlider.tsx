@@ -141,9 +141,9 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
     return (
       <div className="py-6">
         <div className="h-8 w-48 bg-muted animate-pulse rounded mb-4" />
-        <div className="flex gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:flex sm:gap-4">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="w-64 h-72 bg-muted animate-pulse rounded-xl flex-shrink-0" />
+            <div key={i} className="h-64 rounded-xl bg-muted animate-pulse sm:h-72 sm:w-64 sm:flex-shrink-0" />
           ))}
         </div>
       </div>
@@ -155,13 +155,13 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
   return (
     <div className="py-6">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <div className={`w-1 h-8 rounded-full bg-gradient-to-b ${color}`} />
-          <h3 className="text-xl font-bold text-foreground">{title}</h3>
-          <span className="text-sm text-muted-foreground">({displayProducts.length} items)</span>
+          <h3 className="truncate text-lg font-bold text-foreground sm:text-xl">{title}</h3>
+          <span className="hidden text-sm text-muted-foreground sm:inline">({displayProducts.length} items)</span>
         </div>
-        <div className="flex gap-2">
+        <div className="hidden shrink-0 gap-2 sm:flex">
           <button
             onClick={() => scroll("left")}
             className="w-9 h-9 rounded-full border border-border bg-card hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center"
@@ -182,7 +182,7 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
         ref={scrollRef}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="flex gap-4 overflow-x-auto scrollbar-hide pb-2"
+        className="grid grid-cols-2 gap-3 pb-2 sm:flex sm:gap-4 sm:overflow-x-auto"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
           {displayProducts.map((product, index) => (
@@ -194,7 +194,7 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
-            className="flex-shrink-0 w-56 group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-border"
+            className="group w-full overflow-hidden rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover sm:w-56 sm:flex-shrink-0"
           >
             {/* Image */}
             <div className="relative aspect-square overflow-hidden bg-secondary/50 p-3">
@@ -212,12 +212,9 @@ const CategoryProductSlider = ({ category, title, color }: CategoryProductSlider
 
             {/* Content */}
             <div className="p-3">
-              <div className="flex items-start justify-between mb-1">
+              <div className="mb-1 flex items-start justify-between">
                 <span className="text-xs text-muted-foreground uppercase tracking-wide line-clamp-1">{product.category}</span>
-                <ProductShareButtons
-                  productName={product.name}
-                  productUrl={`${window.location.origin}/#autoshop`}
-                />
+                <div className="hidden sm:block"><ProductShareButtons productName={product.name} productUrl={`${window.location.origin}/#autoshop`} /></div>
               </div>
               <h4 className="font-semibold text-foreground text-sm mt-0.5 mb-1 line-clamp-1">{product.name}</h4>
 

@@ -36,9 +36,9 @@ const features = [
 
 const FeatureBanner = () => {
   return (
-    <section className="bg-secondary/50 border-y border-border py-5">
+    <section className="border-y border-border bg-secondary/50 py-5">
       <div className="container">
-        <div className="flex items-center justify-between gap-2">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-5 sm:grid-cols-6 sm:gap-2">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -46,9 +46,9 @@ const FeatureBanner = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center text-center flex-1"
+              className="flex min-w-0 flex-col items-center text-center"
             >
-              <div className="w-16 h-16 flex items-center justify-center mb-3">
+              <div className="mb-2 flex h-12 w-12 items-center justify-center sm:mb-3 sm:h-16 sm:w-16">
                 {feature.image ? (
                   <img 
                     src={feature.image} 
@@ -60,7 +60,7 @@ const FeatureBanner = () => {
                 )}
               </div>
               <div className="w-full">
-                <h3 className="font-semibold text-foreground text-sm">{feature.title}</h3>
+                <h3 className="text-xs font-semibold text-foreground sm:text-sm">{feature.title}</h3>
               </div>
             </motion.div>
           ))}

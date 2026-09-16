@@ -58,7 +58,7 @@ const PromoCircleSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Visible items count based on container width
-  const getItemWidth = () => 192; // 160px item + 32px gap (approx)
+  const getItemWidth = () => (window.innerWidth < 640 ? 132 : 192);
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
@@ -125,10 +125,10 @@ const PromoCircleSection = () => {
   const showAllDots = promos.length <= 6;
 
   return (
-    <section className="py-12 bg-background">
+    <section className="bg-background py-8 sm:py-12">
       <div className="container">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl md:text-3xl">
             Our Promotions
           </h2>
           <div className="flex gap-2">
@@ -154,7 +154,7 @@ const PromoCircleSection = () => {
 
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-p-0"
+          className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-4 scrollbar-hide sm:gap-6 scroll-p-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {promos.map((promo, index) => (
@@ -163,10 +163,10 @@ const PromoCircleSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group flex flex-col items-center gap-3 flex-shrink-0"
+              className="group flex flex-shrink-0 snap-start flex-col items-center gap-2 sm:gap-3"
             >
               <div
-                className={`w-40 h-40 rounded-full overflow-hidden border-4 shadow-lg transition-all ${
+                className={`h-28 w-28 overflow-hidden rounded-full border-4 shadow-lg transition-all sm:h-40 sm:w-40 ${
                   activeIndex === index
                     ? 'border-primary scale-105 shadow-xl'
                     : 'border-muted hover:border-primary hover:scale-105'
@@ -186,7 +186,7 @@ const PromoCircleSection = () => {
                   />
                 </a>
               </div>
-              <span className="text-sm font-bold text-foreground text-center">
+              <span className="text-center text-xs font-bold text-foreground sm:text-sm">
                 {promo.title}
               </span>
             </motion.div>
@@ -194,7 +194,7 @@ const PromoCircleSection = () => {
         </div>
 
         {/* Bottom Navigation Dots */}
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-4 flex justify-center gap-2 sm:mt-6 sm:gap-3">
           {promos.map((_, index) => (
             <button
               key={index}

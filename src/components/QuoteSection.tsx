@@ -697,7 +697,7 @@ travelDetails: {
     <form onSubmit={handleFormSubmit} className="space-y-4">
       {renderNameFields()}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         {renderPhoneField()}
         <div>
           <label className="text-sm font-medium text-foreground">Email Address</label>
@@ -743,7 +743,7 @@ travelDetails: {
     <form onSubmit={handleFormSubmit} className="space-y-4">
       {renderNameFields()}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         {renderPhoneField()}
         <div>
           <label className="text-sm font-medium text-foreground">Email Address</label>
@@ -1173,7 +1173,7 @@ travelDetails: {
         <form onSubmit={handleFormSubmit} className="space-y-4">
           {renderNameFields()}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             {renderPhoneField()}
             <div>
               <label className="text-sm font-medium text-foreground">Email Address</label>
@@ -1221,7 +1221,7 @@ travelDetails: {
   );
 
   return (
-    <section className="py-16 bg-secondary/30">
+    <section className="bg-secondary/30 py-10 sm:py-16">
       <div className="container">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <motion.div
@@ -1235,7 +1235,7 @@ travelDetails: {
               {badge}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{heading}</h2>
-            <p className="text-muted-foreground text-lg mb-8">{description}</p>
+            <p className="mb-6 text-base text-muted-foreground sm:mb-8 sm:text-lg">{description}</p>
           </motion.div>
 
           <motion.div
@@ -1245,7 +1245,7 @@ travelDetails: {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-7"
           >
-            <div className="bg-background rounded-2xl p-8 shadow-xl border border-border">
+            <div className="rounded-2xl border border-border bg-background p-4 shadow-xl sm:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <MapPin className="w-6 h-6 text-primary" />
@@ -1257,12 +1257,12 @@ travelDetails: {
               </div>
 
               {/* Category Tabs */}
-              <div className="flex gap-3 mb-6 border-b border-border">
+              <div className="mb-6 grid grid-cols-3 gap-1 border-b border-border sm:flex sm:gap-3">
                 {categories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`px-4 py-3 font-medium text-sm transition-all border-b-2 ${
+                    className={`px-1 py-3 text-xs font-medium transition-all border-b-2 sm:px-4 sm:text-sm ${
                       activeCategory === category.id
                         ? "border-primary text-primary"
                         : "border-transparent text-muted-foreground hover:text-foreground"
