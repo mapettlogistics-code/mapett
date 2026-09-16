@@ -34,7 +34,7 @@ import WIBAEmployeesCoverage from "./pages/WIBAEmployeesCoverage";
 import LifeInsurance from "./pages/LifeInsurance";
 import WarehouseInsurance from "./pages/WarehouseInsurance";
 import AirportTransfers from "./pages/AirportTransfers";
-import TravelServicePage from "./pages/TravelServicePage";
+import TravelServicePage from "./pages/TravelSolutions";
 import IntermodalSolutions from "./pages/IntermodalSolutions";
 import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
@@ -54,6 +54,7 @@ import BlogPost from "./pages/BlogPost";
 import ScrollToTop from "./components/ScrollToTop";
 import SiteMeta from "./components/SiteMeta";
 import { HelmetProvider } from 'react-helmet-async';
+import TravelSolutions from "./pages/TravelSolutions";
 
 const queryClient = new QueryClient();
 
@@ -96,13 +97,13 @@ function App() {
                     <Route path="/life-insurance" element={<LifeInsurance />} />
                     <Route path="/warehouse-insurance" element={<WarehouseInsurance />} />
                     {/* <Route path="/airport-transfers" element={<AirportTransfers />} /> */}
-                    <Route path="/travel-services" element={<TravelServicePage />} />
-                    <Route path="/flight-booking" element={<TravelServicePage service="flight-booking" />} />
-                    <Route path="/visa-processing" element={<TravelServicePage service="visa-processing" />} />
-                    <Route path="/hotel-booking" element={<TravelServicePage service="hotel-booking" />} />
-                    <Route path="/travel-insurance" element={<TravelServicePage service="travel-insurance" />} />
-                    {/* <Route path="/travel-essentials" element={<TravelServicePage service="travel-essentials" />} /> */}
-                    <Route path="/tours-safaris" element={<TravelServicePage service="tours-safaris" />} />
+                    <Route path="/travel-solutions" element={<TravelSolutions />} />
+                    <Route path="/flight-booking" element={<TravelSolutions service="flight-booking" />} />
+                    <Route path="/visa-processing" element={<TravelSolutions service="visa-processing" />} />
+                    <Route path="/hotel-booking" element={<TravelSolutions service="hotel-booking" />} />
+                    <Route path="/travel-insurance" element={<TravelSolutions service="travel-insurance" />} />
+                    {/* <Route path="/travel-essentials" element={<TravelSolutions service="travel-essentials" />} /> */}
+                    <Route path="/tours-safaris" element={<TravelSolutions service="tours-safaris" />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/cookie-policy" element={<CookiePolicy />} />

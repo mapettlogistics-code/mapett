@@ -8,7 +8,6 @@ import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
 import categoryLubricants from "@/assets/category-lubricants.jpg";
 import categoryTires from "@/assets/category-tires.jpg";
 import categoryBatteries from "@/assets/category-batteries.jpg";
-import categoryIndustrial from "@/assets/category-industrial.jpg";
 import categoryAccessories from "@/assets/category-accessories.jpg";
 
 const Autoshop = () => {
@@ -42,12 +41,12 @@ const Autoshop = () => {
     },
     {
       icon: Wrench,
-      title: "Industrial Lubricants",
-      description: "Precision lubricants for manufacturing and industrial needs",
+      title: "Seals & Tags",
+      description: "High-quality seals and tags for various applications",
       productCount: 32,
       color: "from-primary to-pink-700",
-      categoryKey: "industrial-lubricants",
-      image: categoryIndustrial,
+      categoryKey: "seals-and-tags",
+      image: "/products/seals.png",
     },
     {
       icon: Car,
@@ -60,7 +59,7 @@ const Autoshop = () => {
     },
     {
       icon: CircleDot,
-      title: "Vehicle Tires",
+      title: "Vehicle Tyres",
       description: "Quality tires for all vehicle types - cars, trucks, and motorbikes",
       productCount: 38,
       color: "from-gray-600 to-gray-800",
@@ -91,8 +90,8 @@ const Autoshop = () => {
   const productSliders = [
     { category: "lubricants", title: "Automotive Lubricants", color: "from-primary to-pink-600" },
     { category: "food-grade-lubricants", title: "Food Grade Lubricants", color: "from-gray-600 to-gray-800" },
-    { category: "agricultural-lubricants", title: "Agricultural Lubriicants", color: "from-yellow-500 to-orange-600" },
-    { category: "industrial-lubricants", title: "Industrical Lubricants", color: "from-pink-400 to-primary" },
+    { category: "agricultural-lubricants", title: "Agricultural Lubricants", color: "from-yellow-500 to-orange-600" },
+    { category: "industrial-lubricants", title: "Seals & Tags", color: "from-pink-400 to-primary" },
   ];
 
   return (
@@ -118,7 +117,7 @@ const Autoshop = () => {
         </motion.div>
 
         {/* Categories Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 mb-12">
           {categories.map((category, index) => (
             <a href={getAutostoreLink(category.title)} target="_blank" rel="noopener noreferrer" key={category.title}>
               <motion.div

@@ -289,7 +289,7 @@ const Products = () => {
           {/* Products Grid */}
           <div className="flex-1">
             {loading ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div key={i} className="bg-muted animate-pulse rounded-xl h-80" />
                 ))}
@@ -301,7 +301,7 @@ const Products = () => {
                 <Button onClick={clearFilters}>Clear Filters</Button>
               </div>
             ) : (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
                 {products.map((product, index) => (
                   <motion.div
                     key={product.id}

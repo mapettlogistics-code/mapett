@@ -62,7 +62,7 @@ const pages: Record<TravelService, PageContent> = {
     heroImageAlt: "Travel planning and insurance documents",
   },
   "tours-safaris": {
-    title: "Tours & Safari Packages",
+    title: "Tours & Safaris",
     intro: "Discover memorable experiences with travel plans made around you.",
     description: "We help arrange tours and safari packages for individuals, families, groups, and corporate travellers across Kenya and beyond.",
     icon: Umbrella,
@@ -87,7 +87,7 @@ const TravelServicePage = ({ service }: { service?: TravelService }) => {
                 <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-sm font-semibold text-primary-foreground">
                   <Globe2 className="h-4 w-4" /> Mapett Travel
                 </span>
-                <h1 className="mb-5 text-4xl font-bold text-background md:text-6xl">Travel Services</h1>
+                <h1 className="mb-5 text-4xl font-bold text-background md:text-6xl">Travel Solutions</h1>
                 <p className="mb-8 text-lg leading-relaxed text-background/85 md:text-xl">
                   From flights and hotels to visas, tours, and travel cover — we help plan your journey end to end.
                 </p>

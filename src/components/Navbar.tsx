@@ -131,7 +131,7 @@ const Navbar = () => {
     { label: "Air Tickets", href: "/flight-booking" },
     { label: "Hotel Booking", href: "/hotel-booking" },
     { label: "Visa Processing", href: "/visa-processing" },
-    { label: "Tour & Safaris Packages", href: "/tours-safaris" },
+    { label: "Tour & Safaris", href: "/tours-safaris" },
     { label: "Travel Insurance", href: "/travel-insurance" },
   ];
 
@@ -375,7 +375,7 @@ const Navbar = () => {
                   onMouseEnter={() => setActiveDropdown('travel-services')}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <Link to="/travel-services" className={navDropdownClass}>
+                  <Link to="/travel-solutions" className={navDropdownClass}>
                     <span>Travel Solutions</span>
                     <ChevronDown className="h-3.5 w-3.5 shrink-0" />
                   </Link>
@@ -445,10 +445,7 @@ const Navbar = () => {
                 <a href={AUTOSTORE_HOME} target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Autostore & Lubricants</a>
                 <a href="https://mapett.com/collections/seals-tags" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Seals & Tags</a>
                 <Link to="/insurance" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Insurance Policies</Link>
-                <Link to="/travel-services" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Travel Services</Link>
-                <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Travel Solutions</button>
-                {ecommerce.map((item) => <Link key={item.label} to={item.href} className={`${mobileNavLinkClass} pl-4`} onClick={() => setIsOpen(false)}>{item.label}</Link>)}
-                <Link to="/track" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Track</Link>
+                <Link to="/travel-solutions" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Travel Solutions</Link>
                 <button className={`${mobileNavLinkClass} w-full text-left`} onClick={() => { scrollToSection("#contact"); setIsOpen(false); }}>Contact us</button>
                 <a href="https://maps.app.goo.gl/5Bx5fhPSsvGBhZ8b8" target="_blank" rel="noopener noreferrer" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Directions/Location</a>
                 {/* Contact Info */}

@@ -6,10 +6,11 @@ export const autostoreCollectionLinks: Record<string, string> = {
   "Food Grade Lubricants": "https://mapett.com/collections/food-grade-lubricants",
   "Agricultural Lubricants": "https://mapett.com/collections/agricultural-lubricants",
   "Construction Lubricants": "https://mapett.com/collections/construction-lubricants",
+  "Seals & Tags": "https://mapett.com/collections/all-seals-and-tags",
   "Industrial Lubricants": "https://mapett.com/collections/industrial-construction-lubricants",
   "Vehicle Accessories": "https://mapett.com/collections/vehicle-accessories",
   "Vehicle Batteries": "https://mapett.com/collections/vehicle-batteries",
-  "Vehicle Tyres": "https://mapett.com/collections/vehicle-tyres",
+  "Vehicle Tyres": "https://mapett.com/collections/vehice-tyres",
   "Safety Shoes": "https://mapett.com/collections/safety-shoes",
 };
 
