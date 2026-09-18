@@ -13,6 +13,7 @@ import SocialSidebar from "@/components/SocialSidebar";
 import BackToTop from "@/components/BackToTop";
 import FeatureBanner from "@/components/FeatureBanner";
 import PromoCircleSection from "@/components/PromoCircleSection";
+import MobileQuickActions from "@/components/MobileQuickActions";
 
 
 const Index = () => {
@@ -24,11 +25,16 @@ const Index = () => {
       <FeatureBanner />
       <PromoCircleSection />
       <Services />
-      <QuoteSection />
+      <MobileQuickActions />
+      <div className="hidden md:block">
+        <QuoteSection />
+      </div>
       <Autoshop />
       <BlogSection />
       <About />
-      <Contact />
+      <div className="hidden md:block">
+        <Contact />
+      </div>
       <Footer />
       <WhatsAppButton />
       <SocialSidebar />

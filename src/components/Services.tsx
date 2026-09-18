@@ -160,7 +160,7 @@ const Services = ({ showAll = false }: { showAll?: boolean }) => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                        className="border-0 bg-gradient-to-r from-red-700 via-red-600 to-red-500 text-white transition-none hover:!border-0 hover:!bg-gradient-to-r hover:!from-red-700 hover:!via-red-600 hover:!to-red-500 hover:!text-white"
                       >
                         <Mail className="mr-1 h-3 w-3" />
                         Send Inquiry

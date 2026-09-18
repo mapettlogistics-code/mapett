@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, User, Tag } from "lucide-react";
+import { ArrowRight, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
+import { getBlogFallbackImage } from "@/data/blogImages";
 
 interface BlogPost {
   id: string;
@@ -124,8 +125,12 @@ const BlogSection = () => {
                   />
                 </div>
               ) : (
-                <div className="h-48 hero-gradient flex items-center justify-center">
-                  <Tag className="h-12 w-12 text-primary-foreground/60" />
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={getBlogFallbackImage(post.slug, post.category)}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               )}
 

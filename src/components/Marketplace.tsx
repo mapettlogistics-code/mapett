@@ -5,7 +5,6 @@ import CategoryProductSlider from "./marketplace/CategoryProductSlider";
 import { AUTOSTORE_HOME, getAutostoreLink } from "@/data/autostoreLinks";
 
 // Import category images
-import categoryLubricants from "@/assets/category-lubricants.jpg";
 import categoryTires from "@/assets/category-tires.jpg";
 import categoryBatteries from "@/assets/category-batteries.jpg";
 import categoryAccessories from "@/assets/category-accessories.jpg";
@@ -19,7 +18,7 @@ const Autoshop = () => {
       productCount: 45,
       color: "from-primary to-pink-600",
       categoryKey: "lubricants",
-      image: categoryLubricants,
+      image: "/products/automotive.png",
     },
     {
       icon: Utensils,
@@ -28,7 +27,7 @@ const Autoshop = () => {
       productCount: 15,
       color: "from-green-500 to-green-700",
       categoryKey: "food-grade-lubricants",
-      image: categoryLubricants,
+      image: "/products/food-grade.png",
     },
     {
       icon: Wheat,
@@ -37,7 +36,7 @@ const Autoshop = () => {
       productCount: 20,
       color: "from-lime-500 to-green-600",
       categoryKey: "agricultural-lubricants",
-      image: categoryLubricants,
+      image: "/products/agricultural.png",
     },
     {
       icon: Wrench,

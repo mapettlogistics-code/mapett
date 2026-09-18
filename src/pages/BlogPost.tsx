@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
+import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
+import { getBlogFallbackImage } from "@/data/blogImages";
 
 interface BlogPost {
   id: string;
@@ -122,9 +123,11 @@ const BlogPostPage = () => {
         {post.image_url ? (
           <img src={post.image_url} alt={post.title} className="w-full h-64 object-cover rounded-xl mb-8" />
         ) : (
-          <div className="w-full h-48 hero-gradient rounded-xl mb-8 flex items-center justify-center">
-            <Tag className="h-16 w-16 text-primary-foreground/60" />
-          </div>
+          <img
+            src={getBlogFallbackImage(post.slug, post.category)}
+            alt={post.title}
+            className="w-full h-64 object-cover rounded-xl mb-8"
+          />
         )}
 
         <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
