@@ -64,7 +64,7 @@ const ServicePageLayout = ({ content }: ServicePageLayoutProps) => {
             "serviceType": content.title,
             "provider": {
               "@type": "LocalBusiness",
-              "name": "Mapett Travel & Logistics",
+              "name": "Mapett Logistics & Travel",
               "url": "https://www.mapettlogistics.com",
               "address": {
                 "@type": "PostalAddress",

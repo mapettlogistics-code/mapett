@@ -36,10 +36,10 @@ const About = () => {
   const { items: valueItems } = useSiteContent("about_value", defaultValues as any);
 
   const about = aboutItems[0];
-  const badge = about?.subtitle || "About Mapett Travel & Logistics";
+  const badge = about?.subtitle || "About Mapett Logistics & Travel LTD";
   const heading = about?.title || "Your Trusted Partner in Kenya's Logistics";
-  const mainDesc = about?.description || "Since 2020, Mapett Travel & Logistics has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
-  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "Our business has four divisions ; Mapett Logistics Solutions, Mapett Autostore & Lubricants Solutions, Travel Solutions & E-commerce Marketplace. ";
+  const mainDesc = about?.description || "Since 2020, Mapett Logistics & Travel LTD has been at the forefront of providing comprehensive logistics solutions across Kenya and East Africa. From our strategic locations in Nairobi and Mombasa, we serve businesses of all sizes with dedication and expertise.";
+  const secondaryDesc = (about?.extra_data as any)?.secondary_description || "Our business has four divisions ; Mapett Logistics Solutions, Mapett Autostore & Lubricants Solutions, Mapett Travel Solutions & E-commerce Marketplace. ";
   const bulletsRaw = (about?.extra_data as any)?.bullets || "End-to-end supply chain solutions\nReal-time shipment tracking\nCompetitive pricing\n24/7 customer support";
   const bullets = bulletsRaw.split("\n").filter(Boolean);
   const buttonText = (about?.extra_data as any)?.button_text || "Learn More About Us";

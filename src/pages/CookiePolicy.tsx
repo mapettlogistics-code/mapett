@@ -9,7 +9,7 @@ const CookiePolicy = () => {
       <div className="container py-16 max-w-4xl">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-foreground mb-2">COOKIE POLICY</h1>
-          <p className="text-muted-foreground"><strong>Mapett Travel & Logistics Ltd</strong></p>
+          <p className="text-muted-foreground"><strong>Mapett Logistics & Travel Ltd</strong></p>
           <p className="text-sm text-muted-foreground">Effective Date: 22 August 2026</p>
         </div>
 
@@ -21,7 +21,7 @@ const CookiePolicy = () => {
 
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">2. How We Use Cookies</h2>
-            <p>Mapett Travel & Logistics Ltd may use cookies and similar technologies across its websites for:</p>
+            <p>Mapett Logistics & Travel Ltd may use cookies and similar technologies across its websites for:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li>Essential website functions and security</li>
               <li>Remembering preferences and settings</li>
@@ -63,7 +63,7 @@ const CookiePolicy = () => {
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">8. Contact Us</h2>
             <ul className="list-none space-y-1 mt-2">
-              <li><strong>Mapett Travel & Logistics Ltd</strong></li>
+              <li><strong>Mapett Logistics & Travel Ltd</strong></li>
               <li><strong>Email:</strong> sales@mapettlogistics.com</li>
               <li><strong>Telephone:</strong> +254 799 390 133</li>
               <li><strong>Address:</strong> Shree Plaza, Nyali Road, Mombasa, Kenya</li>

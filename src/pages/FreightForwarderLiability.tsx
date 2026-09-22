@@ -12,7 +12,7 @@ const FreightForwarderLiabilitySchema = () => (
         "serviceType": "Freight Forwarder Liability Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Reliable freight forwarder liability services protecting your shipments and ensuring accountability throughout the logistics process."

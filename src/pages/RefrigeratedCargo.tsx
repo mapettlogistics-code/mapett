@@ -12,7 +12,7 @@ const RefrigeratedCargoSchema = () => (
         "serviceType": "Refrigerated Cargo Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Specialized refrigerated cargo services ensuring the safe and efficient transportation of temperature-sensitive goods."

@@ -12,7 +12,7 @@ const InlandTransitInsuranceSchema = () => (
         "serviceType": "Inland Transit Insurance Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive inland transit insurance solutions ensuring the safety and security of your shipments during land transportation."

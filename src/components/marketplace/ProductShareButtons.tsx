@@ -1,4 +1,4 @@
-import { Facebook, Link2, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 
 type ProductShareButtonsProps = {
@@ -21,9 +21,24 @@ const ProductShareButtons = ({ productName, productUrl }: ProductShareButtonsPro
     whatsapp: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${productUrl}`)}`,
   };
 
-  const copyLink = async () => {
-    await navigator.clipboard.writeText(productUrl);
-    toast.success("Link copied to clipboard!");
+  const shareOnInstagram = async () => {
+    if (!navigator.share) {
+      toast.info("Open this page on a mobile device to share it on Instagram.");
+      return;
+    }
+
+    try {
+      await navigator.share({
+        title: productName,
+        text: shareText,
+        url: productUrl,
+      });
+    } catch (error) {
+      // Closing the native share sheet is an expected user action.
+      if (error instanceof DOMException && error.name === "AbortError") return;
+
+      toast.error("Unable to open the Instagram share options.");
+    }
   };
 
   return (
@@ -50,11 +65,11 @@ const ProductShareButtons = ({ productName, productUrl }: ProductShareButtonsPro
         <MessageCircle className="h-3.5 w-3.5 text-[#25D366]" />
       </button>
       <button
-        onClick={copyLink}
-        className="w-7 h-7 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors"
-        title="Copy link"
+        onClick={shareOnInstagram}
+        className="w-7 h-7 rounded-full bg-[#E4405F]/10 hover:bg-[#E4405F]/20 flex items-center justify-center transition-colors"
+        title="Share on Instagram"
       >
-        <Link2 className="h-3.5 w-3.5 text-muted-foreground" />
+        <Instagram className="h-3.5 w-3.5 text-[#E4405F]" />
       </button>
     </div>
   );

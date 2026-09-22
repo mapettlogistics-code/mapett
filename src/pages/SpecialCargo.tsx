@@ -12,7 +12,7 @@ const SpecialCargoSchema = () => (
         "serviceType": "Special Cargo Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Specialized cargo services ensuring the safe and efficient handling and transportation of unique and high-value shipments."

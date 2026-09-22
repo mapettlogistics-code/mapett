@@ -12,7 +12,7 @@ const LifeInsuranceSchema = () => (
         "serviceType": "Life Insurance Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive life insurance solutions providing financial security and peace of mind for you and your loved ones."

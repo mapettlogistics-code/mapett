@@ -15,7 +15,7 @@ const MarineCargoInsuranceSchema = () => (
         "serviceType": "Marine Cargo Insurance Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive marine cargo insurance solutions ensuring the safety and security of your shipments during sea transportation."

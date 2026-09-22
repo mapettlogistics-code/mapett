@@ -120,8 +120,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="/" className="mb-6 inline-block">
-              <span className="text-xl font-bold text-background">Mapett Travel</span>
-              <span className="text-xl font-bold text-primary"> & Logistics LTD</span>
+              <span className="text-xl font-bold text-background">Mapett Logistics</span>
+              <span className="text-xl font-bold text-primary"> & Travel LTD</span>
             </a>
             <p className="text-background/70 mb-6 max-w-sm">{footerDesc}</p>
             <div className="space-y-3">
@@ -235,7 +235,7 @@ const Footer = () => {
       <div className="border-t border-background/10">
         <div className="container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-background/60 text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Mapett Travel & Logistics LTD. All rights reserved.
+            © {new Date().getFullYear()} Mapett Logistics & Travel LTD. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link to="/cookie-policy" className="text-sm text-background/60 hover:text-primary transition-colors">

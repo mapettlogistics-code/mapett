@@ -11,7 +11,7 @@ const WarehousingSchema = () => (
         "serviceType": "Warehousing Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Reliable warehousing services providing secure storage solutions for your goods in Kenya and East Africa."

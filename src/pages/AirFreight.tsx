@@ -11,7 +11,7 @@ const AirFreightSchema = () => (
         "serviceType": "Air Freight Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Fast global air cargo solutions with real-time tracking through JKIA and international airports."

@@ -15,7 +15,7 @@ const AdminSettings = () => {
     phone: "+254 700 000 000",
     whatsapp: "+254 700 000 000",
     address: "Nairobi, Kenya",
-    about: "Mapett Travel & Logistics is your trusted partner in logistics, freight, and insurance services across East Africa and beyond.",
+    about: "Mapett Logistics & Travel is your trusted partner in logistics, freight, and insurance services across East Africa and beyond.",
   });
 
   const handleSave = async () => {

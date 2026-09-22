@@ -118,7 +118,7 @@ const handler = async (req: Request) => {
         ${emailRequest.message ? `<p><strong>Message:</strong><br/>${emailRequest.message.replace(/\n/g, "<br>")}</p>` : ""}
         <hr/>
         <p>If you need urgent assistance, call or WhatsApp us at +254 799 390 133.</p>
-        <p><em>Mapett Travel & Logistics Limited</em></p>
+        <p><em>Mapett Logistics & Travel LTD</em></p>
       `;
       const customerEmailResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",

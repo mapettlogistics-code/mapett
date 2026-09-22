@@ -8,7 +8,7 @@ const TermsConditions = () => {
       <div className="container py-16 max-w-4xl">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-foreground mb-2">WEBSITE TERMS & CONDITIONS</h1>
-          <p className="text-muted-foreground"><strong>Mapett Travel & Logistics Ltd</strong></p>
+          <p className="text-muted-foreground"><strong>Mapett Logistics & Travel Ltd</strong></p>
           <p className="text-sm text-muted-foreground">Applies to mapettlogistics.com, mapett.com, mapettstore.com and mapett.vercel.app</p>
           <p className="text-sm text-muted-foreground">Effective Date: 22 August 2026</p>
         </div>
@@ -16,7 +16,7 @@ const TermsConditions = () => {
         <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">1. Introduction and Acceptance</h2>
-            <p>These Website Terms & Conditions ("Terms") govern your access to and use of the websites operated by Mapett Travel & Logistics Ltd ("Mapett", "we", "us" or "our"), including mapettlogistics.com, mapett.com, mapettstore.com and mapett.vercel.app while it is used as a temporary development or hosting address.</p>
+            <p>These Website Terms & Conditions ("Terms") govern your access to and use of the websites operated by Mapett Logistics & Travel Ltd ("Mapett", "we", "us" or "our"), including mapettlogistics.com, mapett.com, mapettstore.com and mapett.vercel.app while it is used as a temporary development or hosting address.</p>
             <p>By accessing, browsing, registering, submitting an enquiry, placing an order, requesting a quotation, making a booking or otherwise using our websites or online services, you agree to these Terms. If you do not agree, please do not use the relevant website or service.</p>
             <p>Where you enter into a specific purchase, booking, quotation, service agreement, insurance arrangement, supplier booking or marketplace transaction, additional terms may apply. Those specific terms, quotations, booking conditions or transaction terms will apply to the relevant transaction and, where there is a conflict, will take precedence to the extent of that conflict.</p>
           </section>
@@ -156,7 +156,7 @@ const TermsConditions = () => {
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">20. Contact Us</h2>
             <ul className="list-none space-y-1 mt-2">
-              <li><strong>Mapett Travel & Logistics Ltd</strong></li>
+              <li><strong>Mapett Logistics & Travel Ltd</strong></li>
               <li><strong>Address:</strong> Shree Plaza, Nyali Road, Mombasa, Kenya</li>
               <li><strong>Email:</strong> sales@mapettlogistics.com</li>
               <li><strong>Telephone:</strong> +254 799 390 133</li>

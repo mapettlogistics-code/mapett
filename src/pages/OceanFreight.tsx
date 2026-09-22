@@ -12,7 +12,7 @@ const OceanFreightSchema = () => (
         "serviceType": "Ocean Freight Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Reliable ocean freight services ensuring the efficient and secure transportation of your goods via sea routes."

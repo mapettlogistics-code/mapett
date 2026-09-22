@@ -8,7 +8,7 @@ const ShippingReturnsPolicy = () => {
       <div className="container py-16 max-w-4xl">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-foreground mb-2">SHIPPING & RETURNS POLICY</h1>
-          <p className="text-muted-foreground"><strong>Mapett Travel & Logistics Ltd</strong></p>
+          <p className="text-muted-foreground"><strong>Mapett Logistics & Travel Ltd</strong></p>
           <p className="text-sm text-muted-foreground">Applies to product purchases through mapettstore.com and mapett.com</p>
           <p className="text-sm text-muted-foreground">Effective Date: 22 August 2026</p>
         </div>
@@ -16,7 +16,7 @@ const ShippingReturnsPolicy = () => {
         <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">1. Scope</h2>
-            <p>This Shipping & Returns Policy applies to physical products sold directly by Mapett Travel & Logistics Ltd through mapettstore.com and mapett.com. It applies to products such as lubricants, batteries, tyres, seals and tags, accessories and other products offered for sale.</p>
+            <p>This Shipping & Returns Policy applies to physical products sold directly by Mapett Logistics & Travel Ltd through mapettstore.com and mapett.com. It applies to products such as lubricants, batteries, tyres, seals and tags, accessories and other products offered for sale.</p>
             <p>If Mapett Store later operates as a multi-vendor marketplace, products sold by independent sellers may be subject to additional seller-specific shipping, return and refund terms. Those terms will be displayed or made available for the relevant transaction.</p>
           </section>
 
@@ -82,7 +82,7 @@ const ShippingReturnsPolicy = () => {
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">12. Contact Us</h2>
             <ul className="list-none space-y-1 mt-2">
-              <li><strong>Mapett Travel & Logistics Ltd</strong></li>
+              <li><strong>Mapett Logistics & Travel Ltd</strong></li>
               <li><strong>Email:</strong> sales@mapettlogistics.com</li>
               <li><strong>Telephone:</strong> +254 799 390 133</li>
               <li><strong>Address:</strong> Shree Plaza, Nyali Road, Mombasa, Kenya</li>

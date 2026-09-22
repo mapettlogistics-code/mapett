@@ -11,7 +11,7 @@ const WarehouseInsuranceSchema = () => (
         "serviceType": "Warehouse Insurance Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive warehouse insurance solutions ensuring the safety and security of your goods in storage."

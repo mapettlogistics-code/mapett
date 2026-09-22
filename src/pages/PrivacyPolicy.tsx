@@ -8,14 +8,14 @@ const PrivacyPolicy = () => {
       <div className="container py-16 max-w-4xl">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-foreground mb-2">PRIVACY POLICY</h1>
-          <p className="text-muted-foreground"><strong>Mapett Travel & Logistics Ltd</strong></p>
+          <p className="text-muted-foreground"><strong>Mapett Logistics & Travel Ltd</strong></p>
           <p className="text-sm text-muted-foreground">Effective Date: 22 August 2026</p>
         </div>
 
         <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">1. Introduction</h2>
-            <p>Mapett Travel & Logistics Ltd ("Mapett", "we", "us" or "our") respects your privacy and is committed to protecting personal data. This Privacy Policy explains how we collect, use, store, share and protect personal data when you visit our websites, contact us, request our services, purchase products, make a booking, submit documents, make a payment or otherwise interact with us.</p>
+            <p>Mapett Logistics & Travel Ltd ("Mapett", "we", "us" or "our") respects your privacy and is committed to protecting personal data. This Privacy Policy explains how we collect, use, store, share and protect personal data when you visit our websites, contact us, request our services, purchase products, make a booking, submit documents, make a payment or otherwise interact with us.</p>
             <p>This policy applies to mapettlogistics.com, mapett.com, mapettstore.com and mapett.vercel.app while it is used as a temporary development or hosting address. It covers our logistics, freight, transport, lubricant, seals and tags, travel, visa-support, insurance-support, e-commerce and marketplace-related activities.</p>
           </section>
 
@@ -125,7 +125,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">17. Contact Us</h2>
             <ul className="list-none space-y-1 mt-2">
-              <li><strong>Mapett Travel & Logistics Ltd</strong></li>
+              <li><strong>Mapett Logistics & Travel Ltd</strong></li>
               <li><strong>Address:</strong> Shree Plaza, Nyali Road, Mombasa, Kenya</li>
               <li><strong>Email:</strong> sales@mapettlogistics.com</li>
               <li><strong>Telephone:</strong> +254 799 390 133</li>

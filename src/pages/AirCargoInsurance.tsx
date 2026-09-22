@@ -11,7 +11,7 @@ const AirCargoInsuranceSchema = () => (
         "serviceType": "Air Cargo Insurance Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive air cargo insurance solutions ensuring the safety and security of your shipments through JKIA and international airports."

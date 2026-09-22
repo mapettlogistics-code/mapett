@@ -44,7 +44,7 @@ const searchableContent = [
   { id: "wiba", title: "WIBA & Employees Liability", description: "Workplace injury benefit coverage", category: "Insurance", path: "/wiba-employees-coverage" },
   { id: "life-insurance", title: "Life Insurance", description: "Personal and group life coverage", category: "Insurance", path: "/life-insurance" },
   { id: "warehouse-insurance", title: "Warehouse Insurance", description: "Storage facility and inventory protection", category: "Insurance", path: "/warehouse-insurance" },
-  { id: "about", title: "About Us", description: "Learn more about Mapett Travel & Logistics", category: "Company", path: "/about" },
+  { id: "about", title: "About Us", description: "Learn more about Mapett Logistics & Travel", category: "Company", path: "/about" },
   { id: "track", title: "Track Shipment", description: "Track your cargo and shipments", category: "Tools", path: "/track" },
   { id: "contact", title: "Contact Us", description: "Get in touch with our team", category: "Company", path: "/#contact" },
   { id: "products-services", title: "Products & Services", description: "Browse our full range of services", category: "Services", path: "/products-services" },
@@ -229,7 +229,7 @@ const Navbar = () => {
             <div className="flex items-center gap-8 lg:gap-10 min-w-0">
               {/* Logo */}
               <Link to="/" className="flex items-center h-20 md:h-24 shrink-0">
-                <img src={mapettLogo} alt="Mapett Travel & Logistics" className="h-14 md:h-20 w-auto object-contain" />
+                <img src={mapettLogo} alt="Mapett Logistics & Travel" className="h-14 md:h-20 w-auto object-contain" />
               </Link>
 
               {/* Desktop Menu */}

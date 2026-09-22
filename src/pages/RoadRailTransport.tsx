@@ -12,7 +12,7 @@ const RoadRailTransportSchema = () => (
         "serviceType": "Road and Rail Transport Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Reliable road and rail transport services ensuring the efficient and secure movement of your goods across Kenya and East Africa."

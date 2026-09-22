@@ -11,7 +11,7 @@ const CustomsClearingForwardingSchema = () => (
         "serviceType": "Customs Clearing and Forwarding Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Efficient customs clearing and forwarding services ensuring smooth and compliant movement of goods through JKIA and international ports."

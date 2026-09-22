@@ -11,7 +11,7 @@ const WIBAEmployeesCoverageSchema = () => (
         "serviceType": "WIBA Employees Coverage Services",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "Mapett Travel & Logistics"
+          "name": "Mapett Logistics & Travel"
         },
         "areaServed": ["Kenya", "East Africa"],
         "description": "Comprehensive WIBA employees coverage ensuring the safety and security of your employees in the workplace."

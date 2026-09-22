@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 
 const defaultDescription =
-  "Mapett Travel & Logistics provides comprehensive logistics solutions across Kenya and East Africa. Air freight, ocean freight, customs clearance, warehousing, and more.";
+  "Mapett Logistics & Travel provides comprehensive logistics solutions across Kenya and East Africa. Air freight, ocean freight, customs clearance, warehousing, and more.";
 const defaultKeywords =
   "logistics Kenya, freight services, air freight, ocean freight, customs clearance, warehousing Kenya";
 
@@ -15,63 +15,63 @@ type MetaContent = {
 
 const pageMeta: Record<string, MetaContent> = {
   "/": {
-    title: "Mapett Travel & Logistics - Kenya Freight Services",
+    title: "Mapett Logistics & Travel LTD - Kenya Freight Services",
     description: defaultDescription,
     keywords: defaultKeywords,
   },
   "/about": {
-    title: "About Mapett Travel & Logistics - Kenya",
-    description: "Learn about Mapett Travel & Logistics, your trusted partner for freight, travel, insurance, and supply chain solutions across Kenya and East Africa.",
+    title: "About Mapett Logistics & Travel LTD - Kenya",
+    description: "Learn about Mapett Logistics & Travel LTD, your trusted partner for freight, travel, insurance, and supply chain solutions across Kenya and East Africa.",
     keywords: "about Mapett Logistics, logistics company Kenya, freight company Mombasa, travel services Kenya",
   },
   "/products-services": {
-    title: "Products & Services - Mapett Travel & Logistics",
-    description: "Explore Mapett's logistics, insurance, travel, automotive, and e-commerce products and services across Kenya and East Africa.",
+    title: "Products & Services - Mapett Logistics & Travel LTD",
+    description: "Explore Mapett Logistics & Travel LTD's logistics, insurance, travel, automotive, and e-commerce products and services across Kenya and East Africa.",
     keywords: "Mapett products, logistics services Kenya, insurance Kenya, travel services, automotive products",
   },
   "/air-freight": {
-    title: "Air Freight Services in Kenya - Mapett Logistics",
-    description: "Fast, reliable air freight and cargo delivery from Kenya to destinations worldwide with tracking and door-to-door support.",
+    title: "Air Freight Services in Kenya - Mapett Logistics & Travel LTD",
+    description: "Fast, reliable air freight and cargo delivery from Kenya to destinations worldwide with tracking and door-to-door support by Mapett Logistics & Travel LTD.",
     keywords: "air freight Kenya, air cargo Mombasa, international air shipping, cargo delivery Kenya",
   },
   "/customs-clearance": {
-    title: "Customs Clearing & Forwarding in Kenya - Mapett Logistics",
-    description: "Expert customs clearance and forwarding services at Mombasa Port, JKIA, and Kenya's border points.",
+    title: "Customs Clearing & Forwarding in Kenya - Mapett Logistics & Travel LTD",
+    description: "Expert customs clearance and forwarding services at Mombasa Port, JKIA, and Kenya's border points by Mapett Logistics & Travel LTD.",
     keywords: "customs clearance Kenya, customs agent Mombasa, freight forwarding Kenya, port clearance",
   },
   "/ocean-freight": {
-    title: "Ocean Freight Services in Kenya - Mapett Logistics",
-    description: "Cost-effective FCL and LCL ocean freight connecting Mombasa to major ports worldwide.",
+    title: "Ocean Freight Services in Kenya - Mapett Logistics & Travel LTD",
+    description: "Cost-effective FCL and LCL ocean freight connecting Mombasa to major ports worldwide by Mapett Logistics & Travel LTD.",
     keywords: "ocean freight Kenya, sea freight Mombasa, FCL LCL shipping, container shipping Kenya",
   },
   "/road-rail-transport": {
-    title: "Road & Rail Transport in East Africa - Mapett Logistics",
-    description: "Reliable road and rail transport across Kenya, Uganda, Tanzania, and East Africa with shipment visibility.",
+    title: "Road & Rail Transport in East Africa - Mapett Logistics & Travel LTD",
+    description: "Reliable road and rail transport across Kenya, Uganda, Tanzania, and East Africa with shipment visibility by Mapett Logistics & Travel LTD.",
     keywords: "road transport Kenya, rail freight East Africa, cargo transport Mombasa, logistics East Africa",
   },
   "/refrigerated-cargo": {
-    title: "Refrigerated Cargo & Cold Chain Kenya - Mapett Logistics",
-    description: "Temperature-controlled refrigerated cargo transport for perishables and sensitive goods across East Africa.",
+    title: "Refrigerated Cargo & Cold Chain Kenya - Mapett Logistics & Travel LTD",
+    description: "Temperature-controlled refrigerated cargo transport for perishables and sensitive goods across East Africa by Mapett Logistics & Travel LTD.",
     keywords: "refrigerated cargo Kenya, cold chain logistics, temperature controlled transport, perishables shipping",
   },
   "/special-cargo": {
-    title: "Special Cargo & Project Logistics - Mapett Logistics",
-    description: "Specialized handling and transport for oversized, heavy-lift, and project cargo in Kenya and East Africa.",
+    title: "Special Cargo & Project Logistics - Mapett Logistics & Travel LTD",
+    description: "Specialized handling and transport for oversized, heavy-lift, and project cargo in Kenya and East Africa by Mapett Logistics & Travel LTD.",
     keywords: "special cargo Kenya, project cargo logistics, heavy lift transport, oversized cargo shipping",
   },
   "/warehousing": {
-    title: "Warehousing & Distribution in Kenya - Mapett Logistics",
-    description: "Secure warehousing, inventory management, pick and pack, and distribution solutions across Kenya.",
+    title: "Warehousing & Distribution in Kenya - Mapett Logistics & Travel LTD",
+    description: "Secure warehousing, inventory management, pick and pack, and distribution solutions across Kenya by Mapett Logistics & Travel LTD.",
     keywords: "warehousing Kenya, storage Mombasa, inventory management, distribution Kenya",
   },
   "/insurance": {
     title: "Cargo & Logistics Insurance in Kenya - Mapett",
-    description: "Protect your cargo and business with comprehensive marine, air, inland transit, and warehouse insurance in Kenya.",
+    description: "Protect your cargo and business with comprehensive marine, air, inland transit, and warehouse insurance in Kenya by Mapett Logistics & Travel LTD.",
     keywords: "cargo insurance Kenya, marine insurance Mombasa, transit insurance, logistics insurance",
   },
   "/marine-cargo-insurance": {
     title: "Marine Cargo Insurance in Kenya - Mapett",
-    description: "Comprehensive marine cargo insurance for goods transported by sea, with protection from warehouse to warehouse.",
+    description: "Comprehensive marine cargo insurance for goods transported by sea, with protection from warehouse to warehouse by Mapett Logistics & Travel LTD.",
     keywords: "marine cargo insurance Kenya, shipping insurance Mombasa, goods in transit insurance",
   },
   "/air-cargo-insurance": {
@@ -145,37 +145,37 @@ const pageMeta: Record<string, MetaContent> = {
     keywords: "track shipment Kenya, cargo tracking, Mapett shipment tracking",
   },
   "/team": {
-    title: "Our Team - Mapett Travel & Logistics",
-    description: "Meet the Mapett Travel & Logistics team supporting customers across Kenya and East Africa.",
+    title: "Our Team - Mapett Logistics & Travel LTD",
+    description: "Meet the Mapett Logistics & Travel team supporting customers across Kenya and East Africa.",
     keywords: "Mapett Logistics team, logistics experts Kenya, travel team",
   },
   "/contact": {
-    title: "Contact Mapett Travel & Logistics",
-    description: "Contact Mapett Travel & Logistics for freight, insurance, travel, warehousing, and supply chain support.",
+    title: "Contact Mapett Logistics & Travel LTD",
+    description: "Contact Mapett Logistics & Travel for freight, insurance, travel, warehousing, and supply chain support.",
     keywords: "contact Mapett Logistics, logistics enquiry Kenya, freight quote Mombasa",
   },
   "/privacy-policy": {
-    title: "Privacy Policy - Mapett Travel & Logistics",
-    description: "Mapett Travel & Logistics respects your privacy. Learn how we collect, use, and protect your personal data.",
+    title: "Privacy Policy -Mapett Logistics & Travel LTD",
+    description: "Mapett Logistics & Travel respects your privacy. Learn how we collect, use, and protect your personal data.",
     keywords: "privacy policy Kenya, data protection, personal information",
   },
   "/cookie-policy": {
-    title: "Cookie Policy - Mapett Travel & Logistics",
-    description: "Learn how Mapett Travel & Logistics uses cookies and similar technologies on our website.",
+    title: "Cookie Policy - Mapett Logistics & Travel LTD",
+    description: "Learn how Mapett Logistics & Travel uses cookies and similar technologies on our website.",
     keywords: "cookie policy, cookies, website tracking",
   },
   "/shipping-returns-policy": {
-    title: "Shipping & Returns Policy - Mapett Travel & Logistics",
-    description: "Mapett Travel & Logistics shipping and returns policy for our products and services.",
+    title: "Shipping & Returns Policy - Mapett Logistics & Travel LTD",
+    description: "Mapett Logistics & Travel LTD shipping and returns policy for our products and services.",
     keywords: "shipping policy, returns policy, delivery terms",
   },
   "/terms-conditions": {
-    title: "Terms & Conditions - Mapett Travel & Logistics",
-    description: "Legal terms and conditions for using Mapett Travel & Logistics services and website.",
+    title: "Terms & Conditions - Mapett Logistics & Travel LTD",
+    description: "Legal terms and conditions for using Mapett Logistics & Travel LTD services and website.",
     keywords: "terms and conditions, legal terms, service agreement",
   },
   "/intermodal-solutions": {
-    title: "Intermodal Solutions in Kenya - Mapett Logistics",
+    title: "Intermodal Solutions in Kenya - Mapett Logistics & Travel LTD",
     description: "Integrated multi-modal transport solutions combining sea, rail, and road freight for efficient cargo delivery across East Africa and global markets.",
     keywords: "intermodal transport Kenya, multi-modal logistics, rail and road transport, sea transport Kenya",
   },
@@ -186,7 +186,7 @@ const generateStructuredData = (meta: MetaContent, pathname: string) => {
   const baseOrganizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Mapett Travel & Logistics",
+    "name": "Mapett Logistics & Travel LTD",
     "url": "https://www.mapettlogistics.com",
     "logo": "https://www.mapettlogistics.com/logo.png",
     "sameAs": [
@@ -279,11 +279,11 @@ const generateStructuredData = (meta: MetaContent, pathname: string) => {
       "description": meta.description,
       "author": {
         "@type": "Organization",
-        "name": "Mapett Travel & Logistics"
+        "name": "Mapett Logistics & Travel"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Mapett Travel & Logistics",
+        "name": "Mapett Logistics & Travel",
         "logo": {
           "@type": "ImageObject",
           "url": "https://www.mapettlogistics.com/logo.png"
@@ -306,11 +306,11 @@ const SiteMeta = () => {
     return pageMeta[pathname] || (pathname.startsWith("/blog/")
       ? {
           title: "Mapett Logistics Blog & News",
-          description: "Logistics, travel, insurance, and business insights from Mapett Travel & Logistics.",
+          description: "Logistics, travel, insurance, and business insights from Mapett Logistics & Travel.",
           keywords: "Mapett Logistics blog, logistics news Kenya, freight insights",
         }
       : {
-          title: "Mapett Travel & Logistics",
+          title: "Mapett Logistics & Travel",
           description: defaultDescription,
           keywords: defaultKeywords,
       });
