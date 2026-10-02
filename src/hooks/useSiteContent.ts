@@ -29,7 +29,17 @@ export const useSiteContent = (section: string, fallback: Partial<SiteContentIte
         .order("display_order", { ascending: true });
 
       if (data && data.length > 0) {
-        setItems(data as SiteContentItem[]);
+        const socialLinks: Record<string, string> = {
+          Instagram: "https://www.instagram.com/mapetttlogisticsandtravel/",
+          YouTube: "https://www.youtube.com/@MapettLogisticsandTravel",
+          TikTok: "https://www.tiktok.com/@mapettlogisticsandtravel",
+          Pinterest: "https://www.pinterest.com/mapettlogisticsandtravel/",
+        };
+        setItems((data as SiteContentItem[]).map(item =>
+          section === "social_link" && item.title && socialLinks[item.title]
+            ? { ...item, link: socialLinks[item.title] }
+            : item
+        ));
       } else {
         setItems(fallback as SiteContentItem[]);
       }

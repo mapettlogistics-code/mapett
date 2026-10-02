@@ -21,8 +21,8 @@ const SocialSidebar = () => {
 
   const socials = [
     { icon: Facebook, href: "https://www.facebook.com/mapetttravelandlogistics/", label: "Facebook", brandColor: "#1877F2" },
-    { icon: Instagram, href: "https://www.instagram.com/mapetttravelandlogistics/", label: "Instagram", brandColor: "#E4405F" },
-    { icon: TikTokSvg, href: "https://www.tiktok.com/@mapetttravelandlogistics", label: "TikTok", brandColor: "#000000" },
+    { icon: Instagram, href: "https://www.instagram.com/mapetttlogisticsandtravel/", label: "Instagram", brandColor: "#E4405F" },
+    { icon: TikTokSvg, href: "https://www.tiktok.com/@mapettlogisticsandtravel", label: "TikTok", brandColor: "#000000" },
   ];
 
   return (

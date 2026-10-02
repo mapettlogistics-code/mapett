@@ -16,6 +16,7 @@ import {
   Linkedin,
   Truck,
   Search,
+  ShoppingBag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
@@ -202,19 +203,19 @@ const Navbar = () => {
               <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#1877F2" }}>
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="https://www.instagram.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E4405F" }}>
+              <a href="https://www.instagram.com/mapetttlogisticsandtravel/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E4405F" }}>
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="https://www.youtube.com/@MapetttravelandLogistics" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#FF0000" }}>
+              <a href="https://www.youtube.com/@MapettLogisticsandTravel" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#FF0000" }}>
                 <Youtube className="h-4 w-4" />
               </a>
               <a href="https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#0A66C2" }}>
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://www.tiktok.com/@mapetttravelandlogistics" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#000000" }}>
+              <a href="https://www.tiktok.com/@mapettlogisticsandtravel" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#000000" }}>
                 <TikTokSvg />
               </a>
-              <a href="https://www.pinterest.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E60023" }}>
+              <a href="https://www.pinterest.com/mapettlogisticsandtravel/" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#E60023" }}>
                 <PinterestSvg />
               </a>
             </div>
@@ -401,12 +402,12 @@ const Navbar = () => {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              <Link to="/track">
+              <a href="https://mapett.com" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="border-primary text-primary">
-                  <Truck className="mr-2 h-4 w-4" />
-                  Track Shipment
+                  <ShoppingBag className="mr-2 h-4 w-4" />
+                  Visit Marketplace
                 </Button>
-              </Link>
+              </a>
               {/* Contact Us */}
               <ContactDialog
                 trigger={
@@ -459,28 +460,28 @@ const Navbar = () => {
                   <a href="https://www.facebook.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Facebook className="h-4 w-4" />
                   </a>
-                  <a href="https://www.instagram.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.instagram.com/mapetttlogisticsandtravel/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Instagram className="h-4 w-4" />
                   </a>
-                  <a href="https://www.youtube.com/@MapetttravelandLogistics" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.youtube.com/@MapettLogisticsandTravel" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Youtube className="h-4 w-4" />
                   </a>
                   <a href="https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <Linkedin className="h-4 w-4" />
                   </a>
-                  <a href="https://www.tiktok.com/@mapetttravelandlogistics" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.tiktok.com/@mapettlogisticsandtravel" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <TikTokSvg />
                   </a>
-                  <a href="https://www.pinterest.com/mapetttravelandlogistics/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a href="https://www.pinterest.com/mapettlogisticsandtravel/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
                     <PinterestSvg />
                   </a>
                 </div>
                 <div className="pt-4 space-y-2">
-                  <Link to="/track" onClick={() => setIsOpen(false)}>
+                  <a href="https://mapett.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
                     <Button variant="outline" className="w-full border-primary text-primary">
-                      Track Shipment
+                      Visit Marketplace
                     </Button>
-                  </Link>
+                  </a>
                   <ContactDialog
                     trigger={
                       <Button className="w-full hero-gradient text-primary-foreground" onClick={() => setIsOpen(false)}>

@@ -29,9 +29,9 @@ const defaultContactInfo = [
 
 const defaultSocials = [
   { title: "Facebook", link: "https://www.facebook.com/mapetttravelandlogistics/", subtitle: "#1877F2" },
-  { title: "Instagram", link: "https://www.instagram.com/mapetttravelandlogistics/", subtitle: "#E4405F" },
-  { title: "YouTube", link: "https://www.youtube.com/@MapetttravelandLogistics", subtitle: "#FF0000" },
-  { title: "TikTok", link: "https://www.tiktok.com/@mapetttravelandlogistics", subtitle: "#000000" },
+  { title: "Instagram", link: "https://www.instagram.com/mapetttlogisticsandtravel/", subtitle: "#E4405F" },
+  { title: "YouTube", link: "https://www.youtube.com/@MapettLogisticsandTravel", subtitle: "#FF0000" },
+  { title: "TikTok", link: "https://www.tiktok.com/@mapettlogisticsandtravel", subtitle: "#000000" },
   { title: "LinkedIn", link: "https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/", subtitle: "#0A66C2" },
 ];
 

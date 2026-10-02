@@ -191,8 +191,8 @@ const generateStructuredData = (meta: MetaContent, pathname: string) => {
     "logo": "https://www.mapettlogistics.com/logo.png",
     "sameAs": [
       "https://www.facebook.com/mapetttravelandlogistics/",
-      "https://www.instagram.com/mapetttravelandlogistics/",
-      "https://www.youtube.com/@MapetttravelandLogistics",
+      "https://www.instagram.com/mapetttlogisticsandtravel/",
+      "https://www.youtube.com/@MapettLogisticsandTravel",
       "https://www.linkedin.com/in/mapett-travel-and-logistics-ltd-906116429/"
     ],
     "contactPoint": {
