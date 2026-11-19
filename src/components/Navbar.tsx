@@ -186,7 +186,7 @@ const Navbar = () => {
             </a>
             <a href="mailto:sales@mapettlogistics.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
-              sales@mapettlogistics.com
+              info@mapettlogistics.com
             </a>
           </div>
           <div className="flex items-center gap-4">
@@ -402,7 +402,7 @@ const Navbar = () => {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              <a href="https://mapett.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://mapettstore.com" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="border-primary text-primary">
                   <ShoppingBag className="mr-2 h-4 w-4" />
                   Visit Marketplace
